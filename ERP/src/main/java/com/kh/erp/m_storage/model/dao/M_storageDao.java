@@ -2,8 +2,10 @@ package com.kh.erp.m_storage.model.dao;
 
 import java.util.List;
 
-import com.kh.erp.m_storage.model.vo.M_storage;
+import org.springframework.stereotype.Repository;
 
+import com.kh.erp.m_storage.model.vo.M_storage;
+@Repository
 public interface M_storageDao {
 
 	/**

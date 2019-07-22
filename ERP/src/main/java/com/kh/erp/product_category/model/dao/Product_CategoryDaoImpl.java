@@ -2,11 +2,16 @@ package com.kh.erp.product_category.model.dao;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.product_category.model.vo.Product_Category;
-
-public class Product_CategoryImpl implements Product_CategoryDao {
-
+@Repository
+public class Product_CategoryDaoImpl implements Product_CategoryDao {
+	@Autowired
+	SqlSessionTemplate sqlSession;
 	@Override
 	public List<Product_Category> selectProduct_CategoryList() {
 		// TODO Auto-generated method stub
