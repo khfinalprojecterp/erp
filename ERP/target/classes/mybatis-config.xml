@@ -7,14 +7,18 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
-<!-- 	<typeAliases>
-		<typeAlias type="com.kh.spring.member.model.vo.Member"
-		           alias="member"/>
-		<typeAlias type="com.kh.spring.demo.model.vo.Dev"
-		           alias="dev" />
-		<typeAlias type="com.kh.spring.common.typeHandler.StringArrayTypeHandler"
-				   alias="strArrTypeHandler" />
-	</typeAliases> -->
+	<typeAliases>
+		<typeAlias type="com.kh.erp.enterprise.model.vo.Enterprise"
+		           alias="enterprise"/>
+		 	<typeAlias type="com.kh.erp.department.model.vo.Department"
+		           alias="department"/>
+		      	<typeAlias type="com.kh.erp.field.model.vo.Field"
+		           alias="field"/>               
+		      	<typeAlias type="com.kh.erp.employee.model.vo.Employee"
+		           alias="employee"/>     
+		           
+		           
+	</typeAliases>
 	
 	<!-- 어느 부분의 typeHandler를 적용할 것인지 패키지 영역을 설정한다. -->
 <!-- 	<typeHandlers>

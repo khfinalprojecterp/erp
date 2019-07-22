@@ -3,5 +3,32 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="enterprise">
+	
+	<resultMap id="resultEnterprise" type="Enterprise">
+		<id property="eId" column="eid" />
+		<result property="ePwd" column="epwd" />
+	</resultMap>
+
+
+
+
+	<insert id="insertEnterprise" parameterType="enterprise">
+		INSERT INTO ENTERPRISE VALUES(
+		ECODE_SEQ.NEXTVAL,
+			#{eId}, #{ePwd}, #{eName},
+			#{eNo}, #{eEmail}, #{eAddress}, #{ePhone},
+			DEFAULT, DEFAULT,
+			DEFAULT)	
+	</insert>
+
+	<select id="selectEnterprise" parameterType="string" resultMap="resultEnterprise">
+		SELECT * FROM ENTERPRISE WHERE EID = #{eId}
+	</select>
+
+
+
+
+
+
 
 </mapper>

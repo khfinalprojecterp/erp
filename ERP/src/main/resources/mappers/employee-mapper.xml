@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee">
+	
+	<resultMap id="resultEmployee" type="Employee">
+		<result property="idCode" column="idcode" />
+		<result property="dCode" column="dcode" />
+		<result property="wPwd" column="wpwd" />
+		<result property="wName" column="wname" />
+		<result property="position" column="position" />
+		<result property="enrollDate" column="enrolldate" />
+		<result property="wStatus" column="wstatus" />
+		<result property="retireDate" column="retiredate" />
+	</resultMap>
+	
+	
+	<resultMap id="resultEmployeeId" type="Employee">
+		<id property="idCode" column="idcode" />
+		<result property="wPwd" column="wpwd" />
+	</resultMap>
+	
+	
+	
+	
+
+	<select id="selectEmpList" resultMap="resultEmployee">
+		SELECT * FROM EMPLOYEE 
+	</select>
+	
+	<select id="selectEmp" resultMap="resultEmployeeId">
+		SELECT * FROM EMPLOYEE WHERE IDCODE = #{idCode} 
+	</select>
+	
+	
+
+
+	<insert id="insertEmp" parameterType="Employee">
+		INSERT INTO EMPLOYEE
+		VALUES (#{idCode}, #{dCode},
+		        #{wPwd}, #{wName}, #{position},
+		        #{enrollDate},#{wStatus},#{retireDate})
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
