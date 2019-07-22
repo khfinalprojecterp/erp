@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="materials">
+<!-- 
+	
+	MATERIALS
+	
+	INSERT
+	INSERT INTO MATERIAL
+	VALUES (MCODE_SEQ.NEXTVAL, #{mCate}, #{mName})
+	
+	SELECTONE
+	SELECT *
+	FROM MATERIAL
+	WHERE MCODE = #{mCode}
+	
+	
+	SELECTLIST
+	SELECT *
+	FROM MATERIAL
+	ORDER BY MCODE
+	
+	UPDATE
+	UPDATE MATERIAL
+	    SET MCATE = #{mCate},
+	    	MNAME = #{mName}
+	    WHERE MCODE = #{mCode}
+	    
+	DELETE
+	DELETE FROM MATERIAL
+	    WHERE MCODE = #{mCode}
+	 -->
+	 
+	 <!-- 
+	
+	MATERIALSCATEGORY
+	
+	INSERT
+	INSERT INTO MATERIALS_CATEGORY
+	VALUES (MCATE_SEQ.NEXTVAL, #{mcName})
+	
+	SELECTONE
+	SELECT *
+	FROM MATERIALS_CATEGORY
+	WHERE MCATE = #{mCate}
+	
+	
+	SELECTLIST
+	SELECT *
+	FROM MATERIALS_CATEGORY
+	ORDER BY MCATE
+	
+	UPDATE
+	UPDATE MATERIALS_CATEGORY
+	    SET MCNAME = #{mcName}
+	    WHERE MCATE = #{mCate}
+	    
+	DELETE
+	DELETE FROM MATERIALS_CATEGORY
+	    WHERE MCATE = #{mCate}
+	 -->
+</mapper>
