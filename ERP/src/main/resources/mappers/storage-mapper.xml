@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storage">
+	<!-- 
+	
+	STORAGE
+	
+	INSERT
+	INSERT INTO STORAGE
+	VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sPhone}, #{sAddr}, #{sStatus})
+	
+	SELECTONE
+	SELECT *
+	FROM STORAGE
+	WHERE SCODE = #{sCode}
+	
+	
+	SELECTLIST
+	SELECT *
+	FROM STORAGE
+	ORDER BY SCODE
+	
+	UPDATE
+	UPDATE STORAGE
+	    SET ECODE = #{eCode},
+	        SCATE = #{sCate},
+	        SPHONE = #{sPhone},
+	        SADDR = #{sAddr},
+	        SSTATUS = #{sStauts}
+	    WHERE SCODE = #{sCode}
+	    
+	DELETE
+	DELETE FROM STORAGE
+	    WHERE SCODE = #{sCode}
+	 -->
+	 
+	 <!--
+	 
+	 STORAGE_DETAIL
+	 
+	  
+	INSERT
+	INSERT INTO STORAGE_DETAIL
+	VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode}, #{in_Code},
+	 #{idCode}, #{sdStock}, #{sdCost}, #{sdDivi}, #{sdPrice}, #{sdDate})
+	
+	SELECTONE
+	SELECT *
+	FROM STORAGE_DETAIL
+	WHERE SDCODE = #{sdCode}
+	
+	
+	SELECTLIST
+	SELECT *
+	FROM STORAGE_DETAIL
+	ORDER BY SDCODE
+	
+	UPDATE
+	UPDATE STORAGE_DETAIL
+	    SET SCODE = #{sCode},
+	    	MCODE = #{mCode},
+	    	PCODE = #{pCode},
+	    	IN_CODE = #{in_Code},
+	    	IDCODE = #{idCode},
+	        SDSTOCK = #{sdStock},
+	        SDCOST = #{sdCost},
+	        SDDIVI = #{sdDivi},
+	        SDPRICE = #{sdPrice},
+	        SDDATE = #{sdDate}
+	    WHERE SDCODE = #{sdCode}
+	    
+	DELETE
+	DELETE FROM STORAGE_DETAIL
+	    WHERE SDCODE = #{sdCode}
+	 -->
+</mapper>
