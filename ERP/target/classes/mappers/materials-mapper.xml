@@ -3,62 +3,64 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="materials">
-<!-- 
+
+	<!-- Materials -->
 	
-	MATERIALS
+	<select id="selectMaterialList" resultType="materials">
+		SELECT *
+			FROM MATERIAL
+			ORDER BY MCODE
+	</select>
 	
-	INSERT
-	INSERT INTO MATERIAL
-	VALUES (MCODE_SEQ.NEXTVAL, #{mCate}, #{mName})
+	<select id="selectMaterialOne" resultType="materials">
+		SELECT *
+			FROM MATERIAL
+			WHERE MCODE = #{mCode}
+	</select>
 	
-	SELECTONE
-	SELECT *
-	FROM MATERIAL
-	WHERE MCODE = #{mCode}
+	<insert id="insertMaterial">
+		INSERT INTO MATERIAL
+			VALUES (MCODE_SEQ.NEXTVAL, #{mCate}, #{mName})
+	</insert>
 	
+	<update id="updateMaterial" parameterType="materials">
+		UPDATE MATERIAL
+	    	SET MCATE = #{mCate},
+	    		MNAME = #{mName}
+	   			WHERE MCODE = #{mCode}
+	</update>
 	
-	SELECTLIST
-	SELECT *
-	FROM MATERIAL
-	ORDER BY MCODE
+	<delete id="deleteMaterial">
+		DELETE FROM MATERIAL
+	    	WHERE MCODE = #{mCode}
+	</delete>
 	
-	UPDATE
-	UPDATE MATERIAL
-	    SET MCATE = #{mCate},
-	    	MNAME = #{mName}
-	    WHERE MCODE = #{mCode}
-	    
-	DELETE
-	DELETE FROM MATERIAL
-	    WHERE MCODE = #{mCode}
-	 -->
-	 
-	 <!-- 
+	<!-- MaterialsCategory -->
 	
-	MATERIALSCATEGORY
+	<select id="selectMaterialsCateList" resultType="materialscategory">
+		FROM MATERIALS_CATEGORY
+			ORDER BY MCATE
+	</select>
 	
-	INSERT
-	INSERT INTO MATERIALS_CATEGORY
-	VALUES (MCATE_SEQ.NEXTVAL, #{mcName})
+	<select id="selectMaterialsCateOne" resultType="materialscategory">
+		FROM MATERIALS_CATEGORY
+			WHERE MCATE = #{mCate}
+	</select>
 	
-	SELECTONE
-	SELECT *
-	FROM MATERIALS_CATEGORY
-	WHERE MCATE = #{mCate}
+	<insert id="insertMaterialsCate">
+		INSERT INTO MATERIALS_CATEGORY
+			VALUES (MCATE_SEQ.NEXTVAL, #{mcName})
+	</insert>
+
+	<update id="updateMaterialsCate" parameterType="materialscategory">
+		UPDATE MATERIALS_CATEGORY
+	    	SET MCNAME = #{mcName}
+	    	WHERE MCATE = #{mCate}
+	</update>
 	
-	
-	SELECTLIST
-	SELECT *
-	FROM MATERIALS_CATEGORY
-	ORDER BY MCATE
-	
-	UPDATE
-	UPDATE MATERIALS_CATEGORY
-	    SET MCNAME = #{mcName}
-	    WHERE MCATE = #{mCate}
-	    
-	DELETE
-	DELETE FROM MATERIALS_CATEGORY
-	    WHERE MCATE = #{mCate}
-	 -->
+	<delete id="deleteMaterialsCate">
+		DELETE FROM MATERIALS_CATEGORY
+	    	WHERE MCATE = #{mCate}
+	</delete>
+
 </mapper>
