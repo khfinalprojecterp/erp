@@ -7,7 +7,8 @@
 	<ol class="breadcrumb">
 		<li><a href="#">ERP</a></li>
 		<li><a href="#">재고관리</a></li>
-		<li><a href="#">메신저</a></li>
+		<li><a href="message/NewFile">메신저</a></li>
+
 	</ol>
 </div>
 
