@@ -20,14 +20,30 @@
 		</div>
 	</div>
 	<ul class="nav navbar-top-links navbar-right">
-	<!-- 로그인처리  -->
-	<c:if test="${empty enterprise}">
+	
+	<c:if test="${empty enterprise && empty employee}">
+      
         <!-- 로그인,회원가입 버튼 -->
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#loginModal">로그인</button>
-        &nbsp;
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">회원가입</button>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='${pageContext.request.contextPath}/enterprise/enterpriseLogin.do'" method="post">로그인</button>
+ <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='${pageContext.request.contextPath}/enterprise/enterpriseEnroll.do'">회원가입</button>
+  
     </c:if>
-	<c:if test="${!empty enterprise}">
+    
+    
+    <c:if test="${!empty enterprise || !empty employee}">
+    
+    
+    	<c:if test="${ empty employee && !empty enterprise }">
+   		 <span>${enterprise.eName}</a> 님, 안녕하세요</span>
+    	</c:if>
+   
+  		 <c:if test="${ empty enterprise && !empty employee }">
+   		 <span>${employee.wName}</a> 님, 안녕하세요</span>
+    	</c:if>
+  
+  
+	
+	
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#" aria-expanded="false"> <i
 				class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -172,12 +188,36 @@
 						Profile</a></li>
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 				<li class="divider"></li>
-				<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+				
+				
+				<c:if test="${ empty employee && !empty enterprise }">
+				<li><a href="${pageContext.request.contextPath}/enterprise/enterpriseLogout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+				</c:if>
+				
+				
+				
+				
+				 <c:if test="${ empty enterprise && !empty employee }">
+				 <li><a href="${pageContext.request.contextPath}/employee/employeeLogout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+				 </c:if>
+				
+				
+				
+				
+				
+				
+				
+				
 				</li>
+				
+				
+				
+				
 			</ul> <!-- /.dropdown-user --></li>
 		<!-- /.dropdown -->
-	</ul>
 	</c:if>
+	</ul>
+	
 	</nav>
 	<!--/. NAV TOP  -->
 	<nav class="navbar-default navbar-side" role="navigation">
@@ -190,8 +230,8 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>부서 & 사원관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="${pageContext.request.contextPath}/employee/employeeList.do">사원관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/department/departmentList.do">부서관리</a></li>
                     <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">Third Level Link</a></li>
