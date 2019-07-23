@@ -276,15 +276,9 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매입 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="${pageContext.request.contextPath}/buy/buy_lookup.do">구매조회</a></li>
+                    <li><a href="${pageContext.request.contextPath}/buy/buy_insert.do">구매입력</a></li>
+                    <li><a href="${pageContext.request.contextPath}/buy/buy_status.do">구매현황</a></li>
                 </ul>
             </li>
 			<!-- 효근 -->
