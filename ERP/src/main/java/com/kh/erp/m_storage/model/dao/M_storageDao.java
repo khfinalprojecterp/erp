@@ -8,50 +8,13 @@ import com.kh.erp.m_storage.model.vo.M_storage;
 @Repository
 public interface M_storageDao {
 
-	/**
-	 * 게시글 목록 조회용 메소드
-	 * @param cPage
-	 * @param limit
-	 * @return
-	 */
+int insert(M_storage m_storage);
+	
 	List<M_storage> selectM_storageList();
 	
+	M_storage selectDev(int IDCODE);
 	
-	/**
-	 * 게시글 추가 메소드
-	 * @param board
-	 * @param attachList
-	 * @return
-	 */
-	int insertM_storage(M_storage m_storage );
-	
-	/**
-	 * 게시글 내용 조회 메소드
-	 * @param boardNo
-	 * @return
-	 */
-	M_storage selectOneM_storage(int IDCODE); 
-	
-	
-	/**
-	 * 게시글 수정 메소드
-	 * @param board
-	 * @param attachList
-	 * @return
-	 */
 	int updateM_storage(M_storage m_storage);
 	
-	/**
-	 * 게시글 삭제 메소드
-	 * @param boardNo
-	 * @return
-	 */
-	int deleteM_storage(int IDCODE);
-	
-	/**
-	 * 파일 한 개 삭제 메소드
-	 * @param attNo
-	 * @return
-	 */
-	
-}
+	int deleteM_storage(int IDCDOE);
+	}
