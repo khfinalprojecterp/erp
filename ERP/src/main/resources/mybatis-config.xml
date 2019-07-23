@@ -8,22 +8,17 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="com.kh.erp.enterprise.model.vo.Enterprise"
-		           alias="enterprise"/>
-		 	<typeAlias type="com.kh.erp.department.model.vo.Department"
-		           alias="department"/>
-		      	<typeAlias type="com.kh.erp.field.model.vo.Field"
-		           alias="field"/>               
-		      	<typeAlias type="com.kh.erp.employee.model.vo.Employee"
-		           alias="employee"/>     
-		           
+
+		<typeAlias type="com.kh.erp.enterprise.model.vo.Enterprise" alias="enterprise"/>
+		 	<typeAlias type="com.kh.erp.department.model.vo.Department" alias="department"/>
+		      	<typeAlias type="com.kh.erp.field.model.vo.Field" alias="field"/>               
+		      	<typeAlias type="com.kh.erp.employee.model.vo.Employee" alias="employee"/>     
+		        <typeAlias type="com.kh.erp.materials.model.vo.Materials" alias="materials" />
+	        	<typeAlias type="com.kh.erp.materials.model.vo.MaterialsCategory" alias="materialscategory" />
+        		<typeAlias type="com.kh.erp.storage.model.vo.Storage" alias="storage" />
+	        	<typeAlias type="com.kh.erp.storage.model.vo.StorageDetail" alias="storagedetail" />   
 		           
 	</typeAliases>
-	
-	<!-- 어느 부분의 typeHandler를 적용할 것인지 패키지 영역을 설정한다. -->
-<!-- 	<typeHandlers>
-		<package name="com.kh.spring.common.typeHandler"/>
-	</typeHandlers> -->
 </configuration>
 
 
