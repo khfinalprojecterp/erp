@@ -17,7 +17,7 @@ public interface MaterialsCategoryService {
 	List<MaterialsCategory> materialsCategoryList();
 	
 	/**
-	 * 기자재 분류 추가 메소드
+	 * 기자재 분류 추가 메소드 
 	 * @param materialsCategory
 	 * @return
 	 */
