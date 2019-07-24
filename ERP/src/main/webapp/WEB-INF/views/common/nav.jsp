@@ -261,7 +261,7 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>기자재 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="${pageContext.request.contextPath}/materialscate/mateCateList.do">기자재 카테고리 리스트</a></li>
                     <li><a href="#">Second Level Link</a></li>
                     <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">

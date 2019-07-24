@@ -14,14 +14,14 @@ public interface MaterialsCategoryService {
 	 * 기자재 분류 리스트 조회 메소드
 	 * @return
 	 */
-	List<MaterialsCategory> materialsCategoryList();
+	List<Map<String, String>> materialsCategoryList();
 	
 	/**
 	 * 기자재 분류 추가 메소드 
-	 * @param materialsCategory
+	 * @param mcName
 	 * @return
 	 */
-	int insertMaterialsCategory(MaterialsCategory materialsCategory);
+	int insertMaterialsCategory(String mcName);
 	
 	/**
 	 * 기자재 분류 선택 메소드
@@ -35,7 +35,7 @@ public interface MaterialsCategoryService {
 	 * @param materialsCategory
 	 * @return
 	 */
-	int updateMaterialsCategory(MaterialsCategory materialsCategory);
+	int updateMaterialsCategory(MaterialsCategory materialCategory);
 	
 	/**
 	 * 기자재 분류 삭제 메소드

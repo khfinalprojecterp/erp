@@ -14,16 +14,17 @@ public class MaterialsCategory implements Serializable {
 	
 	public MaterialsCategory() { }
 
-	public MaterialsCategory(int mCate, String mCName) {
+	public MaterialsCategory(int mCate, String mcName) {
+		super();
 		this.mCate = mCate;
-		this.mcName = mCName;
+		this.mcName = mcName;
 	}
 
-	public int getMCate() {
+	public int getmCate() {
 		return mCate;
 	}
 
-	public void setMCate(int mCate) {
+	public void setmCate(int mCate) {
 		this.mCate = mCate;
 	}
 
@@ -31,15 +32,14 @@ public class MaterialsCategory implements Serializable {
 		return mcName;
 	}
 
-	public void setMcName(String mCName) {
-		this.mcName = mCName;
+	public void setMcName(String mcName) {
+		this.mcName = mcName;
 	}
 
 	@Override
 	public String toString() {
 		return "MaterialsCategory [mCate=" + mCate + ", mcName=" + mcName + "]";
 	}
-
 
 
 	

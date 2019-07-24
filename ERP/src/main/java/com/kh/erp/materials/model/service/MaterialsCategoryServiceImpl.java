@@ -1,6 +1,7 @@
 package com.kh.erp.materials.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,32 +17,32 @@ public class MaterialsCategoryServiceImpl implements MaterialsCategoryService {
 	private MaterialsCategoryDao materialsCategoryDao;
 
 	@Override
-	public List<MaterialsCategory> materialsCategoryList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, String>> materialsCategoryList() {
+		
+		return materialsCategoryDao.materialsCategoryList();
 	}
 
 	@Override
-	public int insertMaterialsCategory(MaterialsCategory materialsCategory) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertMaterialsCategory(String mcName) {
+		
+		return materialsCategoryDao.insertMaterialsCategory(mcName);
 	}
 
 	@Override
 	public MaterialsCategory selectOneMaterialsCategory(int mCate) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return materialsCategoryDao.selectOneMaterialsCategory(mCate);
 	}
 
 	@Override
 	public int updateMaterialsCategory(MaterialsCategory materialsCategory) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return materialsCategoryDao.updateMaterialsCategory(materialsCategory);
 	}
 
 	@Override
 	public int deleteMaterialsCategory(int mCate) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return materialsCategoryDao.deleteMaterialsCategory(mCate);
 	}
 }
