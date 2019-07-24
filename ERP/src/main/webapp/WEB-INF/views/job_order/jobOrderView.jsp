@@ -23,7 +23,7 @@
                            id="dataTables-example">
                            <thead>
                               <tr>
-                                 <th>기자재 분류 번호</th>
+                                 <th>작업지시서 분류 번호</th>
                                  <th>기자재 분류 이름</th>
                               </tr>
                            </thead>
