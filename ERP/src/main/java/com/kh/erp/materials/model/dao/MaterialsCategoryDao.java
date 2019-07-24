@@ -1,6 +1,7 @@
 package com.kh.erp.materials.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.materials.model.vo.MaterialsCategory;
 
@@ -10,14 +11,14 @@ public interface MaterialsCategoryDao {
 	 * 기자재 리스트 조회 메소드
 	 * @return
 	 */
-	List<MaterialsCategory> materialsCategoryList();
+	List<Map<String, String>> materialsCategoryList();
 	
 	/**
 	 * 기자재 분류 추가 메소드
-	 * @param materialsCategory
+	 * @param mcName
 	 * @return
 	 */
-	int insertMaterialsCategory(MaterialsCategory materialsCategory);
+	int insertMaterialsCategory(String mcName);
 	
 	/**
 	 * 기자재 분류 선택 메소드
