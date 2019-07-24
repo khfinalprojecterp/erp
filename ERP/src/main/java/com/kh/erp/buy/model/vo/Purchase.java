@@ -1,11 +1,21 @@
-package com.kh.erp.buy.purchase;
+package com.kh.erp.buy.model.vo;
 
-public class Purchase {
+import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
+@Component
+public class Purchase implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1023L;
 	private int buy_code;
-	private int scode;
-	private int mcode;
-	private int pcode;
+	private int sCode;
+	private int mCode;
+	private int pCode;
+	private int idCode;
 	private int buy_amount;
 	private int buy_origin;
 	private int buy_price;
@@ -16,13 +26,14 @@ public class Purchase {
 	public Purchase() {}
 
 
-	public Purchase(int buy_code, int scode, int mcode, int pcode, int buy_amount, int buy_origin, int buy_price,
-			String buy_status, int buy_discount) {
+	public Purchase(int buy_code, int sCode, int mCode, int pCode, int idCode, int buy_amount, int buy_origin,
+			int buy_price, String buy_status, int buy_discount) {
 		super();
 		this.buy_code = buy_code;
-		this.scode = scode;
-		this.mcode = mcode;
-		this.pcode = pcode;
+		this.sCode = sCode;
+		this.mCode = mCode;
+		this.pCode = pCode;
+		this.idCode = idCode;
 		this.buy_amount = buy_amount;
 		this.buy_origin = buy_origin;
 		this.buy_price = buy_price;
@@ -41,33 +52,43 @@ public class Purchase {
 	}
 
 
-	public int getScode() {
-		return scode;
+	public int getsCode() {
+		return sCode;
 	}
 
 
-	public void setScode(int scode) {
-		this.scode = scode;
+	public void setsCode(int sCode) {
+		this.sCode = sCode;
 	}
 
 
-	public int getMcode() {
-		return mcode;
+	public int getmCode() {
+		return mCode;
 	}
 
 
-	public void setMcode(int mcode) {
-		this.mcode = mcode;
+	public void setmCode(int mCode) {
+		this.mCode = mCode;
 	}
 
 
-	public int getPcode() {
-		return pcode;
+	public int getpCode() {
+		return pCode;
 	}
 
 
-	public void setPcode(int pcode) {
-		this.pcode = pcode;
+	public void setpCode(int pCode) {
+		this.pCode = pCode;
+	}
+
+
+	public int getIdCode() {
+		return idCode;
+	}
+
+
+	public void setIdCode(int idCode) {
+		this.idCode = idCode;
 	}
 
 
@@ -123,11 +144,11 @@ public class Purchase {
 
 	@Override
 	public String toString() {
-		return "Purchase [buy_code=" + buy_code + ", scode=" + scode + ", mcode=" + mcode + ", pcode=" + pcode
-				+ ", buy_amount=" + buy_amount + ", buy_origin=" + buy_origin + ", buy_price=" + buy_price
-				+ ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + "]";
+		return "Purchase [buy_code=" + buy_code + ", sCode=" + sCode + ", mCode=" + mCode + ", pCode=" + pCode
+				+ ", idCode=" + idCode + ", buy_amount=" + buy_amount + ", buy_origin=" + buy_origin + ", buy_price="
+				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + "]";
 	}
-	
+
 	
 	
 	
