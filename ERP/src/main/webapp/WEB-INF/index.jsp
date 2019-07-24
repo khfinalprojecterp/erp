@@ -431,6 +431,11 @@
 											<td class="center">U</td>
 										</tr>
 									</tbody>
+									<tfoot>
+										<tr class="gradeU">
+											<td><input type="button" value="버튼"/></td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 

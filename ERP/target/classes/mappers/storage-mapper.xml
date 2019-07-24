@@ -3,76 +3,79 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="storage">
-	<!-- 
+
+	<!-- Storage -->
 	
-	STORAGE
+	<select id="selectStorageList" resultType="storage">
+		SELECT *
+			FROM STORAGE
+			ORDER BY SCODE
+	</select>
 	
-	INSERT
-	INSERT INTO STORAGE
-	VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sPhone}, #{sAddr}, #{sStatus})
+	<select id="selectStorageOne" resultType="storage">
+		SELECT *
+			FROM MATERIAL
+			WHERE MCODE = #{mCode}
+	</select>
 	
-	SELECTONE
-	SELECT *
-	FROM STORAGE
-	WHERE SCODE = #{sCode}
+	<insert id="insertStorage">
+		INSERT INTO STORAGE
+			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sPhone}, #{sAddr}, #{sStatus})
+	</insert>
 	
+	<update id="updateStorage" parameterType="storage">
+		UPDATE STORAGE
+		    SET ECODE = #{eCode},
+		        SCATE = #{sCate},
+		        SPHONE = #{sPhone},
+		        SADDR = #{sAddr},
+		        SSTATUS = #{sStauts}
+		    WHERE SCODE = #{sCode}
+	</update>
 	
-	SELECTLIST
-	SELECT *
-	FROM STORAGE
-	ORDER BY SCODE
+	<delete id="deleteStorage">
+		DELETE FROM STORAGE
+	    	WHERE SCODE = #{sCode}
+	</delete>
 	
-	UPDATE
-	UPDATE STORAGE
-	    SET ECODE = #{eCode},
-	        SCATE = #{sCate},
-	        SPHONE = #{sPhone},
-	        SADDR = #{sAddr},
-	        SSTATUS = #{sStauts}
-	    WHERE SCODE = #{sCode}
-	    
-	DELETE
-	DELETE FROM STORAGE
-	    WHERE SCODE = #{sCode}
-	 -->
+	<!-- StorageDetail -->
+	
+	<select id="selectStorageDetailList" resultType="storagedetail">
+		SELECT *
+			FROM STORAGE_DETAIL
+			ORDER BY SDCODE
+	</select>
+	
+	<select id="selectStorageDetailOne" resultType="storagedetail">
+		SELECT *
+			FROM STORAGE_DETAIL
+			WHERE SDCODE = #{sdCode}
+	</select>
+	
+	<insert id="insertStorageDetail">
+		INSERT INTO STORAGE_DETAIL
+			VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode}, #{in_Code},
+	 		#{idCode}, #{sdStock}, #{sdCost}, #{sdDivi}, #{sdPrice}, #{sdDate})
+	</insert>
+	
+	<update id="updateStorageDetail" parameterType="storagedetail">
+		UPDATE STORAGE_DETAIL
+	    	SET SCODE = #{sCode},
+		    	MCODE = #{mCode},
+		    	PCODE = #{pCode},
+		    	IN_CODE = #{in_Code},
+		    	IDCODE = #{idCode},
+		        SDSTOCK = #{sdStock},
+		        SDCOST = #{sdCost},
+		        SDDIVI = #{sdDivi},
+		        SDPRICE = #{sdPrice},
+		        SDDATE = #{sdDate}
+		    WHERE SDCODE = #{sdCode}
+	</update>
+	
+	<delete id="deleteStorageDetail">
+		DELETE FROM STORAGE_DETAIL
+	    	WHERE SDCODE = #{sdCode}
+	</delete>
 	 
-	 <!--
-	 
-	 STORAGE_DETAIL
-	 
-	  
-	INSERT
-	INSERT INTO STORAGE_DETAIL
-	VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode}, #{in_Code},
-	 #{idCode}, #{sdStock}, #{sdCost}, #{sdDivi}, #{sdPrice}, #{sdDate})
-	
-	SELECTONE
-	SELECT *
-	FROM STORAGE_DETAIL
-	WHERE SDCODE = #{sdCode}
-	
-	
-	SELECTLIST
-	SELECT *
-	FROM STORAGE_DETAIL
-	ORDER BY SDCODE
-	
-	UPDATE
-	UPDATE STORAGE_DETAIL
-	    SET SCODE = #{sCode},
-	    	MCODE = #{mCode},
-	    	PCODE = #{pCode},
-	    	IN_CODE = #{in_Code},
-	    	IDCODE = #{idCode},
-	        SDSTOCK = #{sdStock},
-	        SDCOST = #{sdCost},
-	        SDDIVI = #{sdDivi},
-	        SDPRICE = #{sdPrice},
-	        SDDATE = #{sdDate}
-	    WHERE SDCODE = #{sdCode}
-	    
-	DELETE
-	DELETE FROM STORAGE_DETAIL
-	    WHERE SDCODE = #{sdCode}
-	 -->
 </mapper>
