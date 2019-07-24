@@ -10,7 +10,7 @@
  	<typeAliases>
 		
 		<typeAlias type="com.kh.erp.m_storage.model.vo.M_storage"
-		           alias="m_storage" />
+		           alias="M_storage" />
 		<typeAlias type="com.kh.erp.common.typeHandler.StringArrayTypeHandler"
 				   alias="strArrTypeHandler" />
 	</typeAliases> 
