@@ -60,13 +60,13 @@ div#demo-container {
 					<label for="MSDATE" class="col-sm-2 col-form-label">신청일</label>
 					<div class="col-sm-10">
 						<input type="date" class="form-control" id="MSDATE"
-							name="MSMSTOCK">
+							name="MSDATE">
 					</div>
 				<div class="form-group row">
 					<label for="MSPRICE" class="col-sm-2 col-form-label">납품원가</label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" id="MSPRICE"
-							name="MSMSTOCK">
+							name="MSPRICE">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -78,13 +78,13 @@ div#demo-container {
 								class="form-check-label" for="MSSTATUS0">신청</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="devGender"
+							<input class="form-check-input" type="radio" name="MSSTATUS"
 								id="MSTATUS1" value="R"> <label
 								class="form-check-label" for="MSTATUS1">거절</label>
 					
 						</div>
 				<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="devGender"
+							<input class="form-check-input" type="radio" name="MSSTATUS"
 								id="MSSTAUS2" value="C"> <label
 								class="form-check-label" for="MSSTAUS2">완료</label>
 					
@@ -95,7 +95,7 @@ div#demo-container {
 			<!-- 전송 버튼 -->
 			<div class="list-group">
 				
-				<button type="button" onclick="m_storage();"
+				<button type="button" onclick="insertM_storage();"
 				        class="list-group-item list-group-item-action">
 					발주요청
 				</button>

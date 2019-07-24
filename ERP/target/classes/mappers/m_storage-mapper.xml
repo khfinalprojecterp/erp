@@ -4,24 +4,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="m_storage">
 
-	<resultMap type="M_storage" id="M_storage">
-		<result column="IDCODE" property="IDCODE"
-		        typeHandler="strArrTypeHandler"/>
-	</resultMap>
 	
-	<select id="selectM_storageList" resultMap="M_storage">
+	<select id="selectM_storageList" resultType="M_storage">
 		SELECT * FROM M_STORAGE ORDER BY MCODE DESC
 	</select>
 	
-	<select id="selectM_storage" parameterType="_int" resultMap="M_storage">
+	<select id="selectM_storage" parameterType="_int" resultType="M_storage">
 		SELECT * FROM M_STORAGE WHERE  = #{MCODE}
 	</select>
 	
 	<insert id="insertM_storage" parameterType="M_storage">
 		INSERT INTO M_STORAGE
-		VALUES (#{idcode},SEQ_MCODE.NEXTVAL, 
-		        #{scode}, #{msmstock}, #{msdate},
-		        #{msprice},#{msstatus})
+		VALUES (#{IDCODE},SEQ_MCODE.NEXTVAL, 
+		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
+		        #{MSPRICE},#{MSSTATUS})
 	</insert>
 <!-- 
 	<update id="updateDev" parameterType="dev">

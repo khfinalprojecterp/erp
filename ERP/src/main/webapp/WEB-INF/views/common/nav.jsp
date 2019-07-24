@@ -237,7 +237,7 @@
                 <a href="#"><i class="fa fa-sitemap"></i>매입 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="${pageContext.request.contextPath}/m_storage/insertM_storage.do">발주요청</a></li>
-                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="${pageContext.request.contextPath}/m_storage/M_storageList.do">발주 목록</a></li>
                     <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">none</a></li>

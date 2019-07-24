@@ -31,20 +31,55 @@ M_storageService m_storageService;
 	 * MSPRICE;//납품원가 private String MSSTATUS;//(신청 거절,완료)
 	 */
 
+// 발주요청 화면 전환 매소드 
 @RequestMapping(value="/m_storage/insertM_storage.do",
 method=RequestMethod.GET)
-public String insertM_storage(M_storage m_storage) {
+public String insertM_storageView(M_storage m_storage) {
 
 System.out.println("insertm_storage 화면 메소드 확인");
 
-	
-		  int result = m_storageService.insert(m_storage);
+//여기까진 되는데 
+
+		/* int result = m_storageService.insert(m_storage); */
 		 
-		  System.out.println("insert 결과 : " + result);
+		/* System.out.println("insert 결과 : " + result); */
 		 
 
-return "m_storage/m_storagelist";
+return "m_storage/m_storage";
 }
+
+//발주요청 기능수행메소드
+@RequestMapping(value="/m_storage/insertM_storage.do",
+method=RequestMethod.POST)
+public String insertM_storage(
+		/*M_storage m_storage*/
+		@RequestParam int IDCODE,
+		@RequestParam int MCODE,
+		@RequestParam int SCODE,
+		@RequestParam int MSMSTOCK,
+		@RequestParam Date MSDATE,
+		@RequestParam int MSPRICE,
+		@RequestParam String MSSTATUS) {
+
+	M_storage m_storage = new M_storage(IDCODE, MCODE, SCODE, MSMSTOCK, MSDATE, MSPRICE, MSSTATUS);
+	System.out.println(m_storage);
+System.out.println("insertm_storage 화면 메소드 확인");
+
+//여기까진 되는데 
+
+		  int result = m_storageService.insert(m_storage);
+		 
+		   System.out.println("insert 결과 : " + result);
+		 
+
+return "redirect:/m_storage/M_storageList.do";
+}
+
+
+
+
+
+
 
 @RequestMapping("/m_storage/M_storageList.do")
 public String selectM_storageList(Model model) {
@@ -53,7 +88,7 @@ public String selectM_storageList(Model model) {
 	System.out.println("list 확인"+list);
 	model.addAttribute("list",list);
 	
-	return"m_storage/m_storagelist";
+	return"m_storage/m_storageList";
 	
 	
 	}

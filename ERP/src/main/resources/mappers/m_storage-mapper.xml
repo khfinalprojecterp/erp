@@ -19,9 +19,9 @@
 	
 	<insert id="insertM_storage" parameterType="M_storage">
 		INSERT INTO M_STORAGE
-		VALUES (#{idcode},SEQ_MCODE.NEXTVAL, 
-		        #{scode}, #{msmstock}, #{msdate},
-		        #{msprice},#{msstatus})
+		VALUES (#{IDCODE},SEQ_MCODE.NEXTVAL, 
+		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
+		        #{MSPRICE},#{MSSTATUS})
 	</insert>
 <!-- 
 	<update id="updateDev" parameterType="dev">
