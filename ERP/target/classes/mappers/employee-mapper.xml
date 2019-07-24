@@ -3,9 +3,15 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="employee">
-	
+
+	<resultMap id="Department" type="Department">
+		<id property="dCode" column="dcode" />
+		<result property="eCode" column="ecode" />
+		<result property="dTitle" column="dtitle" />
+	</resultMap>
+
 	<resultMap id="resultEmployee" type="Employee">
-		<result property="idCode" column="idcode" />
+		<id property="idCode" column="idcode" />
 		<result property="dCode" column="dcode" />
 		<result property="wPwd" column="wpwd" />
 		<result property="wName" column="wname" />
@@ -13,6 +19,7 @@
 		<result property="enrollDate" column="enrolldate" />
 		<result property="wStatus" column="wstatus" />
 		<result property="retireDate" column="retiredate" />
+<!-- 		<collection property="Department" resultMap="Department"/> -->
 	</resultMap>
 	
 	
@@ -22,12 +29,19 @@
 	</resultMap>
 	
 	
-	
-	
-
-	<select id="selectEmpList" resultMap="resultEmployee">
-		SELECT * FROM EMPLOYEE 
+	<select id="selectEmpList" resultType="Employee">
+		SELECT E.*,D.ECODE, D.DTITLE
+		FROM EMPLOYEE E , DEPARTMENT D
+		WHERE E.DCODE = D.DCODE
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<select id="selectEmp" resultMap="resultEmployeeId">
 		SELECT * FROM EMPLOYEE WHERE IDCODE = #{idCode} 
@@ -40,7 +54,7 @@
 		INSERT INTO EMPLOYEE
 		VALUES (#{idCode}, #{dCode},
 		        #{wPwd}, #{wName}, #{position},
-		        #{enrollDate},#{wStatus},#{retireDate})
+		        #{enrollDate},#{wStatus},DEFAULT)
 	</insert>
 
 

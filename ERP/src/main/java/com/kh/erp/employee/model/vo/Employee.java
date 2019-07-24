@@ -5,6 +5,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.kh.erp.department.model.vo.Department;
+
 
 @Component
 public class Employee implements Serializable {
@@ -21,6 +23,41 @@ public class Employee implements Serializable {
 	private char wStatus;
 	private Date retireDate;
 	
+	// 가상변수
+	private int eCode;
+	private String dTitle;
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			Date retireDate, int eCode, String dTitle) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+	}
+
+	public int geteCode() {
+		return eCode;
+	}
+
+	public void seteCode(int eCode) {
+		this.eCode = eCode;
+	}
+
+	public String getdTitle() {
+		return dTitle;
+	}
+
+	public void setdTitle(String dTitle) {
+		this.dTitle = dTitle;
+	}
+
 	public Employee() {
 	
 	}
