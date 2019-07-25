@@ -9,7 +9,7 @@ import com.kh.erp.board.model.vo.Board;
 
 public interface BoardDao {
 	
-	List<Map<String, String>> selectBoardList(int cPage, int limit);
+	List<Map<String, String>> selectBoardList();
 	
 	int selectBoardTotalContents();
 	

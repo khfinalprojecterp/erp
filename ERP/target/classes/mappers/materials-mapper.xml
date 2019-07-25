@@ -3,6 +3,8 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="materials">
+	<resultMap id="materialsMap" type="map"/>
+	<resultMap id="materialscategoryMap" type="materialscategory" />
 
 	<!-- Materials -->
 	
@@ -38,11 +40,13 @@
 	<!-- MaterialsCategory -->
 	
 	<select id="selectMaterialsCateList" resultType="materialscategory">
+		SELECT *
 		FROM MATERIALS_CATEGORY
 			ORDER BY MCATE
 	</select>
 	
 	<select id="selectMaterialsCateOne" resultType="materialscategory">
+		SELECT *
 		FROM MATERIALS_CATEGORY
 			WHERE MCATE = #{mCate}
 	</select>

@@ -14,6 +14,41 @@ private String fName;
 private String fArea;
 private int fPart;
 
+// 가상변수 //
+private String dTitle;
+
+
+
+
+
+public Field(int eCode, int dCode, String fName, String fArea, int fPart, String dTitle) {
+	super();
+	this.eCode = eCode;
+	this.dCode = dCode;
+	this.fName = fName;
+	this.fArea = fArea;
+	this.fPart = fPart;
+	this.dTitle = dTitle;
+}
+
+
+
+public String getdTitle() {
+	return dTitle;
+}
+
+
+
+public void setdTitle(String dTitle) {
+	this.dTitle = dTitle;
+}
+
+
+
+public void setfArea(String fArea) {
+	this.fArea = fArea;
+}
+
 
 
 public Field() {

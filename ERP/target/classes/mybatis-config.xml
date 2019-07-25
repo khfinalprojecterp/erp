@@ -17,7 +17,9 @@
 	        	<typeAlias type="com.kh.erp.materials.model.vo.MaterialsCategory" alias="materialscategory" />
         		<typeAlias type="com.kh.erp.storage.model.vo.Storage" alias="storage" />
 	        	<typeAlias type="com.kh.erp.storage.model.vo.StorageDetail" alias="storagedetail" />   
-		           
+		        <typeAlias type="com.kh.erp.buy.model.vo.Purchase" alias="Purchase" />
+				<typeAlias type="com.kh.erp.board.model.vo.Board" alias="board" />
+				<typeAlias type="com.kh.erp.board.model.vo.Attachment" alias="attachment" />      	  
 	</typeAliases>
 </configuration>
 
