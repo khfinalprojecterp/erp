@@ -23,10 +23,14 @@ public class Employee implements Serializable {
 	private char wStatus;
 	private Date retireDate;
 	
+	
 	// 가상변수
 	private int eCode;
 	private String dTitle;
 
+	
+	
+	
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
 			Date retireDate, int eCode, String dTitle) {
 		super();
@@ -142,10 +146,10 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [idCode=" + idCode + ", dCode=" + dCode + ", wPwd=" + wPwd + ", wName=" + wName + ", position="
-				+ position + ", enrollDate=" + enrollDate + ", wStatus=" + wStatus + ", retireDate=" + retireDate + "]";
+				+ position + ", enrollDate=" + enrollDate + ", wStatus=" + wStatus + ", retireDate=" + retireDate
+				+ ", eCode=" + eCode + ", dTitle=" + dTitle + "]";
 	}
-	
-	
+
 	
 	
 	
