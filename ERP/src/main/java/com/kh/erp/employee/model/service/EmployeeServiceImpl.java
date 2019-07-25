@@ -36,4 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empDao.selectEmpList();
 	}
 
+	@Override
+	public int updateEmployee(Employee emp) {
+		
+		return empDao.updateEmployee(emp);
+	}
+
 }

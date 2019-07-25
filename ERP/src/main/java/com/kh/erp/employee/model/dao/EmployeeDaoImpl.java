@@ -35,4 +35,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return sqlSession.selectList("employee.selectEmpList");
 	}
 
+	@Override
+	public int updateEmployee(Employee emp) {
+		
+		return sqlSession.update("employee.updateEmp");
+	}
+
 }

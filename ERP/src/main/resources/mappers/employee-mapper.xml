@@ -43,8 +43,12 @@
 	
 	
 	
-	<select id="selectEmp" resultMap="resultEmployeeId">
-		SELECT * FROM EMPLOYEE WHERE IDCODE = #{idCode} 
+	
+	<select id="selectEmp" resultType="Employee">
+		SELECT E.*, D.ECODE   
+	FROM EMPLOYEE E, DEPARTMENT D  
+	WHERE E.DCODE = D.DCODE
+	AND E.IDCODE = #{idCode}
 	</select>
 	
 	
@@ -58,6 +62,16 @@
 	</insert>
 
 
+	<update id="updateEmp" parameterType="Employee">
+		UPDATE EMPLOYEE SET 
+		 DCODE= #{dCode},
+		 WNAME= #{wName},
+		 POSITION=#{position},
+		 ENROLLDATE=#{erollDate},
+		 WSTATUS=#{wStatus}
+		 RETIREDATE=#{retireDate}
+		WHERE IDCODE = #{idCode}
+	</update>
 
 
 
