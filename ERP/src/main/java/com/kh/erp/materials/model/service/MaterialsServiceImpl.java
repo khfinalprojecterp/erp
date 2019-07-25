@@ -1,6 +1,7 @@
 package com.kh.erp.materials.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,15 @@ public class MaterialsServiceImpl implements MaterialsService {
 	private MaterialsDao materialsDao;
 
 	@Override
-	public List<Materials> materialsList() {
+	public List<Map<String, String>> materialsList() {
 		// TODO Auto-generated method stub
-		return null;
+		return materialsDao.materialsList();
 	}
 
 	@Override
 	public int insertMaterials(Materials materials) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return materialsDao.insertMaterials(materials);
 	}
 
 	@Override
@@ -34,13 +35,12 @@ public class MaterialsServiceImpl implements MaterialsService {
 
 	@Override
 	public int updateMaterials(Materials materials) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return materialsDao.updateMaterials(materials);
 	}
 
 	@Override
 	public int deleteMaterials(int mCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		return materialsDao.deleteMaterials(mCode);
 	}
 }
