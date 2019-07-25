@@ -17,31 +17,31 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public List<Purchase> purchaseList() {
 		// TODO Auto-generated method stub
-		return null;
+		return buydao.purchaseList();
 	}
 
 	@Override
 	public Purchase selectOnePurchase(int buy_code) {
 		// TODO Auto-generated method stub
-		return null;
+		return buydao.selectOnePurchase(buy_code);
 	}
 
 	@Override
 	public int insertPurchase(Purchase purchase) {
 		// TODO Auto-generated method stub
-		return 0;
+		return buydao.insertPurchase(purchase);
 	}
 
 	@Override
 	public int updatePurchase(Purchase purchase) {
 		// TODO Auto-generated method stub
-		return 0;
+		return buydao.updatePurchase(purchase);
 	}
 
 	@Override
 	public int deletePurchase(int buy_code) {
 		// TODO Auto-generated method stub
-		return 0;
+		return buydao.deletePurchase(buy_code);
 	}
 
 }
