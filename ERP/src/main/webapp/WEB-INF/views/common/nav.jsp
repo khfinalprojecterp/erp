@@ -300,7 +300,7 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>생산 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="${pageContext.request.contextPath}/board/boardList.do">게시판</a></li>
                     <li><a href="#">Second Level Link</a></li>
                     <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
