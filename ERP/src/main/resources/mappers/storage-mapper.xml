@@ -3,13 +3,27 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="storage">
+	<resultMap id="storageMap" type="map">
+		<result property="sCode" column="SCODE" />
+		<result property="eCode" column="ECODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="sCate" column="SCATE" />
+		<result property="sPhone" column="SPHONE" />
+		<result property="sAddr" column="SADDR" />
+		<result property="sStatus" column="SSTATUS" />
+		<result property="sEname" column="ENAME" />
+		<result property="sWname" column="WNAME" />
+	</resultMap>
 
 	<!-- Storage -->
 	
-	<select id="selectStorageList" resultType="storage">
-		SELECT *
-			FROM STORAGE
-			ORDER BY SCODE
+	<select id="selectStorageList" resultMap="storageMap">
+	SELECT S.SCODE SCODE, S.ECODE ECODE, S.IDCODE IDCODE, S.SCATE SCATE, S.SPHONE SPHONE, S.SADDR SADDR, 
+        S.SSTATUS SSTATUS, E.ENAME ENAME, M.WNAME WNAME
+    	FROM STORAGE S, ENTERPRISE E, EMPLOYEE M
+    	WHERE S.ECODE = E.ECODE
+      	AND S.IDCODE = M.IDCODE
+		ORDER BY SCODE
 	</select>
 	
 	<select id="selectStorageOne" resultType="storage">
@@ -20,7 +34,7 @@
 	
 	<insert id="insertStorage">
 		INSERT INTO STORAGE
-			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sPhone}, #{sAddr}, #{sStatus})
+			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sCate}, #{sPhone}, #{sAddr}, DEFAULT)
 	</insert>
 	
 	<update id="updateStorage" parameterType="storage">
@@ -29,7 +43,7 @@
 		        SCATE = #{sCate},
 		        SPHONE = #{sPhone},
 		        SADDR = #{sAddr},
-		        SSTATUS = #{sStauts}
+		        SSTATUS = #{sStatus}
 		    WHERE SCODE = #{sCode}
 	</update>
 	
