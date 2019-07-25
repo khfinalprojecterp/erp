@@ -10,7 +10,7 @@ public class M_storage implements Serializable{
 	private static final long serialVersionUID = 1102L;
 //발주요청
 	private int IDCODE;// 사원코드
-	private int MCOE; // 기자재 코드
+	private int MCODE; // 기자재 코드
 	private int SCODE;//반출 창고 코드
 	private int MSMSTOCK;// 수량
 	private Date MSDATE;//신청일
@@ -21,10 +21,10 @@ public class M_storage implements Serializable{
 		
 	}
 
-	public M_storage(int iDCODE, int mCOE, int sCODE, int mSMSTOCK, Date mSDATE, int mSPRICE, String mSSTATUS) {
+	public M_storage(int iDCODE, int mCODE, int sCODE, int mSMSTOCK, Date mSDATE, int mSPRICE, String mSSTATUS) {
 		super();
 		IDCODE = iDCODE;
-		MCOE = mCOE;
+		MCODE = mCODE;
 		SCODE = sCODE;
 		MSMSTOCK = mSMSTOCK;
 		MSDATE = mSDATE;
@@ -34,7 +34,7 @@ public class M_storage implements Serializable{
 
 	@Override
 	public String toString() {
-		return "M_STORAGE [IDCODE=" + IDCODE + ", MCOE=" + MCOE + ", SCODE=" + SCODE + ", MSMSTOCK=" + MSMSTOCK
+		return "M_STORAGE [IDCODE=" + IDCODE + ", MCODE=" + MCODE + ", SCODE=" + SCODE + ", MSMSTOCK=" + MSMSTOCK
 				+ ", MSDATE=" + MSDATE + ", MSPRICE=" + MSPRICE + ", MSSTATUS=" + MSSTATUS + "]";
 	}
 
@@ -46,12 +46,12 @@ public class M_storage implements Serializable{
 		IDCODE = iDCODE;
 	}
 
-	public int getMCOE() {
-		return MCOE;
+	public int getMCODE() {
+		return MCODE;
 	}
 
-	public void setMCOE(int mCOE) {
-		MCOE = mCOE;
+	public void setMCODE(int mCODE) {
+		MCODE = mCODE;
 	}
 
 	public int getSCODE() {
