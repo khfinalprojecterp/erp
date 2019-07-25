@@ -27,10 +27,35 @@ public class Employee implements Serializable {
 	// 가상변수
 	private int eCode;
 	private String dTitle;
+	private String eName;
+	
+	
+	
+	
+	public String geteName() {
+		return eName;
+	}
 
-	
-	
-	
+	public void seteName(String eName) {
+		this.eName = eName;
+	}
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			Date retireDate, int eCode, String dTitle, String eName) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+		this.eName = eName;
+	}
+
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
 			Date retireDate, int eCode, String dTitle) {
 		super();
@@ -147,17 +172,9 @@ public class Employee implements Serializable {
 	public String toString() {
 		return "Employee [idCode=" + idCode + ", dCode=" + dCode + ", wPwd=" + wPwd + ", wName=" + wName + ", position="
 				+ position + ", enrollDate=" + enrollDate + ", wStatus=" + wStatus + ", retireDate=" + retireDate
-				+ ", eCode=" + eCode + ", dTitle=" + dTitle + "]";
+				+ ", eCode=" + eCode + ", dTitle=" + dTitle + ", eName=" + eName + "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
