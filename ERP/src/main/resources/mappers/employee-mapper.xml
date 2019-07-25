@@ -42,12 +42,11 @@
 	
 	
 	
-	
-	
 	<select id="selectEmp" resultType="Employee">
-		SELECT E.*, D.ECODE   
-	FROM EMPLOYEE E, DEPARTMENT D  
+		SELECT E.*, D.ECODE, T.ENAME   
+	FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE T  
 	WHERE E.DCODE = D.DCODE
+	AND D.ECODE = T.ECODE
 	AND E.IDCODE = #{idCode}
 	</select>
 	
