@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m_storage">
+
+	<!-- <resultMap type="M_storage" id="M_storage">
+		<result column="IDCODE" property="IDCODE"
+		        typeHandler="strArrTypeHandler"/>
+	</resultMap> -->
+	
+	<select id="selectM_storageList" resultType="M_storage">
+		SELECT * FROM M_STORAGE ORDER BY MCODE DESC
+	</select>
+	
+	<select id="selectM_storage" parameterType="_int" resultType="M_storage">
+		SELECT * FROM M_STORAGE WHERE  = #{MCODE}
+	</select>
+	
+	<insert id="insertM_storage" parameterType="M_storage">
+		INSERT INTO M_STORAGE
+		VALUES (#{IDCODE},SEQ_MCODE.NEXTVAL, 
+		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
+		        #{MSPRICE},#{MSSTATUS})
+	</insert>
+<!-- 
+	<update id="updateDev" parameterType="dev">
+		UPDATE DEV
+		SET DEVNAME = #{devName},
+		    DEVAGE = #{devAge},
+		    DEVEMAIL = #{devEmail},
+		    DEVGENDER = #{devGender},
+		    DEVLANG = #{devLang, typeHandler=strArrTypeHandler}
+		WHERE DEVNO = #{devNo}
+	</update>
+	
+	<delete id="deleteDev" parameterType="_int">
+		DELETE FROM DEV WHERE DEVNO = #{no}
+	</delete> -->
+</mapper>
+
+
+
+
+
+
+
+
