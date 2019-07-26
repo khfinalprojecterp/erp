@@ -13,21 +13,22 @@ public class Purchase implements Serializable{
 	private static final long serialVersionUID = 1023L;
 	private int buy_code;
 	private int sCode;
-	private int mCode;
-	private int pCode;
+	private String mCode;
+	private String pCode;
 	private int idCode;
 	private int buy_amount;
 	private int buy_origin;
 	private int buy_price;
 	private String buy_status;
 	private int buy_discount;
+	private String sddivi;
 	
 	
 	public Purchase() {}
 
 
-	public Purchase(int buy_code, int sCode, int mCode, int pCode, int idCode, int buy_amount, int buy_origin,
-			int buy_price, String buy_status, int buy_discount) {
+	public Purchase(int buy_code, int sCode, String mCode, String pCode, int idCode, int buy_amount, int buy_origin,
+			int buy_price, String buy_status, int buy_discount, String sddivi) {
 		super();
 		this.buy_code = buy_code;
 		this.sCode = sCode;
@@ -39,6 +40,7 @@ public class Purchase implements Serializable{
 		this.buy_price = buy_price;
 		this.buy_status = buy_status;
 		this.buy_discount = buy_discount;
+		this.sddivi = sddivi;
 	}
 
 
@@ -62,22 +64,22 @@ public class Purchase implements Serializable{
 	}
 
 
-	public int getmCode() {
+	public String getmCode() {
 		return mCode;
 	}
 
 
-	public void setmCode(int mCode) {
+	public void setmCode(String mCode) {
 		this.mCode = mCode;
 	}
 
 
-	public int getpCode() {
+	public String getpCode() {
 		return pCode;
 	}
 
 
-	public void setpCode(int pCode) {
+	public void setpCode(String pCode) {
 		this.pCode = pCode;
 	}
 
@@ -142,12 +144,26 @@ public class Purchase implements Serializable{
 	}
 
 
+	public String getSddivi() {
+		return sddivi;
+	}
+
+
+	public void setSddivi(String sddivi) {
+		this.sddivi = sddivi;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Purchase [buy_code=" + buy_code + ", sCode=" + sCode + ", mCode=" + mCode + ", pCode=" + pCode
 				+ ", idCode=" + idCode + ", buy_amount=" + buy_amount + ", buy_origin=" + buy_origin + ", buy_price="
-				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + "]";
+				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + ", sddivi=" + sddivi
+				+ "]";
 	}
+
+
+	
 
 	
 	

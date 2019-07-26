@@ -16,6 +16,7 @@
 		<result property="buy_price" column="buy_price" />
 		<result property="buy_status" column="buy_status" />
 		<result property="buy_discount" column="buy_discount" />
+		<result property="sddivi" column="sddivi" />
 	</resultMap>
 
 	
@@ -28,13 +29,22 @@
 	<select id="selectBuyItemOne" resultType="Purchase">
 		SELECT * FROM PURCHASE_ITEM WHERE BUY_CODE = #{buy_code}
 	</select>
-	
+
 	
 	<insert id="insertBuyItem">
 		INSERT INTO PURCHASE_ITEM
-			VALUES (PURCHASE_ITEM_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode}, 
-			#{idCode}, #{buy_amount},#{buy_origin},#{buy_price}, #{buy_status}, #{buy_discount})
+			VALUES (PURCHASE_ITEM_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode},
+			#{buy_amount},#{buy_origin},#{buy_price}, #{buy_status}, #{buy_discount,jdbcType=VARCHAR},#{sddivi},#{idCode})
 	</insert>
+	
+	<!-- 	<choose>
+			<when test="mCode != null">
+			#{mCode},DEFAULT
+			</when>
+			<otherwise>
+			DEFAULT,#{pCode}
+			</otherwise>
+			</choose> -->
 	
 	<update id="updateBuyItem" parameterType="Purchase">
 		UPDATE PURCHASE_ITEM
