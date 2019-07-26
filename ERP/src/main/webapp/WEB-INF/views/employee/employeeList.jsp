@@ -156,7 +156,7 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">기자재 수정/삭제</h5>
+               <h5 class="modal-title" id="exampleModalLabel">사원 삭제 수정</h5>
                <!-- <button type="button" class="close" data-dismiss="modal"
                   aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -168,7 +168,7 @@
                
                   <div class="form-group">
                         <label for="recipient-name" class="col-form-label">사번</label>
-                        <input type="text" class="form-control" id="idCode" readonly>
+                        <input type="text" class="form-control" id="idCode" name="idCode" readonly>
                       </div>
                       
                       
@@ -176,7 +176,7 @@
                       
                   <div class="form-group">
                      <label for="message-text" class="col-form-label">사원이름</label>
-                     <input type="text" class="form-control" id="wName">
+                     <input type="text" class="form-control" id="wName" name="wName">
                   </div>
                   
            
@@ -222,7 +222,7 @@
      
      
      				<label for="message-text" class="col-form-label">퇴사일</label>
-                     <input type="Date" class="form-control" id="retireDate" name="retireDate"required>
+                     <input type="Date" class="form-control" id="retireDate" name="retireDate" value="">
      
      
      
@@ -232,7 +232,7 @@
                <button type="button" class="btn btn-secondary"
                   data-dismiss="modal">취소</button>
                <button type="button" class="btn btn-primary" onclick="updateEmployee();">수정하기</button>
-               <button type="button" class="btn btn-danger" onclick="delMateCate();">삭제하기</button>
+               <button type="button" class="btn btn-danger" onclick="deleteEmployee();">삭제하기</button>
             </div>
          </div>
 	
@@ -244,18 +244,19 @@
 	 function updateEmployee() {
          alert("사원 정보 수정");
          $('#empUpdateFrm').attr("action","${pageContext.request.contextPath}/employee/updateEmployee.do");
-         $('#empUpdateFrm').attr("method", "post");
+         $('#empUpdateFrm').attr("method", "get");
  		 $('#empUpdateFrm').submit();
          
          
          
       }
       
-      function delMateCate() {
-         alert("delMateCate");
-         
-         
-         
+	 function deleteEmployee() {
+         alert("사원 정보 삭제");
+         $('#empUpdateFrm').attr("action","${pageContext.request.contextPath}/employee/deleteEmployee.do");
+         $('#empUpdateFrm').attr("method", "post");
+ 		 $('#empUpdateFrm').submit();
+ 
       }
       
       

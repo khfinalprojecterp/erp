@@ -68,12 +68,25 @@
 		 POSITION=#{position},
 		 ENROLLDATE=#{erollDate},
 		 WSTATUS=#{wStatus}
-		 RETIREDATE=#{retireDate}
+		
+		 
+		<choose>
+		<when test=" retireDate != null ">	
+		,RETIREDATE= #{retireDate}
+		</when>
+		<when test=" retireDate == null">
+		,RETIREDATE= DEFAULT
+		</when>
+		</choose>
 		WHERE IDCODE = #{idCode}
+		
 	</update>
 
 
 
+
+
+<delete id="deleteEmp"> DELETE FROM EMPLOYEE WHERE IDCODE = #{idCode} </delete>
 
 
 

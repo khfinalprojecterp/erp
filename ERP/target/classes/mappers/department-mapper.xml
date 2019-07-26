@@ -22,7 +22,9 @@
 	</select>
 
 
+<update id="updateDepartment"> UPDATE DEPARTMENT SET DTITLE = #{dTitle} WHERE DCODE = #{dCode} </update>
 
+<delete id="deleteDepartment"> DELETE FROM DEPARTMENT WHERE DCODE = #{dCode} </delete>
 
 
 

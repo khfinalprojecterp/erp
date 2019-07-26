@@ -5,7 +5,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import com.kh.erp.department.model.vo.Department;
+
 
 
 @Component
@@ -21,7 +21,7 @@ public class Employee implements Serializable {
 	private String position;
 	private Date enrollDate;
 	private char wStatus;
-	private Date retireDate;
+	private String retireDate;
 	
 	
 	// 가상변수
@@ -32,6 +32,19 @@ public class Employee implements Serializable {
 	
 	
 	
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate) {
+	
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+	}
+
 	public String geteName() {
 		return eName;
 	}
@@ -41,7 +54,7 @@ public class Employee implements Serializable {
 	}
 
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
-			Date retireDate, int eCode, String dTitle, String eName) {
+			String retireDate, int eCode, String dTitle, String eName) {
 		super();
 		this.idCode = idCode;
 		this.dCode = dCode;
@@ -57,7 +70,7 @@ public class Employee implements Serializable {
 	}
 
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
-			Date retireDate, int eCode, String dTitle) {
+			String retireDate, int eCode, String dTitle) {
 		super();
 		this.idCode = idCode;
 		this.dCode = dCode;
@@ -91,18 +104,6 @@ public class Employee implements Serializable {
 	
 	}
 
-	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
-			Date retireDate) {
-	
-		this.idCode = idCode;
-		this.dCode = dCode;
-		this.wPwd = wPwd;
-		this.wName = wName;
-		this.position = position;
-		this.enrollDate = enrollDate;
-		this.wStatus = wStatus;
-		this.retireDate = retireDate;
-	}
 
 	public int getIdCode() {
 		return idCode;
@@ -160,11 +161,11 @@ public class Employee implements Serializable {
 		this.wStatus = wStatus;
 	}
 
-	public Date getRetireDate() {
+	public String getRetireDate() {
 		return retireDate;
 	}
 
-	public void setRetireDate(Date retireDate) {
+	public void setRetireDate(String retireDate) {
 		this.retireDate = retireDate;
 	}
 

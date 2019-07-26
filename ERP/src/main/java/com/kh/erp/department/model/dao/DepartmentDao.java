@@ -11,7 +11,9 @@ public interface DepartmentDao {
 	
 	List<Department> selectDepartList();
 	
+	int updateDepart(Department depart);
 	
+	int deleteDepart(int dCode);
 	
 	
 	

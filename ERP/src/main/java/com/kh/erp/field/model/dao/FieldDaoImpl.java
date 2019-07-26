@@ -26,5 +26,10 @@ public class FieldDaoImpl implements FieldDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("field.selectFieldList");
 	}
+	@Override
+	public int deleteField(int fCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("field.deleteField",fCode);
+	}
 
 }

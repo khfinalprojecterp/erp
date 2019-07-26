@@ -11,7 +11,7 @@ int insertField(Field field);
 	
 	List<Field> selectFieldList();
 	
-	
+	int deleteField(int fCode);
 	
 	
 	
