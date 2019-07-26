@@ -1,6 +1,7 @@
 package com.kh.erp.storage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.storage.model.vo.StorageDetail;
 
@@ -12,7 +13,7 @@ public interface StorageDetailService {
 	 * 창고 디테일 품목 조회 메소드
 	 * @return
 	 */
-	List<StorageDetail> storageDetailList();
+	List<Map<String, String>> storageDetailList();
 	
 	/**
 	 * 창고디테일 항목 추가 메소드
@@ -41,4 +42,6 @@ public interface StorageDetailService {
 	 * @return
 	 */
 	int deleteStorageDetail(int sdCode);
+
+	List<Map<String, String>> loadProductList();
 }
