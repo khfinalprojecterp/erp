@@ -12,9 +12,9 @@ int insert(M_storage m_storage);
 	
 	List<M_storage> selectM_storageList();
 	
-	M_storage selectDev(int IDCODE);
+	M_storage selectM_storage(int MSNO);
 	
 	int updateM_storage(M_storage m_storage);
 	
-	int deleteM_storage(int IDCDOE);
+	int deleteM_storage(int MSNO);
 	}

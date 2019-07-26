@@ -19,24 +19,23 @@
 	
 	<insert id="insertM_storage" parameterType="M_storage">
 		INSERT INTO M_STORAGE
-		VALUES (#{IDCODE},SEQ_MCODE.NEXTVAL, 
+		VALUES (SEQ_MSNO.NEXTVAL,#{IDCODE},#{MCODE}, 
 		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
 		        #{MSPRICE},#{MSSTATUS})
 	</insert>
-<!-- 
-	<update id="updateDev" parameterType="dev">
-		UPDATE DEV
-		SET DEVNAME = #{devName},
-		    DEVAGE = #{devAge},
-		    DEVEMAIL = #{devEmail},
-		    DEVGENDER = #{devGender},
-		    DEVLANG = #{devLang, typeHandler=strArrTypeHandler}
-		WHERE DEVNO = #{devNo}
+ 
+	<update id="updateM_storage" parameterType="M_storage">
+		UPDATE M_STORAGE
+		SET 
+		   
+		    MSMSTOCK = #{MSSTOCK},
+		    MSPRICE= #{MSPRICE}
+		WHERE MSNO = #{MSNO}
 	</update>
 	
-	<delete id="deleteDev" parameterType="_int">
-		DELETE FROM DEV WHERE DEVNO = #{no}
-	</delete> -->
+	<delete id="deleteM_storage" parameterType="_int">
+		DELETE FROM M_STORAGE WHERE MSNO = #{MSNO}
+	</delete> 
 </mapper>
 
 

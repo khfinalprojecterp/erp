@@ -24,9 +24,9 @@ public class M_storageDaoImpl implements M_storageDao {
 	}
 
 	@Override
-	public M_storage selectDev(int IDCODE) {
+	public M_storage selectM_storage(int MSNO) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("m_storage.selectM_storage",IDCODE);
+		return sqlSession.selectOne("m_storage.selectM_storage",MSNO);
 	}
 
 	@Override
@@ -36,9 +36,12 @@ public class M_storageDaoImpl implements M_storageDao {
 	}
 
 	@Override
-	public int deleteM_storage(int IDCODE) {
+	public int deleteM_storage(int MSNO) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("m_storage.deleteM_storage",IDCODE);
+		return sqlSession.delete("m_storage.deleteM_storage",MSNO);
 	}
 
-}
+	
+	}
+
+

@@ -53,6 +53,7 @@ return "m_storage/m_storage";
 method=RequestMethod.POST)
 public String insertM_storage(
 		/*M_storage m_storage*/
+		
 		@RequestParam int IDCODE,
 		@RequestParam int MCODE,
 		@RequestParam int SCODE,
@@ -78,9 +79,6 @@ return "redirect:/m_storage/M_storageList.do";
 
 
 
-
-
-
 @RequestMapping("/m_storage/M_storageList.do")
 public String selectM_storageList(Model model) {
 	List<M_storage> list=m_storageService.selectM_storageList();
@@ -94,31 +92,78 @@ public String selectM_storageList(Model model) {
 	}
 	
 		
-@RequestMapping("/m_storage/m_storageDev.do")
-public String updateDev(Model model, @RequestParam int MCODE) {
-	model.addAttribute("m_storage", m_storageService.selectM_storageList());
+	/*
+	 * @RequestMapping("/m_storage/updateM_storage.do") public String
+	 * updateDev(Model model, @RequestParam int MSNO
+	 * 
+	 * ) {
+	 * 
+	 * 
+	 * 
+	 * M_storage m_storage = new M_storage(MSNO );
+	 * 
+	 * 
+	 * 
+	 * model.addAttribute("m_storage", m_storageService.selectM_storage(MSNO));
+	 * 
+	 * 
+	 * 
+	 * 
+	 * return "m_storage/m_storageList";
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
+
+
+
+@RequestMapping("/m_storage/updateM_storage.do")
+public String updateM_storage(@RequestParam int MSNO ,
+		
 	
-	return "m_storage/m_storageForm";
-
-
-
+		@RequestParam int MSMSTOCK,
+	
+		@RequestParam int MSPRICE,
+		 Model model) {
+	
+	int result = m_storageService.deleteM_storage(MSNO);
+	String msg="";
+	if( result > 0 ) {
+		msg="수정 성공";
+	} else {
+		msg="수정 실패!";
 	}
-
-
-
-@RequestMapping("/demo/updatem_storag.do")
-public String updateM_storageEnd(M_storage m_storage) {
+	String loc="/m_storage/M_storageList.do";
+	model.addAttribute("loc", loc);
+	model.addAttribute("msg", msg);
 	
-	System.out.println("update 전 확인 : " + m_storage);
-	
-	int result = m_storageService.updateM_storage(m_storage);
-	
-	return "redirect:/m_storage/selectM_storageList.do";
-
-
-
-
-
-
+	return "common/msg";		
 }
+
+
+
+
+@RequestMapping("/m_storage/deleteM_storage.do")
+public String deleteM_storage(@RequestParam int MSNO, Model model) {
+	
+	int result = m_storageService.deleteM_storage(MSNO);
+	String msg="";
+	if( result > 0 ) {
+		msg="삭제 성공!";
+	} else {
+		msg="삭제 실패!";
+	}
+	String loc="/m_storage/M_storageList.do";
+	model.addAttribute("loc", loc);
+	model.addAttribute("msg", msg);
+	
+	return "common/msg";		
+}
+
+
+
+
+
+
 }

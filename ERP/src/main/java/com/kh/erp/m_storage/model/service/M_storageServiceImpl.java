@@ -25,7 +25,7 @@ public class M_storageServiceImpl implements M_storageService {
 	}
 
 	@Override
-	public M_storage selectDev(int MCODE) {
+	public M_storage selectM_storage(int MSNO) {
 		// TODO Auto-generated method stub
 		return (M_storage) m_storageDao.selectM_storageList();
 	}
@@ -37,9 +37,12 @@ public class M_storageServiceImpl implements M_storageService {
 	}
 
 	@Override
-	public int deleteM_storage(int MCDOE) {
+	public int deleteM_storage(int MSNO) {
 		// TODO Auto-generated method stub
-		return m_storageDao.deleteM_storage(MCDOE);
+		return m_storageDao.deleteM_storage(MSNO);
 	}
 
-}
+
+	}
+
+
