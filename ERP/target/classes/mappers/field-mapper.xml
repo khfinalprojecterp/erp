@@ -11,20 +11,29 @@
 		<result property="fArea" column="fArea" />
 		<result property="fPart" column="fpart" />
 	</resultMap>
+	
+	<resultMap id="Department" type="Department">
+		<id property="dCode" column="dcode" />
+		<result property="eCode" column="ecode" />
+		<result property="dTitle" column="dtitle" />
+	</resultMap>
+	
 
-	<select id="selectFieldList" resultMap="resultField">
-		SELECT * FROM FIELD 
+	<select id="selectFieldList" resultType="Field">
+		select f.* , d.dtitle
+		from field f, department d
+		where f.dcode = d.dcode 
 	</select>
 	
 
 	<insert id="insertField" parameterType="field">
 		INSERT INTO FIELD VALUES(
-			#{fName},#{fArea},#{eCode},#{dCode},#{fPart})	
+		FCODE_SEQ.NEXTVAL,	#{fName},#{fArea},#{eCode},#{dCode},#{fPart})	
 	</insert>
 
 
 
-
+<delete id="deleteField"> DELETE FROM FIELD WHERE FCODE = #{fCode} </delete>
 
 
 

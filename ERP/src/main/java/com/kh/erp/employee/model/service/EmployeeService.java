@@ -5,6 +5,7 @@ import java.util.List;
 import com.kh.erp.employee.model.vo.Employee;
 
 
+
 public interface EmployeeService {
 
 	
@@ -19,6 +20,8 @@ public interface EmployeeService {
 	
 	List<Employee> selectEmpList();
 	
+	int updateEmployee(Employee emp);
 	
+	int deleteEmployee(int idCode);
 	
 }

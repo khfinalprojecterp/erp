@@ -25,7 +25,6 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="../common/menubar.jsp"/>
 		<div id="board-container">
 			<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" value="${board.boardTitle }" required>
 			<input type="text" class="form-control" name="boardWriter" value="${board.boardWriter}" readonly required>

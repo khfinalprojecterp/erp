@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.erp.field.model.service.FieldService;
 import com.kh.erp.field.model.vo.Field;
@@ -50,6 +50,25 @@ public class FieldController {
 
 						return "redirect:/";
 }
+	
+	
+	@RequestMapping(value="/field/deleteField.do")
+	public String deleteField(@RequestParam int fCode) {
+		
+	
+		
+		System.out.println(fCode);
+		
+		int result = fieldService.deleteField(fCode);
+		
+		return "redirect:/department/departmentList.do";
+	}
+	
+	
+	
+	
+	
+	
 
 	
 	

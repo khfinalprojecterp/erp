@@ -6,6 +6,8 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 
+
+
 @Component
 public class Employee implements Serializable {
 
@@ -19,14 +21,19 @@ public class Employee implements Serializable {
 	private String position;
 	private Date enrollDate;
 	private char wStatus;
-	private Date retireDate;
+	private String retireDate;
 	
-	public Employee() {
 	
-	}
-
+	// 가상변수
+	private int eCode;
+	private String dTitle;
+	private String eName;
+	
+	
+	
+	
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
-			Date retireDate) {
+			String retireDate) {
 	
 		this.idCode = idCode;
 		this.dCode = dCode;
@@ -37,6 +44,66 @@ public class Employee implements Serializable {
 		this.wStatus = wStatus;
 		this.retireDate = retireDate;
 	}
+
+	public String geteName() {
+		return eName;
+	}
+
+	public void seteName(String eName) {
+		this.eName = eName;
+	}
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate, int eCode, String dTitle, String eName) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+		this.eName = eName;
+	}
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate, int eCode, String dTitle) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+	}
+
+	public int geteCode() {
+		return eCode;
+	}
+
+	public void seteCode(int eCode) {
+		this.eCode = eCode;
+	}
+
+	public String getdTitle() {
+		return dTitle;
+	}
+
+	public void setdTitle(String dTitle) {
+		this.dTitle = dTitle;
+	}
+
+	public Employee() {
+	
+	}
+
 
 	public int getIdCode() {
 		return idCode;
@@ -94,29 +161,21 @@ public class Employee implements Serializable {
 		this.wStatus = wStatus;
 	}
 
-	public Date getRetireDate() {
+	public String getRetireDate() {
 		return retireDate;
 	}
 
-	public void setRetireDate(Date retireDate) {
+	public void setRetireDate(String retireDate) {
 		this.retireDate = retireDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [idCode=" + idCode + ", dCode=" + dCode + ", wPwd=" + wPwd + ", wName=" + wName + ", position="
-				+ position + ", enrollDate=" + enrollDate + ", wStatus=" + wStatus + ", retireDate=" + retireDate + "]";
+				+ position + ", enrollDate=" + enrollDate + ", wStatus=" + wStatus + ", retireDate=" + retireDate
+				+ ", eCode=" + eCode + ", dTitle=" + dTitle + ", eName=" + eName + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
