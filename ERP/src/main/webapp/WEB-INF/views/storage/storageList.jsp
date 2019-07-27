@@ -158,7 +158,8 @@
 			</div>
 		</div>
 	</div>
-	<script>		
+	<script>
+		
 		function newStorage() {
 			//var eCode = ${enterprise.eCode};
 			//var idCode = ${employee.idCode};
