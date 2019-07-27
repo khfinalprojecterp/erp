@@ -22,5 +22,6 @@ public interface EmployeeService {
 	
 	int updateEmployee(Employee emp);
 	
+	int deleteEmployee(int idCode);
 	
 }

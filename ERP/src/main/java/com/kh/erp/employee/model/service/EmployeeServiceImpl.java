@@ -41,5 +41,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return empDao.updateEmployee(emp);
 	}
+	
+	
+	@Override
+	public int deleteEmployee(int idCode) {
+		
+		return empDao.deleteEmployee(idCode);
+	}
+
+	
+	
 
 }
