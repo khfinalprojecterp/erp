@@ -17,6 +17,8 @@ public class Storage implements Serializable{
 	private String sAddr;	// storageAddress
 	private String sStatus;	// storageStatus
 	
+	private String sEname;
+	private String sWname;
 	public Storage() {	}
 
 	public Storage(int sCode, int eCode, int idCode, String sCate, String sPhone, String sAddr, String sStatus) {
@@ -28,6 +30,16 @@ public class Storage implements Serializable{
 		this.sPhone = sPhone;
 		this.sAddr = sAddr;
 		this.sStatus = sStatus;
+	}
+	
+
+	public Storage(int eCode, int idCode, String sCate, String sPhone, String sAddr) {
+		super();
+		this.eCode = eCode;
+		this.idCode = idCode;
+		this.sCate = sCate;
+		this.sPhone = sPhone;
+		this.sAddr = sAddr;
 	}
 
 	public int getsCode() {
@@ -86,11 +98,44 @@ public class Storage implements Serializable{
 		this.sStatus = sStatus;
 	}
 
+	public String getsEname() {
+		return sEname;
+	}
+
+	public void setsEname(String sEname) {
+		this.sEname = sEname;
+	}
+
+	public String getsWname() {
+		return sWname;
+	}
+
+	public void setsWname(String sWname) {
+		this.sWname = sWname;
+	}
+
+	public Storage(int sCode, int eCode, int idCode, String sCate, String sPhone, String sAddr, String sStatus,
+			String sEname, String sWname) {
+		super();
+		this.sCode = sCode;
+		this.eCode = eCode;
+		this.idCode = idCode;
+		this.sCate = sCate;
+		this.sPhone = sPhone;
+		this.sAddr = sAddr;
+		this.sStatus = sStatus;
+		this.sEname = sEname;
+		this.sWname = sWname;
+	}
+
 	@Override
 	public String toString() {
 		return "Storage [sCode=" + sCode + ", eCode=" + eCode + ", idCode=" + idCode + ", sCate=" + sCate + ", sPhone="
-				+ sPhone + ", sAddr=" + sAddr + ", sStatus=" + sStatus + "]";
+				+ sPhone + ", sAddr=" + sAddr + ", sStatus=" + sStatus + ", sEname=" + sEname + ", sWname=" + sWname
+				+ "]";
 	}
+	
+
 
 	
 }

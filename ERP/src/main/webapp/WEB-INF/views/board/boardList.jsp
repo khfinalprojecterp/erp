@@ -78,5 +78,18 @@
 			<!-- /. ROW  -->
 		</div>
 	</div>
+	<script>
+		function fn_goBoardForm(){
+			location.href = "${pageContext.request.contextPath}/board/boardForm.do";
+		}
+		
+		$(function(){
+			$("tr[id]").on("click",function(){
+				var boardNo = $(this).attr("id");
+				console.log("bordNo="+boardNo);
+				location.href = "${pageContext.request.contextPath}/board/boardView.do?no="+boardNo;
+			});
+		});
+	</script>
 </body>
 <c:import url="../common/footer.jsp" />

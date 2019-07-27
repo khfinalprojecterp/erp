@@ -246,8 +246,8 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>창고 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="${pageContext.request.contextPath}/storage/storageList.do">창고 목록</a></li>
+                    <li><a href="${pageContext.request.contextPath}/storage/storageDetailList.do">창고 상세 목록</a></li>
                     <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">Third Level Link</a></li>
