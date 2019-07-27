@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Employee implements Serializable {
 
-	private static final long serialVersionUID = 1006L;
+	private static final long serialVersionUID = 1007L;
 	
 	
 	private int idCode;
@@ -25,13 +25,89 @@ public class Employee implements Serializable {
 	
 	
 	// 가상변수
+	private String payment;
+	private int mincome;
 	private int eCode;
 	private String dTitle;
 	private String eName;
+	private char vStatus;
+	private int absence;
 	
 	
 	
 	
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate, String payment, int mincome, int eCode, String dTitle, String eName, char vStatus,
+			int absence) {
+
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.payment = payment;
+		this.mincome = mincome;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+		this.eName = eName;
+		this.vStatus = vStatus;
+		this.absence = absence;
+	}
+
+	public char getvStatus() {
+		return vStatus;
+	}
+
+	public void setvStatus(char vStatus) {
+		this.vStatus = vStatus;
+	}
+
+	public int getAbsence() {
+		return absence;
+	}
+
+	public void setAbsence(int absence) {
+		this.absence = absence;
+	}
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate, String payment, int mincome, int eCode, String dTitle, String eName) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.payment = payment;
+		this.mincome = mincome;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+		this.eName = eName;
+	}
+
+	public int getMincome() {
+		return mincome;
+	}
+
+	public void setMincome(int mincome) {
+		this.mincome = mincome;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
 			String retireDate) {
 	

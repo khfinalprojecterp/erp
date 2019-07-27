@@ -122,7 +122,7 @@
 					 </select>
                      <br>
                      <label for="message-text" class="col-form-label">입사일</label>
-                     <input type="Date" class="form-control" id="newCate" name="enrollDate"required>
+                     <input type="Date" class="form-control" id="newCate" name="enrollDate" required>
                   </div>
                </form>
             </div>
@@ -176,11 +176,11 @@
                       
                   <div class="form-group">
                      <label for="message-text" class="col-form-label">사원이름</label>
-                     <input type="text" class="form-control" id="wName" name="wName">
+                     <input type="text" class="form-control" id="wName" name="wName" required>
                   </div>
                   
            
-                  
+                  <div class="form-group">
                  	 <label for="message-text" class="col-form-label">부서명</label>
                      <br>
                      <select id="dCode" name="dCode" required>
@@ -190,11 +190,12 @@
 		           	 </c:if>
 			         </c:forEach>   
   	                 </select>
+  	                 </div>
   	                 <br>
+     		
      
      
-     
-       
+       		<div class="form-group">
                      <label for="message-text" class="col-form-label">직급</label>
                      <br>
                     <select name="position" id="position" required>
@@ -208,23 +209,29 @@
 					<option value="이사">이사</option>
 					
 					</select>
+					</div>
 					<br>
                      
+                     <div class="form-group">
                      <label for="message-text" class="col-form-label">재직 여부</label>
                      <br>
                      <select name="wStatus" id="wStatus" required>
 					 <option value="Y">Y</option>
 					 <option value="N">N</option>
 					 </select>
+					 </div>
                      <br>
+                     <div class="form-group">
                      <label for="message-text" class="col-form-label">입사일</label>
                      <input type="Date" class="form-control" id="enrollDate" name="enrollDate"required>
-     
-     
+     				  </div>
+     				  
+     				  
+     				<div class="form-group">
      				<label for="message-text" class="col-form-label">퇴사일</label>
-                     <input type="Date" class="form-control" id="retireDate" name="retireDate" value="">
+                     <input type="Date" class="form-control" id="retireDate" name="retireDate">
      
-     
+     				</div>
      
                </form>
             </div>
@@ -265,8 +272,6 @@
                var mCate = $(this).value;
                document.getElementById("idCode").value = $(this).parent().children().eq(0).text();
                document.getElementById("wName").value = $(this).parent().children().eq(1).text();
-               
-               
                document.getElementById("position").value = $(this).parent().children().eq(3).text();
                document.getElementById("wStatus").value = $(this).parent().children().eq(4).text();
                document.getElementById("enrollDate").value = $(this).parent().children().eq(5).text();

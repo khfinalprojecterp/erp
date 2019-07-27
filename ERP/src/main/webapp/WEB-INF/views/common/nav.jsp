@@ -230,15 +230,14 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>부서 & 사원관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${pageContext.request.contextPath}/employee/employeeList.do">사원관리</a></li>
-                    <li><a href="${pageContext.request.contextPath}/department/departmentList.do">부서관리</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
+                     <li><a href="#">사원관리<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
+                            <li><a href="${pageContext.request.contextPath}/employee/employeeList.do">사원관리</a></li>
+                            <li><a href="${pageContext.request.contextPath}/employee/pmanageList.do">급여관리</a></li>
+                            <li><a href="${pageContext.request.contextPath}/employee/attendanceList.do">근태관리</a></li>
                         </ul>
                     </li>
+                    <li><a href="${pageContext.request.contextPath}/department/departmentList.do">부서관리</a></li>
                 </ul>
             </li>
 			

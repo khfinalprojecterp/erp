@@ -18,7 +18,9 @@ import com.kh.erp.department.model.service.DepartmentService;
 import com.kh.erp.department.model.vo.Department;
 import com.kh.erp.employee.model.exception.EmployeeException;
 import com.kh.erp.employee.model.service.EmployeeService;
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
+import com.kh.erp.employee.model.vo.Pmanagement;
 import com.kh.erp.enterprise.model.exception.EnterpriseException;
 import com.kh.erp.enterprise.model.vo.Enterprise;
 
@@ -66,44 +68,28 @@ public class EmployeeController {
 
 		int result = empService.insertEmployee(emp);
 
-
-		return "redirect:/";
+		empService.insertSub(emp);
+		
+		
+		return "redirect:/employee/employeeList.do";
 }
 
 	
 	
 	@RequestMapping(value="/employee/updateEmployee.do",
 			method=RequestMethod.GET)
-	public ModelAndView updateEmployee(Employee emp) {
+	public String updateEmployee(Employee emp) {
 
 		
-			
 		
-		ModelAndView mv = new ModelAndView();
-
-		System.out.println(emp);
-
-
-
+		System.out.println(emp+"1");
 		int result = empService.updateEmployee(emp);
+		
+	
+		
+		return "redirect:/employee/employeeList.do";
+		
 
-
-		// 2. 처리 결과에 따른 화면 설정
-		String loc = "/";
-		String msg = "";
-
-		if(result > 0) {
-			msg="회원 정보 수정 성공!!";
-			mv.addObject("employee", emp);
-			} else {
-				msg = "회원 정보 수정 실패!";
-			}
-
-			mv.addObject("loc", loc);
-				mv.addObject("msg", msg);
-					mv.setViewName("common/msg");
-
-						return mv;
 			}
 
 
@@ -133,7 +119,7 @@ try {
 	throw new EmployeeException("사원 삭제 에러 : " + e.getMessage());
 }
 
-return "common/msg";
+return "redirect:/employee/employeeList.do";
 
 }
 
@@ -232,6 +218,37 @@ public String employeeLogin (
 
 		return "redirect:/";
 	}
+	
+	
+	@RequestMapping("/employee/attendanceList.do")
+	public String attendanceList(Model model
+			) {
+	
+		
+		List<Attendance> list = empService.selectAttendnaceList();
+		
+		
+		model.addAttribute("list", list);
+		
+		
+		return "employee/attendanceList";
+		
+		
+	}
+	
+	
+	
+	
+		@RequestMapping(value="/employee/updateAttendance.do",
+		method=RequestMethod.GET)
+		public String updateAttendance(Attendance attendance) {
+
+			
+			int result = empService.updateAttendance(attendance);
+			
+			return "redirect:/employee/attendanceList.do";
+		}
+	
 	
 	
 	
