@@ -35,26 +35,12 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/board/boardList.do")
-	public String selectBoardList(
-			@RequestParam(value="cPage", required=false, defaultValue="1")
-			int cPage, Model model) {
+	public String selectBoardList(Model model) {
 		
-		int limit = 10; // 한 페이지 당 게시글 수
-		
-		// 1. 현재 페이지 게시글 목록 가져오기
 		ArrayList<Map<String, String>> list
-		 = new ArrayList<>(boardService.selectBoardList(cPage, limit));
+		 = new ArrayList<>(boardService.selectBoardList());
 		
-		// 2. 전체 페이지 게시글 수 가져오기
-		int totalContents = boardService.selectBoardTotalContents();
-		
-		String pageBar
-		  = Utils.getPageBar(totalContents, cPage, limit, "boardList.do");
-		
-		model.addAttribute("list", list)
-		.addAttribute("totalContents", totalContents)
-		.addAttribute("numPerPage", limit)
-		.addAttribute("pageBar", pageBar);
+		model.addAttribute("list", list);
 		
 		return "board/boardList";
 		

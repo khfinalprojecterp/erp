@@ -18,9 +18,6 @@
 		<result property="dTitle" column="dtitle" />
 	</resultMap>
 	
-	
-	
-	
 
 	<select id="selectFieldList" resultType="Field">
 		select f.* , d.dtitle
@@ -31,12 +28,12 @@
 
 	<insert id="insertField" parameterType="field">
 		INSERT INTO FIELD VALUES(
-			#{fName},#{fArea},#{eCode},#{dCode},#{fPart})	
+		FCODE_SEQ.NEXTVAL,	#{fName},#{fArea},#{eCode},#{dCode},#{fPart})	
 	</insert>
 
 
 
-
+<delete id="deleteField"> DELETE FROM FIELD WHERE FCODE = #{fCode} </delete>
 
 
 

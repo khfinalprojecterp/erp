@@ -1,6 +1,7 @@
 package com.kh.erp.storage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,15 @@ public class StorageDetailDaoImpl implements StorageDetailDao {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<StorageDetail> storageDetailList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, String>> storageDetailList() {
+		
+		return sqlSession.selectList("storage.selectStorageDetailList");
 	}
 
 	@Override
 	public int insertStorageDetail(StorageDetail storageDetail) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("storage.insertStorageDetail" , storageDetail);
 	}
 
 	@Override
@@ -35,13 +36,18 @@ public class StorageDetailDaoImpl implements StorageDetailDao {
 	@Override
 	public int updateStorageDetail(StorageDetail storageDetail) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("storage.updateStorageDetail" , storageDetail);
 	}
 
 	@Override
-	public int deleteStorageDetail(int sCode) {
+	public int deleteStorageDetail(int sdCode) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("storage.deleteStorageDetail" , sdCode);
+	}
+
+	@Override
+	public List<Map<String, String>> loadProductList() {
+		return sqlSession.selectList("storage.loadProductList");
 	}
 	
 	

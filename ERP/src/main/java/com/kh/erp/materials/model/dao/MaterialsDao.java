@@ -1,6 +1,7 @@
 package com.kh.erp.materials.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.materials.model.vo.Materials;
 
@@ -9,7 +10,7 @@ public interface MaterialsDao {
 	 * 기자재 리스트 조회 메소드
 	 * @return
 	 */
-	List<Materials> materialsList();
+	List<Map<String, String>> materialsList();
 	
 	/**
 	 * 기자지 추가 메소드

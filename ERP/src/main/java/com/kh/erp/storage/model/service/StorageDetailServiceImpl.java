@@ -1,6 +1,7 @@
 package com.kh.erp.storage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,15 @@ public class StorageDetailServiceImpl implements StorageDetailService {
 	private StorageDetailDao storageDetailDao;
 
 	@Override
-	public List<StorageDetail> storageDetailList() {
+	public List<Map<String, String>> storageDetailList() {
 		// TODO Auto-generated method stub
-		return null;
+		return storageDetailDao.storageDetailList();
 	}
 
 	@Override
 	public int insertStorageDetail(StorageDetail storageDetail) {
 		// TODO Auto-generated method stub
-		return 0;
+		return storageDetailDao.insertStorageDetail(storageDetail);
 	}
 
 	@Override
@@ -35,13 +36,19 @@ public class StorageDetailServiceImpl implements StorageDetailService {
 	@Override
 	public int updateStorageDetail(StorageDetail storageDetail) {
 		// TODO Auto-generated method stub
-		return 0;
+		return storageDetailDao.updateStorageDetail(storageDetail);
 	}
 
 	@Override
 	public int deleteStorageDetail(int sdCode) {
 		// TODO Auto-generated method stub
-		return 0;
+		return storageDetailDao.deleteStorageDetail(sdCode);
+	}
+	
+	//임시
+	@Override
+	public List<Map<String, String>> loadProductList() {
+		return storageDetailDao.loadProductList();
 	}
 
 }

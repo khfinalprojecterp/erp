@@ -19,8 +19,8 @@ public interface EmployeeDao {
 	
 	List<Employee> selectEmpList();
 	
-	
-	
+	int updateEmployee(Employee emp);
+	int deleteEmployee(int idCode);
 	
 	
 	

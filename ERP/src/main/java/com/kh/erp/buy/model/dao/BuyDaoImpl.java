@@ -14,7 +14,6 @@ public class BuyDaoImpl implements BuyDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	
 	@Override
 	public List<Purchase> purchaseList() {
 		// TODO Auto-generated method stub

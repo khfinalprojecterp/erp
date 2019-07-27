@@ -42,7 +42,6 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="../common/menubar.jsp"/>
 		<div id="board-container">
 			<form name="boardFrm" action="${pageContext.request.contextPath}/board/boardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 				<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" required>

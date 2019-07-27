@@ -65,7 +65,6 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="../common/menubar.jsp"/>
 		<div id="board-container">
 			<form name="boardFrm" action="${pageContext.request.contextPath}/board/boardUpdate.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 				<input type="hidden" class="form-control" name="boardNo" value="${board.boardNo}"/>

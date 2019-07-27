@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:import url="views/common/header.jsp" />
+<c:import url="../common/header.jsp" />
 <%-- <head>
 	<meta charset="UTF-8">
 	<title>게시판</title>
@@ -27,15 +27,15 @@
 	</script>
 </head> --%>
 <body>
-	<c:import url="views/common/nav.jsp" />
+	<c:import url="../common/nav.jsp" />
 	<div id="page-wrapper">
-		<c:import url="views/common/bodyNav.jsp" />
+		<c:import url="../common/bodyNav.jsp" />
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
 					<!-- Advanced Tables -->
 					<div class="panel panel-default">
-						<div class="panel-heading">Advanced Tables</div>
+						<div class="panel-heading">자유 게시판</div>
 						<div class="panel-body">
 							<div class="table-responsive">
 								<table class="table table-striped table-bordered table-hover"
@@ -78,5 +78,18 @@
 			<!-- /. ROW  -->
 		</div>
 	</div>
+	<script>
+		function fn_goBoardForm(){
+			location.href = "${pageContext.request.contextPath}/board/boardForm.do";
+		}
+		
+		$(function(){
+			$("tr[id]").on("click",function(){
+				var boardNo = $(this).attr("id");
+				console.log("bordNo="+boardNo);
+				location.href = "${pageContext.request.contextPath}/board/boardView.do?no="+boardNo;
+			});
+		});
+	</script>
 </body>
-<c:import url="views/common/footer.jsp" />
+<c:import url="../common/footer.jsp" />

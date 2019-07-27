@@ -71,7 +71,27 @@ public class DepartmentController {
 
 	
 	
+
+	@RequestMapping("/department/updateDepartment.do")
+	public String updateDepart(Department depart) {
+		
+		System.out.println("update 전 확인 : " + depart);
+		
+		int result = departService.updateDepart(depart);
+		
+		return "redirect:/department/departmentList.do";
+	}
 	
+	
+	@RequestMapping("/department/deleteDepartment.do")
+	public String deleteDepart(Department depart) {
+		
+			int dCode =depart.getdCode();
+		
+		int result = departService.deleteDepart(dCode);
+		
+		return "redirect:/department/departmentList.do";
+	}
 	
 	
 	
