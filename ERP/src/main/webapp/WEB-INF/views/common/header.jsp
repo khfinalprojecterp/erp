@@ -33,8 +33,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <!-- jQuery Js -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-git.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-git.min.js"></script>  --%>
 <!-- Bootstrap Js -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
