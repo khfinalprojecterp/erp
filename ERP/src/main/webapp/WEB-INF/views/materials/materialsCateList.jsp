@@ -71,7 +71,7 @@
 		</div>
 	</div>
 	<!-- 기자재 수정/삭제용 모달 -->
-	<div class="modal fade" id="updateMaterialscate" tabindex="-1" role="dialog"
+	<div class="modal fade" id="updateM_storage" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
