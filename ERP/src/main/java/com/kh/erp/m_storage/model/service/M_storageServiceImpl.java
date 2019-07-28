@@ -11,35 +11,38 @@ import com.kh.erp.m_storage.model.vo.M_storage;
 public class M_storageServiceImpl implements M_storageService {
 
 	@Autowired
-	private M_storageDao m_storageDao; 
+	private M_storageDao m_storageDao;
+	@Override
+	public int insert(M_storage m_storage) {
+		// TODO Auto-generated method stub
+		return m_storageDao.insert(m_storage);
+	}
+
 	@Override
 	public List<M_storage> selectM_storageList() {
 		// TODO Auto-generated method stub
-		return null;
+		return m_storageDao.selectM_storageList();
 	}
 
 	@Override
-	public int insertM_storage(M_storage m_storage) {
+	public M_storage selectM_storage(int MSNO) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public M_storage selectOneM_storage(int IDCODE) {
-		// TODO Auto-generated method stub
-		return null;
+		return (M_storage) m_storageDao.selectM_storageList();
 	}
 
 	@Override
 	public int updateM_storage(M_storage m_storage) {
 		// TODO Auto-generated method stub
-		return 0;
+		return m_storageDao.updateM_storage(m_storage);
 	}
 
 	@Override
-	public int deleteM_storage(int IDCODE) {
+	public int deleteM_storage(int MSNO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return m_storageDao.deleteM_storage(MSNO);
 	}
 
-}
+
+	}
+
+

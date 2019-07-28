@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m_storage">
+
+	<!-- <resultMap type="M_storage" id="M_storage">
+		<result column="IDCODE" property="IDCODE"
+		        typeHandler="strArrTypeHandler"/>
+	</resultMap> -->
+	
+	<select id="selectM_storageList" resultType="M_storage">
+		SELECT * FROM M_STORAGE ORDER BY MCODE DESC
+	</select>
+	
+	<select id="selectM_storage" parameterType="_int" resultType="M_storage">
+		SELECT * FROM M_STORAGE WHERE  = #{MCODE}
+	</select>
+	
+	<insert id="insertM_storage" parameterType="M_storage">
+		INSERT INTO M_STORAGE
+		VALUES (SEQ_MSNO.NEXTVAL,#{IDCODE},#{MCODE}, 
+		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
+		        #{MSPRICE},#{MSSTATUS})
+	</insert>
+ 
+	<update id="updateM_storage" parameterType="M_storage">
+		UPDATE M_STORAGE
+		SET 
+		   
+		    MSMSTOCK = #{MSSTOCK},
+		    MSPRICE= #{MSPRICE}
+		WHERE MSNO = #{MSNO}
+	</update>
+	
+	<delete id="deleteM_storage" parameterType="_int">
+		DELETE FROM M_STORAGE WHERE MSNO = #{MSNO}
+	</delete> 
+</mapper>
+
+
+
+
+
+
+
+
