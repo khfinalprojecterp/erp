@@ -12,7 +12,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.jsp"><strong><i
+		<a class="navbar-brand" href="${pageContext.request.contextPath}"><strong><i
 				class="icon fa fa-tasks"></i>&nbsp;&nbsp;FINAL PROJECT</strong></a>
 
 		<div id="sideNav" href="#">
@@ -184,7 +184,7 @@
 	<div class="sidebar-collapse">
 		<ul class="nav" id="main-menu">
 
-			<li><a class="active-menu" href="index.html"><i	class="fa fa-dashboard"></i>ERP</a></li>
+			<li><a class="active-menu" href="${pageContext.request.contextPath}"><i	class="fa fa-dashboard"></i>ERP</a></li>
 			
 			<!-- 세호 -->
             <li>
@@ -251,9 +251,9 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
+                    <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=1">거래처 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=1">물품 판매</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=1">판매 기록<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">Third Level Link</a></li>
                             <li><a href="#">Third Level Link</a></li>
