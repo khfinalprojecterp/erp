@@ -39,7 +39,7 @@
 									<tbody>
 										<c:forEach items="${list}" var="b" > 
 											<tr id="${b.buy_code}">
-												<td id="selid">${b.buy_code}</td>
+												<td>${b.buy_code}</td>
 												<td>${b.sCode}</td>
 												<td>${b.mCode}</td>
 												<td>${b.pCode}</td>
@@ -77,15 +77,15 @@
 							<input type="text" class="form-control" name="sCode">
 							
 							<label for="message-text" class="col-form-label">기자재/물품 구분</label>
-								<select name="sddivi" class="form-control input-sm">
-									<option value="M">기자재</option>
-									<option value="U">물품</option>						
-							  	</select>
-							<label for="message-text" class="col-form-label">기자재 코드:</label>
-							<input type="text" class="form-control" name="mCode">				
+								<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" name="sddivi" id="m_code" value="M" checked="checked">기자재
+								<input type="radio" class="form-check-input" name="sddivi" id="p_code" value="U">물품
+							</div> 	
+							<label for="message-text" class="col-form-label" id="mcode-id">기자재 코드:</label>
+							<input type="text" class="form-control" name="mCode" id="mCode">				
 							
-							<label for="message-text" class="col-form-label">물품 코드:</label>
-							<input type="text" class="form-control" name="pCode">
+							<label for="message-text" class="col-form-label" id="pcode-id">물품 코드:</label>
+							<input type="text" class="form-control" name="pCode" id="pCode">
 							
 							<label for="message-text" class="col-form-label">사원 코드:</label>
 							<input type="text" class="form-control" name="idCode">
@@ -107,10 +107,8 @@
 							  	</select>  -->
 							  	
 							 <div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" name="buy_status" id="newBuy_status1" value="D" checked="checked">
-								<label for="logintype0">미처리</label>
-								<input type="radio" class="form-check-input" name="buy_status" id="newBuy_status2" value="E">
-								<label for="logintype1">처리완료</label>
+								<input type="radio" class="form-check-input" name="buy_status" id="buy_status1" value="D" checked="checked">미처리
+								<input type="radio" class="form-check-input" name="buy_status" id="buy_status2" value="E">처리완료
 							</div> 			
 							
 							<label for="message-text" class="col-form-label">할인율:</label>
@@ -130,7 +128,7 @@
 		</div>
 	</div>
 	<!-- 기자재 수정/삭제용 모달 -->
-	<div class="modal fade" id="updateBuy" tabindex="-1" role="dialog"
+	<div class="modal fade" id="updateBuyItem" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -139,24 +137,23 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
+					<form id="updateBuy" method="post">
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">구매 번호:</label>
-							<input type="text" class="form-control" name="buy_code" id="buyCode">
+							<input type="text" class="form-control" name="buy_code" id="buy_code" readonly>
 						
 							<label for="message-text" class="col-form-label">창고 번호:</label>
 							<input type="text" class="form-control" name="sCode" id="sCode">
 							
 							<label for="message-text" class="col-form-label">기자재/물품 구분</label>
-								<select name="sddivi" class="form-control input-sm">
-									<option value="M">기자재</option>
-									<option value="U">물품</option>						
-							  	</select>
-							
-							<label for="message-text" class="col-form-label">기자재 코드:</label>
+								<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" name="sddivi" id="m_code" value="M" checked="checked">기자재
+								<input type="radio" class="form-check-input" name="sddivi" id="p_code" value="U">물품
+							</div> 	
+							<label for="message-text" class="col-form-label" id="mcode-id">기자재 코드:</label>
 							<input type="text" class="form-control" name="mCode" id="mCode">				
 							
-							<label for="message-text" class="col-form-label">물품 코드:</label>
+							<label for="message-text" class="col-form-label" id="pcode-id">물품 코드:</label>
 							<input type="text" class="form-control" name="pCode" id="pCode">
 							
 							<label for="message-text" class="col-form-label">사원 코드:</label>
@@ -179,14 +176,16 @@
 							  	</select>  -->
 							  	
 							 <div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" name="buy_status" id="buy_status" value="D" checked="checked">
-								<label for="logintype0">미처리</label>
-								<input type="radio" class="form-check-input" name="buy_status" id="buy_status" value="E">
-								<label for="logintype1">처리완료</label>
+								<input type="radio" class="form-check-input" name="buy_status" id="buy_status1" value="D" checked="checked">미처리
+								<input type="radio" class="form-check-input" name="buy_status" id="buy_status2" value="E">처리완료
 							</div> 			
 							
 							<label for="message-text" class="col-form-label">할인율:</label>
 							<input type="text" class="form-control" name="buy_discount" id="buy_discount">
+
+							
+							
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -199,6 +198,22 @@
 		</div>
 	</div>
 	<script>		
+	
+	$("input:radio[name=sddivi]").click(function(){
+        
+	    if($("input:radio[name=sddivi]:checked").val()=='M'){
+            $( "#pCode" ).hide();
+            $( "#pcode-id" ).hide();
+            $( "#mcode-id" ).show();
+            $( "#mCode" ).show();
+	    }else{
+            $( "#mCode" ).hide();
+            $( "#mcode-id" ).hide();
+            $( "#pcode-id" ).show();
+            $( "#pCode" ).show();
+	    }
+	});
+	
 
 		function insertBuy() {
 			 $('#insertBuy').attr("action","${pageContext.request.contextPath}/buy/buy_insert.do");
@@ -208,16 +223,17 @@
 		}
 		
 		function updateBuy() {
-			//var buyCode = $("#selid").val();
-			var buy = $("#CateName").val();
-			location.href = "${pageContext.request.contextPath}/buy/buy_insert.do?buy_code="+buy_code +"&mCate="+mCate;
+			 $('#updateBuy').attr("action","${pageContext.request.contextPath}/buy/buy_update.do");
+				$('#updateBuy').attr("method", "post");
+				$('#updateBuy').submit();
+			
 			
 			//연결
 		}
 		
 		function deleteBuy() {
-			var updatebuy = $("#buy").val();
-			location.href = "${pageContext.request.contextPath}/buy/buy_delete.do"
+			var buy_code = $("#buy_code").val();
+			location.href = "${pageContext.request.contextPath}/buy/buy_delete.do?buy_code="+buy_code;
 			//연결
 		}
 		
@@ -225,7 +241,7 @@
 		$("#dataTables-example td").click(
 				function() {
 					var buyCode = $(this).value;
-					document.getElementById("buyCode").value = $(this).parent().children().eq(0).text();
+					document.getElementById("buy_code").value = $(this).parent().children().eq(0).text();
 					document.getElementById("sCode").value = $(this).parent().children().eq(1).text();
 					document.getElementById("mCode").value = $(this).parent().children().eq(2).text();
 					document.getElementById("pCode").value = $(this).parent().children().eq(3).text();
@@ -234,9 +250,17 @@
 					document.getElementById("buy_origin").value = $(this).parent().children().eq(6).text();
 					document.getElementById("buy_price").value = $(this).parent().children().eq(7).text();
 					document.getElementById("buy_discount").value = $(this).parent().children().eq(8).text();
-					document.getElementById("buy_status").checked.value = $(this).parent().children().eq(9).text();
+					 if($("input:radio[name=buy_status]:checked").val()=='D'){
+						 $("#buy_status1").prop("checked", true)
+						 document.getElementById("buy_status1").value = $(this).parent().children().eq(9).text();
+					 }  
+					 if($("input:radio[name=buy_status]:checked").val()=='E'){
+						 $("#buy_status2").prop("checked", true)
+						 document.getElementById("buy_status2").value = $(this).parent().children().eq(9).text();
+					 }
 					
-					$("#updateBuy").modal();
+					
+					$("#updateBuyItem").modal();
 				});
 	</script>
 </body>
