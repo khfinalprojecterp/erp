@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.erp.employee.model.dao.EmployeeDao;
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
 
 
@@ -38,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public int updateEmployee(Employee emp) {
-		
+		System.out.println(emp+"1");
 		return empDao.updateEmployee(emp);
 	}
 	
@@ -47,6 +48,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int deleteEmployee(int idCode) {
 		
 		return empDao.deleteEmployee(idCode);
+	}
+
+	@Override
+	public void insertSub(Employee emp) {
+		
+		empDao.insertSub(emp);
+		
+		
+		
+	}
+
+	@Override
+	public List<Attendance> selectAttendnaceList() {
+		
+		return empDao.selectAttendnaceList();
+	}
+
+	@Override
+	public int updateAttendance(Attendance attendance) {
+	
+		return empDao.updateAttendance(attendance);
 	}
 
 	
