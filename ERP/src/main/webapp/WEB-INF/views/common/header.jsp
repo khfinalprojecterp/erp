@@ -65,5 +65,17 @@
   
 <!-- Chart Js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/chart.min.js"></script>  
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/chartjs.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/chartjs.js"></script>
+
+<!-- style -->
+	<style>
+		/*글쓰기버튼*/
+		input#btn-add{float:right; margin: 0 0 15px;}
+		
+		div#board-container{width:400px; margin:0 auto; text-align:center;}
+		div#board-container input,div#board-container button{margin-bottom:15px;}
+		/* 부트스트랩 : 파일라벨명 정렬*/
+		div#board-container label.custom-file-label{text-align:left;}
+		
+	</style> 
 </head>

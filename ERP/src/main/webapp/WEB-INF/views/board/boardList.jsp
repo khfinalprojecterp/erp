@@ -4,28 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:import url="../common/header.jsp" />
-<%-- <head>
-	<meta charset="UTF-8">
-	<title>게시판</title>
-	<c:import url="../common/header.jsp"/>
-	<style>
-		/*글쓰기버튼*/
-		input#btn-add{float:right; margin: 0 0 15px;}
-	</style>
-	<script>
-		function fn_goBoardForm(){
-			location.href = "${pageContext.request.contextPath}/board/boardForm.do";
-		}
-		
-		$(function(){
-			$("tr[id]").on("click",function(){
-				var boardNo = $(this).attr("id");
-				console.log("bordNo="+boardNo);
-				location.href = "${pageContext.request.contextPath}/board/boardView.do?no="+boardNo;
-			});
-		});
-	</script>
-</head> --%>
 <body>
 	<c:import url="../common/nav.jsp" />
 	<div id="page-wrapper">
@@ -38,8 +16,7 @@
 						<div class="panel-heading">자유 게시판</div>
 						<div class="panel-body">
 							<div class="table-responsive">
-								<table class="table table-striped table-bordered table-hover"
-									id="dataTables-example">
+								<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 									<thead>
 										<tr>
 											<th>번호</th>
@@ -83,13 +60,21 @@
 			location.href = "${pageContext.request.contextPath}/board/boardForm.do";
 		}
 		
-		$(function(){
+/* 		$(function(){
 			$("tr[id]").on("click",function(){
 				var boardNo = $(this).attr("id");
 				console.log("bordNo="+boardNo);
 				location.href = "${pageContext.request.contextPath}/board/boardView.do?no="+boardNo;
 			});
 		});
+		 */
+		 
+		$("#dataTables-example tr[id]").click(
+			function() {
+				var boardNo = $(this).attr("id");
+				location.href = "${pageContext.request.contextPath}/board/boardView.do?no="+boardNo;
+		});
+		
 	</script>
 </body>
 <c:import url="../common/footer.jsp" />
