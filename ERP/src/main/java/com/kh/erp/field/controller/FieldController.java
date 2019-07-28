@@ -48,7 +48,7 @@ public class FieldController {
 // 뒤에 보내고자 하는 url을 적는다.
 // '/'는 절대 경로인 index.jsp로 보내는 역할을 한다.
 
-						return "redirect:/";
+			 return "redirect:/department/departmentList.do";
 }
 	
 	

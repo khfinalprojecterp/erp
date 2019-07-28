@@ -2,6 +2,7 @@ package com.kh.erp.employee.model.dao;
 
 import java.util.List;
 
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
 
 public interface EmployeeDao {
@@ -21,7 +22,12 @@ public interface EmployeeDao {
 	
 	int updateEmployee(Employee emp);
 	int deleteEmployee(int idCode);
+
+	void insertSub(Employee emp);
+
+	List<Attendance> selectAttendnaceList();
 	
+	int updateAttendance(Attendance attendance);
 	
 	
 }

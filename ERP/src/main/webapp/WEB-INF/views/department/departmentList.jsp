@@ -110,7 +110,8 @@
                   <div class="form-group">
                   	 
                      <input type="hidden" class="form-control" id="dCode" name="dCode" readonly>
-                  	
+                  	 </div>
+                  	  <div class="form-group">
                      <label for="message-text" class="col-form-label">부서명</label>
                     <input type="text" class="form-control"  name="dTitle" id="dTitle" required>
                    </div>
