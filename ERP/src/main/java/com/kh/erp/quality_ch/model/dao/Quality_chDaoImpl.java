@@ -1,44 +1,46 @@
 package com.kh.erp.quality_ch.model.dao;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.erp.quality_ch.model.vo.Quality_ch;
-import com.kh.erp.quality_r.model.vo.Quality_r;
+import com.kh.erp.quality_ch.model.dao.Quality_chDao;
+import com.kh.erp.quality_ch.model.vo.Quality_ch;
 @Repository
 public class Quality_chDaoImpl implements Quality_chDao {
-@Autowired
-	SqlSessionTemplate SqlSession;
+	@Autowired
+	SqlSessionTemplate sqlSession;
 	@Override
-	public int selectQuality_ch(Quality_ch quality_ch) {
+	public int insert(Quality_ch quality_ch) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("quality_ch.insertQuality_ch",quality_ch);
 	}
 
 	@Override
-	public int insertQuality_ch(Quality_ch quality_ch) {
+	public List<Quality_ch> selectQuality_chList() {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectList("quality_ch.selectQuality_chList");
 	}
 
 	@Override
-	public Quality_r selectOneQuality_ch(int QRCODE) {
+	public Quality_ch selectQuality_ch(int QRCODE) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("quality_.selectQuality_ch",QRCODE) ;
 	}
 
 	@Override
 	public int updateQuality_ch(Quality_ch quality_ch) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("quality_ch.updateQuality_ch",quality_ch);
 	}
 
 	@Override
 	public int deleteQuality_ch(int QRCODE) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("quality_ch.deleteQuality_ch",QRCODE);
 	}
 
 }

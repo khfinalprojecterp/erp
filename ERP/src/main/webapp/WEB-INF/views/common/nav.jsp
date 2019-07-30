@@ -238,11 +238,13 @@
                 <ul class="nav nav-second-level">
                    <%--  <li><a href="${pageContext.request.contextPath}/m_storage/insertM_storage.do">발주요청</a></li> --%>
                     <li><a href="${pageContext.request.contextPath}/m_storage/M_storageList.do">발주 목록</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">none</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
+                <%--   <li><a href="${pageContext.request.contextPath}/product_category/Product_CategoryList.do">물품분류</a></li> --%>
+                   <%--  <li><a href="${pageContext.request.contextPath}/product/ProductList.do">물품목록<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level"> --%>
+                            <li><a href="${pageContext.request.contextPath}/product/ProductList.do">물품목록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/product_category/Product_CategoryList.do">물품분류</a></li>
+                            <li><a href="${pageContext.request.contextPath}/quality_r/Quality_rList.do">품질관리 요청</a></li>
+                            <li><a href="${pageContext.request.contextPath}/quality_ch/Quality_chList.do">품질관리 처리</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -2,6 +2,7 @@ package com.kh.erp.product_category.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,31 +16,31 @@ public class Product_CategoryDaoImpl implements Product_CategoryDao {
 	@Override
 	public List<Product_Category> selectProduct_CategoryList() {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("product_category.selectProduct_CategoryList");
 	}
 
 	@Override
 	public int insertProduct_Category(Product_Category product_category) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("product_category.insertProduct",product_category);
 	}
 
 	@Override
-	public M_storage selectOneProduct_Category(int PCATE) {
+	public int selectOneProduct_Category(int PCATE) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("product_category.selectProduct_Category",PCATE);
 	}
 
 	@Override
 	public int updateProduct_Category(Product_Category product_category) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("product_category.selectProduct_Category",product_category);
 	}
 
 	@Override
 	public int deleteProduct_Category(int PCATE) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("product_category.deleteProduct_Category",PCATE);
 	}
 
 }

@@ -27,7 +27,7 @@ public class MaterialsCategoryController {
 		 = new ArrayList<>(materialsCategoryService.materialsCategoryList());
 		
 		//List<MaterialsCategory> list
-		//	= new ArrayList<>(materialsCategoryService.materialsCategoryList());
+		//	= new ArrayList<>(materiRalsCategoryService.materialsCategoryList());
 		
 		model.addAttribute("list", list);
 		

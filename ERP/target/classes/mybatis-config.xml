@@ -30,10 +30,14 @@
 			alias="Purchase" />
 		<typeAlias type="com.kh.erp.m_storage.model.vo.M_storage"
 			alias="M_storage" />
-
-
-
-
+<typeAlias type="com.kh.erp.product.model.vo.Product"
+			alias="Product" />
+<typeAlias type="com.kh.erp.product_category.model.vo.Product_Category"
+			alias="Product_Category" />
+<typeAlias type="com.kh.erp.quality_r.model.vo.Quality_r"
+			alias="Quality_r" />
+<typeAlias type="com.kh.erp.quality_ch.model.vo.Quality_ch"
+			alias="Quality_ch" />
 
 	</typeAliases>
 <!-- 	<typeHandlers>

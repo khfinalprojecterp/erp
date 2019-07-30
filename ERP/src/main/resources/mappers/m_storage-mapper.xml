@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="selectM_storage" parameterType="_int" resultType="M_storage">
-		SELECT * FROM M_STORAGE WHERE  = #{MCODE}
+		SELECT * FROM M_STORAGE WHERE  = #{MSNO}
 	</select>
 	
 	<insert id="insertM_storage" parameterType="M_storage">
@@ -26,11 +26,9 @@
  
 	<update id="updateM_storage" parameterType="M_storage">
 		UPDATE M_STORAGE
-		SET 
-		   
-		    MSMSTOCK = #{MSSTOCK},
+		SET MSMSTOCK = #{MSSTOCK},
 		    MSPRICE= #{MSPRICE}
-		WHERE MSNO = #{MSNO}
+		WHERE MSNO = ?
 	</update>
 	
 	<delete id="deleteM_storage" parameterType="_int">
