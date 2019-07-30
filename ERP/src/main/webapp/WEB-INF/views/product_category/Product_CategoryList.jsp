@@ -175,7 +175,8 @@
 		if (validation()) {
 			alert("작성완료");
 	         $('#product_categoryFrm').attr("action","${pageContext.request.contextPath}/product_category/insertProduct_Category.do");
-	         $('#product_categoryFrm').attr("method", "post");
+	         $
+	         ('#product_categoryFrm').attr("method", "post");
 	 		 $('#product_categoryFrm').submit();
 			
 		 } else{
