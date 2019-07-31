@@ -11,10 +11,32 @@ public class Pmanagement {
 	private int dCode;
 	private String payment;
 	private int mincome;
+	private int count;
 
 	private int eCode;
 	private String wName;
 	private String dTitle;
+
+	public Pmanagement(int idCode, int dCode, String payment, int mincome, int count, int eCode, String wName,
+			String dTitle) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.payment = payment;
+		this.mincome = mincome;
+		this.count = count;
+		this.eCode = eCode;
+		this.wName = wName;
+		this.dTitle = dTitle;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	public Pmanagement(int idCode, int dCode, String payment, int mincome, int eCode, String wName, String dTitle) {
 		super();

@@ -75,16 +75,18 @@
                <form id="empFrm">
                   <div class="form-group">
                      <label for="message-text" class="col-form-label">사번</label>
-                     <input type="text" class="form-control" id="newCate" maxlength="9" name="idCode" required>
+                     <input type="text" class="form-control" id="idCode" maxlength="9" name="idCode" required>
+                     <input type="button" value="중복검사" id="idCodeCheck">
+                     	
+                     	<br>
                      
                       <label for="message-text" class="col-form-label">비밀번호</label>
-                     <input type="password" class="form-control" id="newCate" name="wPwd" required>
+                     <input type="password" class="form-control" id="wPwd" name="wPwd" required="required">
                      
                      <label for="message-text" class="col-form-label">사원명</label>
-                     <input type="text" class="form-control" id="newCate" name="wName" required>
+                     <input type="text" class="form-control" id="wName" name="wName" required="required">
                      
-                     
-                     
+
                      
                      <label for="message-text" class="col-form-label">부서명</label>
                      <br>
@@ -129,7 +131,7 @@
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary"
                   data-dismiss="modal">취소</button>
-               <button type="button" class="btn btn-primary" onclick="insertEmployee();">추가하기</button>
+               <button type="button" id="idcodego" class="btn btn-primary" onclick="insertEmployee();" disabled>추가하기</button>
             </div>
          </div>
       </div>
@@ -144,6 +146,55 @@
  		
          
       }
+	
+
+		
+		$('#idCode').click(function(){
+			
+			
+			$('#idCode').attr("readonly",false);
+			$('#idcodego').attr("disabled", true);
+			
+			
+		});
+		
+		
+		
+		  $('#idCodeCheck').click(function() {
+		         $.ajax({
+		            url : "${pageContext.request.contextPath}/employee/checkIdDuplicate.do",
+		            type : "post",
+		            data : {
+		               idCode : $('#idCode').val()
+		            },	  
+		            success : function(data) {
+		                console.log(data);            
+		               if (data == 'ok' && $('#idCode').val() != "") {
+		                  
+		            	   $('#idcodego').attr("disabled", false);
+		            	   $('#idCode').attr("readonly",true);
+		            	   alert("사용 가능한 사번입니다.");
+
+		               } else {
+		                  alert("이미 사용 중인 사번 과 공백은 사용 할 수 없는 사번 입니다."); 
+		             	  $('#idcodego').attr("disabled", true);
+		                  $('#idCode').select().val("");
+		                  
+		               } 
+		            },
+		            error : function(request, status, error) {
+		               console.log("------ ERROR ------");
+		               console.log(request);
+		               console.log(status);
+		               console.log(error);
+		               console.log("-------------------");
+		            }
+		         });
+	      });
+	
+	
+	
+	
 	</script>   
 	
 

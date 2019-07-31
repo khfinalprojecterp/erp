@@ -22,7 +22,7 @@ public interface EmployeeDao {
 	
 	int updateEmployee(Employee emp);
 	int deleteEmployee(int idCode);
-
+	int checkIdDuplicate(int idCode);
 	void insertSub(Employee emp);
 
 	List<Attendance> selectAttendnaceList();

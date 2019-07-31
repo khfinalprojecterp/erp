@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.employee.model.vo.Pmanagement;
 
 @Repository
@@ -25,6 +26,12 @@ public class PmanagementDaoImpl implements PmanagementDao {
 	public int updatePmanage(Pmanagement pmanage) {
 		
 		return sqlSession.update("employee.updatePmanage",pmanage);
+	}
+
+	@Override
+	public List<Employee> selectChar() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("employee.selectChart");
 	}
 
 }

@@ -15,7 +15,7 @@ public interface EnterpriseDao {
 
 	int deleteEnterprise(String eId);
 
-	int checkIdDuplicate(HashMap<String, Object> hmap);
+	int checkIdDuplicate(String eId);
 
 	
 	
