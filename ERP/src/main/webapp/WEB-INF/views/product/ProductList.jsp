@@ -83,7 +83,7 @@
                  
                      
                      <label for="message-text" class="col-form-label">물품코드</label>
-                     <input type="number" class="form-control" id="PCODE" placeholder="숫자코드를 임력해주세요"name="PCODE" required>
+                     <input type="number" class="form-control" id="PCODE" name="PCODE">
                      
                       <label for="message-text" class="col-form-label">분류코드</label>
                      <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력해주세요" name="PCATE" required>
@@ -123,19 +123,22 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
-					
+					<form id="updateFrm">
+						<div class="form-group">
+            				<label for="recipient-name" class="col-form-label">물품번호</label>
+            				<input type="text" class="form-control"placeholder="코드를 임력해주세요" id="UPCODE" name="PCODE">
+          				</div>
 						<div class="form-group">
             				<label for="recipient-name" class="col-form-label">물품명</label>
-            				<input type="text" class="form-control"placeholder="코드를 임력해주세요" id="PNAME" >
+            				<input type="text" class="form-control"placeholder="코드를 임력해주세요" id="UPNAME" name="PNAME">
           				</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">규격명</label>
-							<input type="text" class="form-control" placeholder="코드를 임력해주세요"id="PSIZE"  >
+							<input type="text" class="form-control" placeholder="코드를 임력해주세요" id="UPSIZE"  name="PSIZE">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">바코드명</label>
-							<input type="number" class="form-control" placeholder="숫자코드를 임력해주세요"id="PBARCODE"  >
+							<input type="number" class="form-control" placeholder="숫자코드를 임력해주세요" id="UPBARCODE" name="PBARCODE" >
 						</div>
 					</form>
 				</div>
@@ -187,6 +190,22 @@
 		return result;
 	}
 	
+	function update_validation(){
+		// 클라이언트 레벨의 유효성 검사
+		
+		// form 안에 작성 된 내용을 확인하여
+		// 작성이 되어 있지 않으면 false를 반환하는 함수
+		
+		var result = true;
+		
+		if($("#UPNAME").val().trim().length == 0|| $("#UPSIZE").val().trim().length == 0){
+			alert("공란을 작성해 주세요!");
+			result = false;
+		}
+		
+		return result;
+	}
+	
 	
 	
 	function insertProduct() {
@@ -206,17 +225,17 @@
 	function updateProduct() {
         
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
-		if (validation()) {
+		if (update_validation()) {
 			alert("작성완료");
-	         $('#productFrm').attr("action","${pageContext.request.contextPath}/product/updateProduct.do");
-	         $('#productFrm').attr("method", "post");
-	 		 $('#productFrm').submit();
+	         $('#updateFrm').attr("action","${pageContext.request.contextPath}/product/updateProduct.do");
+	         $('#updateFrm').attr("method", "post");
+	 		 $('#updateFrm').submit();
 			
 		 } else{
 		alert("작성실패");         
       }
 	}
-
+/* 
 	function updateProduct() {
 		
 		var PNAME = $("#PNAME").val();
@@ -229,7 +248,7 @@
 		
 		//연결
 	}
-	
+	 */
 	function deleteM_storage() {
 		
 		var PNAME = $("#PNAME").val();
@@ -242,11 +261,20 @@
 	 
 	 $("#dataTables-example td").click(
 			function() {
+				
 				PCODE = $(this).parent().children().eq(0).text();
+				$('#UPCODE').val(PCODE);
+				
 				PNAME = $(this).parent().children().eq(2).text();
-				document.getElementById("PSIZE").value = $(this).parent().children().eq(3).text();
-				document.getElementById("PBARCODE").value = $(this).parent().children().eq(4).text();
-				$("#updateM_storage").modal();
+				$('#UPNAME').val(PNAME);
+				
+				PSIZE = $(this).parent().children().eq(3).text();
+				$('#UPSIZE').val(PSIZE);
+				
+				PBARCODE = $(this).parent().children().eq(4).text();
+				$('#UPBARCODE').val(PBARCODE);
+				
+				$("#updateProduct").modal(); // 모달창 호출
 			}); 
 	
 	 

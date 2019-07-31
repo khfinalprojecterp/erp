@@ -22,7 +22,7 @@ public class Product_CategoryDaoImpl implements Product_CategoryDao {
 	@Override
 	public int insertProduct_Category(Product_Category product_category) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("product_category.insertProduct",product_category);
+		return sqlSession.insert("product_category.insertProduct_Category",product_category);
 	}
 
 	@Override

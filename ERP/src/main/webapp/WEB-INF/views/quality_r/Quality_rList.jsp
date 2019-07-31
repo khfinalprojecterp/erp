@@ -141,7 +141,8 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
+				<form id="Uquality_rFrm">
+					
 					
 						<div class="form-group">
             				<label for="recipient-name" class="col-form-label">품질관리코드</label>
@@ -254,9 +255,9 @@
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
 		if (validation()) {
 			alert("작성완료");
-	         $('#quality_rFrm').attr("action","${pageContext.request.contextPath}/quality_r/updateQuality_r.do");
-	         $('#quality_rFrm').attr("method", "post");
-	 		 $('#quality_rFrm').submit();
+	         $('#Uquality_rFrm').attr("action","${pageContext.request.contextPath}/quality_r/updateQuality_r.do");
+	         $('#Uquality_rFrm').attr("method", "post");
+	 		 $('#Uquality_rFrm').submit();
 			
 		 } else{
 		alert("작성실패");         

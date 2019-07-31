@@ -14,12 +14,12 @@
 	</select>
 	
 	<select id="selectQuality_ch" parameterType="_int" resultType="Quality_ch">
-		SELECT * FROM QUALITY_CH WHERE  = #{MSNO}
+		SELECT * FROM QUALITY_CH WHERE  = #{QRCODE}
 	</select>
 	
 	<insert id="insertQuality_ch" parameterType="Quality_ch">
 		INSERT INTO QUALITY_CH
-		VALUES (#{QRCODE},#{IN_CODE}, 
+		VALUES (#{IN_CODE}, 
 		        #{IDCODE}, #{ECODE}, #{QCHT},
 		        #{QCHF},#{QCHCHECK},#{QCHSTATUS})
 	</insert>
@@ -28,17 +28,17 @@
 		UPDATE QUALITY_CH
 		SET QRCODE = #{QRCODE},
 		    IN_CODE= #{IN_CODE},
-		    IN_CODE= #{IN_CODE},
 		    IDCODE= #{IDCODE},
 		    ECODE= #{ECODE},
 		    QCHT= #{QCHT},
+		    QCHF= #{QCHF},
 		     QCHCHECK= #{QCHCHECK},
 		     QCHSTATUS= #{QCHSTATUS},
-		WHERE QRCODE = ?
+		WHERE QRCODE = #{QRCODE}
 	</update>
 	
 	<delete id="deleteQuality_ch" parameterType="_int">
-		DELETE FROM M_STORAGE WHERE QRCODE = #{QRCODE}
+		DELETE FROM QUALITY_CH WHERE QRCODE = #{QRCODE}
 	</delete> 
 </mapper>
 

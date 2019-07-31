@@ -34,6 +34,18 @@
 	<delete id="deleteM_storage" parameterType="_int">
 		DELETE FROM M_STORAGE WHERE MSNO = #{MSNO}
 	</delete> 
+
+<!-- <select  id="select_Wname" parameterType="M_storage">
+SELECT * FROM M_STORAGE
+WHERE IDCODE= ( 
+SELECT IDCODE
+FROM EMPLOYEE
+WHERE WNAME = #{WNAME}
+
+
+</select>
+ -->
+
 </mapper>
 
 

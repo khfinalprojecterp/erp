@@ -90,14 +90,19 @@ public String updateProduct(
 		/*private String PNAME;//물품명
 		private String PSIZE*/
 	
-		@RequestParam String PNAME ,
-	
+		@RequestParam String PNAME,
+		@RequestParam int PCODE,
 	
 		@RequestParam String PSIZE,
 		@RequestParam int PBARCODE,
 		 Model model) {
 	
-	Product product = new Product(PNAME,PSIZE,PBARCODE);
+	Product product = new Product();
+	
+	product.setPCODE(PCODE);
+	product.setPNAME(PNAME);
+	product.setPSIZE(PSIZE);
+	product.setPBARCODE(PBARCODE);
 	
 	
 	int result = productService.updateProduct(product);

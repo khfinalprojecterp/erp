@@ -25,9 +25,8 @@
  
 	<update id="updateProduct_Category" parameterType="Product_Category">
 		UPDATE PRODUCT_CATEGORY
-		SET PCATE = #{PCATE},
-		    PCNAME= #{PCNAME}
-		WHERE PCATE = ?
+		SET PCNAME= #{PCNAME}
+		WHERE PCATE = #{PCATE}
 	</update>
 	
 	<delete id="deleteProduct_Category" parameterType="_int">

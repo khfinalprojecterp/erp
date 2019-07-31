@@ -72,7 +72,7 @@ return "redirect:/product_category/Product_CategoryList.do";
 
 
 @RequestMapping("/product_category/Product_CategoryList.do")
-public String selectM_storageList(Model model) {
+public String selectProduct_CategoryList(Model model) {
 	List<Product_Category> list=product_categoryService.selectProduct_CategoryList();
 	
 	System.out.println("list 확인"+list);
@@ -117,7 +117,7 @@ public String updateProduct_Category(@RequestParam int PCATE ,
 
 
 @RequestMapping("/product_category/deleteProduct_Category.do")
-public String deleteM_storage(@RequestParam int PCATE, Model model) {
+public String deleteProduct_Category(@RequestParam int PCATE, Model model) {
 	
 	int result = product_categoryService.deleteProduct_Category(PCATE);
 	String msg="";

@@ -29,7 +29,7 @@
 		SET PNAME = #{PNAME},
 		    PSIZE= #{PSIZE},
 		     PBARCODE= #{PBARCODE}
-		WHERE PCODE = ?
+		WHERE PCODE = #{PCODE}
 	</update>
 	
 	<delete id="deleteProduct" parameterType="_int">

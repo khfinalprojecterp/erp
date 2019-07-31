@@ -64,14 +64,14 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">발주</h5>
+               <h5 class="modal-title" id="exampleModalLabel">품질관리 </h5>
                <!-- <button type="button" class="close" data-dismiss="modal"
                   aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button> -->
             </div>
             <div class="modal-body">
-               <form id="product_categoryFrm">
+<form id="product_categoryFrm">
                   <div class="form-group">
                  
                      
@@ -107,15 +107,15 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
+					<form id="uppcFrm">
 					
-						<div class="form-group">
+						<!-- <div class="form-group">
             				<label for="recipient-name" class="col-form-label">분류코드</label>
-            				<input type="number" class="form-control" id="PCATE" >
-          				</div>
+            				<input type="number" class="form-control" placeholder="숫자만 입력하세요"id="UPCATE" >
+          				</div> -->
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">분류명</label>
-							<input type="text" class="form-control" id="PCNAME"  >
+							<input type="text" class="form-control" placeholder="코드를 입력하세요"id="UPCNAME" name="PCNAME" >
 						</div>
 					</form>
 				</div>
@@ -151,7 +151,7 @@
 		
 	});
 	
-	function validation(){
+	 function validation(){
 		// 클라이언트 레벨의 유효성 검사
 		
 		// form 안에 작성 된 내용을 확인하여
@@ -159,14 +159,28 @@
 		
 		var result = true;
 		
-		if($("#PCATE").val().trim().length == 0|| $("#PCNAME").val().trim().length == 0){
+		if($("#PCNAME").val().trim().length == 0){
 			alert("공란을 작성해 주세요!");
 			result = false;
 		}
 		
 		return result;
 	}
-	
+	 function update_validation(){
+			// 클라이언트 레벨의 유효성 검사
+			
+			// form 안에 작성 된 내용을 확인하여
+			// 작성이 되어 있지 않으면 false를 반환하는 함수
+			
+			var result = true;
+			
+			if($("#UPCNAME").val().trim().length == 0){
+				alert("공란을 작성해 주세요!");
+				result = false;
+			}
+			
+			return result;
+		}
 	
 	
 	function insertProduct_Category() {
@@ -187,45 +201,51 @@
 	function updateProduct_Category() {
         
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
-		if (validation()) {
+		if (update_validation()) {
 			alert("작성완료");
-	         $('#product_categoryFrm').attr("action","${pageContext.request.contextPath}/product_category/updateProduct_Category.do");
-	         $('#product_categoryFrm').attr("method", "post");
-	 		 $('#product_categoryFrm').submit();
+	         $('#uppcFrm').attr("action","${pageContext.request.contextPath}/product_category/updateProduct_Category.do");
+	         $('#uppcFrm').attr("method", "post");
+	 		 $('#uppcFrm').submit();
 			
 		 } else{
 		alert("작성실패");         
       }
 	}
 
-	function updateProduct_Category() {
+/* /* 	function updateProduct_Category() {
 		
-		var PCATE = $("#PCATE").val();
-		var PCNAME = $("#PCNAME").val();
-		
-		
+		/* var PCATE = $("#UPCATE").val(); */
+/* 		var PCNAME = $("#UPCNAME").val();
 		
 		
-		location.href = "${pageContext.request.contextPath}/product_category/updateProduct_Category.do?PCATE="+PCATE
-				+"&PCNAME="+PCNAME;
+		
+		
+		location.href = "${pageContext.request.contextPath}/product_category/updateProduct_Category.do?PCODE="+PCODE
++&PCNAME="+PCNAME
+				;
 		
 		//연결
-	}
-	
+	} */
+/* 	 */ 
 	function deleteProduct_Category() {
 		
-		var PCATE = $("#PCATE").val();
+		/* var PCATE = $("#PCATE").val(); */
 		var PCNAME = $("#PCNAME").val();
-		location.href = "${pageContext.request.contextPath}/product_category/updateProduct_Category.do?PCATE="+PCATE
-		+"&PCNAME="+PCNAME;
+		location.href = "${pageContext.request.contextPath}/product_category/deleteProduct_Category.do?PNAME="+PNAME
+		;
 		//연결
 	}
 	 
 	 $("#dataTables-example td").click(
 			function() {
 				/* var mCate = $(this).value; */
-				PCATE = $(this).parent().children().eq(0).text();
-				document.getElementById("PCNAME").value = $(this).parent().children().eq(1).text();
+				PCODE = $(this).parent().children().eq(0).text();
+				$('#UPCODE').val(PCODE);
+				
+				
+				
+				PCODE = $(this).parent().children().eq(1).text();
+				$('#UPCNAME').val(PCNAME);
 			
 				$("#updateProduct_Category").modal();
 			}); 

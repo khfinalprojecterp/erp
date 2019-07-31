@@ -17,7 +17,7 @@
 					<div class="panel panel-default">
                   <div class="panel-heading">품질관리 처리
                      <button style="float:right" type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertQuality_ch">
-                       처리 작석</button>
+                       처리 작성</button>
                   </div>
 					<div class="panel panel-default">
 						<div class="panel-heading"></div>
@@ -91,19 +91,20 @@
                      <input type="number" class="form-control" id="IN_CODE" placeholder="숫자만 입력하세요" name="IN_CODE" required>
                      
                      <label for="message-text" class="col-form-label">사원코드</label>
-                     <input type="number" class="form-control" id=""placeholder="숫자만 입력하세요"  name="IDCODE" required>
+                     <input type="number" class="form-control" id="IDCODE"placeholder="숫자만 입력하세요"  name="IDCODE" required>
                      
                      <label for="message-text" class="col-form-label">기업코드</label>
                      <input type="number" class="form-control" id="ECODE"placeholder="숫자만 입력하세요"  name="ECODE" required>
                      
                      <label for="message-text" class="col-form-label">적격</label>
-                     <input type="number" class="form-control" id="QCHT"  name="QCHT" required>
+                     <input type="number" class="form-control" id="QCHT"maxlength="1" placeholder="부적격시 1,적격시 0을 입력해주세요" name="QCHT" required>
                      
                      <label for="message-text" class="col-form-label">부적격</label>
-                     <input type="number" class="form-control" id="QCHF" placeholder="숫자만 입력하세요" name="QCHF" required>
+                     <input type="number" class="form-control" id="QCHF"maxlength="1" placeholder="부적격시 1,적격시 0을 입력해주세요" name="QCHF"required>
                      
                      <label for="message-text" class="col-form-label">불/합격</label>
-                     <input type="text" class="form-control" id="QCHCHECK" placeholder="불/합격 여부를 입력하세요" name="QCHCHECK" required>
+                     <input type="text" class="form-control" id="QCHCHECK" placeholder="합격  불합격을 작성해주세요" name="QCHCHECK" required>
+                     
                      
                       <label for="message-text" class="col-form-label">진행상황</label>
                      <input type="text" class="form-control" id="QCHSTATUS" placeholder="입력해주세요" name="QCHSTATUS" required>
@@ -134,35 +135,41 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
+				  <form id="Uquality_chFrm">
+					
 					
 						<div class="form-group">
             				<label for="recipient-name" class="col-form-label">품질코드</label>
-            				<input type="number" class="form-control" id="QRCODE" >
+            				<input type="number" class="form-control" id="UQRCODE" name="QRCODE" >
           				</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">생산입고코드</label>
-							<input type="number" class="form-control" id="IN_CODE"  >
-							
+							<input type="number" class="form-control" id="UIN_CODE" name="IN_CODE" >
+							</div>
 							<div class="form-group">
 							<label for="message-text" class="col-form-label">사원코드</label>
-							<input type="number" class="form-control" id="IDCODE"  >
+							<input type="number" class="form-control" id="UIDCODE" name="IDCODE" >
+							</div>
 							<div class="form-group">
 							<label for="message-text" class="col-form-label">기업코드</label>
-							<input type="number" class="form-control" id="ECODE"  >
+							<input type="number" class="form-control" id="UECODE"  name="ECODE">
+							</div>
 							<div class="form-group">
+							</div>
 							<label for="message-text" class="col-form-label">적격</label>
-							<input type="number" class="form-control" id="QCHT"  >
+							<input type="number" class="form-control" id="UQCHT"  name="QCHT">
 							<div class="form-group">
 							<label for="message-text" class="col-form-label">부적격</label>
-							<input type="number" class="form-control" id="QCHF"  >
+							<input type="number" class="form-control" id="UQCHF"  name="QCHF">
+							</div>
 							<div class="form-group">
 							<label for="message-text" class="col-form-label">불/합격</label>
-							<input type="text" class="form-control" id="QCHCHECK"  >
+							<input type="text" class="form-control" id="UQCHCHECK" name="QCHCHECK" >
+							</div>
 							<div class="form-group">
 							
 							<label for="message-text" class="col-form-label">상태</label>
-							<input type="text" class="form-control" id="QCHSTATUS"  >
+							<input type="text" class="form-control" id="UQCHSTATUS"name="QCHSTATUS"  >
 							
 							
 							
@@ -180,10 +187,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 
 	<script>
@@ -240,16 +243,16 @@
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
 		if (validation()) {
 			alert("작성완료");
-	         $('#quality_chFrm').attr("action","${pageContext.request.contextPath}/quality_ch/updateQuality_ch.do");
-	         $('#quality_chFrm').attr("method", "post");
-	 		 $('#quality_chFrm').submit();
+	         $('#Uquality_chFrm').attr("action","${pageContext.request.contextPath}/quality_ch/updateQuality_ch.do");
+	         $('#Uquality_chFrm').attr("method", "post");
+	 		 $('#Uquality_chFrm').submit();
 			
 		 } else{
 		alert("작성실패");         
       }
 	}
 
-	function updateQuality_ch() {
+	/* function updateQuality_ch() {
 		
 		var QRCODE = $("#QRCODE").val();
 		var IDCODE = $("#IDCODE").val();
@@ -262,7 +265,7 @@
 		
 		//연결
 	}
-	
+	 */
 	function deleteQuality_ch() {
 		
 		var QRCODE = $("#QRCODE").val();
