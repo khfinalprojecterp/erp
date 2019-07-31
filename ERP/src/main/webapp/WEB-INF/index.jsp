@@ -1,340 +1,176 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<c:import url="views/common/header.jsp" />
+<c:import url="views/common/scheduleHeader.jsp" />
 
 <body>
+	<div id="page-wrapper">
+		<c:import url="views/common/bodyNav.jsp" />
+		<div id="page-inner">
 
-<c:import url="views/common/nav.jsp" />
-<div id="page-wrapper">
-<c:import url="views/common/bodyNav.jsp" />
-	
-            <div id="page-inner">
-
-                <!-- /. ROW  -->
-	
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>44,023</h3>
-								<small>User</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-eye fa-5x red"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>32,850</h3>
-								<small>Sales</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-shopping-cart fa-5x blue"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>56,150</h3>
-								<small>ex</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-comments fa-5x green"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>$89,645</h3>
-								<small>Profit</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-user fa-5x yellow"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-				   
-                </div>
-				     <div class="row">
-                        <div class="col-sm-6 col-xs-12">  
-                            <div class="panel panel-default chartJs">
-                                <div class="panel-heading">
-                                    <div class="card-title">
-                                        <div class="title">Line Chart</div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <canvas id="line-chart" class="chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="panel panel-default chartJs">
-                                <div class="panel-heading">
-                                    <div class="card-title">
-                                        <div class="title">Bar Chart</div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <canvas id="bar-chart" class="chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Profit</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Sales</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Customers</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>No. of Visits</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
+					<div class="container">
 			
-		
-				<div class="row">
-				<div class="col-md-5">
-						<div class="panel panel-default">
-						<div class="panel-heading">
-							Line Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-line-chart"></div>
-						</div>						
-					</div>   
-					</div>		
-					
-						<div class="col-md-7">
-					<div class="panel panel-default">
-					<div class="panel-heading">
-                                Bar Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-						
-					</div>  
-					</div>
-					
-				</div> 
-			 
-				
-				
-                <div class="row">
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">                            
-							<div class="panel-heading">
-							Area Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-area-chart"></div>
-						</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Donut Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                            </div>
-                        </div>
-                    </div>
+			        <!-- 일자 클릭시 메뉴오픈 -->
+			        <div id="contextMenu" class="dropdown clearfix">
+			            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+			                style="display:block;position:static;margin-bottom:5px;">
+			                <li><a tabindex="-1" href="#">카테고리1</a></li>
+			                <li><a tabindex="-1" href="#">카테고리2</a></li>
+			                <li><a tabindex="-1" href="#">카테고리3</a></li>
+			                <li><a tabindex="-1" href="#">카테고리4</a></li>
+			                <li class="divider"></li>
+			                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+			            </ul>
+			        </div>
+			
+			        <div id="wrapper">
+			            <div id="loading"></div>
+			            <div id="calendar"></div>
+			        </div>
+			
+			
+			        <!-- 일정 추가 MODAL -->
+			        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+			            <div class="modal-dialog" role="document">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+			                                aria-hidden="true">&times;</span></button>
+			                        <h4 class="modal-title"></h4>
+			                    </div>
+			                    <div class="modal-body">
+			
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+			                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
+			                            </div>
+			                        </div>
+			
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-title">일정명</label>
+			                                <input class="inputModal" type="text" name="edit-title" id="edit-title"
+			                                    required="required" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-start">시작</label>
+			                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-end">끝</label>
+			                                <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-type">구분</label>
+			                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+			                                    <option value="카테고리1">카테고리1</option>
+			                                    <option value="카테고리2">카테고리2</option>
+			                                    <option value="카테고리3">카테고리3</option>
+			                                    <option value="카테고리4">카테고리4</option>
+			                                </select>
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-color">색상</label>
+			                                <select class="inputModal" name="color" id="edit-color">
+			                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
+			                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
+			                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+			                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+			                                    <option value="#f06595" style="color:#f06595;">핑크색</option>
+			                                    <option value="#63e6be" style="color:#63e6be;">연두색</option>
+			                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+			                                    <option value="#4d638c" style="color:#4d638c;">남색</option>
+			                                    <option value="#495057" style="color:#495057;">검정색</option>
+			                                </select>
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-desc">설명</label>
+			                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+			                                    id="edit-desc"></textarea>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <div class="modal-footer modalBtnContainer-addEvent">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+			                    </div>
+			                    <div class="modal-footer modalBtnContainer-modifyEvent">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			                        <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+			                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+			                    </div>
+			                </div><!-- /.modal-content -->
+			            </div><!-- /.modal-dialog -->
+			        </div><!-- /.modal -->
+			
+			        <div class="panel panel-default">
+			
+			            <div class="panel-heading">
+			                <h3 class="panel-title">필터</h3>
+			            </div>
+			
+			            <div class="panel-body">
+			
+			                <div class="col-lg-6">
+			                    <label for="calendar_view">구분별</label>
+			                    <div class="input-group">
+			                        <select class="filter" id="type_filter" multiple="multiple">
+			                            <option value="카테고리1">카테고리1</option>
+			                            <option value="카테고리2">카테고리2</option>
+			                            <option value="카테고리3">카테고리3</option>
+			                            <option value="카테고리4">카테고리4</option>
+			                        </select>
+			                    </div>
+			                </div>
+			
+			                <div class="col-lg-6">
+			                    <label for="calendar_view">등록자별</label>
+			                    <div class="input-group">
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
+			                                checked>정연</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
+			                                checked>다현</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
+			                                checked>사나</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
+			                                checked>나연</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
+			                                checked>지효</label>
+			                    </div>
+			                </div>
+			
+			            </div>
+			        </div>
+			        <!-- /.filter panel -->
+			    </div>
+			    <!-- /.container -->
+		</div>
+	</div>
 
-                </div>
-				<div class="row">
-				<div class="col-md-12">
-				
-					</div>		
-				</div> 	
-                <!-- /. ROW  -->
-
-	   
-				
-				
-				
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Tasks Panel
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group">
-
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">7 minutes ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">16 minutes ago</span>
-                                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">36 minutes ago</span>
-                                        <i class="fa fa-fw fa-globe"></i> Invoice 653 has paid
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1.23 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">yesterday</span>
-                                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                                    </a>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">More Tasks <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Responsive Table Example
-                            </div> 
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>S No.</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>User Name</th>
-                                                <th>Email ID.</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>John</td>
-                                                <td>Doe</td>
-                                                <td>John15482</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Kimsila</td>
-                                                <td>Marriye</td>
-                                                <td>Kim1425</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Rossye</td>
-                                                <td>Nermal</td>
-                                                <td>Rossy1245</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Richard</td>
-                                                <td>Orieal</td>
-                                                <td>Rich5685</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Jacob</td>
-                                                <td>Hielsar</td>
-                                                <td>Jac4587</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Wrapel</td>
-                                                <td>Dere</td>
-                                                <td>Wrap4585</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-</div>
-                    </div>
-                </div>
-                <!-- /. ROW  -->	
-
-
-
-
-
-	
-	
-</div>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/ko.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/select2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/addEvent.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/editEvent.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/etcSetting.js"></script>
 
 </body>
-<c:import url="views/common/footer.jsp" />
+</html>
