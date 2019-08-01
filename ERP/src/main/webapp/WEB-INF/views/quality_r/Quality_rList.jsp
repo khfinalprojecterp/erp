@@ -104,16 +104,17 @@
                      <input type="number" class="form-control" id="PCODE"placeholder="숫자만 입력하세요"  name="PCODE" required>
                      
                      <label for="message-text" class="col-form-label">생산입고 코드</label>
-                     <input type="number" class="form-control" id="IN_CODE"  name="IN_CODE" required>
-                     
+                     <input type="number" class="form-control" id="IN_CODE" placeholder="숫자만 입력하세요" name="IN_CODE" required>
+                     <label for="message-text" class="col-form-label">기업 코드</label>
+                     <input type="number" class="form-control" id="ECODE" placeholder="코드를 입력하세요" name="ECODE" required>
                      <label for="message-text" class="col-form-label">검사구분</label>
                      <input type="text" class="form-control" id="QRCHECK" placeholder="코드를 입력하세요" name="QRCHECK" required>
                      <label for="message-text" class="col-form-label">적요</label>
                      <input type="text" class="form-control" id="QRNOTE" placeholder="코드를 입력하세요" name="QRNOTE" required>
 					<label for="message-text" class="col-form-label">수량</label>
-                     <input type="number" class="form-control" id="QRSTOCK" placeholder="숫자만 입력해주세요" name="QRCHECK" required>
+                     <input type="number" class="form-control" id="QRSTOCK" placeholder="숫자만 입력해주세요" name="QRSTOCK" required>
 					<label for="message-text" class="col-form-label">진행상황</label>
-                     <input type="text" class="form-control" id="QRCHECK" placeholder="코드를 입력하세요" name="QRSTATUS" required>
+                     <input type="text" class="form-control" id="QRCHECK" placeholder="진행 중 OR완료 를 입력하세요" name="QRSTATUS" required>
 					
 					<br>
                     
@@ -126,6 +127,7 @@
                <button type="button" class="btn btn-secondary"
                   data-dismiss="modal">취소</button>
                <button type="button" class="btn btn-primary" onclick="insertQuality_r();">추가하기</button>
+           
             </div>
          </div>
       </div>
@@ -164,6 +166,11 @@
 							<label for="message-text" class="col-form-label">생산입고코드</label>
 							<input type="number" class="form-control" id="IN_CODE"  >
 						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">기업코드</label>
+							<input type="number" class="form-control" id="ECODE"  >
+						</div>
+						
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">검사구분</label>
 							<input type="number" class="form-control" id="QRCHECK"  >
@@ -218,7 +225,7 @@
 		
 	});
 	
-	function validation(){
+	/* function validation(){
 		// 클라이언트 레벨의 유효성 검사
 		
 		// form 안에 작성 된 내용을 확인하여
@@ -226,28 +233,28 @@
 		
 		var result = true;
 		
-		if($("#QRCODE").val().trim().length == 0|| $("#IDODE").val().trim().length == 0){
+		if($("#QRCODE").val().trim().length() == 0|| $("#IDODE").val().trim().length() == 0){
 			alert("공란을 작성해 주세요!");
 			result = false;
 		}
 		
 		return result;
 	}
-	
+	 */
 	
 	
 	function insertQuality_r() {
          
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
-		if (validation()) {
+		/* if (validation()) { */
 			alert("작성완료");
 	         $('#quality_rFrm').attr("action","${pageContext.request.contextPath}/quality_r/insertQuality_r.do");
 	         $('#quality_rFrm').attr("method", "post");
 	 		 $('#quality_rFrm').submit();
 			
-		 } else{
+		 /* } else{
 		alert("작성실패");         
-      }
+      } */
 	}
 	
 	function updateQuality_r() {
@@ -295,10 +302,11 @@
 				document.getElementById("SCODE").value = $(this).parent().children().eq(2).text();
 				document.getElementById("PCODE").value = $(this).parent().children().eq(3).text();
 				document.getElementById("IN_CODE").value = $(this).parent().children().eq(4).text();
-				document.getElementById("QRCHECK").value = $(this).parent().children().eq(5).text();
-				document.getElementById("QRNOTE").value = $(this).parent().children().eq(6).text();
+				document.getElementById("IN_CODE").value = $(this).parent().children().eq(5).text();
+				document.getElementById("QRCHECK").value = $(this).parent().children().eq(6).text();
 				document.getElementById("QRNOTE").value = $(this).parent().children().eq(7).text();
-				document.getElementById("QRSTOCK").value = $(this).parent().children().eq(8).text();
+				document.getElementById("QRNOTE").value = $(this).parent().children().eq(8).text();
+				document.getElementById("QRSTOCK").value = $(this).parent().children().eq(9).text();
 				
 				
 				

@@ -20,8 +20,8 @@
 	<insert id="insertQuality_r" parameterType="Quality_r">
 		INSERT INTO QUALITY_R
 		VALUES (#{QRCODE},#{IDCODE}, 
-		        #{SCODE}, #{SCODE}, #{PCODE},
-		        #{IN_CODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
+		        #{SCODE},  #{PCODE},
+		        #{IN_CODE},#{ECODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
 	</insert>
  
 	<update id="updateQuality_r" parameterType="Quality_r">
@@ -36,7 +36,7 @@
 		       QRSTOCK= #{QRSTOCK},
 		     
 		     
-		WHERE QRCODE = ?
+		WHERE QRCODE = #{QRCODE}
 		
 
 	</update>

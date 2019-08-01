@@ -50,7 +50,7 @@ method=RequestMethod.POST)
 public String insertProduct_Category(
 		/*M_storage m_storage*/
 		
-		@RequestParam int PCATE,
+		@RequestParam String PCATE,
 		@RequestParam String PCNAME
 		) {
 
@@ -89,7 +89,7 @@ public String selectProduct_CategoryList(Model model) {
 
 @RequestMapping(value="/product_category/updateProduct_Category.do", method=RequestMethod.POST)
 public String updateProduct_Category(
-		@RequestParam int PCATE,
+		@RequestParam String PCATE,
 	
 		@RequestParam String PCNAME,
 	
@@ -117,7 +117,7 @@ public String updateProduct_Category(
 
 
 @RequestMapping("/product_category/deleteProduct_Category.do")
-public String deleteProduct_Category(@RequestParam int PCATE, Model model) {
+public String deleteProduct_Category(@RequestParam String PCATE, Model model) {
 	
 	int result = product_categoryService.deleteProduct_Category(PCATE);
 	String msg="";

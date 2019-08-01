@@ -76,7 +76,7 @@
                  
                      
                      <label for="message-text" class="col-form-label">분류코드</label>
-                     <input type="number" class="form-control" id="PCATE" placeholder="숫자만 입력하세요"name="PCATE" required>
+                     <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력하세요"name="PCATE" required>
                      
                       <label for="message-text" class="col-form-label">분류명</label>
                      <input type="number" class="form-control" id="PCNAME" placeholder="코드를 입력하세요" name="PCNAME" required>

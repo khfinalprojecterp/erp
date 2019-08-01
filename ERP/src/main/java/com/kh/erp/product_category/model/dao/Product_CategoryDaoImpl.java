@@ -38,7 +38,7 @@ public class Product_CategoryDaoImpl implements Product_CategoryDao {
 	}
 
 	@Override
-	public int deleteProduct_Category(int PCATE) {
+	public int deleteProduct_Category(String PCATE) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("product_category.deleteProduct_Category",PCATE);
 	}

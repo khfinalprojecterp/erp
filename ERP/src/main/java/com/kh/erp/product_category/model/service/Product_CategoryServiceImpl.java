@@ -42,7 +42,7 @@ public int insertProduct_Category(Product_Category product_category) {
 	}
 
 	@Override
-	public int deleteProduct_Category(int PCATE) {
+	public int deleteProduct_Category(String PCATE) {
 		// TODO Auto-generated method stub
 		return product_categoryDao.deleteProduct_Category(PCATE);
 	}

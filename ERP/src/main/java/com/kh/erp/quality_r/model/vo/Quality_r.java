@@ -16,13 +16,34 @@ public class Quality_r implements Serializable{
 	private int SCODE; //창고 코드
 	private int PCODE;//물품코드
 	private int IN_CODE;//생산 입고 코드
+	
+	
+	private int ECODE; //기업코드
 	private String QRCHECK;//검사구분
+	
 	private String QRNOTE;//적요
 	private int QRSTOCK;// 수량 
 	private String QRSTATUS;// 진행 사항
 	public Quality_r() {
 		
 	}
+	
+	
+	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, int eCODE, String qRCHECK,
+			String qRNOTE, int qRSTOCK, String qRSTATUS) {
+		super();
+		QRCODE = qRCODE;
+		IDCODE = iDCODE;
+		SCODE = sCODE;
+		PCODE = pCODE;
+		IN_CODE = iN_CODE;
+		ECODE = eCODE;
+		QRCHECK = qRCHECK;
+		QRNOTE = qRNOTE;
+		QRSTOCK = qRSTOCK;
+		QRSTATUS = qRSTATUS;
+	}
+	
 	
 	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, String qRCHECK, String qRNOTE,
 			int qRSTOCK, String qRSTATUS) {
@@ -40,8 +61,8 @@ public class Quality_r implements Serializable{
 	@Override
 	public String toString() {
 		return "Quality_r [QRCODE=" + QRCODE + ", IDCODE=" + IDCODE + ", SCODE=" + SCODE + ", PCODE=" + PCODE
-				+ ", IN_CODE=" + IN_CODE + ", QRCHECK=" + QRCHECK + ", QRNOTE=" + QRNOTE + ", QRSTOCK=" + QRSTOCK
-				+ ", QRSTATUS=" + QRSTATUS + "]";
+				+ ", IN_CODE=" + IN_CODE + ", ECODE=" + ECODE + ", QRCHECK=" + QRCHECK + ", QRNOTE=" + QRNOTE
+				+ ", QRSTOCK=" + QRSTOCK + ", QRSTATUS=" + QRSTATUS + "]";
 	}
 	public int getQRCODE() {
 		return QRCODE;
@@ -100,7 +121,12 @@ public class Quality_r implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+	public int getECODE() {
+		return ECODE;
+	}
+	public void setECODE(int eCODE) {
+		ECODE = eCODE;
+	}
 	
 	
 	

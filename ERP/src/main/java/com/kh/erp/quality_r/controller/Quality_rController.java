@@ -50,13 +50,13 @@ public String insertQuality_r(
 		@RequestParam int IN_CODE,
 		@RequestParam String QRCHECK,
 		@RequestParam String QRNOTE,
-
+		@RequestParam int  ECODE,
 		@RequestParam int QRSTOCK,
 		@RequestParam String QRSTATUS
 		
 		) {
 
-	Quality_r quality_r = new Quality_r(QRCODE, IDCODE, SCODE, PCODE, IN_CODE, QRCHECK,QRNOTE, QRSTOCK,QRSTATUS);
+	Quality_r quality_r = new Quality_r(QRCODE, IDCODE, SCODE, PCODE, IN_CODE, ECODE,QRNOTE,QRCHECK, QRSTOCK,QRSTATUS);
 	System.out.println(quality_r);
 System.out.println("insertm_storage 화면 메소드 확인");
 
@@ -102,13 +102,14 @@ public String updateQuality_r(@RequestParam int QRCODE ,
 		@RequestParam int IN_CODE,
 		@RequestParam String QRCHECK,
 		@RequestParam String QRNOTE,
+		@RequestParam int ECODE,
 		@RequestParam int QRSTOCK,
 		@RequestParam String QRSTAUS,
 		
 		 Model model) {
 	
 	Quality_r quality_r = new Quality_r(QRCODE, IDCODE, 
-			SCODE,PCODE,IN_CODE,QRCHECK,QRNOTE,QRSTOCK,QRSTAUS);
+			SCODE,PCODE,IN_CODE,ECODE,QRCHECK,QRNOTE,QRSTOCK,QRSTAUS);
 	
 	
 	int result = quality_rservice.updateQuality_r(quality_r);
