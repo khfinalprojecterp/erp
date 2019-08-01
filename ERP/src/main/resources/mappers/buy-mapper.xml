@@ -127,7 +127,7 @@
 	SET BUY_STATUS = #{buy_status}
 	WHERE BUY_CODE = #{buy_code}
 	</update>
-	
+	 
 	<delete id="deleteBuyItem">
 		DELETE FROM PURCHASE_ITEM
 	    	WHERE BUY_CODE = #{buy_code}

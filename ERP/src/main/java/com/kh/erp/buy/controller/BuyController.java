@@ -31,7 +31,7 @@ public class BuyController {
 		
 		ArrayList<Map<String, String>> list = new ArrayList<>(buyService.purchaseList()); // 구매 목록 조회
 		
-		model.addAttribute("list", list);
+		model.addAttribute("list", list); 
 
 		
 		ArrayList<Map<String, String>> mlist = new ArrayList<>(buyService.mList()); // 자재 리스트

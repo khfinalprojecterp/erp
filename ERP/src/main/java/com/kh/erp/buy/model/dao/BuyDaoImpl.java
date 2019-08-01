@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.erp.buy.model.vo.Purchase;
-
+ 
 @Repository
 public class BuyDaoImpl implements BuyDao {
 

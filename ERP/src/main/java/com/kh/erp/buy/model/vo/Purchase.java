@@ -28,7 +28,7 @@ public class Purchase implements Serializable{
 	private String mName;
 	private String eCode;
 	
-	
+	 
 	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName) {
 		super();
 		this.sCode = sCode;

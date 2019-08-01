@@ -14,7 +14,7 @@ public class BuyServiceImpl implements BuyService {
 
 	@Autowired
 	private BuyDao buydao;
-	
+	 
 	@Override
 	public List<Map<String, String>> purchaseList() {
 		// TODO Auto-generated method stub
