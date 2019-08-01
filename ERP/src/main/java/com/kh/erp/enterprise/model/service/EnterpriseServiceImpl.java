@@ -29,8 +29,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
 	@Override
 	public int updateEnterprise(Enterprise enterprise) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return enterpriseDao.updateEnterprise(enterprise);
 	}
 
 	@Override

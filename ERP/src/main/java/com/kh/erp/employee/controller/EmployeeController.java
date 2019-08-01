@@ -87,9 +87,41 @@ public class EmployeeController {
 		return "common/msg";
 		
 }
+	@RequestMapping("/enterprise/employeeUpdate.do")
+	public String enterpriseUpdate(
+			@RequestParam String wName,
+			@RequestParam String wPwd
+			,Model model,
+			HttpSession session) {
+		Employee employee =(Employee)session.getAttribute("employee");
+		
+		
+		
+		
+		employee.setwPwd(bcryptPasswordEncoder.encode(wPwd));
+		employee.setwName(wName);
+		
+		int result = empService.employeeUpdate(employee);
+		
+		String msg="/enterprise/enterpriseEmployeeUpdate.do";
+		if( result > 0 ) {
+			msg="수정 성공";
 
+		} else {
+			msg="수정 실패!";
+		}
+		String loc="/";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return  "common/msg";		
+		
+		
+			}
 	
 	
+	
+	// 기업 수정용
 	@RequestMapping(value="/employee/updateEmployee.do",
 			method=RequestMethod.GET)
 	public String updateEmployee(Employee emp,Model model) {

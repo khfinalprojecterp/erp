@@ -31,7 +31,7 @@
 							</td>
 						</tr>
 	      <div >
-			  <input type="text" class="form-control" name="userId" placeholder="아이디" required>
+			  <input type="text" class="form-control" id="userId" name="userId" placeholder="아이디" required>
 			    <br />
 			    <input type="password" class="form-control" name="userPwd" placeholder="비밀번호" required>
 	      </div>
@@ -41,8 +41,14 @@
 		
 		
 		<script>
+
+
+				
+
+ 		
 		
 		function memberlogin(){
+			
 		
 			if($("input[name=logintype]:checked").val() == "0"){
 	         
@@ -60,12 +66,7 @@
 	        }
 	
 		}
-		
-		
-		
-		
-		
-		
+
 		</script>
 		
 		

@@ -33,8 +33,8 @@ public class EnterpriseDaoImpl implements EnterpriseDao {
 
 	@Override
 	public int updateEnterprise(Enterprise enterprise) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update("enterprise.updateEnterprise",enterprise);
 	}
 
 	@Override

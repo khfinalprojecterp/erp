@@ -82,6 +82,19 @@
 			
 
  		<script> 
+ 	
+ 			$('#ePwd2').blur(function(){
+ 				var p1 = $('#ePwd_').val(),
+ 				    p2 = $('#ePwd2').val();
+ 				if(p1 != p2){
+ 					alert("패스워드가 일치하지 않습니다.");
+ 					$('#ePwd_').focus();
+ 				}
+ 			});
+ 		
+ 		
+ 		
+ 		
  		
  		
  		$('#idreset').click(function(){
