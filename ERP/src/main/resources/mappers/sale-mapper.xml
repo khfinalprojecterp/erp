@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sales">
+
+	<resultMap id="partnerMap" type="partner" />
+	<resultMap id="materialsMap" type="materials" />
+	<resultMap id="productMap" type="Product" />
+	<resultMap id="storageMap" type="storage" />
+	<resultMap id="storagedetailMap" type="storagedetail" />
+	<resultMap id="saleMap" type="sale" />
+	<resultMap id="saleItemMap" type="saleItem" />
+	<resultMap id="employeeMap" type="employee" />
+
+	<insert id="registPartner" parameterType="partner">
+		INSERT INTO PARTNER
+		VALUES(PAR_SEQ.NEXTVAL,#{eCode},#{parName},'T')
+	</insert>
+
+	<select id="checkPartner" parameterType="partner"
+	resultType="_int">
+		SELECT COUNT(*)
+		FROM PARTNER 
+		WHERE PARNAME = #{parName} AND ECODE = #{eCode}
+	</select>
+
+	<update id="changeParSts" parameterType="partner">
+		UPDATE PARTNER
+		SET PARSTS = 'S'
+		WHERE PARNAME = #{parName} AND ECODE = #{eCode}
+	</update>
+
+	<update id="changeParName" parameterType="partner">
+		UPDATE PARTNER
+		SET PARNAME = #{parName}
+		WHERE PARTNERC = #{partnerC} AND ECODE = #{eCode}
+	</update>
+	
+	<select id="selectPartner" resultMap="partnerMap">
+		SELECT *
+		FROM PARTNER
+		WHERE ECODE = #{eCode}
+	</select>
+
+	<select id="selectMaterial" resultMap="materialsMap">
+		SELECT *
+		FROM MATERIAL
+	</select>
+
+	<select id="selectProduct" resultMap="productMap">
+		SELECT *
+		FROM PRODUCT
+	</select>
+
+	<select id="selectStorage" resultMap="storageMap">
+		SELECT *
+		FROM STORAGE
+		WHERE ECODE=#{eCode}
+	</select>
+
+	<select id="selectDetailList" resultMap="storagedetailMap">
+		SELECT *
+		FROM STORAGE_DETAIL
+		WHERE ECODE=#{eCode}
+	</select>
+	
+	<select id="selectEmployeeList" resultMap="employeeMap">
+		SELECT *
+		FROM EMPLOYEE
+		WHERE DCODE IN (SELECT DCODE
+					   FROM DEPARTMENT
+					   WHERE ECODE = #{eCode})
+	</select>
+
+	<select id="itemMaxnum" parameterType="_int" resultType="_int">
+		SELECT
+		NVL(SDSTOCK,0)
+		FROM STORAGE_DETAIL
+		WHERE SDCODE = #{sdCode}
+	</select>
+
+	<update id="saleItem" parameterType="storagedetail">
+		UPDATE STORAGE_DETAIL
+		SET
+		SDSTOCK = SDSTOCK - #{sdStock}
+		WHERE SDCODE = #{sdCode}
+	</update>
+	
+	<update id="itemDelivery" parameterType="_int">
+		UPDATE SALE_ITEM
+		SET
+		SAL_STATUS = 'E'
+		WHERE SAL_CODE = #{statusIdx}
+	</update>
+
+	<delete id="deleteItem" parameterType="_int">
+		DELETE FROM STORAGE_DETAIL
+		WHERE SDCODE = #{sdCode}
+	</delete>
+	
+
+
+	<insert id="saleRegist" parameterType="sale">
+		INSERT INTO SALE
+		VALUES(SAL_SEQ.NEXTVAL,#{eCode},#{idCode},#{partnerC},SYSDATE)
+	</insert>
+	<insert id="itemRegist" parameterType="saleItem">
+		INSERT INTO SALE_ITEM
+		VALUES(SAL_SEQ.CURRVAL,#{sCode},#{mCode},#{pCode},
+		#{sal_Name},#{sal_Amount},
+		#{sal_Price},#{sal_Profit},
+		#{sal_Status},#{sal_Discount})
+	</insert>
+
+
+	<select id="saleHistory" resultMap="saleMap">
+		SELECT *
+		FROM SALE
+		WHERE ECODE = #{eCode}
+		ORDER BY SAL_CODE DESC
+	</select>
+	<select id="itemHistory" resultMap="saleItemMap">
+		SELECT *
+		FROM SALE_ITEM
+		WHERE SAL_CODE IN (
+		SELECT SAL_CODE
+		FROM SALE
+		WHERE ECODE = #{eCode}
+		)
+	</select>
+
+	<select id="selectMaterialName" resultType="String">
+	SELECT MNAME
+	FROM MATERIAL
+	WHERE MCODE = #{itemCode}
+	</select>
+	<select id="selectProductName" resultType="String">
+	SELECT PNAME
+	FROM PRODUCT
+	WHERE PCODE = #{itemCode}
+	</select>
+	
+
+</mapper>
