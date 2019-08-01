@@ -32,10 +32,41 @@ public class Employee implements Serializable {
 	private String eName;
 	private char vStatus;
 	private int absence;
+	private int count;
 	
 	
 	
 	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
+			String retireDate, String payment, int mincome, int eCode, String dTitle, String eName, char vStatus,
+			int absence, int count) {
+		super();
+		this.idCode = idCode;
+		this.dCode = dCode;
+		this.wPwd = wPwd;
+		this.wName = wName;
+		this.position = position;
+		this.enrollDate = enrollDate;
+		this.wStatus = wStatus;
+		this.retireDate = retireDate;
+		this.payment = payment;
+		this.mincome = mincome;
+		this.eCode = eCode;
+		this.dTitle = dTitle;
+		this.eName = eName;
+		this.vStatus = vStatus;
+		this.absence = absence;
+		this.count = count;
+	}
 
 	public Employee(int idCode, int dCode, String wPwd, String wName, String position, Date enrollDate, char wStatus,
 			String retireDate, String payment, int mincome, int eCode, String dTitle, String eName, char vStatus,

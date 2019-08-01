@@ -23,6 +23,41 @@ private String eStatus;
 private Date ent_out_date;
 
 
+// 아이디중복검사용 가상변수
+ private int idcheck;
+
+
+ 
+ 
+ 
+ 
+public Enterprise(int eCode, String eId, String ePwd, String eName, int eNo, String eEmail, String eAddress,
+		String ePhone, String eDivision, String eStatus, Date ent_out_date, int idcheck) {
+	super();
+	this.eCode = eCode;
+	this.eId = eId;
+	this.ePwd = ePwd;
+	this.eName = eName;
+	this.eNo = eNo;
+	this.eEmail = eEmail;
+	this.eAddress = eAddress;
+	this.ePhone = ePhone;
+	this.eDivision = eDivision;
+	this.eStatus = eStatus;
+	this.ent_out_date = ent_out_date;
+	this.idcheck = idcheck;
+}
+
+
+public int getIdcheck() {
+	return idcheck;
+}
+
+
+public void setIdcheck(int idcheck) {
+	this.idcheck = idcheck;
+}
+
 
 public Enterprise() {
 }

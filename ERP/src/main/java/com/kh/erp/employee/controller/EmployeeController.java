@@ -1,7 +1,9 @@
 package com.kh.erp.employee.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.kh.erp.department.model.service.DepartmentService;
 import com.kh.erp.department.model.vo.Department;
 import com.kh.erp.employee.model.exception.EmployeeException;
 import com.kh.erp.employee.model.service.EmployeeService;
+import com.kh.erp.employee.model.service.PmanagementService;
 import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.employee.model.vo.Pmanagement;
@@ -28,7 +31,8 @@ import com.kh.erp.enterprise.model.vo.Enterprise;
 
 @Controller
 public class EmployeeController {
-
+	@Autowired
+	PmanagementService pmanageService;
 	
 	@Autowired
 	EmployeeService empService;
@@ -58,38 +62,54 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/employee/insertEmployee.do",
 	        method=RequestMethod.POST)
-	public String insertEmployee(Employee emp) {
+	public String insertEmployee(Employee emp, Model model) {
 
 		String rawPassword = emp.getwPwd();
 	
 		emp.setwPwd(bcryptPasswordEncoder.encode(rawPassword));
 		
-	
-
 		int result = empService.insertEmployee(emp);
-
 		empService.insertSub(emp);
 		
+		String msg="";
+		if( result > 0 ) {
+			msg="사원 등록 성공!";
+		} else {
+			msg="사원 등록 실패!";
+		}
 		
-		return "redirect:/employee/employeeList.do";
+		String loc="/employee/employeeList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+
+
+		return "common/msg";
+		
 }
 
 	
 	
 	@RequestMapping(value="/employee/updateEmployee.do",
 			method=RequestMethod.GET)
-	public String updateEmployee(Employee emp) {
+	public String updateEmployee(Employee emp,Model model) {
 
-		
-		
-		System.out.println(emp+"1");
 		int result = empService.updateEmployee(emp);
+		String msg="";
+		if( result > 0 ) {
+			msg="사원 수정 성공!";
+		} else {
+			msg="사원 수정 실패!";
+		}
 		
-	
-		
-		return "redirect:/employee/employeeList.do";
+		String loc="/employee/employeeList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
 		
 
+
+		return "common/msg";
+		
 			}
 
 
@@ -123,28 +143,7 @@ return "redirect:/employee/employeeList.do";
 
 }
 
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value="/employee/employeeLoginEnd.do"
 		       , method=RequestMethod.POST)
 public String employeeLogin (
@@ -228,6 +227,14 @@ public String employeeLogin (
 		List<Attendance> list = empService.selectAttendnaceList();
 		
 		
+		List<Employee> clist = pmanageService.selectChar();
+		
+		
+		model.addAttribute("clist",clist);
+		
+		
+		
+		
 		model.addAttribute("list", list);
 		
 		
@@ -241,14 +248,60 @@ public String employeeLogin (
 	
 		@RequestMapping(value="/employee/updateAttendance.do",
 		method=RequestMethod.GET)
-		public String updateAttendance(Attendance attendance) {
+		public String updateAttendance(Attendance attendance,Model model) {
 
 			
 			int result = empService.updateAttendance(attendance);
+
 			
-			return "redirect:/employee/attendanceList.do";
+			
+			String msg="";
+			if( result > 0 ) {
+				msg="근태 수정 성공!";
+			} else {
+				msg="근태 수정 실패!";
+			}
+			
+			String loc="/employee/attendanceList.do";
+			model.addAttribute("loc", loc);
+			model.addAttribute("msg", msg);
+			
+
+
+			return "common/msg";
+			
 		}
 	
+		
+		@RequestMapping(value="/employee/checkIdDuplicate.do")
+
+		public void checkIdDuplicate(
+				@RequestParam int idCode,
+				HttpServletResponse resp
+				) throws IOException {
+			
+			System.out.println(idCode);
+			
+			resp.getWriter().print((empService.checkIdDuplicate(idCode))>0? "no" : "ok");
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	

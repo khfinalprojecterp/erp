@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.kh.erp.employee.model.service.PmanagementService;
-
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.employee.model.vo.Pmanagement;
 
 
@@ -29,10 +29,11 @@ public class PmanagementController {
 	
 		
 		List<Pmanagement> list = pmanageService.selectPmanageList(); 
+		List<Employee> clist = pmanageService.selectChar();
 		
-		
+		System.out.println("++++++++++"+clist+"+++++++++++++++");
 		model.addAttribute("list", list);
-		
+		model.addAttribute("clist",clist);
 		
 		return "employee/pmanageList";
 		
@@ -41,12 +42,30 @@ public class PmanagementController {
 	
 		@RequestMapping(value="/pmanagement/updatePmanage.do",
 		method=RequestMethod.GET)
-		public String updatePmanagement(Pmanagement pmanage) {
+		public String updatePmanagement(Pmanagement pmanage,Model model) {
 
 			
 			int result = pmanageService.updatePmanage(pmanage);
 			
-			return "redirect:/employee/pmanageList.do";
+			
+			String msg="";
+			if( result > 0 ) {
+				msg="근태 수정 성공!";
+			} else {
+				msg="근태 수정 실패!";
+			}
+			
+			String loc="/employee/pmanageList.do";
+			model.addAttribute("loc", loc);
+			model.addAttribute("msg", msg);
+			
+			
+			
+			
+			
+			
+			
+			return "common/msg";
 		}
 
 	

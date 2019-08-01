@@ -73,5 +73,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 	
+	@Override
+	public int checkIdDuplicate(int idCode) {
+		// TODO Auto-generated method stub
+		return empDao.checkIdDuplicate(idCode);
+	}
+
+	
+	
 
 }

@@ -33,21 +33,11 @@ public class DepartmentController {
 		List<Department> list = departService.selectDepartList();
 		
 		List<Field> flist = fieldService.selectFieldList();
-		
-		
-		
-		
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("flist",flist);
 		
 	
-		
-		
-		
-		
-		
-		
 		return "department/departmentList";
 	}
 	
@@ -55,43 +45,74 @@ public class DepartmentController {
 	
 	@RequestMapping(value="/department/insertDepart.do",
 	        method=RequestMethod.GET)
-		public String insertDepart(Department depart) {
+		public String insertDepart(Department depart, Model model) {
 
 
 				int result = departService.insertDepart(depart);
+				
+				String msg="";
+				if( result > 0 ) {
+					msg="등록 성공!";
+				} else {
+					msg="등록 실패!";
+				}
+				
+				String loc="/department/departmentList.do";
+				model.addAttribute("loc", loc);
+				model.addAttribute("msg", msg);
+				
 
-	
-// 서블릿에서 sendRedirect() 했던 코드를
-// 스프링에서 구현하려면 'redirect:'을 작성하고
-// 뒤에 보내고자 하는 url을 적는다.
-// '/'는 절대 경로인 index.jsp로 보내는 역할을 한다.
 
-				return "redirect:/department/departmentList.do";
+				return "common/msg";
 }
 
 	
 	
 
 	@RequestMapping("/department/updateDepartment.do")
-	public String updateDepart(Department depart) {
+	public String updateDepart(Department depart ,Model model) {
 		
-		System.out.println("update 전 확인 : " + depart);
 		
 		int result = departService.updateDepart(depart);
 		
-		return "redirect:/department/departmentList.do";
+		
+		String msg="";
+		if( result > 0 ) {
+			msg="수정 성공!";
+		} else {
+			msg="수정 실패!";
+		}
+		
+		String loc="/department/departmentList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+
+
+		return "common/msg";
 	}
 	
 	
 	@RequestMapping("/department/deleteDepartment.do")
-	public String deleteDepart(Department depart) {
+	public String deleteDepart(Department depart, Model model) {
 		
-			int dCode =depart.getdCode();
+		int dCode =depart.getdCode();
 		
 		int result = departService.deleteDepart(dCode);
+		String msg="";
+		if( result > 0 ) {
+			msg="삭제 성공!";
+		} else {
+			msg="삭제 실패!";
+		}
 		
-		return "redirect:/department/departmentList.do";
-	}
+		String loc="/department/departmentList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+
+
+		return "common/msg";	}
 	
 	
 	

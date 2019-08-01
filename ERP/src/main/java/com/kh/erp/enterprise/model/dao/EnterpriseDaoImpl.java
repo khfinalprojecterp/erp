@@ -44,9 +44,15 @@ public class EnterpriseDaoImpl implements EnterpriseDao {
 	}
 
 	@Override
-	public int checkIdDuplicate(HashMap<String, Object> hmap) {
+	public int checkIdDuplicate(String eId) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+	 int result =	sqlSession.selectOne("enterprise.selectEnterprise2",eId);
+		
+		
+//		return sqlSession.selectOne("enterprise.selectEnterprise2",eId);
+	System.out.println(result);
+	return result ;
 	}
 
 }
