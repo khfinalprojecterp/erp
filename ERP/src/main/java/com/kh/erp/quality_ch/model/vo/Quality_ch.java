@@ -13,10 +13,38 @@ public class Quality_ch implements Serializable{
 
 	private int QRCODE;// 품질관리코드
 	private int IN_CODE;// 생산 입고 코드
+	private int IDCODE; //사원코드
+	private int ECODE; //기업코드
 	private int QCHT;// 적격
 	private int QCHF;//부적격
+	
 	private String QCHCHECK;//불/합격
 	private String QCHSTATUS;
+	public int getIDCODE() {
+		return IDCODE;
+	}
+	public void setIDCODE(int iDCODE) {
+		IDCODE = iDCODE;
+	}
+	public int getECODE() {
+		return ECODE;
+	}
+	public void setECODE(int eCODE) {
+		ECODE = eCODE;
+	}
+	public Quality_ch(int qRCODE, int iN_CODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK,
+			String qCHSTATUS) {
+		super();
+		QRCODE = qRCODE;
+		IN_CODE = iN_CODE;
+		IDCODE = iDCODE;
+		ECODE = eCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+	}
+	
 	public Quality_ch() {
 	
 	}

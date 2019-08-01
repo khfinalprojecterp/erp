@@ -14,6 +14,12 @@ public class Product_Category implements Serializable{
 	private String PCNAME; // 분류명
 	
 	
+	public Product_Category(String pCNAME) {
+		super();
+		PCNAME = pCNAME;
+	}
+
+
 	public Product_Category() {
 		
 	}

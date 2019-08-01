@@ -18,6 +18,10 @@ public class M_storage implements Serializable{
 	private String MSSTATUS;//(신청 거절,완료)
 	private int MSNO; // 발주 번호
 	//
+	
+	private String wName;
+	private String mName;
+	
 	public M_storage() {
 		
 	
@@ -25,6 +29,49 @@ public class M_storage implements Serializable{
 }
 	
 	
+	public String getwName() {
+		return wName;
+	}
+
+
+	public void setwName(String wName) {
+		this.wName = wName;
+	}
+
+
+	public String getmName() {
+		return mName;
+	}
+
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+
+	public M_storage(int iDCODE, int mCODE, int sCODE, int mSMSTOCK, Date mSDATE, int mSPRICE, String mSSTATUS,
+			int mSNO, String wName, String mName) {
+		super();
+		IDCODE = iDCODE;
+		MCODE = mCODE;
+		SCODE = sCODE;
+		MSMSTOCK = mSMSTOCK;
+		MSDATE = mSDATE;
+		MSPRICE = mSPRICE;
+		MSSTATUS = mSSTATUS;
+		MSNO = mSNO;
+		this.wName = wName;
+		this.mName = mName;
+	}
+
+
+	public M_storage(int mSMSTOCK, int mSPRICE) {
+		super();
+		MSMSTOCK = mSMSTOCK;
+		MSPRICE = mSPRICE;
+	}
+
+
 	public M_storage(int mSNO) {
 		super();
 		MSNO = mSNO;
@@ -72,7 +119,8 @@ public class M_storage implements Serializable{
 	@Override
 	public String toString() {
 		return "M_storage [IDCODE=" + IDCODE + ", MCODE=" + MCODE + ", SCODE=" + SCODE + ", MSMSTOCK=" + MSMSTOCK
-				+ ", MSDATE=" + MSDATE + ", MSPRICE=" + MSPRICE + ", MSSTATUS=" + MSSTATUS + ", MSNO=" + MSNO + "]";
+				+ ", MSDATE=" + MSDATE + ", MSPRICE=" + MSPRICE + ", MSSTATUS=" + MSSTATUS + ", MSNO=" + MSNO
+				+ ", wName=" + wName + ", mName=" + mName + "]";
 	}
 	public int getIDCODE() {
 		return IDCODE;
