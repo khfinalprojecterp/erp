@@ -21,7 +21,7 @@ public interface Product_CategoryService {
 	 * @param boardNo
 	 * @return
 	 */
-	M_storage selectOneProduct_Category(int PCATE); 
+	Product_Category selectOneProduct_Category(int PCATE); 
 	
 	
 	/**

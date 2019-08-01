@@ -92,16 +92,16 @@
                      <input type="number" class="form-control" id="MCODE" placeholder="숫자만 입력하세요" name="MCODE" required>
                      
                      <label for="message-text" class="col-form-label">창고코드</label>
-                     <input type="number" class="form-control" id="newCate"placeholder="숫자만 입력하세요"  name="SCODE" required>
+                     <input type="number" class="form-control" id="SCODE"placeholder="숫자만 입력하세요"  name="SCODE" required>
                      
                      <label for="message-text" class="col-form-label">수량</label>
-                     <input type="number" class="form-control" id="newCate"placeholder="숫자만 입력하세요"  name="MSMSTOCK" required>
+                     <input type="number" class="form-control" id="MSMSTOCK"placeholder="숫자만 입력하세요"  name="MSMSTOCK" required>
                      
                      <label for="message-text" class="col-form-label">신청일</label>
                      <input type="date" class="form-control" id="MSDATE"  name="MSDATE" required>
                      
                      <label for="message-text" class="col-form-label">납품원가</label>
-                     <input type="number" class="form-control" id="newCate" placeholder="숫자만 입력하세요" name="MSPRICE" required>
+                     <input type="number" class="form-control" id="MSPRICE" placeholder="숫자만 입력하세요" name="MSPRICE" required>
                      
                      
                      
@@ -168,7 +168,15 @@
 
 
 	<script>
-	var MSNO;
+	
+	//아까 num
+	//NumberFormatException  이 일어난 이유 string 값에 int가 들어감 
+	// msno를 못 받은 이유 -
+	//전역변수를 준 이유는 MSSOCK 이랑 MSPRICE는 받을 공간 이 있는데 
+	//MSNO는 없으므로 지역 변수 말고 전역 변수로 넗게 줘서
+	// 여러 함수가 쓸수 있도록 함이다.
+	
+	var MSNO;  //전역 변수를 줘 서
 	document.getElementById('MSDATE').valueAsDate = new Date();
 
 	$(function(){
@@ -247,30 +255,13 @@
 	 
 	 $("#dataTables-example td").click(
 			function() {
-				var mCate = $(this).value;
+				/* var mCate = $(this).value; */
 				MSNO = $(this).parent().children().eq(0).text();
 				document.getElementById("MSMSTOCK").value = $(this).parent().children().eq(4).text();
 				document.getElementById("MSPRICE").value = $(this).parent().children().eq(6).text();
 				$("#updateM_storage").modal();
 			}); 
-	 /*  function insertM_storage() {
-		  alert("작성완료");
-	         $('#m_storageFrm').attr("action","${pageContext.request.contextPath}/m_storage/insertM_storage.do");
-	         $('#m_storageFrm').attr("method", "post");
-	 		 $('#m_storageFrm').submit();
 	
-	  } 
-	 */
-	  
-	/*   
-	  $("#MSMSTOCK"),  $("#MSRPRICE").click(
-				function() {
-					var mCate = $(this).value;
-					document.getElementById("MSMSTOCK").value = $(this).parent().children().eq(1).text();
-					
-					$("#updateM_storage").modal();
-				}); 
-	   */
 	 
 	</script>   
 	

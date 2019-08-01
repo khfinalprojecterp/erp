@@ -16,31 +16,31 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> selectProductList() {
 		// TODO Auto-generated method stub
-		return null;
+		return SqlSession.selectList("product.selectProductList");
 	}
 
 	@Override
 	public int insertProduct(Product product) {
 		// TODO Auto-generated method stub
-		return 0;
+		return SqlSession.insert("product.insertProduct",product);
 	}
 
 	@Override
 	public M_storage selectOneProduct(int PCODE) {
 		// TODO Auto-generated method stub
-		return null;
+		return SqlSession.selectOne("product.selectOneproduct",PCODE);
 	}
 
 	@Override
 	public int updateProduct(Product product) {
 		// TODO Auto-generated method stub
-		return 0;
+		return SqlSession.update("product.updateProduct",product);
 	}
 
 	@Override
 	public int deleteProduct(int PCODE) {
 		// TODO Auto-generated method stub
-		return 0;
+		return SqlSession.delete("product.delectProduct",PCODE);
 	}
 
 }

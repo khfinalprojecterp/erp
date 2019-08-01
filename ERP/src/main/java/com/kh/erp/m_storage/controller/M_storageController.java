@@ -120,14 +120,17 @@ public String selectM_storageList(Model model) {
 
 @RequestMapping("/m_storage/updateM_storage.do")
 public String updateM_storage(@RequestParam int MSNO ,
-		
+		//
 	
 		@RequestParam int MSMSTOCK,
 	
 		@RequestParam int MSPRICE,
 		 Model model) {
 	
-	int result = m_storageService.deleteM_storage(MSNO);
+	M_storage m_storage = new M_storage(MSMSTOCK, MSPRICE);
+	
+	
+	int result = m_storageService.updateM_storage(m_storage);
 	String msg="";
 	if( result > 0 ) {
 		msg="수정 성공";
