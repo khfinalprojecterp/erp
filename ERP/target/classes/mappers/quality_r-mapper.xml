@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="quality_r">
+
+	<!-- <resultMap type="M_storage" id="M_storage">
+		<result column="IDCODE" property="IDCODE"
+		        typeHandler="strArrTypeHandler"/>
+	</resultMap> -->
+	
+	<select id="selectQuality_rList" resultType="Quality_r">
+		SELECT * FROM QUALITY_R ORDER BY QRCODE DESC
+	</select>
+	
+	<select id="selectQuality_r" parameterType="_int" resultType="Quality_r">
+		SELECT * FROM QUALITY_R WHERE  = #{QRCODE}
+	</select>
+	
+	<insert id="insertQuality_r" parameterType="Quality_r">
+		INSERT INTO QUALITY_R
+		VALUES (#{QRCODE},#{IDCODE}, 
+		        #{SCODE}, #{SCODE}, #{PCODE},
+		        #{IN_CODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
+	</insert>
+ 
+	<update id="updateQuality_r" parameterType="Quality_r">
+		UPDATE QUALITY_R
+		SET QRCODE = #{QRCODE},
+		    IDCODE= #{IDCODE},
+		     SCODE= #{SCODE},
+		     PCODE= #{PCODE},
+		     IN_CODE= #{IDCODE},
+		     QRCHECK= #{QRCHECK},
+		       QRNOTE= #{QRNOTE},
+		       QRSTOCK= #{QRSTOCK},
+		     
+		     
+		WHERE QRCODE = ?
+		
+
+	</update>
+	
+	<delete id="deleteQuality_r" parameterType="_int">
+		DELETE FROM QUALITY_R WHERE QRCODE = #{QRCODE}
+	</delete> 
+</mapper>
+
+
+
+
+
+
+
+

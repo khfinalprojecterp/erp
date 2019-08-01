@@ -6,7 +6,7 @@
 
 	<resultMap id="partnerMap" type="partner" />
 	<resultMap id="materialsMap" type="materials" />
-	<resultMap id="productMap" type="product" />
+	<resultMap id="productMap" type="Product" />
 	<resultMap id="storageMap" type="storage" />
 	<resultMap id="storagedetailMap" type="storagedetail" />
 	<resultMap id="saleMap" type="sale" />

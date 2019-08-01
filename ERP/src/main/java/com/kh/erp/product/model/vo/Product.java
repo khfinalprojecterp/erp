@@ -17,6 +17,16 @@ public class Product implements Serializable{
 	public Product() {
 		
 	}
+	
+	
+	public Product(String pNAME, String pSIZE, int pBARCODE) {
+		super();
+		PNAME = pNAME;
+		PSIZE = pSIZE;
+		PBARCODE = pBARCODE;
+	}
+
+
 	public Product(int pCODE, String pCATE, String pNAME, String pSIZE, int pBARCODE) {
 		super();
 		PCODE = pCODE;

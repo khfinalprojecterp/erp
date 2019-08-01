@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="materials">
+	<resultMap id="materialsMap" type="map">
+		<result property="mCode" column="MCODE" />
+		<result property="mCate" column="MCATE" />
+		<result property="mName" column="MNAME" />
+		<result property="mcName" column="MCNAME" />
+	</resultMap>
+	<resultMap id="materialscategoryMap" type="materialscategory" />
+
+	<!-- Materials -->
+	
+	<select id="selectMaterialList" resultMap="materialsMap">
+		SELECT M.MCODE MCODE, M.MCATE MCATE, M.MNAME MNAME, C.MCNAME MCNAME
+			FROM MATERIAL M, MATERIALS_CATEGORY C
+			WHERE M.MCATE = C.MCATE
+	</select>
+	
+	<select id="selectMaterialOne" resultType="materials">
+		SELECT *
+			FROM MATERIAL
+			WHERE MCODE = #{mCode}
+	</select>
+	
+	<insert id="insertMaterial">
+		INSERT INTO MATERIAL
+			VALUES (MCODE_SEQ.NEXTVAL, #{mCate}, #{mName})
+	</insert>
+	
+	<update id="updateMaterial" parameterType="materials">
+		UPDATE MATERIAL
+	    	SET MCATE = #{mCate},
+	    		MNAME = #{mName}
+	   			WHERE MCODE = #{mCode}
+	</update>
+	
+	<delete id="deleteMaterial">
+		DELETE FROM MATERIAL
+	    	WHERE MCODE = #{mCode}
+	</delete>
+	
+	<!-- MaterialsCategory -->
+	
+	<select id="selectMaterialsCateList" resultType="materialscategory">
+		SELECT *
+		FROM MATERIALS_CATEGORY
+			ORDER BY MCATE
+	</select>
+	
+	<select id="selectMaterialsCateOne" resultType="materialscategory">
+		SELECT *
+		FROM MATERIALS_CATEGORY
+			WHERE MCATE = #{mCate}
+	</select>
+	
+	<insert id="insertMaterialsCate">
+		INSERT INTO MATERIALS_CATEGORY
+			VALUES (MCATE_SEQ.NEXTVAL, #{mcName})
+	</insert>
+
+	<update id="updateMaterialsCate" parameterType="materialscategory">
+		UPDATE MATERIALS_CATEGORY
+	    	SET MCNAME = #{mcName}
+	    	WHERE MCATE = #{mCate}
+	</update>
+	
+	<delete id="deleteMaterialsCate">
+		DELETE FROM MATERIALS_CATEGORY
+	    	WHERE MCATE = #{mCate}
+	</delete>
+
+</mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storage">
+	<resultMap id="storageMap" type="map">
+		<result property="sCode" column="SCODE" />
+		<result property="eCode" column="ECODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="sCate" column="SCATE" />
+		<result property="sPhone" column="SPHONE" />
+		<result property="sAddr" column="SADDR" />
+		<result property="sStatus" column="SSTATUS" />
+		<result property="sEname" column="ENAME" />
+		<result property="sWname" column="WNAME" />
+	</resultMap>
+	<resultMap id="storageDetailMap" type="map">
+		<result property="sdCode" column="SDCODE" />
+		<result property="sCode" column="SCODE" />
+		<result property="eCode" column="ECODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="mCode" column="MCODE" />
+		<result property="pCode" column="PCODE" />
+		<result property="in_Code" column="IN_CODE" />
+		<result property="sdStock" column="SDSTOCK" />
+		<result property="sdCost" column="SDCOST" />
+		<result property="sdPrice" column="SDPRICE" />
+		<result property="sdDate" column="SDDATE" />
+		<result property="sEname" column="ENAME" />
+		<result property="sWname" column="WNAME" />
+		<result property="mName" column="MNAME" />
+		<result property="pName" column="PNAME" />
+	</resultMap>
+	<resultMap id="productMap" type="map">
+		<result property="PCODE" column="PCODE" />
+		<result property="PNAME" column="PNAME" />
+	</resultMap>
+	<!-- Storage -->
+	
+	<select id="selectStorageList" resultMap="storageMap">
+	SELECT S.SCODE SCODE, S.ECODE ECODE, S.IDCODE IDCODE, S.SCATE SCATE, S.SPHONE SPHONE, S.SADDR SADDR, 
+        S.SSTATUS SSTATUS, E.ENAME ENAME, M.WNAME WNAME
+    	FROM STORAGE S, ENTERPRISE E, EMPLOYEE M
+    	WHERE S.ECODE = E.ECODE
+      	AND S.IDCODE = M.IDCODE
+		ORDER BY SCODE
+	</select>
+	
+	<select id="selectStorageOne" resultType="storage">
+		SELECT *
+			FROM MATERIAL
+			WHERE MCODE = #{mCode}
+	</select>
+	
+	<insert id="insertStorage">
+		INSERT INTO STORAGE
+			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sCate}, #{sPhone}, #{sAddr}, DEFAULT)
+	</insert>
+	
+	<update id="updateStorage" parameterType="storage">
+		UPDATE STORAGE
+		    SET ECODE = #{eCode},
+		        SCATE = #{sCate},
+		        SPHONE = #{sPhone},
+		        SADDR = #{sAddr},
+		        SSTATUS = #{sStatus}
+		    WHERE SCODE = #{sCode}
+	</update>
+	
+	<delete id="deleteStorage">
+		DELETE FROM STORAGE
+	    	WHERE SCODE = #{sCode}
+	</delete>
+	
+	<!-- StorageDetail -->
+	
+	<select id="selectStorageDetailList" resultMap="storageDetailMap">
+		SELECT D.SDCODE SDCODE, D.SCODE SCODE, D.ECODE ECODE, D.IDCODE IDCODE, D.MCODE MCODE, D.PCODE PCODE,
+    		D.IN_CODE IN_CODE, D.SDSTOCK SDSTOCK, D.SDCOST SDCOST, D.SDPRICE SDPRICE, D.SDDATE SDDATE,
+    		E.ENAME ENAME, M.WNAME WNAME,A.MNAME MNAME, P.PNAME PNAME
+		  FROM STORAGE_DETAIL D, STORAGE S, ENTERPRISE E, EMPLOYEE M, MATERIAL A, PRODUCT P
+		  WHERE D.SCODE = S.SCODE
+		    AND D.ECODE = E.ECODE
+		    AND D.IDCODE = M.IDCODE
+		    AND D.MCODE = A.MCODE (+)
+		    AND D.PCODE = P.PCODE (+)
+		    ORDER BY SDCODE
+	</select>
+	
+	<select id="selectStorageDetailOne" resultType="storagedetail">
+		SELECT *
+			FROM STORAGE_DETAIL
+			WHERE SDCODE = #{sdCode}
+	</select>
+	
+	<insert id="insertStorageDetail">
+		INSERT INTO STORAGE_DETAIL
+			VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode}, #{mCode}, #{pCode}, NULL,
+	 		#{sdStock}, #{sdCost}, #{sdPrice}, SYSDATE)
+	</insert>
+	
+	<update id="updateStorageDetail" parameterType="storagedetail">
+		UPDATE STORAGE_DETAIL
+	    	SET SCODE = #{sCode},
+		    	MCODE = #{mCode},
+		    	PCODE = #{pCode},
+		    	IN_CODE = NULL,
+		    	IDCODE = #{idCode},
+		        SDSTOCK = #{sdStock},
+		        SDCOST = #{sdCost},
+		        SDPRICE = #{sdPrice},
+		        SDDATE = DEFAULT
+		    WHERE SDCODE = #{sdCode}
+	</update>
+	
+	<delete id="deleteStorageDetail">
+		DELETE FROM STORAGE_DETAIL
+	    	WHERE SDCODE = #{sdCode}
+	</delete>
+	 
+	 <select id="loadProductList" resultMap="productMap">
+		SELECT PCODE , PNAME
+		FROM PRODUCT
+		ORDER BY PCODE
+	</select>
+	 
+</mapper>

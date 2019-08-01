@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee">
+
+	<resultMap id="Department" type="Department">
+		<id property="dCode" column="dcode" />
+		<result property="eCode" column="ecode" />
+		<result property="dTitle" column="dtitle" />
+	</resultMap>
+
+	<resultMap id="resultEmployee" type="Employee">
+		<id property="idCode" column="idcode" />
+		<result property="dCode" column="dcode" />
+		<result property="wPwd" column="wpwd" />
+		<result property="wName" column="wname" />
+		<result property="position" column="position" />
+		<result property="enrollDate" column="enrolldate" />
+		<result property="wStatus" column="wstatus" />
+		<result property="retireDate" column="retiredate" />
+<!-- 		<collection property="Department" resultMap="Department"/> -->
+	</resultMap>
+	
+	
+	<resultMap id="resultEmployeeId" type="Employee">
+		<id property="idCode" column="idcode" />
+		<result property="wPwd" column="wpwd" />
+	</resultMap>
+	
+	 
+	<resultMap id="resultEmployee2" type="Int">
+		<result property="count" column="COUNT(*)"></result>
+	</resultMap>
+	
+	
+	
+	
+	
+	<resultMap id="resultChart" type="Employee">
+		<result property="eCode" column="ecode" />
+		<result property="dCode" column="dcode" />
+		<result property="count" column="count(*)" />
+	</resultMap>
+	
+	
+	<select id="selectEmpList" resultType="Employee">
+		SELECT E.*,D.ECODE, D.DTITLE
+		FROM EMPLOYEE E , DEPARTMENT D
+		WHERE E.DCODE = D.DCODE
+	</select>
+	
+	<select id="selectEmp" resultType="Employee">
+		SELECT E.*, D.ECODE, T.ENAME   
+	FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE T  
+	WHERE E.DCODE = D.DCODE
+	AND D.ECODE = T.ECODE
+	AND E.IDCODE = #{idCode}
+	</select>
+	
+
+	
+	<select id="selectEmp2" resultMap="resultEmployee2" >
+	SELECT COUNT(*) FROM EMPLOYEE WHERE IDCODE = #{idCode}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectPmanageList" resultType="Employee">
+	
+	SELECT D.ECODE,E.IDCODE, E.WNAME,D.DTITLE,P.PAYMENT,P.MINCOME
+	FROM PMANAGEMENT P, EMPLOYEE E, DEPARTMENT D
+	WHERE P.IDCODE = E.IDCODE
+	AND E.DCODE = D.DCODE
+	
+	
+	</select>
+	
+	
+	<select id="selectAttendanceList" resultType="Employee">
+	SELECT D.ECODE,E.IDCODE, E.WNAME,D.DTITLE, A.VSTATUS, A.ABSENCE
+	FROM ATTENDANCE A, EMPLOYEE E, DEPARTMENT D
+	WHERE A.IDCODE = E.IDCODE
+	AND E.DCODE = D.DCODE
+	
+	</select>
+	
+	
+	
+	
+	<select id="selectChart" resultMap="resultChart">	
+select d.ecode, d.dcode, count(*) 
+from employee e, department d
+where e.dcode = d.dcode
+group by d.ecode,d.dcode
+order by d.ecode,d.dcode
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<insert id="insertEmp" parameterType="Employee">
+		INSERT INTO EMPLOYEE
+		VALUES (#{idCode}, #{dCode},
+		        #{wPwd}, #{wName}, #{position},
+		        #{enrollDate},#{wStatus},DEFAULT)
+	</insert>
+	
+	
+	<insert id="insertPmanage" parameterType="Employee">
+		INSERT INTO PMANAGEMENT
+		VALUES (#{idCode}, #{dCode},
+		        DEFAULT,DEFAULT)
+	</insert>
+	
+	<insert id="insertAttendance" parameterType="Employee">
+		INSERT INTO ATTENDANCE
+		VALUES (#{idCode}, #{dCode},
+		        DEFAULT,DEFAULT)
+	</insert>
+
+
+	<update id="updateEmp" parameterType="Employee">
+	
+update
+employee set wname = #{wName}
+,dcode= #{dCode}
+,position=#{position}
+,wstatus=#{wStatus}
+,enrolldate=#{enrollDate}
+,retiredate=#{retireDate}
+where idcode= #{idCode}
+	
+	
+	</update>
+
+<update id="updatePmanage">
+ UPDATE PMANAGEMENT SET
+ 	PAYMENT = #{payment},
+ 	MINCOME = #{mincome}
+ 	WHERE IDCODE = #{idCode}
+
+</update>
+
+<update id="updateAttendance">
+ UPDATE ATTENDANCE SET
+ 	VSTATUS = #{vStatus},
+ 	ABSENCE = #{absence}
+ 	WHERE IDCODE = #{idCode}
+
+</update>
+
+
+
+<delete id="deleteEmp"> DELETE FROM EMPLOYEE WHERE IDCODE = #{idCode} </delete>
+
+
+
+
+
+
+
+
+</mapper>

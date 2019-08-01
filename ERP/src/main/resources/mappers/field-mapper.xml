@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="field">
+	
+	<resultMap id="resultField" type="Field">
+		<result property="eCode" column="ecode" />
+		<result property="dCode" column="dcode" />
+		<result property="fName" column="fname" />
+		<result property="fArea" column="fArea" />
+		<result property="fPart" column="fpart" />
+	</resultMap>
+	
+	<resultMap id="Department" type="Department">
+		<id property="dCode" column="dcode" />
+		<result property="eCode" column="ecode" />
+		<result property="dTitle" column="dtitle" />
+	</resultMap>
+	
+
+	<select id="selectFieldList" resultType="Field">
+		select f.* , d.dtitle
+		from field f, department d
+		where f.dcode = d.dcode 
+	</select>
+	
+
+	<insert id="insertField" parameterType="field">
+		INSERT INTO FIELD VALUES(
+		FCODE_SEQ.NEXTVAL,	#{fName},#{fArea},#{eCode},#{dCode},#{fPart})	
+	</insert>
+
+
+
+<delete id="deleteField"> DELETE FROM FIELD WHERE FCODE = #{fCode} </delete>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
