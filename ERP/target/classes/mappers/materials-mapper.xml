@@ -3,15 +3,20 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="materials">
-	<resultMap id="materialsMap" type="map"/>
+	<resultMap id="materialsMap" type="map">
+		<result property="mCode" column="MCODE" />
+		<result property="mCate" column="MCATE" />
+		<result property="mName" column="MNAME" />
+		<result property="mcName" column="MCNAME" />
+	</resultMap>
 	<resultMap id="materialscategoryMap" type="materialscategory" />
 
 	<!-- Materials -->
 	
-	<select id="selectMaterialList" resultType="materials">
-		SELECT *
-			FROM MATERIAL
-			ORDER BY MCODE
+	<select id="selectMaterialList" resultMap="materialsMap">
+		SELECT M.MCODE MCODE, M.MCATE MCATE, M.MNAME MNAME, C.MCNAME MCNAME
+			FROM MATERIAL M, MATERIALS_CATEGORY C
+			WHERE M.MCATE = C.MCATE
 	</select>
 	
 	<select id="selectMaterialOne" resultType="materials">

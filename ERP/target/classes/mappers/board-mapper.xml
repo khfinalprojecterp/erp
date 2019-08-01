@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+   <resultMap id="boardMap" type="map"/>
+   <resultMap id="attachmentMap" type="attachment"/>
+   
+   <select id="selectBoardList" resultType="board">
+      SELECT B.*, (SELECT COUNT(*) 
+               FROM ATTACHMENT WHERE B.BOARDNO = BOARDNO) FILECOUNT
+      FROM BOARD B
+      ORDER BY BOARDDATE DESC
+   </select>
+   
+   <select id="selectBoardTotalContents" resultType="_int">
+      SELECT COUNT(*) FROM BOARD
+   </select>
+   
+   <select id="selectOneBoard" parameterType="_int" resultType="board">
+      SELECT * FROM BOARD WHERE BOARDNO=#{boardNo}
+   </select>
+   
+   <insert id="insertBoard">
+   INSERT INTO BOARD(BOARDNO, BOARDTITLE, BOARDWRITER, BOARDCONTENT) VALUES (SEQ_BOARDNO.NEXTVAL, #{boardTitle}, #{boardWriter}, #{boardContent})
+   <!--
+    board 객체를 insert에서 전달하여 SQL을 실행한 뒤,
+              board 객체에 select한 게시글 번호를 주입받아 돌아온다. 
+   -->
+   <!-- 1번 -->
+   <selectKey keyProperty="boardNo" resultType="_int" order="AFTER">
+   SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+   </selectKey>
+   </insert>
+   
+   
+   <insert id="insertAttachment">
+   <!-- 2번 -->
+   <selectKey keyProperty="boardNo" resultType="_int" order="BEFORE"> 
+   SELECT SEQ_BOARDNO.CURRVAL FROM DUAL 
+   </selectKey>
+   INSERT INTO ATTACHMENT(ATTACHMENTNO, BOARDNO, ORIGINALFILENAME, RENAMEDFILENAME) VALUES(SEQ_ATTACHMENTNO.NEXTVAL, #{boardNo}, #{originalFileName}, #{renamedFileName})
+   </insert>
+   
+   <select id="selectAttachmentList" parameterType="_int" resultMap="attachmentMap">
+      SELECT * FROM ATTACHMENT WHERE BOARDNO = #{boardNo}
+   </select>
+   
+   <update id="updateBoard" parameterType="board">
+      UPDATE BOARD
+      SET BOARDTITLE = #{boardTitle},
+         BOARDCONTENT = #{boardContent}
+      WHERE BOARDNO = #{boardNo}
+   </update>
+   
+   <insert id="updateAttachment" parameterType="attachment">
+      INSERT INTO ATTACHMENT(ATTACHMENTNO, BOARDNO, ORIGINALFILENAME, RENAMEDFILENAME) VALUES(SEQ_ATTACHMENTNO.NEXTVAL, #{boardNo}, #{originalFileName}, #{renamedFileName})
+   </insert>
+   
+   <delete id="deleteBoard">
+      DELETE FROM BOARD WHERE BOARDNO = #{boardNo}
+   </delete>
+   
+   <delete id="deleteAttachment">
+      DELETE FROM ATTACHMENT WHERE BOARDNO = #{boardNo}
+   </delete>
+   
+   <delete id="deleteFile">
+      DELETE FROM ATTACHMENT
+      WHERE ATTACHMENTNO = #{attNo}
+   </delete>
+</mapper>

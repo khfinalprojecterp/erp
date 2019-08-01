@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.erp.field.model.service.FieldService;
 import com.kh.erp.field.model.vo.Field;
@@ -20,36 +20,63 @@ public class FieldController {
 	FieldService fieldService;
 	
 	
-
-//	
-//	@RequestMapping("/department/departmentList.do")
-//	public String fieldList(Model model
-//			) {
-//	
-//		List<Field> list = fieldService.selectFieldList();
-//		
-//		model.addAttribute("list", list);
-//	
-//		return "department/departmentList";
-//	}
-//	
-
 	
 	@RequestMapping(value="/department/insertField.do",
 	        method=RequestMethod.GET)
-		public String insertDepart(Field field) {
+		public String insertDepart(Field field, Model model) {
 
 
 				int result = fieldService.insertField(field);
 
-	
-// 서블릿에서 sendRedirect() 했던 코드를
-// 스프링에서 구현하려면 'redirect:'을 작성하고
-// 뒤에 보내고자 하는 url을 적는다.
-// '/'는 절대 경로인 index.jsp로 보내는 역할을 한다.
+				String msg="";
+				if( result > 0 ) {
+					msg="상세 정보 등록 성공!";
+				} else {
+					msg="상세 정보 등록 실패!";
+				}
+				
+				String loc="/department/departmentList.do";
+				model.addAttribute("loc", loc);
+				model.addAttribute("msg", msg);
+				
 
-						return "redirect:/";
+
+				return "common/msg";
+
+
 }
+	
+	
+	@RequestMapping(value="/field/deleteField.do")
+	public String deleteField(@RequestParam int fCode,Model model) {
+		
+	
+		
+		int result = fieldService.deleteField(fCode);
+		
+		String msg="";
+		if( result > 0 ) {
+			msg="상세 정보 삭제 성공!";
+		} else {
+			msg="상세 정보 삭제 실패!";
+		}
+		
+		String loc="/department/departmentList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+
+
+		return "common/msg";
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 
 	
 	

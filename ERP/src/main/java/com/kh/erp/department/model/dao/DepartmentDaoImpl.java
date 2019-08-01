@@ -25,5 +25,18 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		
 		return sqlSession.selectList("department.selectDepartList");
 	}
+	
+	
+	@Override
+	public int updateDepart(Department depart) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("department.updateDepartment",depart);
+	}
+
+	@Override
+	public int deleteDepart(int dCode) {
+		
+		return sqlSession.delete("department.deleteDepartment",dCode);
+	}
 
 }

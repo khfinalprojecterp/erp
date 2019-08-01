@@ -2,7 +2,9 @@ package com.kh.erp.employee.model.service;
 
 import java.util.List;
 
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
+
 
 
 public interface EmployeeService {
@@ -19,6 +21,18 @@ public interface EmployeeService {
 	
 	List<Employee> selectEmpList();
 	
+	int updateEmployee(Employee emp);
 	
+	int deleteEmployee(int idCode);
+	
+	int checkIdDuplicate(int idCode);
+	
+	
+
+	void insertSub(Employee emp);
+
+	List<Attendance> selectAttendnaceList();
+
+	int updateAttendance(Attendance attendance);
 	
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
 
 
@@ -19,6 +20,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	
 	@Override
 	public int insertEmployee(Employee emp) {
+		
 	
 		return sqlSession.insert("employee.insertEmp",emp);
 	}
@@ -35,4 +37,44 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return sqlSession.selectList("employee.selectEmpList");
 	}
 
+	@Override
+	public int updateEmployee(Employee emp) {
+		System.out.println(emp+"1");
+		return sqlSession.update("employee.updateEmp",emp);
+	}
+
+	
+	@Override
+	public int deleteEmployee(int idCode) {
+		
+		return sqlSession.delete("employee.deleteEmp",idCode);
+	}
+
+	@Override
+	public void insertSub(Employee emp) {
+
+		sqlSession.insert("employee.insertPmanage",emp);
+		sqlSession.insert("employee.insertAttendance",emp);
+	}
+
+	@Override
+	public List<Attendance> selectAttendnaceList() {
+		
+		return sqlSession.selectList("employee.selectAttendanceList");
+	}
+
+	@Override
+	public int updateAttendance(Attendance attendance) {
+		
+		return sqlSession.update("employee.updateAttendance",attendance);
+	}
+
+	@Override
+	public int checkIdDuplicate(int idCode) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne("employee.selectEmp2",idCode);
+	}
+
+	
 }

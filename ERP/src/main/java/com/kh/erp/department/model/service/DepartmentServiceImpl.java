@@ -26,5 +26,24 @@ public class DepartmentServiceImpl implements DepartmentService {
 		
 		return departDao.selectDepartList();
 	}
+	
+	
+	@Override
+	public int updateDepart(Department depart) {
+		
+		return departDao.updateDepart(depart);
+	}
+
+	@Override
+	public int deleteDepart(int dCode) {
+		
+		return departDao.deleteDepart(dCode);
+	}
+	
+	
+	
+	
+	
+	
 
 }

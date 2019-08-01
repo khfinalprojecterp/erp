@@ -27,5 +27,11 @@ public class FieldServiceImpl implements FieldService {
 		// TODO Auto-generated method stub
 		return fieldDao.selectFieldList();
 	}
+	@Override
+	public int deleteField(int fCode) {
+		// TODO Auto-generated method stub
+		return fieldDao.deleteField(fCode);
+	}
+
 
 }
