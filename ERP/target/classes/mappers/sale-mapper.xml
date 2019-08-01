@@ -86,6 +86,13 @@
 		SDSTOCK = SDSTOCK - #{sdStock}
 		WHERE SDCODE = #{sdCode}
 	</update>
+	
+	<update id="itemDelivery" parameterType="_int">
+		UPDATE SALE_ITEM
+		SET
+		SAL_STATUS = 'E'
+		WHERE SAL_CODE = #{statusIdx}
+	</update>
 
 	<delete id="deleteItem" parameterType="_int">
 		DELETE FROM STORAGE_DETAIL
@@ -111,11 +118,12 @@
 		SELECT *
 		FROM SALE
 		WHERE ECODE = #{eCode}
+		ORDER BY SAL_CODE DESC
 	</select>
 	<select id="itemHistory" resultMap="saleItemMap">
 		SELECT *
 		FROM SALE_ITEM
-		WHERE SAL_CODE = (
+		WHERE SAL_CODE IN (
 		SELECT SAL_CODE
 		FROM SALE
 		WHERE ECODE = #{eCode}
@@ -132,6 +140,6 @@
 	FROM PRODUCT
 	WHERE PCODE = #{itemCode}
 	</select>
-
+	
 
 </mapper>

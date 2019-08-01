@@ -105,4 +105,10 @@ public class SaleServiceImpl implements SaleService {
 		return saledao.selectItemName(itemCode, type);
 	}
 
+
+	@Override
+	public int itemDelivery(int statusIdx) {
+		return saledao.itemDelivery(statusIdx);
+	}
+
 }

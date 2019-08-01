@@ -59,5 +59,7 @@ public interface SaleService {
 	
 	String selectItemName(String itemCode, String type);
 	
+	int itemDelivery(int statusIdx);
+	
 	
 }

@@ -34,7 +34,13 @@
 										<c:if test="${L.parSts.charAt(0).toString() eq 'T'}">
 											<tr id="${L.partnerC}">
 												<td>${L.parName}</td>
-												<td>${L.parSts}</td>
+												<td>
+												<p style="display: none;">${L.parSts.charAt(0).toString()}</p>
+												<c:choose>
+												<c:when test="${L.parSts.charAt(0).toString() eq 'T'}">거래중</c:when>
+												<c:when test="${L.parSts.charAt(0).toString() eq 'S'}">거래중지</c:when>
+												</c:choose>
+												</td>
 												<td style="display: none;">${L.partnerC}</td>
 											</tr>
 										</c:if>
@@ -111,7 +117,7 @@
 		
 		function newMateCate() {
 			var mcName = $("#newCate").val();
-			location.href = "${pageContext.request.contextPath}/sale/insertPartner.do?partner="+mcName+"&ecode="+1;//ecode 수정필
+			location.href = "${pageContext.request.contextPath}/sale/insertPartner.do?partner="+mcName+"&ecode="+${ecode};//ecode 수정필
 			//연결
 		}
 		
@@ -119,7 +125,7 @@
 			var mCate = $("#CateNum").val();//거래처이름
 			var mcName = $("#CateName").val();//거래상태
 			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/callOffPartner.do?partner="+mCate+"&ecode="+1;
+			location.href = "${pageContext.request.contextPath}/sale/callOffPartner.do?partner="+mCate+"&ecode="+${ecode};
 			
 			//연결
 		}
@@ -128,7 +134,7 @@
 			var mCate = $("#CateNum").val();//거래처이름
 			var mcName = $("#CateName").val();//거래상태
 			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/changeNamePartner.do?partner="+mCate+"&ecode="+1+"&partnerC="+ mCateC;
+			location.href = "${pageContext.request.contextPath}/sale/changeNamePartner.do?partner="+mCate+"&ecode="+${ecode}+"&partnerC="+ mCateC;
 			//연결
 		}
 		
@@ -137,7 +143,8 @@
 				function() {
 					var mCate = $(this).value;
 					document.getElementById("CateNum").value = $(this).parent().children().eq(0).text();
-					document.getElementById("CateName").value = $(this).parent().children().eq(1).text();
+					if($(this).parent().children().eq(1).children().eq(0).text()=='T')
+					document.getElementById("CateName").value = '거래중';
 					document.getElementById("CateC").value = $(this).parent().children().eq(2).text();
 					$("#updateMaterialscate").modal();
 				});

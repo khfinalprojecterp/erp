@@ -58,4 +58,6 @@ public interface SaleDao {
 	List<SaleItem> itemHistory(int ecode);
 	
 	String selectItemName(String itemCode, String type);
+	
+	int itemDelivery(int statusIdx);
 }

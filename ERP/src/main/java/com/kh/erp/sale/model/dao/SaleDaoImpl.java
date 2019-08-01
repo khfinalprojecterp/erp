@@ -169,4 +169,9 @@ public class SaleDaoImpl implements SaleDao {
 		return name;
 	}
 
+	@Override
+	public int itemDelivery(int statusIdx) {
+		return sqlSession.update("sales.itemDelivery",statusIdx);
+	}
+
 }

@@ -253,13 +253,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=1">거래처 관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=1">물품 판매</a></li>
-                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=1">판매 기록<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=1">판매 기록</a></li>
                 </ul>
             </li>
 			<!-- 한솔 -->

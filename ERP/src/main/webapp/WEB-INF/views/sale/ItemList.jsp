@@ -52,7 +52,7 @@
 													<option value="${ i }">${ i }</option>
 													</c:forEach>
 												</select></td>
-												<td><input type="checkbox" name="chk_std" id="chk_sale" value="${status.index}"></td>
+												<td><input type="checkbox" class="chk_std" name="chk_std"></td>
 												<td style="display: none;">${status.index}</td><!--9번째-->
 											</tr> 
 											
@@ -63,22 +63,26 @@
 							</div>
 							<br />
 							
-							<h4>판매처
-							<select >
+							<h4>거래처
+							<select id="saleProduct">
 							<c:forEach items="${partnerList }" var="P">
-								<option value="${P.parName}">${P.parName}</option>
+							<c:if test="${P.parSts.charAt(0).toString() eq 'T'}">
+								<option value="${P.partnerC}">${P.parName}</option>
+								</c:if>
 							</c:forEach>
 							</select>
 							&nbsp;&nbsp;&nbsp;
 							판매사원
-							<select >
+							<select id="saleEmpl">
 							<c:forEach items="${employeeList}" var="E">
 								<option value="${E.idCode}">${E.wName}/${E.dCode}부서</option>
+								<!-- ${E.idCode}를 보내야함 -->
 							</c:forEach>
 							</select>
 							
 							<button style="float:right" type="button" id="saleModal"
-							class="btn btn-primary" data-toggle="modal" data-target="#saleItemModal">
+							class="btn btn-primary" data-toggle="modal" data-target="#saleItemModal"
+							onclick="saleItemOn();">
   							판매</button>
   							</h4>
 						</div>
@@ -89,125 +93,144 @@
 		</div>
 	</div>
 	
+	<script>
+	var statusIdx = [];
+	var PartnerSelect = "";
+	var EmployeeSelect = "";
+	var salePrice = [];
+	var EA = [];
+	
+function saleItemOn(){
+	var chkbox=[];
+	PartnerSelect = $("#saleProduct option:selected").text();
+	EmployeeSelect = $("#saleEmpl option:selected").text();
+	chkbox = $("input:checkbox[name=chk_std]:checked");
+	var trigger = 0;
+	if(chkbox.length == 0){
+		alert("판매 물품을 선택해 주십시오.");	
+		setTimeout(function() {
+			$("#saleItemModal").modal("hide");
+			}, 0.001);
+	}else{
+		statusIdx = [];
+		salePrice = [];
+		EA = [];
+		var html = "";
+		
+		
+		var pName = [];
+		var sAddr = [];
+		var sPhone = [];
+		var sdCost = [];
+		var sdDate = [];
+		var sdStock = [];
+		
+		chkbox.each(function(i){
+				 statusIdx.push($(this).parent().parent().children().eq(9).text());
+				 
+				 pName += $(this).parent().parent().children().eq(0).text()+",";
+				 sAddr += $(this).parent().parent().children().eq(1).text()+",";
+				 sPhone += $(this).parent().parent().children().eq(2).text()+",";
+				 sdCost += $(this).parent().parent().children().eq(3).text()+",";
+				 sdDate += $(this).parent().parent().children().eq(4).text()+",";
+				 sdStock += $(this).parent().parent().children().eq(5).text()+",";
+				 if($(this).parent().parent().children().eq(6).children().val()==null || $(this).parent().parent().children().eq(6).children().val()==0 || $(this).parent().parent().children().eq(7).children().val()==0){
+					 trigger = 1;
+				 }
+				 salePrice += $(this).parent().parent().children().eq(6).children().val()+",";
+				 EA += $(this).parent().parent().children().eq(7).children().val()+",";
+		});
+		var pNameS = pName.split(',');
+		var sAddrS = sAddr.split(',');
+		var sPhoneS = sPhone.split(',');
+		var sdCostS = sdCost.split(',');
+		var sdDateS = sdDate.split(',');
+		var sdStockS = sdStock.split(',');
+		var salePriceS = salePrice.split(',');
+		var EAS = EA.split(',');
+		
+		chkbox.each(function(i){
+			html += "<tr>";
+			html += "<td>"+pNameS[i]+"</td>";
+			html += "<td>"+sAddrS[i]+"</td>";
+			html += "<td>"+sPhoneS[i]+"</td>";
+			html += "<td>"+sdCostS[i]+"</td>";
+			html += "<td>"+sdDateS[i]+"</td>";
+			html += "<td>"+sdStockS[i]+"</td>";
+			html += "<td>"+salePriceS[i]+"</td>";
+			html += "<td>"+EAS[i]+"</td>";
+			html +=	"   </tr>";
+		});
+		
+		$("#modalDataBody").html(html);
+		html = "판매처 : "+PartnerSelect+"&nbsp;&nbsp;&nbsp;&nbsp;판매사원 : "+EmployeeSelect;
+		$("#modalPartnerSelect").html(html);
+				if(trigger == 1){
+				alert("판매가/수량을 확인해 주십시오.");	
+				setTimeout(function() {
+					$("#saleItemModal").modal("hide");
+					}, 0.001);
+				}
+	}
+}
+
+function newMateCate() {
+	PartnerSelect = $("#saleProduct option:selected").val();
+	EmployeeSelect = $("#saleEmpl option:selected").val();
+	var salePriceS = salePrice.split(',');
+	var EAS = EA.split(',');
+	
+	
+	location.href ="${pageContext.request.contextPath}/sale/saleItem.do?ecode="+${ecode}+"&statusIdx="+statusIdx+"&PartnerSelect="+PartnerSelect+"&EmployeeSelect="+EmployeeSelect+"&salePriceS="+salePriceS+"&EAS="+EAS;//ecode 수정필
+	<%--연결--%>
+		
+
+		
+}
+</script>
 	<!-- 판매 확인용 모달 -->
 	<div class="modal fade" id="saleItemModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+		<div class="modal-dialog" role="document" style="text-align: center;">
+			<div class="modal-content" style="width: 800px;">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">판매 품목 확인</h5>
 				</div>
-				<script>
-				$("#saleModal").click(function(){
-					if($(document.getElementById("chk_sale")).prop("checked")){
-						alert("");
-					}
-				})
-				</script>
 				<div class="modal-body">
-					<form>
 						<div class="form-group">
 							<table class="table table-striped table-bordered table-hover"
-									id="dataTables-example">
+									id="dataTables-example" style="width: 100%;">
 									<thead>
 										<tr>
-											<th>000</th>
-											<th>000</th>
-											<th>000</th>
-											<th>000</th>
-											<th>000</th>
+											<th>물품명</th>
+											<th>창고 주소지</th>
+											<th>주소지 연락처</th>
+											<th>생산/구매가</th>
+											<th>입고일</th>
+											<th>갯수</th>
+											<th>판매가</th>
+											<th>판매수량</th>
 										</tr>
 									</thead>
 									
-									<tbody>
-											 <tr>
-												<td>111</td>
-												<td>111</td>
-												<td>111</td>
-												<td>111</td>
-												<td>111</td>
-											</tr> 
+									<tbody id="modalDataBody">
+									<!-- 여기에 메소드 html 사용됨 -->
 									</tbody>
-									
 								</table>
+									<h5 id="modalPartnerSelect" style="background-color: #D8D8D8;">
+									<!-- 여기에 메소드 html 사용됨 -->
+									</h5>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="newMateCate();">판매완료</button>
-					<button type="button" class="btn btn-secondary"
+					<button type="text" class="btn btn-primary" onclick="newMateCate();" >판매완료</button>
+					<button id="cancelModal" type="button" class="btn btn-secondary"
 						data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 기자재 수정/삭제용 모달 -->
-	<!-- <div class="modal fade" id="updateMaterialscate" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">거래처 수정/삭제</h5>
-
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-            				<label for="recipient-name" class="col-form-label">거래처명</label>
-            				<input type="text" class="form-control" id="CateNum" >
-          				</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">거래상태</label>
-							<input type="text" class="form-control" id="CateName" readonly>
-						</div>
-						<div class="form-group" style="display: none;">
-							<input type="text" class="form-control" id="CateC">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" onclick="changeNamePartner();">수정하기</button>
-					<button type="button" class="btn btn-danger" onclick="callOffPartner();">삭제하기</button>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<script>		
-		
-		function newMateCate() {
-			var mcName = $("#newCate").val();
-			location.href = "${pageContext.request.contextPath}/sale/insertPartner.do?partner="+mcName+"&ecode="+1;//ecode 수정필
-			//연결
-		}
-		
-		/* function callOffPartner() {
-			var mCate = $("#CateNum").val();//거래처이름
-			var mcName = $("#CateName").val();//거래상태
-			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/callOffPartner.do?partner="+mCate+"&ecode="+1;
-			
-			//연결
-		}
-		
-		function changeNamePartner() {
-			var mCate = $("#CateNum").val();//거래처이름
-			var mcName = $("#CateName").val();//거래상태
-			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/changeNamePartner.do?partner="+mCate+"&ecode="+1+"&partnerC="+ mCateC;
-			//연결
-		} */
-		
-		
-		/* $("#dataTables-example td").click(
-				function() {
-					var mCate = $(this).value;
-					document.getElementById("CateNum").value = $(this).parent().children().eq(0).text();
-					document.getElementById("CateName").value = $(this).parent().children().eq(1).text();
-					document.getElementById("CateC").value = $(this).parent().children().eq(2).text();
-					$("#updateMaterialscate").modal();
-				}); */
-	</script>
+	
+	
 </body>
 <c:import url="../common/footer.jsp" />
