@@ -41,7 +41,7 @@
 										<tr class="gradeA">
 												<%-- <td>${status.count}</td> --%>
 												<td>${product.PCODE}</td>
-												<td>${product.PCATE}</td>
+												<td>${product.PCNAME}</td>
 												<td>${product.PNAME}</td>
 												<td>${product.PSIZE}</td>
 												<td>${product.PBARCODE}</td>
@@ -83,7 +83,7 @@
                  
                      
                      <label for="message-text" class="col-form-label">물품코드</label>
-                     <input type="number" class="form-control" id="PCODE" name="PCODE">
+                     <input type="text" class="form-control" id="PCODE" name="PCODE">
                      
                       <label for="message-text" class="col-form-label">분류코드</label>
                      <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력해주세요" name="PCATE" required>
