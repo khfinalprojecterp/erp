@@ -38,7 +38,7 @@ public class BuyController {
 		
 		int result = buyService.insertPurchase(purchase);
 		
-		String msg="";
+		String msg = "";
 		if( result > 0) {
 			msg="등록 성공!";
 			
@@ -54,28 +54,26 @@ public class BuyController {
 	}
 	
 	@RequestMapping("/buy/buy_update.do")
-	public ModelAndView buy_update(Purchase purchase) {
-		
-		ModelAndView mv = new ModelAndView();
+	public String buy_update(Purchase purchase,Model model) {
 		
 		
 		int result = buyService.updatePurchase(purchase);
 		// 2. 처리 결과에 따른 화면 설정
-		String loc = "/";
+
 		String msg = "";
 		
 		if(result > 0) {
-			msg="회원 정보 수정 성공!!";
-			mv.addObject("purchase", purchase);
+			msg="수정 성공!!";
 		} else {
-			msg = "회원 정보 수정 실패!";
+			msg = "수정 실패!";
 		}
 		
-		mv.addObject("loc", loc);
-		mv.addObject("msg", msg);
-		mv.setViewName("common/msg");
+		String loc="/buy/buy_lookup.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
 		
-		return mv;		
+		
+		return "common/msg";		
 	}
 	
 	@RequestMapping("/buy/buy_delete.do")
