@@ -5,25 +5,83 @@
 <mapper namespace="buy">
 	<resultMap id="resultBuyItem" type="Purchase"/>
 	
-	<resultMap id="resultBuy" type="Purchase">
-		<result property="buy_code" column="buy_code" />
-		<result property="sCode" column="sCode" />
-		<result property="mCode" column="mCode" />
-		<result property="pCode" column="pCode" />
-		<result property="idCode" column="idCode" />
-		<result property="buy_amount" column="buy_amount" />
-		<result property="buy_origin" column="buy_origin" />
-		<result property="buy_price" column="buy_price" />
-		<result property="buy_status" column="buy_status" />
-		<result property="buy_discount" column="buy_discount" />
-		<result property="sddivi" column="sddivi" />
+	
+	<resultMap id="resultBuyList" type="map">
+		<result property="buy_code" column="BUY_CODE" />
+		<result property="sCode" column="SCODE" />
+		<result property="mName" column="MNAME" />
+		<result property="pName" column="PNAME" />
+		<result property="mCode" column="MCODE" />
+		<result property="pCode" column="PCODE" />
+		<result property="wName" column="WNAME" />
+		<result property="buy_amount" column="BUY_AMOUNT" />
+		<result property="buy_origin" column="BUY_ORIGIN" />
+		<result property="buy_price" column="BUY_PRICE" />
+		<result property="buy_discount" column="BUY_DISCOUNT" />
+		<result property="buy_status" column="BUY_STATUS" />
+		<result property="buy_date" column="BUY_DATE" />
 	</resultMap>
+	
+		<resultMap id="resultList" type="map">
+		<result property="sdCode" column="SDCODE" />
+		<result property="sCode" column="SCODE" />
+		<result property="eCode" column="ECODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="mCode" column="MCODE" />
+		<result property="pCode" column="PCODE" />
+		<result property="eName" column="ENAME" />
+		<result property="wName" column="WNAME" />
+		<result property="mName" column="MNAME" />
+		<result property="pName" column="PNAME" />
+	</resultMap>
+	
+	<resultMap id="resultInsert" type="map">
+		<result property="sdCode" column="SDCODE" />
+		<result property="sCode" column="SCODE" />
+		<result property="eCode" column="ECODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="mCode" column="MCODE" />
+		<result property="pCode" column="PCODE" />
+		<result property="buy_amount" column="SDSTOK" />
+		<result property="buy_price" column="SDCOST" />
+		<result property="buy_date" column="SDPRICE" />
+	</resultMap>
+
 
 	
 	<!-- 구매 리스트 -->
-	<select id="selectBuyList" resultType="Purchase">
-		SELECT * FROM PURCHASE_ITEM
+	<select id="selectBuyList" resultMap="resultBuyList">
+		SELECT PI.BUY_CODE BUY_CODE,T.SCODE SCODE, M.MNAME MNAME, P.PNAME PNAME, E.WNAME WNAME, M.MCODE MCODE, P.PCODE PCODE,PI.BUY_DATE BUY_DATE,
+		PI.BUY_AMOUNT BUY_AMOUNT, PI.BUY_ORIGIN BUY_ORIGIN, PI.BUY_PRICE BUY_PRICE, PI.BUY_STATUS BUY_STATUS
+		FROM PURCHASE_ITEM PI, MATERIAL M, PRODUCT P, EMPLOYEE E, STORAGE T
+		WHERE PI.SCODE = T.SCODE AND
+		PI.MCODE = M.MCODE (+) AND 
+		PI.PCODE = P.PCODE (+) AND 
+		PI.IDCODE = E.IDCODE
 	</select>
+	
+	<!-- 보유 목록 리스트 -->
+	<select id="selectM" resultMap="resultList">
+		SELECT MCODE,MNAME
+		  FROM MATERIAL
+	</select>
+	
+		<select id="selectP" resultMap="resultList">
+		SELECT PCODE,PNAME
+		  FROM PRODUCT
+	</select>
+	
+		<select id="selectS" resultMap="resultList">
+		SELECT SCODE,ECODE
+		  FROM STORAGE
+	</select>
+	
+		<select id="selectE" resultMap="resultList">
+		 SELECT E.IDCODE, E.WNAME, D.ECODE
+		  FROM EMPLOYEE E, DEPARTMENT D
+          WHERE E.DCODE = D.DCODE
+	</select>
+	
 	
 	<!-- 구매 상세보기 -->
 	<select id="selectBuyItemOne" resultType="Purchase">
@@ -31,11 +89,21 @@
 	</select>
 
 	
-	<insert id="insertBuyItem">
+	<insert id="insertBuyItem" parameterType="Purchase">
 		INSERT INTO PURCHASE_ITEM
 			VALUES (PURCHASE_ITEM_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode},
-			#{buy_amount},#{buy_origin},#{buy_price}, #{buy_status},#{buy_discount,jdbcType=VARCHAR},#{sddivi},#{idCode})
+			#{buy_amount},#{buy_origin},#{buy_price}, DEFAULT,#{idCode},#{buy_date},#{eCode})
 	</insert>
+	
+	
+	<insert id="insertBuyStorage" parameterType="Purchase">
+	INSERT INTO STORAGE_DETAIL
+		VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode},
+		#{mCode},#{pCode},NULL, #{buy_amount},#{buy_price},NULL, #{buy_date})
+	</insert>
+	
+	
+	
 	
 	<!-- 	<choose>
 			<when test="mCode != null">
@@ -50,8 +118,14 @@
 		UPDATE PURCHASE_ITEM
 	    	SET SCODE = #{sCode},MCODE = #{mCode}, PCODE = #{pCode}, 
 			IDCODE = #{idCode}, BUY_AMOUNT = #{buy_amount}, BUY_ORIGIN = #{buy_origin}, 
-			BUY_PRICE = #{buy_price}, BUY_STATUS = #{buy_status}, BUY_DISCOUNT = #{buy_discount}, SDDIVI=#{sddivi}
+			BUY_PRICE = #{buy_price}
 			WHERE BUY_CODE = #{buy_code}
+	</update>
+	
+	<update id="updateBuyStorage" parameterType="Purchase">
+	UPDATE PURCHASE_ITEM
+	SET BUY_STATUS = #{buy_status}
+	WHERE BUY_CODE = #{buy_code}
 	</update>
 	
 	<delete id="deleteBuyItem">
