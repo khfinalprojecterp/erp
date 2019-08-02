@@ -24,11 +24,17 @@ public interface EmployeeService {
 	int updateEmployee(Employee emp);
 	
 	int deleteEmployee(int idCode);
+	
+	int checkIdDuplicate(int idCode);
+	
+	
 
 	void insertSub(Employee emp);
 
 	List<Attendance> selectAttendnaceList();
 
 	int updateAttendance(Attendance attendance);
+
+	int employeeUpdate(Employee employee);
 	
 }

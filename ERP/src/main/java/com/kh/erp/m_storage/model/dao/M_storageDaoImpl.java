@@ -32,7 +32,7 @@ public class M_storageDaoImpl implements M_storageDao {
 	@Override
 	public int updateM_storage(M_storage m_storage) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("m_storage.selectM_storage",m_storage);
+		return sqlSession.update("m_storage.updateM_storage",m_storage);
 	}
 
 	@Override

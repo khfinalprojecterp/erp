@@ -8,10 +8,12 @@
 		<id property="eId" column="eid" />
 		<result property="ePwd" column="epwd" />
 	</resultMap>
-
-
-
-
+	
+	<resultMap id="resultEnterprise2" type="Int">
+		<result property="idcheck" column="COUNT(*)"/>
+	</resultMap>
+	
+	
 	<insert id="insertEnterprise" parameterType="enterprise">
 		INSERT INTO ENTERPRISE VALUES(
 		ECODE_SEQ.NEXTVAL,
@@ -24,8 +26,20 @@
 	<select id="selectEnterprise" parameterType="string" resultMap="resultEnterprise">
 		SELECT * FROM ENTERPRISE WHERE EID = #{eId}
 	</select>
+	
+	<select id="selectEnterprise2" resultMap="resultEnterprise2" >
+	SELECT COUNT(*) FROM ENTERPRISE WHERE EID = #{eId}
+	</select>
 
-
+	<update id="updateEnterprise">
+	UPDATE ENTERPRISE SET
+	EPWD = #{ePwd},
+	ENAME = #{eName},
+	EEMAIL = #{eEmail},
+	EADDRESS = #{eAddress},
+	EPHONE = #{ePhone}
+	WHERE EID = #{eId}
+	</update>
 
 
 

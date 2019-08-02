@@ -23,6 +23,7 @@ public class Quality_r implements Serializable{
 	public Quality_r() {
 		
 	}
+	
 	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, String qRCHECK, String qRNOTE,
 			int qRSTOCK, String qRSTATUS) {
 		super();

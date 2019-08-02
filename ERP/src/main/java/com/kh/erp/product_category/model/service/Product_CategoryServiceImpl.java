@@ -9,38 +9,42 @@ import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.product_category.model.dao.Product_CategoryDao;
 import com.kh.erp.product_category.model.vo.Product_Category;
 @Service
+
 public class Product_CategoryServiceImpl implements Product_CategoryService {
 @Autowired
-private Product_CategoryDao product_categorydao;
-	
+private Product_CategoryDao product_categoryDao;
+
+
+
+@Override
+public int insertProduct_Category(Product_Category product_category) {
+	// TODO Auto-generated method stub
+	return product_categoryDao.insertProduct_Category(product_category);
+}
 	@Override
 	public List<Product_Category> selectProduct_CategoryList() {
 		// TODO Auto-generated method stub
-		return null;
+		return  product_categoryDao.selectProduct_CategoryList();
 	}
 
-	@Override
-	public int insertProduct_Category(Product_Category product_category) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
-	public M_storage selectOneProduct_Category(int PCATE) {
+	public Product_Category selectOneProduct_Category(int PCATE) {
 		// TODO Auto-generated method stub
-		return null;
+		return   (Product_Category) product_categoryDao.selectProduct_CategoryList();
 	}
 
 	@Override
 	public int updateProduct_Category(Product_Category product_category) {
 		// TODO Auto-generated method stub
-		return 0;
+		return product_categoryDao.updateProduct_Category(product_category);
 	}
 
 	@Override
 	public int deleteProduct_Category(int PCATE) {
 		// TODO Auto-generated method stub
-		return 0;
+		return product_categoryDao.deleteProduct_Category(PCATE);
 	}
 
 }

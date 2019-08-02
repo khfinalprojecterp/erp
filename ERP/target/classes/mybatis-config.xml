@@ -1,37 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
-	<typeAliases>
-
-		<typeAlias type="com.kh.erp.enterprise.model.vo.Enterprise" alias="enterprise"/>
-		 	<typeAlias type="com.kh.erp.department.model.vo.Department" alias="department"/>
-		      	<typeAlias type="com.kh.erp.field.model.vo.Field" alias="field"/>               
-		      	<typeAlias type="com.kh.erp.employee.model.vo.Employee" alias="employee"/>     
-		        <typeAlias type="com.kh.erp.materials.model.vo.Materials" alias="materials" />
-	        	<typeAlias type="com.kh.erp.materials.model.vo.MaterialsCategory" alias="materialscategory" />
-        		<typeAlias type="com.kh.erp.storage.model.vo.Storage" alias="storage" />
-	        	<typeAlias type="com.kh.erp.storage.model.vo.StorageDetail" alias="storagedetail" />   
-		        <typeAlias type="com.kh.erp.buy.model.vo.Purchase" alias="Purchase" />
-				<typeAlias type="com.kh.erp.board.model.vo.Board" alias="board" />
-				<typeAlias type="com.kh.erp.board.model.vo.Attachment" alias="attachment" />
-        <typeAlias type="com.kh.erp.m_storage.model.vo.M_storage"	alias="M_storage" />
-
-	</typeAliases>
+<typeAliases>
+  <typeAlias type="com.kh.erp.enterprise.model.vo.Enterprise" alias="enterprise"/>
+  <typeAlias type="com.kh.erp.department.model.vo.Department" alias="department"/>
+  <typeAlias type="com.kh.erp.field.model.vo.Field" alias="field"/>               
+  <typeAlias type="com.kh.erp.employee.model.vo.Employee" alias="employee"/>     
+  <typeAlias type="com.kh.erp.materials.model.vo.Materials" alias="materials" />
+  <typeAlias type="com.kh.erp.materials.model.vo.MaterialsCategory" alias="materialscategory" />
+  <typeAlias type="com.kh.erp.storage.model.vo.Storage" alias="storage" />
+  <typeAlias type="com.kh.erp.storage.model.vo.StorageDetail" alias="storagedetail" />   
+  <typeAlias type="com.kh.erp.buy.model.vo.Purchase" alias="Purchase" />
+  <typeAlias type="com.kh.erp.board.model.vo.Board" alias="board" />
+  <typeAlias type="com.kh.erp.board.model.vo.Attachment" alias="attachment" />
+  <typeAlias type="com.kh.erp.m_storage.model.vo.M_storage"	alias="M_storage" />
+  <typeAlias type="com.kh.erp.product.model.vo.Product"	alias="Product" />
+  <typeAlias type="com.kh.erp.product_category.model.vo.Product_Category"	alias="Product_Category" />
+  <typeAlias type="com.kh.erp.quality_r.model.vo.Quality_r"	alias="Quality_r" />
+  <typeAlias type="com.kh.erp.quality_ch.model.vo.Quality_ch" alias="Quality_ch" />
+  <typeAlias type="com.kh.erp.sale.model.vo.Partner" alias="partner" />
+  <typeAlias type="com.kh.erp.sale.model.vo.Sale" alias="sale" />
+  <typeAlias type="com.kh.erp.sale.model.vo.SaleItem" alias="saleitem" />
+</typeAliases>
 <!-- 	<typeHandlers>
 		<package name="com.kh.erp.common.typeHandler"/>
 	</typeHandlers>  -->
 </configuration>
-
-
-
-
-
-
-
-
-
-

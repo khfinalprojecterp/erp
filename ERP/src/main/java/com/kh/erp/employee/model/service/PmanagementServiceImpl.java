@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.erp.employee.model.dao.PmanagementDao;
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.employee.model.vo.Pmanagement;
 
 
@@ -25,6 +26,12 @@ public class PmanagementServiceImpl implements PmanagementService {
 	public int updatePmanage(Pmanagement pmanage) {
 		
 		return pmanageDao.updatePmanage(pmanage);
+	}
+
+	@Override
+	public List<Employee> selectChar() {
+		// TODO Auto-generated method stub
+		return pmanageDao.selectChar();
 	}
 
 }
