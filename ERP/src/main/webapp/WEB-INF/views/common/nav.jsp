@@ -272,19 +272,13 @@
                     <li><a href="${pageContext.request.contextPath}/buy/buy_status.do">구매현황</a></li>
                 </ul>
             </li>
-			<!-- 효근 -->
+        	<!-- 효근 -->
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${enterprise.eCode}">물품 판매</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${enterprise.eCode}">판매 기록</a></li>
                 </ul>
             </li>
 			<!-- 한솔 -->
