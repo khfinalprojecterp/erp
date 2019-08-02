@@ -51,7 +51,7 @@
 	</select>
 	
 	<select id="selectEmp" resultType="Employee">
-		SELECT E.*, D.ECODE, T.ENAME   
+		SELECT E.*, D.ECODE, T.ENAME  ,D.DTITLE
 	FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE T  
 	WHERE E.DCODE = D.DCODE
 	AND D.ECODE = T.ECODE
@@ -139,6 +139,17 @@ order by d.ecode,d.dcode
 		VALUES (#{idCode}, #{dCode},
 		        DEFAULT,DEFAULT)
 	</insert>
+
+<update id="empUpdate">
+ UPDATE EMPLOYEE SET
+  WNAME = #{wName},
+  WPWD = #{wPwd}
+  WHERE IDCODE = #{idCode}
+  
+
+
+</update>
+
 
 
 	<update id="updateEmp" parameterType="Employee">

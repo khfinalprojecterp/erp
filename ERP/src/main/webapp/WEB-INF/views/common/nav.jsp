@@ -184,8 +184,8 @@
 				class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-						Profile</a></li>
+				<li><a href="${pageContext.request.contextPath}/enterprise/enterpriseEmployeeUpdate.do"><i class="fa fa-user fa-fw"></i> User
+						Profile</a></li>		
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 				<li class="divider"></li>
 				
@@ -276,9 +276,15 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a></li>
-                    <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${enterprise.eCode}">물품 판매</a></li>
-                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${enterprise.eCode}">판매 기록</a></li>
+                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="#">Second Level Link</a></li>
+                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li><a href="#">Third Level Link</a></li>
+                            <li><a href="#">Third Level Link</a></li>
+                            <li><a href="#">Third Level Link</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
 			<!-- 한솔 -->

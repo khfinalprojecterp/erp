@@ -14,10 +14,6 @@
 	</resultMap>
 	
 	
-
-
-
-
 	<insert id="insertEnterprise" parameterType="enterprise">
 		INSERT INTO ENTERPRISE VALUES(
 		ECODE_SEQ.NEXTVAL,
@@ -35,9 +31,17 @@
 	SELECT COUNT(*) FROM ENTERPRISE WHERE EID = #{eId}
 	</select>
 
+	<update id="updateEnterprise">
+	UPDATE ENTERPRISE SET
+	EPWD = #{ePwd},
+	ENAME = #{eName},
+	EEMAIL = #{eEmail},
+	EADDRESS = #{eAddress},
+	EPHONE = #{ePhone}
+	WHERE EID = #{eId}
+	</update>
 
 
-	
 
 
 

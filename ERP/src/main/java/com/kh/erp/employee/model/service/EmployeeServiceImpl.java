@@ -79,6 +79,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empDao.checkIdDuplicate(idCode);
 	}
 
+	@Override
+	public int employeeUpdate(Employee employee) {
+		
+		return empDao.employeeUpdate(employee);
+	}
+
 	
 	
 
