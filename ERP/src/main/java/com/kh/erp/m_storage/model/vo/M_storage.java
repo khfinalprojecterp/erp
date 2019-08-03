@@ -25,6 +25,13 @@ public class M_storage implements Serializable{
 }
 	
 	
+	public M_storage(int mSMSTOCK, int mSPRICE) {
+		super();
+		MSMSTOCK = mSMSTOCK;
+		MSPRICE = mSPRICE;
+	}
+
+
 	public M_storage(int mSNO) {
 		super();
 		MSNO = mSNO;

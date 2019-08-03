@@ -1,41 +1,44 @@
 package com.kh.erp.quality_r.model.dao;
 
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.kh.erp.quality_r.model.vo.Quality_r;
 @Repository
-
 public class Quality_rDaoImpl implements Quality_rDao {
-
+	@Autowired
+	SqlSessionTemplate sqlSession;
 	@Override
-	public int selectQuality_r(Quality_r quality_r) {
+	public int insert(Quality_r quality_r) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("quality_r.insertQuality_r",quality_r);
 	}
 
 	@Override
-	public int insertQulity_r(Quality_r quality_r) {
+	public List<Quality_r> selectQuality_rList() {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectList("quality_r.selectQuality_rList");
 	}
 
 	@Override
-	public Quality_r selectOneQuality_r(int QRCODE) {
+	public Quality_r selectQuality_r(int QRCODE) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("quality_r.selectQuality_r",QRCODE);
 	}
 
 	@Override
 	public int updateQuality_r(Quality_r quality_r) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("quality_r.selectQuality_r",quality_r);
 	}
 
 	@Override
-	public int deleteBoard(int QRCODE) {
+	public int deleteQuality_r(int QRCODE) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("quality_r.deleteQuality_r",QRCODE);
 	}
 
 }

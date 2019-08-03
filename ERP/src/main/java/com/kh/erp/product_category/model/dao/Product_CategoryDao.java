@@ -26,7 +26,7 @@ public interface Product_CategoryDao {
 		 * @param boardNo
 		 * @return
 		 */
-		M_storage selectOneProduct_Category(int PCATE); 
+		int selectOneProduct_Category(int PCATE); 
 		
 		
 		/**

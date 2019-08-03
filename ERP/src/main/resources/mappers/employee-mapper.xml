@@ -28,6 +28,21 @@
 		<result property="wPwd" column="wpwd" />
 	</resultMap>
 	
+	 
+	<resultMap id="resultEmployee2" type="Int">
+		<result property="count" column="COUNT(*)"></result>
+	</resultMap>
+	
+	
+	
+	
+	
+	<resultMap id="resultChart" type="Employee">
+		<result property="eCode" column="ecode" />
+		<result property="dCode" column="dcode" />
+		<result property="count" column="count(*)" />
+	</resultMap>
+	
 	
 	<select id="selectEmpList" resultType="Employee">
 		SELECT E.*,D.ECODE, D.DTITLE
@@ -36,12 +51,30 @@
 	</select>
 	
 	<select id="selectEmp" resultType="Employee">
-		SELECT E.*, D.ECODE, T.ENAME   
+		SELECT E.*, D.ECODE, T.ENAME  ,D.DTITLE
 	FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE T  
 	WHERE E.DCODE = D.DCODE
 	AND D.ECODE = T.ECODE
 	AND E.IDCODE = #{idCode}
 	</select>
+	
+
+	
+	<select id="selectEmp2" resultMap="resultEmployee2" >
+	SELECT COUNT(*) FROM EMPLOYEE WHERE IDCODE = #{idCode}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<select id="selectPmanageList" resultType="Employee">
 	
@@ -61,6 +94,28 @@
 	AND E.DCODE = D.DCODE
 	
 	</select>
+	
+	
+	
+	
+	<select id="selectChart" resultMap="resultChart">	
+select d.ecode, d.dcode, count(*) 
+from employee e, department d
+where e.dcode = d.dcode
+group by d.ecode,d.dcode
+order by d.ecode,d.dcode
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -84,6 +139,17 @@
 		VALUES (#{idCode}, #{dCode},
 		        DEFAULT,DEFAULT)
 	</insert>
+
+<update id="empUpdate">
+ UPDATE EMPLOYEE SET
+  WNAME = #{wName},
+  WPWD = #{wPwd}
+  WHERE IDCODE = #{idCode}
+  
+
+
+</update>
+
 
 
 	<update id="updateEmp" parameterType="Employee">

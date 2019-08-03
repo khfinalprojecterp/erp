@@ -190,8 +190,8 @@
 				class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-						Profile</a></li>
+				<li><a href="${pageContext.request.contextPath}/enterprise/enterpriseEmployeeUpdate.do"><i class="fa fa-user fa-fw"></i> User
+						Profile</a></li>		
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 				<li class="divider"></li>
 				
@@ -278,31 +278,23 @@
                     <li><a href="${pageContext.request.contextPath}/buy/buy_status.do">구매현황</a></li>
                 </ul>
             </li>
-			<!-- 효근 -->
+        	<!-- 효근 -->
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${enterprise.eCode}">물품 판매</a></li>
+                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${enterprise.eCode}">판매 기록</a></li>
                 </ul>
             </li>
 			<!-- 한솔 -->
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>생산 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">작업지시서</a></li>
+                    <li><a href="${pageContext.request.contextPath}/production/work_order.do">작업지시서</a></li>
                     <li><a href="#">생산불출<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">생산품목</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
                         </ul>
                     </li>
                     <li><a href="#">생산입고</a></li>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product_category">
+
+	<!-- <resultMap type="M_storage" id="M_storage">
+		<result column="IDCODE" property="IDCODE"
+		        typeHandler="strArrTypeHandler"/>
+	</resultMap> -->
+	
+	<select id="selectProduct_CategoryList" resultType="Product_Category">
+		SELECT * FROM PRODUCT_CATEGORY ORDER BY PCATE DESC
+	</select>
+	
+	<select id="selectProduct_Category" parameterType="_int" resultType="Product_Category">
+		SELECT * FROM PRODUCT_CATEGORY WHERE  = #{PCATE}
+	</select>
+	
+	<insert id="insertProduct_Category" parameterType="Product_Category">
+		INSERT INTO PRODUCT_CATEGORY
+		VALUES (
+		        #{PCATE},#{PCNAME})
+	</insert>
+ 
+	<update id="updateProduct_Category" parameterType="Product_Category">
+		UPDATE PRODUCT_CATEGORY
+		SET PCNAME= #{PCNAME}
+		WHERE PCATE = #{PCATE}
+	</update>
+	
+	<delete id="deleteProduct_Category" parameterType="_int">
+		DELETE FROM PRODUCT_CATEGORY WHERE PCATE = #{PCATE}
+	</delete> 
+</mapper>
+
+
+
+
+
+
+
+

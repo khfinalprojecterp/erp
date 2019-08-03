@@ -20,7 +20,8 @@
 							<th>기업 아이디</th>
 							<td>
 								<div id="userId-container">
-									<input type="text" class="form-control" placeholder="4글자이상" name="eId" id="eId_" required>
+									<input type="text" class="form-control" placeholder="4글자이상" name="eId" id="eId" required>
+									<input type="button" value="중복검사" id="idCheck">
 				            	</div>
 							</td>
 						</tr>
@@ -45,7 +46,7 @@
 						<tr>
 							<th>사업자번호</th>
 							<td>	
-							<input type="text" class="form-control" name="eNo" id="eNo" required>
+							<input type="text" class="form-control" name="eNo" id="eNo" placeholder="(-없이)" required>
 							</td>
 						</tr>
 				
@@ -74,28 +75,76 @@
 			
 						</tr>
 					</table>
-					<input type="submit" class="btn btn-outline-success" value="가입하기" >
-					<input type="reset"  class="btn btn-outline-danger" value="취소">
+					<input id="idgo" type="submit" class="btn btn-outline-success" value="가입하기" disabled>
+					<input id="idreset" type="reset"  class="btn btn-outline-danger" value="리셋">
 				</form>
 			</div>
-		
-		<script>
-	$(function(){
-		// 비밀번호 확인 일치 여부
-		
-		$('#epwd2').blur(function(){
-			var p1 = $('#epwd_').val(),
-			    p2 = $('#epwd2').val();
-			if(p1 != p2){
-				alert("패스워드가 일치하지 않습니다.");
-				$('#epwd_').focus();
-			}
-		}});
-		</script>
-	
+			
+
+ 		<script> 
+ 	
+ 			$('#ePwd2').blur(function(){
+ 				var p1 = $('#ePwd_').val(),
+ 				    p2 = $('#ePwd2').val();
+ 				if(p1 != p2){
+ 					alert("패스워드가 일치하지 않습니다.");
+ 					$('#ePwd_').focus();
+ 				}
+ 			});
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		$('#idreset').click(function(){
+ 			
+ 			
+ 			$('#eId').attr("readonly",false);
+ 			$('#idgo').attr("disabled", true);
+ 			
+ 			
+ 		});
+ 		
+ 		
+ 		
+  		  $('#idCheck').click(function() {
+  		         $.ajax({
+  		            url : "${pageContext.request.contextPath}/enterprise/checkIdDuplicate.do",
+  		            type : "post",
+  		            data : {
+  		               eId : $('#eId').val()
+  		            },	  
+  		            success : function(data) {
+  		                console.log(data);            
+  		               if (data == 'ok' && $('#eId').val() != "") {
+  		                  
+  		            	   $('#idgo').attr("disabled", false);
+  		            	   $('#eId').attr("readonly",true);
+  		            	   alert("사용 가능한 아이디입니다.");
+
+  		               } else {
+  		                  alert("이미 사용 중인 ID와 공백은 사용 할 수 없는 ID 입니다."); 
+  		             	  $('#idgo').attr("disabled", true);
+  		                  $('#eId').select().val("");
+  		                  
+  		               } 
+  		            },
+  		            error : function(request, status, error) {
+  		               console.log("------ ERROR ------");
+  		               console.log(request);
+  		               console.log(status);
+  		               console.log(error);
+  		               console.log("-------------------");
+  		            }
+  		         });
+  	      });
+  		</script>  
+
 		
 		</div>
 	</div>
+
 
 </body>
 <c:import url="../common/footer.jsp" />

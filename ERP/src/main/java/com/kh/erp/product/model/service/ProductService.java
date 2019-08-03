@@ -23,7 +23,7 @@ public interface ProductService {
 	 * @param boardNo
 	 * @return
 	 */
-	M_storage selectOneProduct(int PCODE); 
+	M_storage selectProduct(int PCODE); 
 	
 	
 	/**
