@@ -27,9 +27,14 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>
+				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/appServlet/websocket-context.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
+		<async-supported>true</async-supported>
 	</servlet>
 	
 	<!-- url 패턴 중 *.do로 들어오는 appServlet에서 DispatcherServlet으로 처리한다. -->
@@ -37,6 +42,14 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- websocket 에서 사용하기 위해 '/' 도읽어 처리해준다. -->
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
 	
 	<!-- 한글 인코딩 문제를 해결하기 위해 EncodingFilter 를 등록한다 -->
 	<filter>

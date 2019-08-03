@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+	<resultMap id="chatroom" type="map">
+		<result property="chName" column="CHNAME" />
+		<result property="chCode" column="CHCODE" />
+		<result property="idCode" column="IDCODE" />
+	</resultMap>
+	<resultMap id="roommember" type="map">
+		<result property="chCode" column="CHCODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="wName" column="WNAME" />
+	</resultMap>
+	
+	<!-- CHATROOM -->
+	
+	<select id="selectChatRoomList" resultMap="chatroom" parameterType="_int">
+		SELECT C.CHCODE CHCODE, C.CHNAME CHNAME, R.IDCODE IDCODE
+    		FROM CHATROOM C , ROOMMEMBER R
+			WHERE C.CHCODE = R.CHCODE
+			AND R.IDCODE = #{idCode}
+	</select>
+	
+	<insert id="insertChatRoom" parameterType="chatroom">
+		INSERT INTO CHATROOM
+			VALUES (CHATROOM_SEQ.NEXTVAL, #{chName})
+	</insert>
+	
+	<update id="updateChatRoom" parameterType="chatroom">
+		UPDATE CHATROOM
+		    SET CHNAME = #{chName}
+		    WHERE CHCODE = #{chCode}
+	</update>
+	
+	<delete id="deleteChatRoom">
+		DELETE CHATROOM
+			WHERE CHCODE = #{chCode}
+	</delete>
+	
+	<!-- ROOMMEMBER -->
+	
+	<select id="selectRoomMemberList" resultMap="roommember">
+		SELECT R.CHCODE CHCODE, R.IDCODE IDCODE, E.WNAME WNAME
+  			FROM ROOMMEMBER R, EMPLOYEE E
+  			WHERE R.IDCODE = E.IDCODE
+	</select>
+	
+	<select id="selectEmMemberList" resultMap="roommember">
+		SELECT E.IDCODE IDCODE, E.WNAME WNAME
+			FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE E
+			WHERE E.DCODE = D.DCODE
+			  AND D.ECODE = E.ECODE
+		 	  AND E.ECODE = #{eCode}
+	</select>
+	
+	
+	
+	<insert id="insertChatRoomMember" parameterType="chatroom">
+		INSERT INTO ROOMMEMBER
+			VALUES(CHATROOM_SEQ.CURRVAL, #{idCode})
+	</insert>
+	
+	
+	<insert id="insertRoomMember">
+		INSERT INTO ROOMMEMBER
+			VALUES (#{chCode}, #{idCode})
+	</insert>
+	
+	<update id="updateRoomMember" parameterType="roommember">
+		UPDATE ROOMMEMBER
+		    SET CHCODE = #{chCode}
+		    WHERE IDCODE = #{idCode}
+	</update>
+	
+	<delete id="deleteRoomMember">
+		DELETE ROOMMEMBER
+			WHERE IDCODE = #{idCode}
+	</delete>
+
+</mapper>
