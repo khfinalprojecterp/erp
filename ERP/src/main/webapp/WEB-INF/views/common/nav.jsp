@@ -34,11 +34,17 @@
     
     
     	<c:if test="${ empty employee && !empty enterprise }">
-   		 <span>${enterprise.eName}</a> 님, 안녕하세요</span>
+    	 <span>
+    	 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button> -->
+    	 
+   		 ${enterprise.eName}</a> 님, 안녕하세요</span>
     	</c:if>
    
   		 <c:if test="${ empty enterprise && !empty employee }">
-   		 <span>${employee.wName}</a> 님, 안녕하세요</span>
+  		  <span>
+  		  <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button>
+  		  
+   		 ${employee.wName}</a> 님, 안녕하세요</span>
     	</c:if>
   
   
@@ -310,3 +316,14 @@
 	<!-- /. NAV SIDE  -->
 </div>
 </header>
+<script>
+	function fn_chatting(){
+		
+			
+		var title = "myChatting";
+		var url = '${pageContext.request.contextPath}/chattingRoom.do';
+		var status = "width=600px, height=400px, toolbar=no, location=no, status=no, memubar=no, scrollbars=no";
+		
+		var popup = window.open(url, title, status);
+	}
+</script>

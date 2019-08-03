@@ -18,6 +18,9 @@
 		        <typeAlias type="com.kh.erp.buy.model.vo.Purchase" alias="Purchase" />
 				<typeAlias type="com.kh.erp.board.model.vo.Board" alias="board" />
 				<typeAlias type="com.kh.erp.board.model.vo.Attachment" alias="attachment" />
+				<typeAlias type="com.kh.erp.websocket.model.vo.Chat" alias="chat" />
+				<typeAlias type="com.kh.erp.websocket.model.vo.ChatRoom" alias="chatroom" />
+				<typeAlias type="com.kh.erp.websocket.model.vo.RoomMember" alias="roommember" />
         <typeAlias type="com.kh.erp.m_storage.model.vo.M_storage"	alias="M_storage" />
 
 	</typeAliases>
