@@ -68,15 +68,13 @@ public class WebSocketDaoImpl implements WebSocketDao {
 	}
 
 	@Override
-	public List<Map<String, String>> chatList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, String>> chatList(String chCode) {
+		return sqlSession.selectList("chat.chatList", chCode);
 	}
 
 	@Override
 	public int insertChMessage(Chat chat) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("chat.insertChat", chat);
 	}
 
 	@Override
@@ -93,7 +91,6 @@ public class WebSocketDaoImpl implements WebSocketDao {
 
 	@Override
 	public List<Map<String, String>> emList(int idCode) {
-		
 		return sqlSession.selectList("chat.selectEmMemberList", idCode);
 	}
 
