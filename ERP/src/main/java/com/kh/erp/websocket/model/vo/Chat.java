@@ -10,7 +10,7 @@ public class Chat implements Serializable{
 
 
 	private static final long serialVersionUID = 34531L;
-	private int chCode;
+	private String chCode;
 	private int idCode;
 	private String chatDetail;
 	private Date chatTime;
@@ -18,17 +18,17 @@ public class Chat implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Chat(int chCode, int idCode, String chatDetail, Date chatTime) {
+	public Chat(String chCode, int idCode, String chatDetail, Date chatTime) {
 		super();
 		this.chCode = chCode;
 		this.idCode = idCode;
 		this.chatDetail = chatDetail;
 		this.chatTime = chatTime;
 	}
-	public int getChCode() {
+	public String getChCode() {
 		return chCode;
 	}
-	public void setChCode(int chCode) {
+	public void setChCode(String chCode) {
 		this.chCode = chCode;
 	}
 	public int getIdCode() {
@@ -53,6 +53,12 @@ public class Chat implements Serializable{
 	public String toString() {
 		return "Chat [chCode=" + chCode + ", idCode=" + idCode + ", chatDetail=" + chatDetail + ", chatTime=" + chatTime
 				+ "]";
+	}
+	public Chat(String chCode, int idCode, String chatDetail) {
+		super();
+		this.chCode = chCode;
+		this.idCode = idCode;
+		this.chatDetail = chatDetail;
 	}
 	
 	

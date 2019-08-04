@@ -25,7 +25,7 @@ public interface WebSocketDao {
 	
 	int deleteChMember(RoomMember roomMember);
 	
-	List<Map<String, String>> chatList();
+	List<Map<String, String>> chatList(String chCode);
 	
 	int insertChMessage(Chat chat);
 	

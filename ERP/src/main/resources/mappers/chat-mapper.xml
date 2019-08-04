@@ -13,6 +13,12 @@
 		<result property="idCode" column="IDCODE" />
 		<result property="wName" column="WNAME" />
 	</resultMap>
+		<resultMap id="chat" type="map">
+		<result property="chCode" column="CHCODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="chatDetail" column="CHATDETAIL" />
+		<result property="chatTime" column="CHATTIME" />
+	</resultMap>
 	
 	<!-- CHATROOM -->
 	
@@ -55,8 +61,6 @@
 		 	  AND E.ECODE = #{eCode}
 	</select>
 	
-	
-	
 	<insert id="insertChatRoomMember" parameterType="chatroom">
 		INSERT INTO ROOMMEMBER
 			VALUES(CHATROOM_SEQ.CURRVAL, #{idCode})
@@ -78,5 +82,18 @@
 		DELETE ROOMMEMBER
 			WHERE IDCODE = #{idCode}
 	</delete>
+	
+	<!-- Chat -->
+	
+	<insert id="insertChat">
+		INSERT INTO CHAT
+			VALUES(#{chCode}, #{idCode}, #{chatDetail}, SYSDATE)
+	</insert>
 
+	<select id="chatList" resultMap="chat">
+		SELECT *
+		  FROM CHAT
+		  WHERE CHCODE = #{chCode}
+		  ORDER BY CHATTIME
+	</select>
 </mapper>

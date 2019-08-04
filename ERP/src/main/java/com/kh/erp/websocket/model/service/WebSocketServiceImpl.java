@@ -66,15 +66,15 @@ public class WebSocketServiceImpl implements WebSocketService {
 	}
 
 	@Override
-	public List<Map<String, String>> chatList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, String>> chatList(String chCode) {
+		
+		return websocketDao.chatList(chCode);
 	}
 
 	@Override
 	public int insertChMessage(Chat chat) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return websocketDao.insertChMessage(chat);
 	}
 
 	@Override

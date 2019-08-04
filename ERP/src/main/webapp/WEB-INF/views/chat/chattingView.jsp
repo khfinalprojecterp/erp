@@ -79,9 +79,13 @@
     
     function sendMessage() {
         /* 맵핑된 핸들러 객채의 handleTextMessage매소드가 실행 */
-        sock.send($("#message").val());
+        today=new Date();
+        printDate=today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+        sock.send($("#message").val() + "|" + printDate);
     };
     
+     
+     
     function onMessage(evt){
         var data=evt.data;//new text객체로 보내준 값을 받아옴.
         var host=null;//메세지를 보낸 사용자 ip저장
@@ -96,10 +100,11 @@
         if(strArray.length>1) {
             sessionId=strArray[0];
             message=strArray[1];
-            host=strArray[2].substr(1,strArray[2].indexOf(":")-1);
-            userName=strArray[3];
-            today=new Date();
-            printDate=today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+            printDate=strArray[2];
+            host=strArray[3].substr(1,strArray[3].indexOf(":")-1);
+            userName=strArray[4];
+            //today=new Date();
+            //printDate=today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
             
             console.log(today);
             var ck_host='${host}';
