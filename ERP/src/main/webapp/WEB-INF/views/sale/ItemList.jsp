@@ -45,7 +45,7 @@
 												<td>${storageList[L.sCode-1].sPhone}</td>
 												<td>${L.sdCost}</td>
 												<td>${L.sdDate}</td>
-												<td>${L.sdStock}</td>
+												<td>${L.sdStock}</td> 
 												<td><input type="number" min="1" placeholder="판매가 입력"/></td>
 												<td><select>
 													<c:forEach var="i" begin="0" end="${L.sdStock}">
