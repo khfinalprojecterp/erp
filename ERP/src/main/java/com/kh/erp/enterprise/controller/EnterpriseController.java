@@ -87,6 +87,56 @@ public class EnterpriseController {
 		return "enterprise/enterpriseLogin";
 	}
 	
+	@RequestMapping("/enterprise/enterpriseEmployeeUpdate.do")
+	public String enterpriseEmployeeUpdate() {
+		
+		
+		
+		
+		return "enterprise/enterpriseEmployeeUpdate";
+	}
+	@RequestMapping("/enterprise/enterpriseUpdate.do")
+	public String enterpriseUpdate(
+			@RequestParam String eName,
+			@RequestParam String ePwd,
+			@RequestParam String eEmail,
+			@RequestParam String eAddress,
+			@RequestParam String ePhone
+			,Model model,
+			HttpSession session) {
+		Enterprise enterprise =(Enterprise)session.getAttribute("enterprise");
+		
+		
+		
+		
+		enterprise.setePwd(bcryptPasswordEncoder.encode(ePwd));
+		enterprise.seteName(eName);
+		enterprise.seteEmail(eEmail);
+		enterprise.seteAddress(eAddress);
+		enterprise.setePhone(ePhone);
+
+		
+		int result = enterpriseService.updateEnterprise(enterprise);
+		
+		String msg="/enterprise/enterpriseEmployeeUpdate.do";
+		if( result > 0 ) {
+			msg="수정 성공";
+
+		} else {
+			msg="수정 실패!";
+		}
+		String loc="/";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return  "common/msg";		
+		
+		
+			}
+	
+	
+	
+	
 	
 	
 	
@@ -140,65 +190,6 @@ public String memberLogin (
 	
 	
 	
-	
-//	@RequestMapping(value="/enterprise/enterpriseLoginEnd.do", 
-//	        method=RequestMethod.POST)
-//public ModelAndView enterpriseLoginEnd(
-//	@RequestParam String userId,
-//	@RequestParam String userPwd
-//	) {
-//
-//ModelAndView mv = new ModelAndView();
-//
-//
-////if( logintype == 1) {
-//try {
-//	// 1. 업무 로직 구현
-//	Enterprise enterprise = enterpriseService.selectEnterprise(userId);
-//	
-//	// 2. 반환할 화면 url 처리
-//	String loc = "/";
-//	String msg = "";
-//	
-//	if(enterprise == null) {
-//		msg = "존재하지 않는 기업입니다.";
-//	} else {
-//		// 3. 로그인에 사용한 비밀번호와
-//		//    원래 저장되어 있던 비밀번호 확인
-//		
-//		if(bcryptPasswordEncoder.matches(userPwd, enterprise.getePwd())) {
-//			msg = "로그인 성공!";
-//			mv.addObject("enterprise", enterprise);
-//			
-//		} else {
-//			msg = "비밀번호가 일치하지 않습니다!";
-//		}
-//		
-//	}
-//	
-//	// 기존에 request 객체에 저장했던 것들을 mv에 key/value로 저장한다.
-//	mv.addObject("loc", loc);
-//	mv.addObject("msg", msg);
-//
-//	// 화면 전달을 위한 viewName 등록하기
-//	mv.setViewName("common/msg");
-//	
-//} catch(Exception e) {
-//	
-//	throw new EnterpriseException("로그인 에러 : " + e.getMessage());
-//	
-//	// 그냥 실행하면 기본 에러페이지로 이동할 수 있기 때문에
-//	// 우리가 만든 error 페이지를 web.xml에 등록하여
-//	// 에러 발생 시 해당 에러 페이지로 이동하도록 
-//	// 공용 에러 페이지 등록 처리를 한다.
-//}
-//
-//return mv;
-//
-//	
-//
-//	}
-
 
 	@RequestMapping("/enterprise/enterpriseLogout.do")
 	public String memberLogout(HttpSession session) {
@@ -234,18 +225,6 @@ public String memberLogin (
 	
 	
 	
-//	@RequestMapping(value="/enterprise/checkIdDuplicate.do")
-//	@ResponseBody
-//	public Map<String, Object> idDupCheck(
-//			@RequestParam String eId){
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		
-//		boolean isUsable = enterpriseService.checkIdDuplicate(eId)== 0 ? true : false ;
-//		map.put("isUsable", isUsable);
-//		
-//		return map;
-//	}	
-	
+
 	
 }

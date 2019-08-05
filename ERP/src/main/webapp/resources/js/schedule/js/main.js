@@ -160,11 +160,16 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "employee/selectschedule.do",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	  
+    	  
+    	  
+    	  
       },
       success: function (response) {
+    	  console.log(response);
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
@@ -194,10 +199,13 @@ var calendar = $('#calendar').fullCalendar({
     //리사이즈한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "employee/resizeschedule.do",
       data: {
-        //id: event._id,
-        //....
+    	  
+        _id: event._id,
+        start:newDates.startDate,
+        end:newDates.endDate
+   
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -229,9 +237,16 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "employee/dragschedule.do",
       data: {
+    	  
+    	  _id: event._id,
+          start:newDates.startDate,
+          end:newDates.endDate
+    	  
+    	  
         //...
+  
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -263,7 +278,7 @@ var calendar = $('#calendar').fullCalendar({
         minute: today.minutes()
       });
       startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
-      endDate = moment(endDate).subtract(1, 'days');
+      endDate = moment(endDate).subtract(1, 'days'); 
 
       endDate.set({
         hours: today.hours() + 1,
@@ -319,7 +334,7 @@ var calendar = $('#calendar').fullCalendar({
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
-  defaultDate: moment('2019-05'), //실제 사용시 삭제
+   //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,

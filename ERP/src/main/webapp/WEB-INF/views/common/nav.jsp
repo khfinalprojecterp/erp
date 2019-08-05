@@ -12,7 +12,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="${pageContext.request.contextPath}"><strong><i
+		<a class="navbar-brand" href="index.jsp"><strong><i
 				class="icon fa fa-tasks"></i>&nbsp;&nbsp;FINAL PROJECT</strong></a>
 
 		<div id="sideNav" href="#">
@@ -34,11 +34,17 @@
     
     
     	<c:if test="${ empty employee && !empty enterprise }">
-   		 <span>${enterprise.eName}</a> 님, 안녕하세요</span>
+    	 <span>
+    	 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button> -->
+    	 
+   		 ${enterprise.eName}</a> 님, 안녕하세요</span>
     	</c:if>
    
   		 <c:if test="${ empty enterprise && !empty employee }">
-   		 <span>${employee.wName}</a> 님, 안녕하세요</span>
+  		  <span>
+  		  <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button>
+  		  
+   		 ${employee.wName}</a> 님, 안녕하세요</span>
     	</c:if>
   
   
@@ -184,8 +190,8 @@
 				class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-						Profile</a></li>
+				<li><a href="${pageContext.request.contextPath}/enterprise/enterpriseEmployeeUpdate.do"><i class="fa fa-user fa-fw"></i> User
+						Profile</a></li>		
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 				<li class="divider"></li>
 				
@@ -216,7 +222,7 @@
 	<div class="sidebar-collapse">
 		<ul class="nav" id="main-menu">
 
-			<li><a class="active-menu" href="${pageContext.request.contextPath}"><i	class="fa fa-dashboard"></i>ERP</a></li>
+			<li><a class="active-menu" href="index.html"><i	class="fa fa-dashboard"></i>ERP</a></li>
 			
 			<!-- 세호 -->
             <li>
@@ -272,7 +278,7 @@
                     <li><a href="${pageContext.request.contextPath}/buy/buy_status.do">구매현황</a></li>
                 </ul>
             </li>
-			<!-- 효근 -->
+        	<!-- 효근 -->
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -302,3 +308,15 @@
 	<!-- /. NAV SIDE  -->
 </div>
 </header>
+<script>
+	function fn_chatting(){
+		
+			
+		var title = "myChatting";
+		var url = '${pageContext.request.contextPath}/chattingRoom.do';
+		var status = "width=600px, height=400px, toolbar=no, location=no, status=no, memubar=no, scrollbars=no";
+		
+		var popup = window.open(url, title, status);
+	}
+</script>
+

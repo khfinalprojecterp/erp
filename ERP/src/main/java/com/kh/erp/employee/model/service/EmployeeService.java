@@ -34,5 +34,7 @@ public interface EmployeeService {
 	List<Attendance> selectAttendnaceList();
 
 	int updateAttendance(Attendance attendance);
+
+	int employeeUpdate(Employee employee);
 	
 }

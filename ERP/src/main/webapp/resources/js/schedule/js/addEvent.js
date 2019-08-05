@@ -30,7 +30,7 @@ var newEvent = function (start, end, eventType) {
     eventModal.modal('show');
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-    var eventId = 1 + Math.floor(Math.random() * 1000);
+    //var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
     //새로운 일정 저장버튼 클릭
@@ -38,7 +38,7 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: eventId,
+          //  _id: eventId,
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
@@ -80,14 +80,30 @@ var newEvent = function (start, end, eventType) {
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "",
+            url: "employee/insertschedule.do",
             data: {
+            	
+            	  title: eventData.title,
+                  start: eventData.start,
+                  
+                  
+                  end: eventData.end,
+                  
+                  
+                  description: eventData.description,
+                  type: eventData.type,
+                  username: '사나',
+                  backgroundColor: editColor.val(),
+                  textColor: '#ffffff',
+                  allDay: eventData.allDay
+            	
                 //.....
+ 
             },
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+              
+                $('#calendar').fullCalendar('removeEvents');
+               $('#calendar').fullCalendar('refetchEvents');
             }
         });
     });

@@ -232,6 +232,18 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
+    
+    <!-- kiseok 웹소켓 추가 -->
+    <dependency>
+     <groupId>javax.websocket</groupId>
+     <artifactId>javax.websocket-api</artifactId>
+     <version>1.1</version>
+   </dependency>
+   <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-websocket</artifactId>
+    <version>4.2.4.RELEASE</version>
+   </dependency>   
 
 		<!-- Output files from Java to Excel (POI) -->
 		<dependency>
