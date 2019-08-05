@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scheduling">
+	
+
+
+<resultMap id="scheduleMap" type="Scheduling">
+		<id property="_id" column="sc_id" />
+		<result property="title" column="sc_title" />
+		<result property="description" column="sc_detail" />
+		<result property="start" column="sc_start" />
+		<result property="end" column="sc_end" />
+		<result property="type" column="sc_type" />
+		<result property="username" column="sc_name" />
+		<result property="backgroundColor" column="sc_back" />
+		<result property="textColor" column="sc_text" />
+		<result property="allDay" column="sc_allday" />
+			</resultMap>
+
+
+
+<select id="selectSchedule" resultMap="scheduleMap">
+	SELECT *
+	FROM SCHEDULING
+
+
+</select>
+
+
+
+
+
+<insert id="insertSchedule">
+
+	INSERT INTO SCHEDULING VALUES(
+	SC_SEQ.NEXTVAL,#{title},#{description},
+	#{start},#{end},#{type},#{username},#{backgroundColor},
+	#{textColor},#{allDay}
+	
+	)
+	
+</insert>
+
+
+
+
+</mapper>
