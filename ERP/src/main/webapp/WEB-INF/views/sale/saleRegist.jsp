@@ -93,6 +93,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary" onclick="itemDelivery();">물품 인계</button>
+					<button type="button" class="btn btn-success" onclick="saleExcelOutput();">excel로 내보내기</button>
 				</div>
 			</div>
 		</div>
@@ -147,6 +148,10 @@
 			} else {
 			location.href ="${pageContext.request.contextPath}/sale/itemDelivery.do?ecode="+${ecode}+"&statusIdx="+statusIdx;//ecode 수정필
 			}
+		}
+		
+		function saleExcelOutput(){
+			location.href ="${pageContext.request.contextPath}/sale/saleExcelOutput.do?ecode="+${ecode}+"&statusIdx="+statusIdx;
 		}
 		 
 	</script>
