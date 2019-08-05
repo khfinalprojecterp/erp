@@ -12,7 +12,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.jsp"><strong><i
+		<a class="navbar-brand" href="${pageContext.request.contextPath}"><strong><i
 				class="icon fa fa-tasks"></i>&nbsp;&nbsp;FINAL PROJECT</strong></a>
 
 		<div id="sideNav" href="#">
@@ -216,7 +216,7 @@
 	<div class="sidebar-collapse">
 		<ul class="nav" id="main-menu">
 
-			<li><a class="active-menu" href="index.html"><i	class="fa fa-dashboard"></i>ERP</a></li>
+			<li><a class="active-menu" href="${pageContext.request.contextPath}"><i	class="fa fa-dashboard"></i>ERP</a></li>
 			
 			<!-- 세호 -->
             <li>
