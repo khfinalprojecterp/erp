@@ -70,7 +70,9 @@
 								<option value="${P.partnerC}">${P.parName}</option>
 								</c:if>
 							</c:forEach>
+
 							</select>
+
 							&nbsp;&nbsp;&nbsp;
 							판매사원
 							<select id="saleEmpl">

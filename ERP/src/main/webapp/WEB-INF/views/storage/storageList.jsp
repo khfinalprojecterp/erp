@@ -66,22 +66,16 @@
 				<div class="modal-body">
 					<form>
 						<!-- 기업으로 로그인 일시 담당사원 리스트에서 고르게? -->
+							<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
+							<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">기업 이름:</label>
-							<input type="text" class="form-control" id="neweCode" value="50" readonly>
+							<input type="text" class="form-control" id="neweCoderealName" value="${employee.eName}" readonly>
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="newidCode" value="50" readonly>
+							<input type="text" class="form-control" id="newidCoderealName" value="${employee.wName}" readonly>
 						</div>
-						<!-- <div class="form-group">
-							<label for="message-text" class="col-form-label">기업 이름:</label>
-							<input type="text" class="form-control" id="neweCode" value="${enterprise.eName}" readonly>
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="newidCode" value="${employee.wName}" readonly>
-						</div>  -->
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">구분:</label>
 							<input type="text" class="form-control" id="newsCate">
@@ -161,8 +155,6 @@
 	<script>
 		
 		function newStorage() {
-			//var eCode = ${enterprise.eCode};
-			//var idCode = ${employee.idCode};
 			var eCode = $("#neweCode").val();
 			var idCode = $("#newidCode").val();
 			var sCate = $("#newsCate").val();

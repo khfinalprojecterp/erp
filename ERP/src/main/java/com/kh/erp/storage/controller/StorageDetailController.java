@@ -26,12 +26,14 @@ public class StorageDetailController {
 	@Autowired
 	MaterialsService materialsService;
 	
+
 	/* 
 	 * detail 을 하나 혹은 여러개를 수정해야 할 수 있으니(인서트도?) 객체로 받아온다.
 	 * 이를 controller 에서 for 문을 통해 여러번 처리하거나 , (next()) 사용
 	 * 객체 덩어리로 넘겨준후 , dao 혹은 service에서 처리하게 구현 한다.
 	 */
 	
+
 	@RequestMapping("/storage/storageDetailList.do")
 	public String selectStorageDetailList(Model model) {
 		
@@ -52,13 +54,7 @@ public class StorageDetailController {
 		ArrayList<Map<String, String>> plist = new ArrayList<>(storageDetailService.loadProductList());
 		
 		model.addAttribute("plist", plist);
-		/*
-		 * ArrayList<Map<String, String>> calist = new
-		 * ArrayList<>(materialsCategoryService.materialsCategoryList());
-		 * 
-		 * model.addAttribute("calist", calist);
-		 */
-		
+    		
 		return "storage/storageDetailList";
 		
 	}

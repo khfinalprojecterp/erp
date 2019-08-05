@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	<bean id="myHandler" class="com.kh.erp.websocket.WSHandler" />
+	
+	<!-- 위에 만들어서 선언한 핸들러와 url 동작 시 매핑해 줄 핸들러 매핑 정보 등록하기 -->
+	
+	<websocket:handlers>
+		<!-- SockJs를 통해 만든 경로와 일치하는 경로의 핸들러 등록을 통해 데이터 전달 시 해당 핸들러를 사용하도록 명시할 수 있다. -->
+		<websocket:mapping handler="myHandler" path="/chatting"/>
+		<!-- application 에서 httpSession을 WebsocketSession과 합쳐서 사용하게 하는 설정 -->
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+		<!-- scokJS를 사용하겠다면 -->
+		<websocket:sockjs/>
+	</websocket:handlers>
+
+</beans>
