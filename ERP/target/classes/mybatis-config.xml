@@ -25,7 +25,13 @@
   <typeAlias type="com.kh.erp.sale.model.vo.Partner" alias="partner" />
   <typeAlias type="com.kh.erp.sale.model.vo.Sale" alias="sale" />
   <typeAlias type="com.kh.erp.sale.model.vo.SaleItem" alias="saleitem" />
+  
+  <typeAlias type="com.kh.erp.websocket.model.vo.Chat" alias="chat" />
+  <typeAlias type="com.kh.erp.websocket.model.vo.ChatRoom" alias="chatroom" />
+  <typeAlias type="com.kh.erp.websocket.model.vo.RoomMember" alias="roommember" />
 </typeAliases>
+
+
 <!-- 	<typeHandlers>
 		<package name="com.kh.erp.common.typeHandler"/>
 	</typeHandlers>  -->

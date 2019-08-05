@@ -52,7 +52,11 @@
 		var idCode = ${employee.idCode};
 		
 		var chName = prompt("대화방의 이름을 입력하세요", "새로운 방 제목");
-		location.href = '${pageContext.request.contextPath}/roomcreate.do?idCode='+idCode+'&chName=' +chName;
+		if(chName.length > 0 && chName.trim() != null ) {
+			location.href = '${pageContext.request.contextPath}/roomcreate.do?idCode='+idCode+'&chName=' +chName;
+		} else {
+			alert("제목을 입력해 주세요");
+		}	
 	}
 	
 	</script>

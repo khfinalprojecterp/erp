@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +45,23 @@
         });
         $("#exitBtn").click(function(){
             console.log("exit message.....");
-            /* 채팅창에 작성한 메세지 전송 */
-            //opener.location.reload();
-
+            
+            //채팅방 종료
             onClose();
+        });
+        
+        $("#escapeBtn").click(function(){
+            console.log("exit message.....");
+            // 채팅방에서 나가기
+            var chCode= ${room};
+            var idCode= ${employee.idCode};
+            var resultexit = confirm("대화방에서 나가시겠습니까 ?");
+			if(resultexit) {
+				location.href = '${pageContext.request.contextPath}/roomexit.do?chCode='+chCode+'&idCode='+idCode;
+			} else {
+        		alert("취소 하셨습니다.");
+        	}
+            
         });
         $("#deleteBtn").click(function(){
         	var chCode = ${room};
@@ -62,17 +76,26 @@
         $("#newCodBtn").click(function(){
         	var chCode = ${room};
          	var newchat = prompt("초대할 사원의 사번을 입력하세요.");
-        	location.href = '${pageContext.request.contextPath}/updateMemberbyid.do?chCode='+chCode+"&idCode="
-        			+newchat;
+         	if(newchat.trim() != null && newchat.length > 0) {
+            	location.href = '${pageContext.request.contextPath}/updateMember.do?chCode='+chCode+"&idCode="+newchat;
+            	alert("사용자가 초대 되었습니다.");
+         	} else {
+         		alert("공란을 입력할 수는 없습니다.");
+         	}
+
         });
         
         //사용자 초대
         $("#updateMem").click(function(){
         	var chCode = ${room};
         	var idCode = $("#employeelist").val();
-        	location.href = '${pageContext.request.contextPath}/updateMember.do?idCode='+idCode+'&chCode='+chCode;
-        	
-        	alert("사용자가 초대 되었습니다.");
+        	if (idCode != null) {
+            	location.href = '${pageContext.request.contextPath}/updateMember.do?chCode='+chCode+"&idCode="+idCode;
+            	alert("사용자가 초대 되었습니다.");
+        	} else {
+        		alert("잘못된 초대 입니다.")
+        	}
+
         })
 
   });
@@ -103,8 +126,6 @@
             printDate=strArray[2];
             host=strArray[3].substr(1,strArray[3].indexOf(":")-1);
             userName=strArray[4];
-            //today=new Date();
-            //printDate=today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
             
             console.log(today);
             var ck_host='${host}';
@@ -144,7 +165,6 @@
             }
             
             scrollDown();
-            //console.log('chatting data : '+data);
         } else {
             //나가기 구현
             today=new Date();
@@ -174,8 +194,6 @@
     };
     
     function loadjoin() {
-/*     	var k = $('#hiddense').text();
-    	alert(k); */
     	$("#insertModal").modal();
     }
 </script>
@@ -201,7 +219,10 @@
 				<textarea name='message' id='message' style="width: 100%;"></textarea>
 				<br />
 				<button class='btn btn-primary' type="button" id='sendBtn'>전송</button>
-				<button style="float:right" class='btn btn-primary' type="button" id='exitBtn'>나가기</button><br><br>
+				<div style="float:right">
+					<button class='btn btn-primary' type="button" id='escapeBtn'>대화방 나가기</button>
+					<button class='btn btn-primary' type="button" id='exitBtn'>종료</button>
+				</div><br><br>
 				<button type="button" class="btn btn-primary" onclick="loadjoin();">사용자 초대</button>
 				<button class='btn btn-primary' type="button" id='newCodBtn'>사번으로 초대</button>
 				<button style="float:right" class='btn btn-primary' type="button" id='deleteBtn'>대화방 삭제</button>
@@ -219,13 +240,24 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="message-text" class="col-form-label">사원 초대:</label>
+			<c:if test="${ empty elist }">
+			</c:if>
 			<select class="custom-select" id="employeelist">
+				<c:set var = "memberIdlist" value = "${chMember}"/>
 				<c:forEach items="${elist}" var="e" >
-					<c:if test="${e.idCode ne employee.idCode }">
+					<c:set var = "idCode" value = "${e.idCode}"/>
+					<c:if test="${!fn:contains(memberIdlist,idCode)}">
 						<option value="${e.idCode}">${e.wName}</option>
 					</c:if>
 				</c:forEach>
 			</select>
+		
+			<script>
+				if($('#employeelist').children('option').length == 0){
+					$('<p>초대할수 있는 사원이 없습니다.</p>').insertAfter($('#employeelist'));
+					$('#employeelist').remove();
+				}
+			</script>
 		</div>
       </div>
       <div class="modal-footer">

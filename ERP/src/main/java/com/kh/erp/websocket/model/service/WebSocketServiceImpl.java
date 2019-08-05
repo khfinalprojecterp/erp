@@ -31,7 +31,7 @@ public class WebSocketServiceImpl implements WebSocketService {
 
 	@Override
 	public int updateRoom(ChatRoom chatRoom) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
@@ -49,20 +49,20 @@ public class WebSocketServiceImpl implements WebSocketService {
 
 	@Override
 	public int insertChMember(RoomMember roomMember) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public int updateChMember(RoomMember roomMember) {
-		// TODO Auto-generated method stub
+
 		return websocketDao.updateChMember(roomMember);
 	}
 
 	@Override
 	public int deleteChMember(RoomMember roomMember) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return websocketDao.deleteChMember(roomMember);
 	}
 
 	@Override
@@ -79,13 +79,13 @@ public class WebSocketServiceImpl implements WebSocketService {
 
 	@Override
 	public int updateChMessage(Chat chat) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public int deleteChMessage(Chat chat) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
@@ -93,6 +93,12 @@ public class WebSocketServiceImpl implements WebSocketService {
 	public List<Map<String, String>> emList(int idCode) {
 		
 		return websocketDao.emList(idCode);
+	}
+
+	@Override
+	public List<Map<String, String>> roomMemberList(String chCode) {
+		
+		return websocketDao.roomMemberList(chCode);
 	}
 
 
