@@ -49,8 +49,8 @@ function calDateWhenResize(event) {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
     newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   } else {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD');
   }
 
   return newDates;
@@ -77,8 +77,8 @@ function calDateWhenDragnDrop(event) {
 
   //all day가 아님
   else if (!event.allDay) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD');
   }
 
   return newDates;
@@ -160,11 +160,16 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "employee/selectschedule.do",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	  
+    	  
+    	  
+    	  
       },
       success: function (response) {
+    	  console.log(response);
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
@@ -319,7 +324,7 @@ var calendar = $('#calendar').fullCalendar({
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
-  defaultDate: moment('2019-05'), //실제 사용시 삭제
+   //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,
