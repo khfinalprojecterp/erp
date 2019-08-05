@@ -31,10 +31,6 @@ public class WebsocketController {
 		Employee employee = (Employee) session.getAttribute("employee");
 		int idCode= employee.getIdCode();
 		int eCode= employee.geteCode();
-
-		//String idCode= (Employee) session.getAttribute("employee").;
-		//ArrayList<Map<String, String>> list = new ArrayList<>(websocketService.roomList());
-		
 		
 		ArrayList<Map<String, String>> list = new ArrayList<>(websocketService.roomList(idCode));
 		ArrayList<Map<String, String>> mlist = new ArrayList<>(websocketService.memberList());
@@ -42,7 +38,6 @@ public class WebsocketController {
 		session.setAttribute("elist", elist);
 		model.addAttribute("list", list);
 		session.setAttribute("mlist", mlist);
-		//session.setAttribute("elist", elist);
 		
 		return "chat/chattingRoom";
 	}
@@ -61,7 +56,6 @@ public class WebsocketController {
 		
 		String loc="/chattingRoom.do";
 		model.addAttribute("loc", loc);
-		//model.addAttribute("msg", msg);
 		
 		return "common/loc";		
 	}
@@ -85,13 +79,15 @@ public class WebsocketController {
 		int result = websocketService.updateChMember(roomMember);
 		
 		String msg=""; if( result > 0) { msg="추가 성공!"; } else { msg="추가 실패!"; }
-
-		return "chat/chattingView";
+		
+		String loc="/chatting.do?chCode="+chCode;
+		model.addAttribute("loc", loc);
+		
+		return "common/loc";		
 		
 	}
 	
 	// 대화상대를 사번을 통해 추가
-	
 	@RequestMapping("/updateMemberbyid.do")
 	public String chattingUpdateMembyId(Model model, @RequestParam String idCode, @RequestParam String chCode) {
 		
@@ -101,8 +97,24 @@ public class WebsocketController {
 		
 		String msg=""; if( result > 0) { msg="추가 성공!"; } else { msg="추가 실패!"; }
 
-		return "chat/chattingView";
+		String loc="/chatting.do?chCode="+chCode;
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
 		
+		return "common/msg";		
+		
+	}
+	
+	
+	@RequestMapping("/roomexit.do")
+	public String chattingExitMem(Model model, @RequestParam String idCode, @RequestParam String chCode) {
+		
+		RoomMember roomMember = new RoomMember(Integer.parseInt(chCode), Integer.parseInt(idCode));
+		System.out.println(roomMember);
+		int result = websocketService.deleteChMember(roomMember);
+		
+		return "common/close";
+	
 	}
 	
 	// 채팅창 연결 역할
@@ -110,14 +122,19 @@ public class WebsocketController {
 	public String chatting(Model model, HttpServletRequest request, HttpSession session,
 			@RequestParam String chCode) {
 		
-		// 웹 소켓에 접속하여 사용자로 추가된 ip 저장하기
-		// -- 차후 사용자 구분을 위함
-		//model.addAttribute("host", request.getRemoteAddr()); // model에 ip 저장
-		//model.addAttribute("room", "1");
 
 		session.setAttribute("host", request.getRemoteAddr()); // model에 ip 저장
 		session.setAttribute("room", chCode);
 		
+		ArrayList<Map<String, String>> rmlist = new ArrayList<>(websocketService.roomMemberList(chCode));
+		String chMember = "";
+		
+		for(Map<String, String> map : rmlist) {
+			chMember += String.valueOf(map.get("idCode"));
+			chMember += " ";
+		}
+		model.addAttribute("chMember", chMember);
+
 		return "chat/chattingView";
 	}
 

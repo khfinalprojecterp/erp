@@ -31,9 +31,6 @@ public class WSHandler extends TextWebSocketHandler {
 	// 세션을 연결해주는 클래스
 	
 	// 접속 사용자 리스트
-	//private List<WebSocketSession> sessionList
-	//  = new ArrayList<>();
-	//WebSocketServiceImpl websocketService = new WebSocketServiceImpl();
 	
 	@Autowired
 	WebSocketService websocketService;
@@ -43,8 +40,6 @@ public class WSHandler extends TextWebSocketHandler {
 	// 에러났을 때, 혹은 디버깅을 대비한 logger 객체 생성
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	// 총 세개의 메소드 Override 가 가능하다.
-	
 	// 사용자 연결 후 실행할 내용을 구현하는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -70,8 +65,6 @@ public class WSHandler extends TextWebSocketHandler {
 				}
 			}
 		}
-		
-		//super.afterConnectionEstablished(session);
 	}
 
 	// 사용자 메세지 전달 시 접속한 사람들에게 메세지를 전달하는 메소드
@@ -98,8 +91,6 @@ public class WSHandler extends TextWebSocketHandler {
 				ws.sendMessage(new TextMessage(msg));
 			}
 		}
-		
-		//super.handleTextMessage(session, message);
 	}
 
 	// 사용자 접속 종료시  특정 내용을 실행하는 메소드

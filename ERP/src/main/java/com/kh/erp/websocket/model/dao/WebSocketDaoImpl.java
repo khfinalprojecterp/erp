@@ -63,8 +63,8 @@ public class WebSocketDaoImpl implements WebSocketDao {
 
 	@Override
 	public int deleteChMember(RoomMember roomMember) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("chat.deleteRoomMember", roomMember);
 	}
 
 	@Override
@@ -92,6 +92,12 @@ public class WebSocketDaoImpl implements WebSocketDao {
 	@Override
 	public List<Map<String, String>> emList(int idCode) {
 		return sqlSession.selectList("chat.selectEmMemberList", idCode);
+	}
+
+	@Override
+	public List<Map<String, String>> roomMemberList(String chCode) {
+		
+		return sqlSession.selectList("chat.RoomMemberList", chCode);
 	}
 
 }

@@ -34,4 +34,6 @@ public interface WebSocketDao {
 	int deleteChMessage(Chat chat);
 	
 	List<Map<String, String>> emList(int idCode);
+	
+	List<Map<String, String>> roomMemberList(String chCode);
 }

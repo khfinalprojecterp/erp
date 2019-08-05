@@ -53,6 +53,13 @@
   			WHERE R.IDCODE = E.IDCODE
 	</select>
 	
+		<select id="RoomMemberList" resultMap="roommember">
+		SELECT R.CHCODE CHCODE, R.IDCODE IDCODE, E.WNAME WNAME
+  			FROM ROOMMEMBER R, EMPLOYEE E
+  			WHERE R.IDCODE = E.IDCODE
+  			  AND CHCODE = #{chCode}
+	</select>
+	
 	<select id="selectEmMemberList" resultMap="roommember">
 		SELECT E.IDCODE IDCODE, E.WNAME WNAME
 			FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE E
@@ -80,7 +87,8 @@
 	
 	<delete id="deleteRoomMember">
 		DELETE ROOMMEMBER
-			WHERE IDCODE = #{idCode}
+		  WHERE IDCODE = #{idCode}
+		    AND CHCODE = #{chCode}
 	</delete>
 	
 	<!-- Chat -->
@@ -96,4 +104,5 @@
 		  WHERE CHCODE = #{chCode}
 		  ORDER BY CHATTIME
 	</select>
+	
 </mapper>
