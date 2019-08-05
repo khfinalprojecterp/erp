@@ -42,7 +42,7 @@ public interface Product_CategoryDao {
 		 * @param boardNo
 		 * @return
 		 */
-		int deleteProduct_Category(int PCATE);
+		int deleteProduct_Category(String pCATE);
 		
 		/**
 		 * 파일 한 개 삭제 메소드

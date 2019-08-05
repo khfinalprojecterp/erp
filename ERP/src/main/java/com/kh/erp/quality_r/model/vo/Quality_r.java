@@ -16,22 +16,115 @@ public class Quality_r implements Serializable{
 	private int SCODE; //창고 코드
 	private int PCODE;//물품코드
 	private int IN_CODE;//생산 입고 코드
+	
+	
+	private int ECODE; //기업코드
 	private String QRCHECK;//검사구분
+	
 	private String QRNOTE;//적요
 	private int QRSTOCK;// 수량 
 	private String QRSTATUS;// 진행 사항
-	public Quality_r() {
-		
-	}
 	
-	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, String qRCHECK, String qRNOTE,
-			int qRSTOCK, String qRSTATUS) {
+	//가상 변수
+	private String WNAME;
+	private String SADDR;
+	private String PNAME;
+	private String ENAME;
+	
+	
+	
+	
+	
+	
+	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, int eCODE, String qRCHECK,
+			String qRNOTE, int qRSTOCK, String qRSTATUS, String wNAME, String sADDR, String pNAME, String eNAME) {
 		super();
 		QRCODE = qRCODE;
 		IDCODE = iDCODE;
 		SCODE = sCODE;
 		PCODE = pCODE;
 		IN_CODE = iN_CODE;
+		ECODE = eCODE;
+		QRCHECK = qRCHECK;
+		QRNOTE = qRNOTE;
+		QRSTOCK = qRSTOCK;
+		QRSTATUS = qRSTATUS;
+		WNAME = wNAME;
+		SADDR = sADDR;
+		PNAME = pNAME;
+		ENAME = eNAME;
+	}
+
+
+	public String getWNAME() {
+		return WNAME;
+	}
+
+
+	public void setWNAME(String wNAME) {
+		WNAME = wNAME;
+	}
+
+
+	public String getSADDR() {
+		return SADDR;
+	}
+
+
+	public void setSADDR(String sADDR) {
+		SADDR = sADDR;
+	}
+
+
+	public String getPNAME() {
+		return PNAME;
+	}
+
+
+	public void setPNAME(String pNAME) {
+		PNAME = pNAME;
+	}
+
+
+	public String getENAME() {
+		return ENAME;
+	}
+
+
+	public void setENAME(String eNAME) {
+		ENAME = eNAME;
+	}
+
+
+	public Quality_r() {
+		
+	}
+	
+	
+	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int iN_CODE, int eCODE, String qRCHECK,
+			String qRNOTE, int qRSTOCK, String qRSTATUS) {
+		super();
+		QRCODE = qRCODE;
+		IDCODE = iDCODE;
+		SCODE = sCODE;
+		PCODE = pCODE;
+		IN_CODE = iN_CODE;
+		ECODE = eCODE;
+		QRCHECK = qRCHECK;
+		QRNOTE = qRNOTE;
+		QRSTOCK = qRSTOCK;
+		QRSTATUS = qRSTATUS;
+	}
+	
+	
+	public Quality_r(int qRCODE, int iDCODE, int sCODE, int pCODE, int eCODE, String qRCHECK, String qRNOTE,
+			int qRSTOCK, String qRSTATUS) {
+		super();
+		QRCODE = qRCODE;
+		IDCODE = iDCODE;
+		SCODE = sCODE;
+		PCODE = pCODE;
+		ECODE = eCODE;
 		QRCHECK = qRCHECK;
 		QRNOTE = qRNOTE;
 		QRSTOCK = qRSTOCK;
@@ -40,8 +133,9 @@ public class Quality_r implements Serializable{
 	@Override
 	public String toString() {
 		return "Quality_r [QRCODE=" + QRCODE + ", IDCODE=" + IDCODE + ", SCODE=" + SCODE + ", PCODE=" + PCODE
-				+ ", IN_CODE=" + IN_CODE + ", QRCHECK=" + QRCHECK + ", QRNOTE=" + QRNOTE + ", QRSTOCK=" + QRSTOCK
-				+ ", QRSTATUS=" + QRSTATUS + "]";
+				+ ", IN_CODE=" + IN_CODE + ", ECODE=" + ECODE + ", QRCHECK=" + QRCHECK + ", QRNOTE=" + QRNOTE
+				+ ", QRSTOCK=" + QRSTOCK + ", QRSTATUS=" + QRSTATUS + ", WNAME=" + WNAME + ", SADDR=" + SADDR
+				+ ", PNAME=" + PNAME + ", ENAME=" + ENAME + "]";
 	}
 	public int getQRCODE() {
 		return QRCODE;
@@ -100,7 +194,12 @@ public class Quality_r implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+	public int getECODE() {
+		return ECODE;
+	}
+	public void setECODE(int eCODE) {
+		ECODE = eCODE;
+	}
 	
 	
 	

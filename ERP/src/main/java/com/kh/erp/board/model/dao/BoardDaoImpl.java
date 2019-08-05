@@ -18,9 +18,8 @@ public class BoardDaoImpl implements BoardDao {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Map<String, String>> selectBoardList(int cPage, int limit) {
-		RowBounds rows = new RowBounds((cPage - 1) * limit, limit);
-		return sqlSession.selectList("board.selectBoardList", null, rows);
+	public List<Map<String, String>> selectBoardList() {
+		return sqlSession.selectList("board.selectBoardList");
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public interface BoardService {
 	 * @param limite
 	 * @return
 	 */
-	List<Map<String, String>> selectBoardList(int cPage, int limit);
+	List<Map<String, String>> selectBoardList();
 	
 	/**
 	 * 페이지 처리를 위한 게시글 총 갯수

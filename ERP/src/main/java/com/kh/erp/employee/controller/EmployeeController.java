@@ -1,7 +1,9 @@
 package com.kh.erp.employee.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +18,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.erp.department.model.service.DepartmentService;
 import com.kh.erp.department.model.vo.Department;
+import com.kh.erp.employee.model.exception.EmployeeException;
 import com.kh.erp.employee.model.service.EmployeeService;
+import com.kh.erp.employee.model.service.PmanagementService;
+import com.kh.erp.employee.model.vo.Attendance;
 import com.kh.erp.employee.model.vo.Employee;
+import com.kh.erp.employee.model.vo.Pmanagement;
 import com.kh.erp.enterprise.model.exception.EnterpriseException;
 import com.kh.erp.enterprise.model.vo.Enterprise;
 
 
+
 @Controller
 public class EmployeeController {
-
+	@Autowired
+	PmanagementService pmanageService;
 	
 	@Autowired
 	EmployeeService empService;
@@ -54,27 +62,120 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/employee/insertEmployee.do",
 	        method=RequestMethod.POST)
-	public String insertEmployee(Employee emp) {
+	public String insertEmployee(Employee emp, Model model) {
 
-
-		
-		
-		
 		String rawPassword = emp.getwPwd();
 	
 		emp.setwPwd(bcryptPasswordEncoder.encode(rawPassword));
 		
+		int result = empService.insertEmployee(emp);
+		empService.insertSub(emp);
+		
+		String msg="";
+		if( result > 0 ) {
+			msg="사원 등록 성공!";
+		} else {
+			msg="사원 등록 실패!";
+		}
+		
+		String loc="/employee/employeeList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+
+
+		return "common/msg";
+		
+}
+	@RequestMapping("/enterprise/employeeUpdate.do")
+	public String enterpriseUpdate(
+			@RequestParam String wName,
+			@RequestParam String wPwd
+			,Model model,
+			HttpSession session) {
+		Employee employee =(Employee)session.getAttribute("employee");
+		
+		
+		
+		
+		employee.setwPwd(bcryptPasswordEncoder.encode(wPwd));
+		employee.setwName(wName);
+		
+		int result = empService.employeeUpdate(employee);
+		
+		String msg="/enterprise/enterpriseEmployeeUpdate.do";
+		if( result > 0 ) {
+			msg="수정 성공";
+
+		} else {
+			msg="수정 실패!";
+		}
+		String loc="/";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return  "common/msg";		
+		
+		
+			}
 	
+	
+	
+	// 기업 수정용
+	@RequestMapping(value="/employee/updateEmployee.do",
+			method=RequestMethod.GET)
+	public String updateEmployee(Employee emp,Model model) {
 
-int result = empService.insertEmployee(emp);
+		int result = empService.updateEmployee(emp);
+		String msg="";
+		if( result > 0 ) {
+			msg="사원 수정 성공!";
+		} else {
+			msg="사원 수정 실패!";
+		}
+		
+		String loc="/employee/employeeList.do";
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
 
 
-return "redirect:/";
+		return "common/msg";
+		
+			}
+
+
+
+@RequestMapping("/employee/deleteEmployee.do")
+public String deleteEmployee(Employee emp, Model model) {
+
+try {
+	int idCode =emp.getIdCode();
+	// 1. 업무 로직
+	int result = empService.deleteEmployee(idCode);
+
+	// 2. 처리 결과에 따른 페이지 설정
+	String loc = "/";
+	String msg = "";
+	
+	if(result > 0 ) msg = "사원 삭제 성공!";
+	else msg = "사원 삭제 실패!";
+	
+	model.addAttribute("loc", loc);
+	model.addAttribute("msg", msg);
+	
+} catch (Exception e) {
+	// logger 파일에 에러 기록하기
+	
+	// 에러 페이지로 이동시키기
+	throw new EmployeeException("사원 삭제 에러 : " + e.getMessage());
 }
 
-	
-	
-	
+return "redirect:/employee/employeeList.do";
+
+}
+
+
 	@RequestMapping(value="/employee/employeeLoginEnd.do"
 		       , method=RequestMethod.POST)
 public String employeeLogin (
@@ -99,7 +200,15 @@ public String employeeLogin (
 			
 			if(bcryptPasswordEncoder.matches(userPwd, employee.getwPwd())) {
 				msg = "로그인 성공!";
+				
+				
 				session.setAttribute("employee", employee);
+			
+				System.out.println(employee);
+				
+				
+				
+				
 			} else {
 				msg = "비밀번호가 일치하지 않습니다!";
 			}
@@ -108,6 +217,7 @@ public String employeeLogin (
 		
 		model.addAttribute("loc", loc);
 		model.addAttribute("msg", msg);
+		
 		
 	} catch(Exception e) {
 		
@@ -139,6 +249,91 @@ public String employeeLogin (
 
 		return "redirect:/";
 	}
+	
+	
+	@RequestMapping("/employee/attendanceList.do")
+	public String attendanceList(Model model
+			) {
+	
+		
+		List<Attendance> list = empService.selectAttendnaceList();
+		
+		
+		List<Employee> clist = pmanageService.selectChar();
+		
+		
+		model.addAttribute("clist",clist);
+		
+		
+		
+		
+		model.addAttribute("list", list);
+		
+		
+		return "employee/attendanceList";
+		
+		
+	}
+	
+	
+	
+	
+		@RequestMapping(value="/employee/updateAttendance.do",
+		method=RequestMethod.GET)
+		public String updateAttendance(Attendance attendance,Model model) {
+
+			
+			int result = empService.updateAttendance(attendance);
+
+			
+			
+			String msg="";
+			if( result > 0 ) {
+				msg="근태 수정 성공!";
+			} else {
+				msg="근태 수정 실패!";
+			}
+			
+			String loc="/employee/attendanceList.do";
+			model.addAttribute("loc", loc);
+			model.addAttribute("msg", msg);
+			
+
+
+			return "common/msg";
+			
+		}
+	
+		
+		@RequestMapping(value="/employee/checkIdDuplicate.do")
+
+		public void checkIdDuplicate(
+				@RequestParam int idCode,
+				HttpServletResponse resp
+				) throws IOException {
+			
+			System.out.println(idCode);
+			
+			resp.getWriter().print((empService.checkIdDuplicate(idCode))>0? "no" : "ok");
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	

@@ -13,21 +13,39 @@ public class Purchase implements Serializable{
 	private static final long serialVersionUID = 1023L;
 	private int buy_code;
 	private int sCode;
-	private int mCode;
-	private int pCode;
+	private String mCode;
+	private String pCode;
 	private int idCode;
 	private int buy_amount;
 	private int buy_origin;
 	private int buy_price;
 	private String buy_status;
 	private int buy_discount;
+	private String sddivi;
+	private String buy_date;
 	
+	private String pName;
+	private String mName;
+	private String eCode;
 	
+	 
+	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName) {
+		super();
+		this.sCode = sCode;
+		this.mCode = mCode;
+		this.pCode = pCode;
+		this.idCode = idCode;
+		this.pName = pName;
+		this.mName = mName;
+		this.eCode = eCode;
+	}
+
+
 	public Purchase() {}
 
 
-	public Purchase(int buy_code, int sCode, int mCode, int pCode, int idCode, int buy_amount, int buy_origin,
-			int buy_price, String buy_status, int buy_discount) {
+	public Purchase(int buy_code, int sCode, String mCode, String pCode, int idCode, int buy_amount, int buy_origin,
+			int buy_price, String buy_status, int buy_discount, String sddivi, String buy_date) {
 		super();
 		this.buy_code = buy_code;
 		this.sCode = sCode;
@@ -39,6 +57,28 @@ public class Purchase implements Serializable{
 		this.buy_price = buy_price;
 		this.buy_status = buy_status;
 		this.buy_discount = buy_discount;
+		this.sddivi = sddivi;
+		this.buy_date = buy_date;
+	}
+
+
+	public String getpName() {
+		return pName;
+	}
+
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+
+	public String getmName() {
+		return mName;
+	}
+
+
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 
 
@@ -62,22 +102,22 @@ public class Purchase implements Serializable{
 	}
 
 
-	public int getmCode() {
+	public String getmCode() {
 		return mCode;
 	}
 
 
-	public void setmCode(int mCode) {
+	public void setmCode(String mCode) {
 		this.mCode = mCode;
 	}
 
 
-	public int getpCode() {
+	public String getpCode() {
 		return pCode;
 	}
 
 
-	public void setpCode(int pCode) {
+	public void setpCode(String pCode) {
 		this.pCode = pCode;
 	}
 
@@ -142,12 +182,46 @@ public class Purchase implements Serializable{
 	}
 
 
+	public String getSddivi() {
+		return sddivi;
+	}
+
+
+	public void setSddivi(String sddivi) {
+		this.sddivi = sddivi;
+	}
+
+
+	public String getBuy_date() {
+		return buy_date;
+	}
+
+
+	public void setBuy_date(String buy_date) {
+		this.buy_date = buy_date;
+	}
+
+
+	public String geteCode() {
+		return eCode;
+	}
+
+
+	public void seteCode(String eCode) {
+		this.eCode = eCode;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Purchase [buy_code=" + buy_code + ", sCode=" + sCode + ", mCode=" + mCode + ", pCode=" + pCode
 				+ ", idCode=" + idCode + ", buy_amount=" + buy_amount + ", buy_origin=" + buy_origin + ", buy_price="
-				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + "]";
+				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + ", sddivi=" + sddivi
+				+ "]";
 	}
+
+
+	
 
 	
 	

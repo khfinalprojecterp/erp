@@ -3,641 +3,174 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:import url="views/common/header.jsp" />
+<c:import url="views/common/scheduleHeader.jsp" />
 
 <body>
-
-	<c:import url="views/common/nav.jsp" />
 	<div id="page-wrapper">
 		<c:import url="views/common/bodyNav.jsp" />
 		<div id="page-inner">
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Advanced Tables -->
-					<div class="panel panel-default">
-						<div class="panel-heading">Advanced Tables</div>
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-striped table-bordered table-hover"
-									id="dataTables-example">
-									<thead>
-										<tr>
-											<th>Rendering engine</th>
-											<th>Browser</th>
-											<th>Platform(s)</th>
-											<th>Engine version</th>
-											<th>CSS grade</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-											<td>Trident</td>
-											<td>Internet Explorer 4.0</td>
-											<td>Win 95+</td>
-											<td class="center">4</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="even gradeC">
-											<td>Trident</td>
-											<td>Internet Explorer 5.0</td>
-											<td>Win 95+</td>
-											<td class="center">5</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="odd gradeA">
-											<td>Trident</td>
-											<td>Internet Explorer 5.5</td>
-											<td>Win 95+</td>
-											<td class="center">5.5</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="even gradeA">
-											<td>Trident</td>
-											<td>Internet Explorer 6</td>
-											<td>Win 98+</td>
-											<td class="center">6</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="odd gradeA">
-											<td>Trident</td>
-											<td>Internet Explorer 7</td>
-											<td>Win XP SP2+</td>
-											<td class="center">7</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="even gradeA">
-											<td>Trident</td>
-											<td>AOL browser (AOL desktop)</td>
-											<td>Win XP</td>
-											<td class="center">6</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Firefox 1.0</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td class="center">1.7</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Firefox 1.5</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Firefox 2.0</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Firefox 3.0</td>
-											<td>Win 2k+ / OSX.3+</td>
-											<td class="center">1.9</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Camino 1.0</td>
-											<td>OSX.2+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Camino 1.5</td>
-											<td>OSX.3+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Netscape 7.2</td>
-											<td>Win 95+ / Mac OS 8.6-9.2</td>
-											<td class="center">1.7</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Netscape Browser 8</td>
-											<td>Win 98SE+</td>
-											<td class="center">1.7</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Netscape Navigator 9</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.0</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.1</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.1</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.2</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.2</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.3</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.3</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.4</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.4</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.5</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.5</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.6</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">1.6</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.7</td>
-											<td>Win 98+ / OSX.1+</td>
-											<td class="center">1.7</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Mozilla 1.8</td>
-											<td>Win 98+ / OSX.1+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Seamonkey 1.1</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Gecko</td>
-											<td>Epiphany 2.20</td>
-											<td>Gnome</td>
-											<td class="center">1.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>Safari 1.2</td>
-											<td>OSX.3</td>
-											<td class="center">125.5</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>Safari 1.3</td>
-											<td>OSX.3</td>
-											<td class="center">312.8</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>Safari 2.0</td>
-											<td>OSX.4+</td>
-											<td class="center">419.3</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>Safari 3.0</td>
-											<td>OSX.4+</td>
-											<td class="center">522.1</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>OmniWeb 5.5</td>
-											<td>OSX.4+</td>
-											<td class="center">420</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>iPod Touch / iPhone</td>
-											<td>iPod</td>
-											<td class="center">420.1</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Webkit</td>
-											<td>S60</td>
-											<td>S60</td>
-											<td class="center">413</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 7.0</td>
-											<td>Win 95+ / OSX.1+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 7.5</td>
-											<td>Win 95+ / OSX.2+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 8.0</td>
-											<td>Win 95+ / OSX.2+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 8.5</td>
-											<td>Win 95+ / OSX.2+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 9.0</td>
-											<td>Win 95+ / OSX.3+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 9.2</td>
-											<td>Win 88+ / OSX.3+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera 9.5</td>
-											<td>Win 88+ / OSX.3+</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Opera for Wii</td>
-											<td>Wii</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Nokia N800</td>
-											<td>N800</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Presto</td>
-											<td>Nintendo DS browser</td>
-											<td>Nintendo DS</td>
-											<td class="center">8.5</td>
-											<td class="center">C/A<sup>1</sup>
-											</td>
-										</tr>
-										<tr class="gradeC">
-											<td>KHTML</td>
-											<td>Konqureror 3.1</td>
-											<td>KDE 3.1</td>
-											<td class="center">3.1</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeA">
-											<td>KHTML</td>
-											<td>Konqureror 3.3</td>
-											<td>KDE 3.3</td>
-											<td class="center">3.3</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeA">
-											<td>KHTML</td>
-											<td>Konqureror 3.5</td>
-											<td>KDE 3.5</td>
-											<td class="center">3.5</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeX">
-											<td>Tasman</td>
-											<td>Internet Explorer 4.5</td>
-											<td>Mac OS 8-9</td>
-											<td class="center">-</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="gradeC">
-											<td>Tasman</td>
-											<td>Internet Explorer 5.1</td>
-											<td>Mac OS 7.6-9</td>
-											<td class="center">1</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeC">
-											<td>Tasman</td>
-											<td>Internet Explorer 5.2</td>
-											<td>Mac OS 8-X</td>
-											<td class="center">1</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Misc</td>
-											<td>NetFront 3.1</td>
-											<td>Embedded devices</td>
-											<td class="center">-</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeA">
-											<td>Misc</td>
-											<td>NetFront 3.4</td>
-											<td>Embedded devices</td>
-											<td class="center">-</td>
-											<td class="center">A</td>
-										</tr>
-										<tr class="gradeX">
-											<td>Misc</td>
-											<td>Dillo 0.8</td>
-											<td>Embedded devices</td>
-											<td class="center">-</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="gradeX">
-											<td>Misc</td>
-											<td>Links</td>
-											<td>Text only</td>
-											<td class="center">-</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="gradeX">
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td>Text only</td>
-											<td class="center">-</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="gradeC">
-											<td>Misc</td>
-											<td>IE Mobile</td>
-											<td>Windows Mobile 6</td>
-											<td class="center">-</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeC">
-											<td>Misc</td>
-											<td>PSP browser</td>
-											<td>PSP</td>
-											<td class="center">-</td>
-											<td class="center">C</td>
-										</tr>
-										<tr class="gradeU">
-											<td>Other browsers</td>
-											<td>All others</td>
-											<td>-</td>
-											<td class="center">-</td>
-											<td class="center">U</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr class="gradeU">
-											<td><input type="button" value="버튼"/></td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
 
-						</div>
-					</div>
-					<!--End Advanced Tables -->
-				</div>
-			</div>
-			<!-- /. ROW  -->
-			<div class="row">
-				<div class="col-md-6">
-					<!--   Kitchen Sink -->
-					<div class="panel panel-default">
-						<div class="panel-heading">Kitchen Sink</div>
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Larry</td>
-											<td>the Bird</td>
-											<td>@twitter</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- End  Kitchen Sink -->
-				</div>
-								<div class="col-md-6">
-					<!--    Context Classes  -->
-					<div class="panel panel-default">
-
-						<div class="panel-heading">Context Classes</div>
-
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="success">
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr class="info">
-											<td>2</td>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr class="warning">
-											<td>3</td>
-											<td>Larry</td>
-											<td>the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr class="danger">
-											<td>4</td>
-											<td>John</td>
-											<td>Smith</td>
-											<td>@jsmith</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!--  end  Context Classes  -->
-				</div>
-			</div>
-			<!-- /. ROW  -->
-
-			<div class="row">
-				<div class="col-md-6">
-					<!--    Hover Rows  -->
-					<div class="panel panel-default">
-						<div class="panel-heading">Hover Rows</div>
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Larry</td>
-											<td>the Bird</td>
-											<td>@twitter</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- End  Hover Rows  -->
-				</div>
-				<div class="col-md-6">
-					<!--    Context Classes  -->
-					<div class="panel panel-default">
-
-						<div class="panel-heading">Context Classes</div>
-
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="success">
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr class="info">
-											<td>2</td>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr class="warning">
-											<td>3</td>
-											<td>Larry</td>
-											<td>the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr class="danger">
-											<td>4</td>
-											<td>John</td>
-											<td>Smith</td>
-											<td>@jsmith</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!--  end  Context Classes  -->
-				</div>
-			</div>
-			<!-- /. ROW  -->
-
-
-
-
-
+					<div class="container">
+			
+			        <!-- 일자 클릭시 메뉴오픈 -->
+			        <div id="contextMenu" class="dropdown clearfix">
+			            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+			                style="display:block;position:static;margin-bottom:5px;">
+			                <li><a tabindex="-1" href="#">카테고리1</a></li>
+			                <li><a tabindex="-1" href="#">카테고리2</a></li>
+			                <li><a tabindex="-1" href="#">카테고리3</a></li>
+			                <li><a tabindex="-1" href="#">카테고리4</a></li>
+			                <li class="divider"></li>
+			                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+			            </ul>
+			        </div>
+			
+			        <div id="wrapper">
+			            <div id="loading"></div>
+			            <div id="calendar"></div>
+			        </div>
+			
+			
+			        <!-- 일정 추가 MODAL -->
+			        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+			            <div class="modal-dialog" role="document">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+			                                aria-hidden="true">&times;</span></button>
+			                        <h4 class="modal-title"></h4>
+			                    </div>
+			                    <div class="modal-body">
+			
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+			                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
+			                            </div>
+			                        </div>
+			
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-title">일정명</label>
+			                                <input class="inputModal" type="text" name="edit-title" id="edit-title"
+			                                    required="required" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-start">시작</label>
+			                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-end">끝</label>
+			                                <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-type">구분</label>
+			                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+			                                    <option value="카테고리1">카테고리1</option>
+			                                    <option value="카테고리2">카테고리2</option>
+			                                    <option value="카테고리3">카테고리3</option>
+			                                    <option value="카테고리4">카테고리4</option>
+			                                </select>
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-color">색상</label>
+			                                <select class="inputModal" name="color" id="edit-color">
+			                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
+			                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
+			                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+			                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+			                                    <option value="#f06595" style="color:#f06595;">핑크색</option>
+			                                    <option value="#63e6be" style="color:#63e6be;">연두색</option>
+			                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+			                                    <option value="#4d638c" style="color:#4d638c;">남색</option>
+			                                    <option value="#495057" style="color:#495057;">검정색</option>
+			                                </select>
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-xs-12">
+			                                <label class="col-xs-4" for="edit-desc">설명</label>
+			                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+			                                    id="edit-desc"></textarea>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <div class="modal-footer modalBtnContainer-addEvent">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+			                    </div>
+			                    <div class="modal-footer modalBtnContainer-modifyEvent">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			                        <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+			                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+			                    </div>
+			                </div><!-- /.modal-content -->
+			            </div><!-- /.modal-dialog -->
+			        </div><!-- /.modal -->
+			
+			        <div class="panel panel-default">
+			
+			            <div class="panel-heading">
+			                <h3 class="panel-title">필터</h3>
+			            </div>
+			
+			            <div class="panel-body">
+			
+			                <div class="col-lg-6">
+			                    <label for="calendar_view">구분별</label>
+			                    <div class="input-group">
+			                        <select class="filter" id="type_filter" multiple="multiple">
+			                            <option value="카테고리1">카테고리1</option>
+			                            <option value="카테고리2">카테고리2</option>
+			                            <option value="카테고리3">카테고리3</option>
+			                            <option value="카테고리4">카테고리4</option>
+			                        </select>
+			                    </div>
+			                </div>
+			
+			                <div class="col-lg-6">
+			                    <label for="calendar_view">등록자별</label>
+			                    <div class="input-group">
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
+			                                checked>정연</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
+			                                checked>다현</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
+			                                checked>사나</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
+			                                checked>나연</label>
+			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
+			                                checked>지효</label>
+			                    </div>
+			                </div>
+			
+			            </div>
+			        </div>
+			        <!-- /.filter panel -->
+			    </div>
+			    <!-- /.container -->
 		</div>
 	</div>
+
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/ko.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/select2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/addEvent.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/editEvent.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/schedule/js/etcSetting.js"></script>
+
 </body>
-<c:import url="views/common/footer.jsp" />
+</html>

@@ -14,6 +14,29 @@ public class Product implements Serializable{
 	private String PNAME;//물품명
 	private String PSIZE;//규격명
 	private int PBARCODE;//바코드
+	private String PCNAME;
+	
+	public String getPCNAME() {
+		return PCNAME;
+	}
+
+
+	public void setPCNAME(String pCNAME) {
+		PCNAME = pCNAME;
+	}
+
+
+	public Product(int pCODE, String pCATE, String pNAME, String pSIZE, int pBARCODE, String pCNAME) {
+		super();
+		PCODE = pCODE;
+		PCATE = pCATE;
+		PNAME = pNAME;
+		PSIZE = pSIZE;
+		PBARCODE = pBARCODE;
+		PCNAME = pCNAME;
+	}
+
+
 	public Product() {
 		
 	}
@@ -38,7 +61,7 @@ public class Product implements Serializable{
 	@Override
 	public String toString() {
 		return "Product [PCODE=" + PCODE + ", PCATE=" + PCATE + ", PNAME=" + PNAME + ", PSIZE=" + PSIZE + ", PBARCODE="
-				+ PBARCODE + "]";
+				+ PBARCODE + ", PCNAME=" + PCNAME + "]";
 	}
 	public int getPCODE() {
 		return PCODE;

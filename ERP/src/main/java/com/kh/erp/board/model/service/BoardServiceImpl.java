@@ -21,9 +21,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao boardDao;
 	
 	@Override
-	public List<Map<String, String>> selectBoardList(int cPage, int limit) {
+	public List<Map<String, String>> selectBoardList() {
 		
-		return boardDao.selectBoardList(cPage, limit);
+		return boardDao.selectBoardList();
 	}
 
 	@Override

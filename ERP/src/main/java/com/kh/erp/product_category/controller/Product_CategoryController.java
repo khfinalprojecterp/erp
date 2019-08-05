@@ -50,7 +50,7 @@ method=RequestMethod.POST)
 public String insertProduct_Category(
 		/*M_storage m_storage*/
 		
-		@RequestParam int PCATE,
+		@RequestParam String PCATE,
 		@RequestParam String PCNAME
 		) {
 
@@ -87,9 +87,9 @@ public String selectProduct_CategoryList(Model model) {
 
 
 
-@RequestMapping("/product_category/updateProduct_Category.do")
-public String updateProduct_Category(@RequestParam int PCATE ,
-		//
+@RequestMapping(value="/product_category/updateProduct_Category.do", method=RequestMethod.POST)
+public String updateProduct_Category(
+		@RequestParam String PCATE,
 	
 		@RequestParam String PCNAME,
 	
@@ -106,7 +106,7 @@ public String updateProduct_Category(@RequestParam int PCATE ,
 	} else {
 		msg="수정 실패!";
 	}
-	String loc="/product_category/Product-CategoryList.do";
+	String loc="/product_category/Product_CategoryList.do";
 	model.addAttribute("loc", loc);
 	model.addAttribute("msg", msg);
 	
@@ -117,7 +117,7 @@ public String updateProduct_Category(@RequestParam int PCATE ,
 
 
 @RequestMapping("/product_category/deleteProduct_Category.do")
-public String deleteProduct_Category(@RequestParam int PCATE, Model model) {
+public String deleteProduct_Category(@RequestParam String PCATE, Model model) {
 	
 	int result = product_categoryService.deleteProduct_Category(PCATE);
 	String msg="";

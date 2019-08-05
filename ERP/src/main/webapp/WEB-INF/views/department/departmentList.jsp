@@ -32,13 +32,15 @@
                               </tr>
                            </thead>
                            <tbody>
-                            <c:forEach var="depart" items="${list}">
+                        <c:forEach var="depart" items="${list}">
 								<c:if test="${ enterprise.eCode eq depart.eCode }">
-									<tr>
+									<tr id="${depart.dCode}">
+									<td style="display: none;">${depart.dCode}</td>
 									<td>${depart.dTitle}</td>
 									</tr>
 								</c:if>
 							</c:forEach>
+						
                            </tbody>
                         </table>
                      </div>
@@ -89,8 +91,108 @@
       }
 	</script>   
 	
+		<!-- --------------------- -->
+	
+			   <!-- 부서 수정 삭제  -->
+   <div class="modal fade" id="updateDepartment" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">부서 수정 삭제</h5>
+               <!-- <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button> -->
+            </div>
+            <div class="modal-body">
+               <form id="departUpdateFrm">
+                  <div class="form-group">
+                  	 
+                     <input type="hidden" class="form-control" id="dCode" name="dCode" readonly>
+                  	 </div>
+                  	  <div class="form-group">
+                     <label for="message-text" class="col-form-label">부서명</label>
+                    <input type="text" class="form-control"  name="dTitle" id="dTitle" required>
+                   </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary"
+                  data-dismiss="modal">취소</button>
+               <button type="button" class="btn btn-primary" onclick="updateDepartment();">수정하기</button>
+               <button type="button" class="btn btn-danger" onclick="deleteDepartment();">삭제하기</button>
+            </div>
+         </div>
+        </div>
+       </div>
+		<!-- -------------------------------------------------------------------------------------- -->
+	
+	
+	<script>
+	 function updateDepartment() {
+         alert("부서 정보 수정");
+         $('#departUpdateFrm').attr("action","${pageContext.request.contextPath}/department/updateDepartment.do");
+         $('#departUpdateFrm').attr("method", "post");
+ 		 $('#departUpdateFrm').submit();
+         
+         
+         
+      }
+      
+      function deleteDepartment() {
+         alert("부서 정보 삭제");
+         $('#departUpdateFrm').attr("action","${pageContext.request.contextPath}/department/deleteDepartment.do");
+         $('#departUpdateFrm').attr("method", "post");
+ 		 $('#departUpdateFrm').submit();
+ 
+      }
+      
+      
+      $("#dataTables-example td").click(
+            function() {
+               var mCate = $(this).value;
+               document.getElementById("dCode").value = $(this).parent().children().eq(0).text();
+               document.getElementById("dTitle").value = $(this).parent().children().eq(1).text();
+               
+               $("#updateDepartment").modal();
+            });
+   </script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-		<!-- ------------------ -->
+		<!-- --------------------- -->
 	
 		
 	<div class="row">
@@ -104,19 +206,21 @@
                   <div class="panel-body">
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
-                           id="dataTables-example">
+                           id="dataTables-example2">
                            <thead>
                               <tr>
+                              	<th>부서코드</th>
                                  <th>부서명</th>
-		     <th>파트명</th>
-	                   <th>지역</th>
-		     <th>구분</th>
+		     					<th>파트명</th>
+	                  			 <th>지역</th>
+		     					<th>구분</th>
                               </tr>
                            </thead>
                            <tbody>
                            <c:forEach var="field" items="${flist}">
 			<c:if test="${ enterprise.eCode eq field.eCode }">
-			<tr>
+			<tr id="${field.fCode}">
+				<td> ${field.fCode}</td>
 				<td>${field.dTitle}</td>
 				<td>${field.fName}</td>
 				<td>${field.fArea}</td>
@@ -170,7 +274,7 @@
 	       <input type="text" class="form-control" placeholder="파트이름" name="fName" id="fName" required>
 		
 	        <label for="message-text" class="col-form-label">지역</label>
-	        <input type="text" class="form-control" placeholder="지역" name="Area" id="Area" required>
+	        <input type="text" class="form-control" placeholder="지역" name="fArea" id="fArea" required>
 		
 	        <label for="message-text" class="col-form-label">파트 구분</label>
 	        <div class="form-check form-check-inline">
@@ -206,7 +310,65 @@
 	
 
 		<!-- ------------------ -->
+		   <!-- 부서 상세  삭제  -->
+   <div class="modal fade" id="updateField" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">부서 상세 삭제</h5>
+               <!-- <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button> -->
+            </div>
+            <div class="modal-body">
+               <form id="fieldUpdateFrm">
+               
+               
+           <div class="form-group">
+           <input  type="text" class="form-control" name="fCode" id="fCode">
+                 	 
+                </div>   
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary"
+                  data-dismiss="modal">취소</button>
+               <button type="button" class="btn btn-danger" onclick="deleteField();">삭제하기</button>
+            </div>
+         </div>
+        </div>
+       </div>
+		<!-- -------------------------------------------------------------------------------------- -->
 	
+	
+	<script>
+	  
+      function deleteField() {
+         alert("부서 상세 정보 삭제");
+         $('#fieldUpdateFrm').attr("action","${pageContext.request.contextPath}/field/deleteField.do");
+         $('#fieldUpdateFrm').attr("method", "get");
+ 		 $('#fieldUpdateFrm').submit();
+ 
+      }
+      
+      
+      $("#dataTables-example2 td").click(
+            function() {
+               var fCode = $(this).value;
+              document.getElementById("fCode").value = $(this).parent().children().eq(0).text();
+            
+               
+               $("#updateField").modal();
+            });
+   </script>
+	
+	<!-- --------------------------------------------------------------------------------------- -->
+		
+		
+		
+		
 		
 		
 		</div>

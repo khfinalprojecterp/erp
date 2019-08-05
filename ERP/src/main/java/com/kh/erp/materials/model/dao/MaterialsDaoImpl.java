@@ -1,6 +1,7 @@
 package com.kh.erp.materials.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,15 @@ public class MaterialsDaoImpl implements MaterialsDao {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<Materials> materialsList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, String>> materialsList() {
+
+		return sqlSession.selectList("materials.selectMaterialList");
 	}
 
 	@Override
 	public int insertMaterials(Materials materials) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.insert("materials.insertMaterial", materials);
 	}
 
 	@Override
@@ -34,13 +35,13 @@ public class MaterialsDaoImpl implements MaterialsDao {
 
 	@Override
 	public int updateMaterials(Materials materials) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update("materials.updateMaterial", materials);
 	}
 
 	@Override
 	public int deleteMaterials(int mCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("materials.deleteMaterial", mCode);
 	}
 }

@@ -76,10 +76,10 @@
                  
                      
                      <label for="message-text" class="col-form-label">분류코드</label>
-                     <input type="number" class="form-control" id="PCATE" placeholder="숫자만 입력하세요"name="PCATE" required>
+                     <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력하세요"name="PCATE" required>
                      
                       <label for="message-text" class="col-form-label">분류명</label>
-                     <input type="number" class="form-control" id="PCNAME" placeholder="코드를 입력하세요" name="PCNAME" required>
+                     <input type="text" class="form-control" id="PCNAME" placeholder="코드를 입력하세요" name="PCNAME" required>
                      
                    
                     
@@ -114,8 +114,9 @@
             				<input type="number" class="form-control" placeholder="숫자만 입력하세요"id="UPCATE" >
           				</div> -->
 						<div class="form-group">
+							<input type="hidden" class="form-control" id="UPCATE" name="PCATE" />
 							<label for="message-text" class="col-form-label">분류명</label>
-							<input type="text" class="form-control" placeholder="코드를 입력하세요"id="UPCNAME" name="PCNAME" >
+							<input type="text" class="form-control" placeholder="코드를 입력하세요" id="UPCNAME" name="PCNAME" >
 						</div>
 					</form>
 				</div>
@@ -199,6 +200,8 @@
 	}
 	
 	function updateProduct_Category() {
+        // 수정 버튼을 눌렀을 때 uppcFrm 이라는 폼의 정보를
+        // updateProduct_Category.do 한테 전달한다.
         
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
 		if (update_validation()) {
@@ -213,7 +216,7 @@
 	}
 
 /* /* 	function updateProduct_Category() {
-		
+	
 		/* var PCATE = $("#UPCATE").val(); */
 /* 		var PCNAME = $("#UPCNAME").val();
 		
@@ -239,12 +242,12 @@
 	 $("#dataTables-example td").click(
 			function() {
 				/* var mCate = $(this).value; */
-				PCODE = $(this).parent().children().eq(0).text();
-				$('#UPCODE').val(PCODE);
+				PCATE = $(this).parent().children().eq(0).text();
+				$('#UPCATE').val(PCATE);
 				
 				
 				
-				PCODE = $(this).parent().children().eq(1).text();
+				PCNAME = $(this).parent().children().eq(1).text();
 				$('#UPCNAME').val(PCNAME);
 			
 				$("#updateProduct_Category").modal();

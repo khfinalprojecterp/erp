@@ -3,15 +3,34 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="m_storage">
-
+	
+	<resultMap id="mStorageDetailMap" type="map">
+		<result property="wName" column="WNAME" />
+		<result property="mName" column="MNAME" />
+		<result property="MSMSTOCK" column="MSMSTOCK" />
+		<result property="MSDATE" column="MSDATE" />
+		<result property="MSPRICE" column="MSPRICE" />
+		<result property="MSSTATUS" column="MSSTATUS" />
+		<result property="MSNO" column="MSNO" />
+		<result property="SCODE" column="SCODE" />
+	</resultMap>
+	
 	<!-- <resultMap type="M_storage" id="M_storage">
 		<result column="IDCODE" property="IDCODE"
 		        typeHandler="strArrTypeHandler"/>
 	</resultMap> -->
 	
-	<select id="selectM_storageList" resultType="M_storage">
+	 <select id="selectM_storageList" resultMap="mStorageDetailMap">
+		SELECT E.WNAME WNAME, M.MNAME MNAME, MS.MSMSTOCK MSMSTOCK, MS.MSDATE MSDATE, MS.MSPRICE MSPRICE
+			, MS.MSSTATUS MSSTATUS, MS.MSNO MSNO, MS.SCODE SCODE
+			FROM EMPLOYEE E , MATERIAL M , M_STORAGE MS
+			WHERE MS.IDCODE = E.IDCODE
+			AND MS.MCODE = M.MCODE
+	</select> 
+	
+	<!-- <select id="selectM_storageList" resultType="M_storage">
 		SELECT * FROM M_STORAGE ORDER BY MCODE DESC
-	</select>
+	</select> -->
 	
 	<select id="selectM_storage" parameterType="_int" resultType="M_storage">
 		SELECT * FROM M_STORAGE WHERE  = #{MSNO}
