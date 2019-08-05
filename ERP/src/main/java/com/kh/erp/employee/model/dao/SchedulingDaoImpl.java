@@ -29,4 +29,26 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		return sqlSession.selectList("scheduling.selectSchedule");
 	}
 
+
+	@Override
+	public int resizeSchedule(Scheduling schedule) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("scheduling.resizeSchedule",schedule);
+	}
+
+
+	@Override
+	public int updateSchedule(Scheduling schedule) {
+	
+		
+		return sqlSession.update("scheduling.updateSchedule",schedule);
+	}
+
+
+	@Override
+	public int deleteSchedule(int _id) {
+		
+		return sqlSession.delete("scheduling.deleteSchedule",_id);
+	}
+
 }

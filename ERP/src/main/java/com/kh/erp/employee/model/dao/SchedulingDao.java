@@ -10,4 +10,8 @@ public interface SchedulingDao {
 	int insertSchedule(Scheduling schedule);
 	
 	List<Scheduling> selectSchedule();
+	
+	int resizeSchedule(Scheduling schedule);
+	int updateSchedule(Scheduling schedule);
+	int deleteSchedule(int _id);
 }

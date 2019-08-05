@@ -28,4 +28,25 @@ public class SchedulingServiceImpl implements SchedulingService {
 		return schedulingDao.selectSchedule();
 	}
 
+
+	@Override
+	public int resizeSchedule(Scheduling schedule) {
+		
+		return schedulingDao.resizeSchedule(schedule);
+	}
+
+
+	@Override
+	public int updateSchedule(Scheduling schedule) {
+	
+		return schedulingDao.updateSchedule(schedule);
+	}
+
+
+	@Override
+	public int deleteSchedule(int _id) {
+		
+		return schedulingDao.deleteSchedule(_id);
+	}
+
 }

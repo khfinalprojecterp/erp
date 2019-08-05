@@ -17,7 +17,7 @@ var editEvent = function (event, element, view) {
     }
 
     if (event.allDay === true && event.end !== event.start) {
-        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
+        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'));
     } else {
         editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
     }
@@ -79,12 +79,29 @@ var editEvent = function (event, element, view) {
         //일정 업데이트
         $.ajax({
             type: "get",
-            url: "",
+            url: "employee/updateschedule.do",
             data: {
-                //...
+                
+            	
+            	
+                _id: event._id,
+                title: event.title,
+                start: event.start,
+                end: event.end,
+                description: event.description,
+                type: event.type,
+                username: '사나',
+                backgroundColor: event.backgroundColor,
+                textColor: '#ffffff',
+                allDay: event.allDay	
+    
+                
+            	
             },
             success: function (response) {
+            	
                 alert('수정되었습니다.')
+            
             }
         });
 
@@ -99,9 +116,10 @@ var editEvent = function (event, element, view) {
         //삭제시
         $.ajax({
             type: "get",
-            url: "",
+            url: "employee/deleteschedule.do",
             data: {
-                //...
+            	
+            	 _id: event._id
             },
             success: function (response) {
                 alert('삭제되었습니다.');
