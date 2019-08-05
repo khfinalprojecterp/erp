@@ -4,22 +4,30 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
 
-	<!-- <resultMap type="M_storage" id="M_storage">
-		<result column="IDCODE" property="IDCODE"
-		        typeHandler="strArrTypeHandler"/>
-	</resultMap> -->
+	<resultMap id="productDetailMap" type="map">
+		<result property="PCODE" column="PCODE" />
+		<result property="PCNAME" column="PCNAME" />
+		<result property="PNAME" column="PNAME" />
+		<result property="PSIZE" column="PBARCODE" />
+		<result property="PBARCODE" column="PBARCODE" />
+		
+		
+	</resultMap>
+	 
 	
-	<select id="selectProductList" resultType="Product">
-		SELECT * FROM PRODUCT ORDER BY PCODE DESC
+	<select id="selectProductList" resultMap="productDetailMap">
+	SELECT P.PCODE PCODE ,PC.PCNAME PCNAME ,P.PNAME PNAME,P.PSIZE PSIZE,P.PBARCODE PBARCODE 
+            FROM PRODUCT P , PRODUCT_CATEGORY PC 
+            WHERE P.PCATE = PC.PCATE
 	</select>
 	
-	<select id="selectProduct" parameterType="_int" resultType="Product">
+	<!-- <select id="selectProduct" parameterType="_int" resultType="Product">
 		SELECT * FROM PRODUCT WHERE  = #{PCODE}
-	</select>
+	</select> -->
 	
 	<insert id="insertProduct" parameterType="Product">
 		INSERT INTO PRODUCT
-		VALUES (#{PCODE},#{PCATE}, 
+		VALUES (SEQ_PRODUCT_PCODE.NEXTVAL,#{PCATE}, 
 		        #{PNAME}, #{PSIZE}, #{PBARCODE}
 		       )
 	</insert>

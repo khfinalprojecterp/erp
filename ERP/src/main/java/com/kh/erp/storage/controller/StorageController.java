@@ -27,6 +27,7 @@ public class StorageController {
 		ArrayList<Map<String, String>> list = new ArrayList<>(storageService.storageList());
 		
 		model.addAttribute("list", list);
+
 		
 		return "storage/storageList";
 		

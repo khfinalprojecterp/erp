@@ -9,19 +9,38 @@
 		        typeHandler="strArrTypeHandler"/>
 	</resultMap> -->
 	
-	<select id="selectQuality_rList" resultType="Quality_r">
-		SELECT * FROM QUALITY_R ORDER BY QRCODE DESC
-	</select>
+	<resultMap id="quality_rDetailMap" type="map">
+		<result property="QRCODE" column="QRCODE" />
+		<result property="WNAME" column="WNAME" />
+		<result property="SADDR" column="SADDR" />
+		<result property="PNAME" column="PNAME" />
+		<result property="ENAME" column="ENAME" />
+		<result property="QRCHECK" column="QRCHECK" />
+		<result property="QRSTOCK" column="QRSTOCK" />
+		<result property="QRNOTE" column="QRNOTE" />
+		<result property="QRSTATUS" column="QRSTATUS" />
+	</resultMap>
+	<select id="selectQuality_rList" resultMap="quality_rDetailMap">
+		
+SELECT QR.QRCODE QRCODE , E.WNAME WNAME , S.SADDR SADDR ,P.PNAME PNAME ,EN.ENAME ENAME,QR.QRCHECK QRCHECK , 
+QR.QRNOTE QRNOTE, QR.QRSTOCK QRSTOCK, QR.QRSTATUS QRSTATUS
+			
+FROM  QUALITY_R QR , EMPLOYEE E , STORAGE S , ENTERPRISE EN , PRODUCT P
+			WHERE QR.IDCODE = E.IDCODE
+			AND QR.SCODE = S.SCODE
+			AND QR.PCODE= P.PCODE
+			AND QR.ECODE= EN.ECODE
+	</select> 
 	
-	<select id="selectQuality_r" parameterType="_int" resultType="Quality_r">
+	<!-- <select id="selectQuality_r" parameterType="_int" resultType="Quality_r">
 		SELECT * FROM QUALITY_R WHERE  = #{QRCODE}
-	</select>
+	</select> -->
 	
 	<insert id="insertQuality_r" parameterType="Quality_r">
 		INSERT INTO QUALITY_R
 		VALUES (#{QRCODE},#{IDCODE}, 
-		        #{SCODE}, #{SCODE}, #{PCODE},
-		        #{IN_CODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
+		        #{SCODE},  #{PCODE},
+		        #{ECODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
 	</insert>
  
 	<update id="updateQuality_r" parameterType="Quality_r">
@@ -36,7 +55,7 @@
 		       QRSTOCK= #{QRSTOCK},
 		     
 		     
-		WHERE QRCODE = ?
+		WHERE QRCODE = #{QRCODE}
 		
 
 	</update>

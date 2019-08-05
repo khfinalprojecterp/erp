@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +31,10 @@ import com.kh.erp.sale.model.vo.Sale;
 import com.kh.erp.sale.model.vo.SaleItem;
 import com.kh.erp.storage.model.vo.Storage;
 import com.kh.erp.storage.model.vo.StorageDetail;
+
 import com.sun.org.apache.xalan.internal.xsltc.cmdline.Transform;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+
 
 @Controller
 public class SaleController {
@@ -136,7 +139,8 @@ public class SaleController {
 		ArrayList<StorageDetail> storageDetailList;//판매품 목록
 		ArrayList<Employee> employeeList;//직원 목록
 		
-		partnerList = new ArrayList<>(saleService.selectPartner(eCode));		employeeList = new ArrayList<>(saleService.selectEmployeeList(eCode));
+		partnerList = new ArrayList<>(saleService.selectPartner(eCode));
+		employeeList = new ArrayList<>(saleService.selectEmployeeList(eCode));
 //		거래처 목록 받아옴
 		storageList = new ArrayList<>(saleService.selectStorage(eCode));
 //		창고 목록 받아옴
@@ -421,10 +425,6 @@ public class SaleController {
 	
 	
 }
-
-
-
-
 
 
 

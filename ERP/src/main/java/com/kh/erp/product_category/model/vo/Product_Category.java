@@ -10,16 +10,27 @@ public class Product_Category implements Serializable{
 	//물품 분류
 	
 	
-	private int PCATE; // 분류코드
+	private String PCATE; // 분류코드
 	private String PCNAME; // 분류명
 	
 	
+	
+	
+	
+
+
+	public Product_Category(String pCATE) {
+		super();
+		PCATE = pCATE;
+	}
+
+
 	public Product_Category() {
 		
 	}
 
 
-	public Product_Category(int pCATE, String pCNAME) {
+	public Product_Category(String pCATE, String pCNAME) {
 		super();
 		PCATE = pCATE;
 		PCNAME = pCNAME;
@@ -32,12 +43,12 @@ public class Product_Category implements Serializable{
 	}
 
 
-	public int getPCATE() {
+	public String getPCATE() {
 		return PCATE;
 	}
 
 
-	public void setPCATE(int pCATE) {
+	public void setPCATE(String pCATE) {
 		PCATE = pCATE;
 	}
 

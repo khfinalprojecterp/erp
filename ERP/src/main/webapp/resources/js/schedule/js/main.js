@@ -205,7 +205,6 @@ var calendar = $('#calendar').fullCalendar({
         _id: event._id,
         start:newDates.startDate,
         end:newDates.endDate
-   
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -244,9 +243,6 @@ var calendar = $('#calendar').fullCalendar({
           start:newDates.startDate,
           end:newDates.endDate
     	  
-    	  
-        //...
-  
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -334,6 +330,7 @@ var calendar = $('#calendar').fullCalendar({
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
+
    //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',

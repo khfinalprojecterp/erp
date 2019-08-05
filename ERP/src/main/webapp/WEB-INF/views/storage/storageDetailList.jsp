@@ -89,16 +89,20 @@
 								<option value="${s.sCode}">${s.sAddr}</option>
 							</c:forEach>
 						</select>
+
 						<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
 						<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">기업 이름:</label>
 							<input type="text" class="form-control" id="neweCode" value="${employee.eName}" readonly>
+
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">담당사원 이름:</label>
 							<input type="text" class="form-control" id="newidCode" value="${employee.wName}" readonly>
+
 						</div>
+
 						<div class="form-group">
 							<label for="check" class="col-form-label">품목종류:</label>&nbsp;
 						    <input type = "radio" name = "checkP" id="radioM" value = "Ma">기자재
@@ -166,6 +170,16 @@
 							<label for="message-text" class="col-form-label">담당사원 이름:</label>
 							<input type="text" class="form-control" id="upeidCode" value="" readonly>
 						</div>
+
+						<!-- <div class="form-group">
+							<label for="message-text" class="col-form-label">기업 이름:</label>
+							<input type="text" class="form-control" id="neweCode" value="${enterprise.eName}" readonly>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">담당사원 이름:</label>
+							<input type="text" class="form-control" id="newidCode" value="${employee.wName}" readonly>
+						</div>  -->
+
 						<div class="form-group">
 							<label for="check" class="col-form-label">품목종류:</label>&nbsp;
 						    <input type = "radio" name = "upcheckP" id="UradioM" value = "Ma">기자재

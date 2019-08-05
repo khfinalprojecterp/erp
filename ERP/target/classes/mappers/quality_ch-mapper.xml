@@ -8,18 +8,38 @@
 		<result column="IDCODE" property="IDCODE"
 		        typeHandler="strArrTypeHandler"/>
 	</resultMap> -->
+	<resultMap id="quality_chDetailMap" type="map">
+		<result property="QRCODE" column="QRCODE" />
+		<result property="ENAME" column="ENAME" />
+		<result property="QRCHECK" column="QRCHECK" />
+		<result property="QCHT " column="QCHT " />
+		<result property="QCHF" column="QCHF" />
+		<result property="QCHECHECK" column="QCHECHECK" />
+		<result property="QCHSTATUS" column="QCHSTATUS" />
+		
+	</resultMap>
 	
-	<select id="selectQuality_chList" resultType="Quality_ch">
-		SELECT * FROM QUALITY_CH ORDER BY QRCODE DESC
+	
+	
+	
+	
+	<select id="selectQuality_chList" resultMap="quality_chDetailMap">
+SELECT  QR.QRCODE QRCODE, E.WNAME WNAME ,EN.ENAME ENAME , QC.QCHT QCHT, QC.QCHF QCHF , 
+QC.QCHCHECK QCHCHECK , QC.QCHSTATUS QCHSTATUS
+			
+FROM  QUALITY_CH QC , QUALITY_R QR , ENTERPRISE EN ,EMPLOYEE E
+			WHERE QC.QRCODE = QR.QRCODE
+			AND QC.ECODE = EN.ECODE
+			AND QC.IDCODE = E.IDCODE
 	</select>
 	
-	<select id="selectQuality_ch" parameterType="_int" resultType="Quality_ch">
+	<!-- <select id="selectQuality_ch" parameterType="_int" resultType="Quality_ch">
 		SELECT * FROM QUALITY_CH WHERE  = #{QRCODE}
-	</select>
+	</select> -->
 	
 	<insert id="insertQuality_ch" parameterType="Quality_ch">
 		INSERT INTO QUALITY_CH
-		VALUES (#{IN_CODE}, 
+		VALUES (#{QRCODE}, 
 		        #{IDCODE}, #{ECODE}, #{QCHT},
 		        #{QCHF},#{QCHCHECK},#{QCHSTATUS})
 	</insert>

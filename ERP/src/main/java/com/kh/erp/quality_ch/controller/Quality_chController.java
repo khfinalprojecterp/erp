@@ -37,7 +37,7 @@ method=RequestMethod.POST)
 public String insertQuality_ch(
 	
 		@RequestParam int QRCODE,
-		@RequestParam int IN_CODE,
+		
 		@RequestParam int IDCODE,
 		@RequestParam int ECODE,
 		@RequestParam int QCHT,
@@ -46,7 +46,7 @@ public String insertQuality_ch(
 		@RequestParam String QCHSTATUS
 		) {
 
-	Quality_ch quality_ch = new Quality_ch(QRCODE, IN_CODE,IDCODE,ECODE, QCHT, QCHF, QCHCHECK, QCHSTATUS);
+	Quality_ch quality_ch = new Quality_ch(QRCODE,IDCODE,ECODE, QCHT, QCHF, QCHCHECK, QCHSTATUS);
 	
 	System.out.println(quality_ch);
 System.out.println("insertquality_ch 화면 메소드 확인");
@@ -87,9 +87,9 @@ private String QCHSTATUS;
 
 @RequestMapping("/quality_ch/updateQuality_ch.do")
 public String updateQuality_ch(@RequestParam int QRCODE,
-		//
+		
 	
-		@RequestParam int IN_CODE,
+		
 		@RequestParam int IDCODE,
 		@RequestParam int ECODE,
 		@RequestParam int QCHT,
@@ -99,7 +99,7 @@ public String updateQuality_ch(@RequestParam int QRCODE,
 		
 		 Model model) {
 	
-	Quality_ch quality_ch = new Quality_ch(QRCODE, IN_CODE,IDCODE,ECODE,QCHT,QCHF,
+	Quality_ch quality_ch = new Quality_ch(QRCODE,IDCODE,ECODE,QCHT,QCHF,
 			QCHCHECK,QCHSTATUS
 			);
 	

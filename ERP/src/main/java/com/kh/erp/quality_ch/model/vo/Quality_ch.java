@@ -12,14 +12,64 @@ public class Quality_ch implements Serializable{
 	private static final long serialVersionUID = 1005L;
 
 	private int QRCODE;// 품질관리코드
-	private int IN_CODE;// 생산 입고 코드
-	private int IDCODE; //사원코드
+	/*
+	 * private int IN_CODE;// 생산 입고 코드
+	 */	private int IDCODE; //사원코드
 	private int ECODE; //기업코드
 	private int QCHT;// 적격
 	private int QCHF;//부적격
 	
 	private String QCHCHECK;//불/합격
 	private String QCHSTATUS;
+	//가상 변수
+	private String ENAME;   //기업명
+	private String WNAME;  // 사원명
+	
+	
+	
+	
+	public Quality_ch(int qRCODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS,
+			String eNAME, String wNAME) {
+		super();
+		QRCODE = qRCODE;
+		IDCODE = iDCODE;
+		ECODE = eCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+		ENAME = eNAME;
+		WNAME = wNAME;
+	}
+	public Quality_ch(int qRCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS, String eNAME, String wNAME) {
+		super();
+		QRCODE = qRCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+		ENAME = eNAME;
+		WNAME = wNAME;
+	}
+	public String getENAME() {
+		return ENAME;
+	}
+	public void setENAME(String eNAME) {
+		ENAME = eNAME;
+	}
+	public Quality_ch(int qRCODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK,
+			String qCHSTATUS, String eNAME) {
+		super();
+		QRCODE = qRCODE;
+		
+		IDCODE = iDCODE;
+		ECODE = eCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+		ENAME = eNAME;
+	}
 	public int getIDCODE() {
 		return IDCODE;
 	}
@@ -32,11 +82,21 @@ public class Quality_ch implements Serializable{
 	public void setECODE(int eCODE) {
 		ECODE = eCODE;
 	}
-	public Quality_ch(int qRCODE, int iN_CODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK,
+	public Quality_ch(int qRCODE, int iDCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS, String eNAME) {
+		super();
+		QRCODE = qRCODE;
+		IDCODE = iDCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+		ENAME = eNAME;
+	}
+	public Quality_ch(int qRCODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK,
 			String qCHSTATUS) {
 		super();
 		QRCODE = qRCODE;
-		IN_CODE = iN_CODE;
+		
 		IDCODE = iDCODE;
 		ECODE = eCODE;
 		QCHT = qCHT;
@@ -48,10 +108,10 @@ public class Quality_ch implements Serializable{
 	public Quality_ch() {
 	
 	}
-	public Quality_ch(int qRCODE, int iN_CODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS) {
+	public Quality_ch(int qRCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS) {
 		super();
 		QRCODE = qRCODE;
-		IN_CODE = iN_CODE;
+		
 		QCHT = qCHT;
 		QCHF = qCHF;
 		QCHCHECK = qCHCHECK;
@@ -59,8 +119,9 @@ public class Quality_ch implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Quality_ch [QRCODE=" + QRCODE + ", IN_CODE=" + IN_CODE + ", QCHT=" + QCHT + ", QCHF=" + QCHF
-				+ ", QCHCHECK=" + QCHCHECK + ", QCHSTATUS=" + QCHSTATUS + "]";
+		return "Quality_ch [QRCODE=" + QRCODE  + ", IDCODE=" + IDCODE + ", ECODE=" + ECODE
+				+ ", QCHT=" + QCHT + ", QCHF=" + QCHF + ", QCHCHECK=" + QCHCHECK + ", QCHSTATUS=" + QCHSTATUS
+				+ ", ENAME=" + ENAME + "]";
 	}
 	public int getQRCODE() {
 		return QRCODE;
@@ -68,12 +129,7 @@ public class Quality_ch implements Serializable{
 	public void setQRCODE(int qRCODE) {
 		QRCODE = qRCODE;
 	}
-	public int getIN_CODE() {
-		return IN_CODE;
-	}
-	public void setIN_CODE(int iN_CODE) {
-		IN_CODE = iN_CODE;
-	}
+
 	public int getQCHT() {
 		return QCHT;
 	}

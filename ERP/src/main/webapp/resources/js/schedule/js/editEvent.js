@@ -17,7 +17,9 @@ var editEvent = function (event, element, view) {
     }
 
     if (event.allDay === true && event.end !== event.start) {
-        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'));
+
+        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
+
     } else {
         editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
     }
@@ -120,6 +122,7 @@ var editEvent = function (event, element, view) {
             data: {
             	
             	 _id: event._id
+
             },
             success: function (response) {
                 alert('삭제되었습니다.');

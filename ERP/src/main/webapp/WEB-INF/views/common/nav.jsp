@@ -299,6 +299,23 @@
                     </li>
                     <li><a href="#">생산입고</a></li>
                 </ul>
+            </li>	
+      
+             <li>
+                <a href="#"><i class="fa fa-sitemap"></i>물품관리<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                   <li><a href="${pageContext.request.contextPath}/m_storage/M_storageList.do">발주 목록</a></li>
+                   <li><a href="${pageContext.request.contextPath}/product/ProductList.do">물품목록</a></li>
+                     <li><a href="${pageContext.request.contextPath}/product_category/Product_CategoryList.do">물품분류<span class="fa arrow"></span></a>
+                         <li><a href="${pageContext.request.contextPath}/quality_r/Quality_rList.do">품질관리 요청</a></li>
+                         <li><a href="${pageContext.request.contextPath}/quality_ch/Quality_chList.do">품질관리 처리</a></li>
+                        <ul class="nav nav-third-level">
+                            <li><a href="#">생산품목</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">생산입고</a></li>
+                </ul>
+            </li>							
             </li>				
 		</ul>
 
@@ -307,6 +324,7 @@
 	</nav>
 	<!-- /. NAV SIDE  -->
 </div>
+
 </header>
 <script>
 	function fn_chatting(){

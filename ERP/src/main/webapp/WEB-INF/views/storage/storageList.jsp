@@ -66,7 +66,6 @@
 				<div class="modal-body">
 					<form>
 						<!-- 기업으로 로그인 일시 담당사원 리스트에서 고르게? -->
-
 							<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
 							<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
 						<div class="form-group">

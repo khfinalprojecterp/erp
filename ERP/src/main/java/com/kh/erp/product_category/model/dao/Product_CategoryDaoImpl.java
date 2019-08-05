@@ -34,11 +34,11 @@ public class Product_CategoryDaoImpl implements Product_CategoryDao {
 	@Override
 	public int updateProduct_Category(Product_Category product_category) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("product_category.selectProduct_Category",product_category);
+		return sqlSession.update("product_category.updateProduct_Category",product_category);
 	}
 
 	@Override
-	public int deleteProduct_Category(int PCATE) {
+	public int deleteProduct_Category(String PCATE) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("product_category.deleteProduct_Category",PCATE);
 	}

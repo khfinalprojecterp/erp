@@ -28,7 +28,7 @@
 									<thead>
 										<tr>
 										<th>품질관리코드</th>
-											<th>생산입고코드</th>
+										
 											<th>사원코드</th>
 											<th>기업코드</th>
 											<th>적격</th>
@@ -42,9 +42,9 @@
 										<tr class="gradeA">
 												<%-- <td>${status.count}</td> --%>
 												<td>${quality_ch.QRCODE}</td>
-												<td>${quality_ch.IN_CODE}</td>
-												<td>${quality_ch.IDCODE}</td>
-												<td>${quality_ch.ECODE}</td>
+											
+												<td>${quality_ch.WNAME}</td>
+												<td>${quality_ch.ENAME}</td>
 												<td>${quality_ch.QCHT}</td>
 												<td>${quality_ch.QCHF}</td>
 												<td>${quality_ch.QCHCHECK}</td>
@@ -87,8 +87,7 @@
                      <label for="message-text" class="col-form-label">품질관리코드</label>
                      <input type="number" class="form-control" id="QRCODE" placeholder="숫자만 입력하세요"name="QRCODE" required>
                      
-                      <label for="message-text" class="col-form-label">생산입고코드</label>
-                     <input type="number" class="form-control" id="IN_CODE" placeholder="숫자만 입력하세요" name="IN_CODE" required>
+                     
                      
                      <label for="message-text" class="col-form-label">사원코드</label>
                      <input type="number" class="form-control" id="IDCODE"placeholder="숫자만 입력하세요"  name="IDCODE" required>
@@ -142,10 +141,7 @@
             				<label for="recipient-name" class="col-form-label">품질코드</label>
             				<input type="number" class="form-control" id="UQRCODE" name="QRCODE" >
           				</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">생산입고코드</label>
-							<input type="number" class="form-control" id="UIN_CODE" name="IN_CODE" >
-							</div>
+						
 							<div class="form-group">
 							<label for="message-text" class="col-form-label">사원코드</label>
 							<input type="number" class="form-control" id="UIDCODE" name="IDCODE" >
@@ -279,13 +275,13 @@
 			function() {
 				/* var mCate = $(this).value; */
 				QRCODE = $(this).parent().children().eq(0).text();
-				document.getElementById("IN_CODE").value = $(this).parent().children().eq(1).text();
-				document.getElementById("IDCODE").value = $(this).parent().children().eq(2).text();
-				document.getElementById("ECODE").value = $(this).parent().children().eq(3).text();
-				document.getElementById("QCHT").value = $(this).parent().children().eq(4).text();
-				document.getElementById("QCHF").value = $(this).parent().children().eq(5).text();
-				document.getElementById("QCHCHECK").value = $(this).parent().children().eq(6).text();
-				document.getElementById("QCHSTATUS").value = $(this).parent().children().eq(7).text();
+				
+				document.getElementById("IDCODE").value = $(this).parent().children().eq(1).text();
+				document.getElementById("ECODE").value = $(this).parent().children().eq(2).text();
+				document.getElementById("QCHT").value = $(this).parent().children().eq(3).text();
+				document.getElementById("QCHF").value = $(this).parent().children().eq(4).text();
+				document.getElementById("QCHCHECK").value = $(this).parent().children().eq(5).text();
+				document.getElementById("QCHSTATUS").value = $(this).parent().children().eq(6).text();
 				
 				
 				$("#updateQuality_ch").modal();

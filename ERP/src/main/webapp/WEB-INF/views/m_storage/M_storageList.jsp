@@ -42,8 +42,8 @@
 										<tr class="gradeA">
 												<%-- <td>${status.count}</td> --%>
 												<td>${m_storage.MSNO}</td>
-												<td>${m_storage.IDCODE}</td>
-												<td>${m_storage.MCODE}</td>
+												<td>${m_storage.wName}</td>
+												<td>${m_storage.mName}</td>
 												<td>${m_storage.SCODE}</td>
 												<td>${m_storage.MSMSTOCK}</td>
 												<td>${m_storage.MSDATE}</td>

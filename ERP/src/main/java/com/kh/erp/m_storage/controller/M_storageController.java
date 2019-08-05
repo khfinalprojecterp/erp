@@ -21,7 +21,7 @@ import com.kh.erp.m_storage.model.vo.M_storage;
 
 
 @Controller
-public class M_storageController {
+public class M_storageController { 
 @Autowired
 M_storageService m_storageService; 
 

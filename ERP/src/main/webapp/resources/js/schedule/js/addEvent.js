@@ -31,6 +31,7 @@ var newEvent = function (start, end, eventType) {
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
     //var eventId = 1 + Math.floor(Math.random() * 1000);
+
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
     //새로운 일정 저장버튼 클릭
@@ -96,14 +97,13 @@ var newEvent = function (start, end, eventType) {
                   backgroundColor: editColor.val(),
                   textColor: '#ffffff',
                   allDay: eventData.allDay
-            	
-                //.....
- 
+
             },
             success: function (response) {
               
-                $('#calendar').fullCalendar('removeEvents');
+               $('#calendar').fullCalendar('removeEvents');
                $('#calendar').fullCalendar('refetchEvents');
+
             }
         });
     });
