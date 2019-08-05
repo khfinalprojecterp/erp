@@ -49,8 +49,8 @@ function calDateWhenResize(event) {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
     newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   } else {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;
@@ -77,8 +77,8 @@ function calDateWhenDragnDrop(event) {
 
   //all day가 아님
   else if (!event.allDay) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;
@@ -199,10 +199,13 @@ var calendar = $('#calendar').fullCalendar({
     //리사이즈한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "employee/resizeschedule.do",
       data: {
-        //id: event._id,
-        //....
+    	  
+        _id: event._id,
+        start:newDates.startDate,
+        end:newDates.endDate
+   
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -234,9 +237,16 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "employee/dragschedule.do",
       data: {
+    	  
+    	  _id: event._id,
+          start:newDates.startDate,
+          end:newDates.endDate
+    	  
+    	  
         //...
+  
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -268,7 +278,7 @@ var calendar = $('#calendar').fullCalendar({
         minute: today.minutes()
       });
       startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
-      endDate = moment(endDate).subtract(1, 'days');
+      endDate = moment(endDate).subtract(1, 'days'); 
 
       endDate.set({
         hours: today.hours() + 1,

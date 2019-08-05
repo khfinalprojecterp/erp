@@ -43,6 +43,37 @@
 	
 </insert>
 
+<update id="resizeSchedule">
+ UPDATE SCHEDULING SET 
+ 	SC_START = #{start},
+ 	SC_END = #{end}
+ 	WHERE SC_ID = #{_id}
+
+</update>
+
+<update id="updateSchedule">
+ UPDATE SCHEDULING SET
+ 
+  	SC_TITLE = #{title},
+ 	SC_START = #{start},
+ 	SC_END = #{end},
+ 	SC_DETAIL = #{description},
+ 	SC_TYPE = #{type},
+ 	SC_NAME = #{username},
+ 	SC_BACK = #{backgroundColor},
+ 	SC_TEXT = #{textColor},
+ 	SC_ALLDAY = #{allDay}
+ 	WHERE SC_ID = #{_id}
+
+</update>
+
+<delete id="deleteSchedule">
+
+ DELETE FROM SCHEDULING WHERE SC_ID = #{_id}
+
+</delete>
+
+
 
 
 

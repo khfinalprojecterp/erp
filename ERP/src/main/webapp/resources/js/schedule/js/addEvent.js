@@ -85,13 +85,17 @@ var newEvent = function (start, end, eventType) {
             	
             	  title: eventData.title,
                   start: eventData.start,
+                  
+                  
                   end: eventData.end,
+                  
+                  
                   description: eventData.description,
                   type: eventData.type,
                   username: '사나',
                   backgroundColor: editColor.val(),
                   textColor: '#ffffff',
-                  allDay: false
+                  allDay: eventData.allDay
             	
                 //.....
  

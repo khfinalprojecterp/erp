@@ -13,4 +13,8 @@ public interface SchedulingService {
 	
 	List<Scheduling> selectSchedule();
 	
+	int resizeSchedule(Scheduling schedule);
+	int updateSchedule(Scheduling schedule);
+	int deleteSchedule(int _id);
+	
 }
