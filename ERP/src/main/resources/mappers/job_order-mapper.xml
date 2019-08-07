@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobOrder">
+	<resultMap id="jobOrderMap" type="map">
+		<result property="workcode" column="WORKCODE" />
+		<result property="idcode" column="IDCODE" />
+		<result property="pcode" column="PCODE" />
+		<result property="orderdate" column="ORDERDATE" />
+		<result property="wstatus" column="WSTATUS" />
+		<result property="ename" column="ename" />
+		<result property="pname" column="pname" />
+	</resultMap>
+
+	<resultMap id="resultList" type="map">
+		<result property="PCODE" column="PCODE" />
+		<result property="PNAME" column="PNAME" />
+	</resultMap>
+	<!-- Storage -->
+	
+	<select id="selectJobOrderList" resultMap="jobOrderMap">
+      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.WSTATUS WSTATUS 
+      FROM JOB_ORDER JO, PRODUCT P, EMPLOYEE E
+      WHERE JO.IDCODE = E.IDCODE AND
+      JO.PCODE = P.PCODE AND
+      JO.IDCODE = E.IDCODE
+	</select>
+	
+	<select id="selectP" resultMap="resultList">
+		SELECT PCODE,PNAME
+		FROM PRODUCT
+	</select>
+	
+	<select id="selectStorageOne" resultType="storage">
+		SELECT *
+		FROM MATERIAL
+		WHERE MCODE = #{mCode}
+	</select>
+	
+	<insert id="insertStorage">
+		INSERT INTO STORAGE
+			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sCate}, #{sPhone}, #{sAddr}, DEFAULT)
+	</insert>
+	
+	<update id="updateStorage" parameterType="storage">
+		UPDATE STORAGE
+		    SET ECODE = #{eCode},
+		        SCATE = #{sCate},
+		        SPHONE = #{sPhone},
+		        SADDR = #{sAddr},
+		        SSTATUS = #{sStatus}
+		    WHERE SCODE = #{sCode}
+	</update>
+	
+	<delete id="deleteStorage">
+		DELETE FROM STORAGE
+	    	WHERE SCODE = #{sCode}
+	</delete>
+	
+	<!-- StorageDetail -->
+	
+<!-- 	<select id="selectStorageDetailList" resultMap="storageDetailMap">
+		SELECT D.SDCODE SDCODE, D.SCODE SCODE, D.ECODE ECODE, D.IDCODE IDCODE, D.MCODE MCODE, D.PCODE PCODE,
+    		D.IN_CODE IN_CODE, D.SDSTOCK SDSTOCK, D.SDCOST SDCOST, D.SDPRICE SDPRICE, D.SDDATE SDDATE,
+    		E.ENAME ENAME, M.WNAME WNAME,A.MNAME MNAME, P.PNAME PNAME
+		  FROM STORAGE_DETAIL D, STORAGE S, ENTERPRISE E, EMPLOYEE M, MATERIAL A, PRODUCT P
+		  WHERE D.SCODE = S.SCODE
+		    AND D.ECODE = E.ECODE
+		    AND D.IDCODE = M.IDCODE
+		    AND D.MCODE = A.MCODE (+)
+		    AND D.PCODE = P.PCODE (+)
+		    ORDER BY SDCODE
+	</select> -->
+	
+<!-- 	<select id="selectStorageDetailOne" resultType="storagedetail">
+		SELECT *
+			FROM STORAGE_DETAIL
+			WHERE SDCODE = #{sdCode}
+	</select> -->
+	
+	<!-- <insert id="insertStorageDetail">
+		INSERT INTO STORAGE_DETAIL
+			VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode}, #{mCode}, #{pCode}, NULL,
+	 		#{sdStock}, #{sdCost}, #{sdPrice}, SYSDATE)
+	</insert>
+	
+	<update id="updateStorageDetail" parameterType="storagedetail">
+		UPDATE STORAGE_DETAIL
+	    	SET SCODE = #{sCode},
+		    	MCODE = #{mCode},
+		    	PCODE = #{pCode},
+		    	IN_CODE = NULL,
+		    	IDCODE = #{idCode},
+		        SDSTOCK = #{sdStock},
+		        SDCOST = #{sdCost},
+		        SDPRICE = #{sdPrice},
+		        SDDATE = DEFAULT
+		    WHERE SDCODE = #{sdCode}
+	</update>
+	
+	<delete id="deleteStorageDetail">
+		DELETE FROM STORAGE_DETAIL
+	    	WHERE SDCODE = #{sdCode}
+	</delete>
+	 
+	 <select id="loadProductList" resultMap="productMap">
+		SELECT PCODE , PNAME
+		FROM PRODUCT
+		ORDER BY PCODE
+	</select> -->
+	 
+</mapper>

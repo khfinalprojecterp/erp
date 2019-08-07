@@ -291,7 +291,7 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>생산 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${pageContext.request.contextPath}/production/work_order.do">작업지시서</a></li>
+                    <li><a href="${pageContext.request.contextPath}/production/job_orderList.do">작업지시서</a></li>
                     <li><a href="#">생산불출<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li><a href="#">생산품목</a></li>
