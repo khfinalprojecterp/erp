@@ -321,7 +321,17 @@ public String employeeLogin (
 		
 		
 		
-		
+		@RequestMapping(value="/employee/departCheck.do")
+
+		public void employeeDepartCheck(
+				@RequestParam int dCode,
+				HttpServletResponse resp
+				) throws IOException {
+			
+			resp.getWriter().print((empService.checkDepart(dCode))>0? "no" : "ok");
+			
+			
+		}
 		
 		
 		

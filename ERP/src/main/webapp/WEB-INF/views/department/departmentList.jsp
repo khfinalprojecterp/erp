@@ -109,11 +109,11 @@
                <form id="departUpdateFrm">
                   <div class="form-group">
                   	 
-                     <input type="hidden" class="form-control" id="dCode" name="dCode" readonly>
+                     <input type="hidden" class="form-control" id="dCode2" name="dCode" readonly>
                   	 </div>
                   	  <div class="form-group">
                      <label for="message-text" class="col-form-label">부서명</label>
-                    <input type="text" class="form-control"  name="dTitle" id="dTitle" required>
+                    <input type="text" class="form-control"  name="dTitle" id="dTitle2" required>
                    </div>
                </form>
             </div>
@@ -141,55 +141,67 @@
       }
       
       function deleteDepartment() {
-         alert("부서 정보 삭제");
-         $('#departUpdateFrm').attr("action","${pageContext.request.contextPath}/department/deleteDepartment.do");
-         $('#departUpdateFrm').attr("method", "post");
- 		 $('#departUpdateFrm').submit();
+    	  
+    	  
+    	  $.ajax({
+    		url : "${pageContext.request.contextPath}/employee/departCheck.do",
+    		type : "post",
+    		data : {
+    			dCode : $('#dCode2').val()
+    		},
+    		success : function(data){
+    			if(data == 'ok'){
+    				alert("부서 정보 삭제");
+    		         $('#departUpdateFrm').attr("action","${pageContext.request.contextPath}/department/deleteDepartment.do");
+    		         $('#departUpdateFrm').attr("method", "post");
+    		 		 $('#departUpdateFrm').submit();
+    				
+    			}else{
+    				
+    				alert("해당부서의 등록된 사원들을 모두 정리해주셔야 삭제가 가능합니다.");
+    				
+    			}
+    			
+    		},
+    		error : function(request, status, error){
+    			   console.log("------ ERROR ------");
+		               console.log(request);
+		               console.log(status);
+		               console.log(error);
+		               console.log("-------------------");
+    		}
+    		
+    		  
+    		  
+    	  });
+    	
+    	  
+         
  
       }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       $("#dataTables-example td").click(
             function() {
                var mCate = $(this).value;
-               document.getElementById("dCode").value = $(this).parent().children().eq(0).text();
-               document.getElementById("dTitle").value = $(this).parent().children().eq(1).text();
+               document.getElementById("dCode2").value = $(this).parent().children().eq(0).text();
+               document.getElementById("dTitle2").value = $(this).parent().children().eq(1).text();
                
                $("#updateDepartment").modal();
             });
    </script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 		<!-- --------------------- -->
@@ -260,7 +272,7 @@
                     
 	      <label for="message-text" class="col-form-label">부서선택</label>
 	      <br>
-	       <select name="dCode">
+	       <select name="dCode" id="dCodeInsert">
  	       <c:forEach var="depart" items="${list}">
 	       <c:if test="${ enterprise.eCode eq depart.eCode }">
 	       <option value="${depart.dCode}">${depart.dTitle }</option>
@@ -299,6 +311,31 @@
 	
 	<script>
 	function insertField() {
+		
+		
+		
+		
+		if($("#fName").val() == "")
+		{ 
+			alert("파트이름을 입력해주세요"); $("#fName").focus(); return false; 
+		}
+		if($("#fArea").val() == "")
+		{ 
+			alert("지역명을 입력해주세요"); $("#fArea").focus(); return false; 
+		}
+		if($("#dCodeInsert").val() == null)
+		{ 
+			alert("부서를 입력해주세요"); $("#dCodeInsert").focus(); return false; 
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
          alert("부서 상세 등록");
          $('#fieldFrm').attr("action","${pageContext.request.contextPath}/department/insertField.do");
          $('#fieldFrm').attr("method", "get");
@@ -327,8 +364,8 @@
                
                
            <div class="form-group">
-           <input  type="text" class="form-control" name="fCode" id="fCode">
-                 	 
+           <input  type="hidden" class="form-control" name="fCode" id="fCode">
+                 	 <label>선택한 정보를 삭제하시겠습니까?</label>
                 </div>   
                </form>
             </div>

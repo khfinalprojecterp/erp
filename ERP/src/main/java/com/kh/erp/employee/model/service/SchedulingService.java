@@ -11,7 +11,7 @@ public interface SchedulingService {
 
 	int insertSchedule(Scheduling schedule);
 	
-	List<Scheduling> selectSchedule();
+	List<Scheduling> selectSchedule(int eCode);
 	
 	int resizeSchedule(Scheduling schedule);
 	int updateSchedule(Scheduling schedule);

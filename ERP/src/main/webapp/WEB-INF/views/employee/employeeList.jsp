@@ -75,20 +75,22 @@
                <form id="empFrm">
                   <div class="form-group">
                      <label for="message-text" class="col-form-label">사번</label>
-                     <input type="text" class="form-control" id="newCate" maxlength="9" name="idCode" required>
+                     <input type="text" class="form-control" id="idCodeInsert" maxlength="9" name="idCode" required>
+                     <input type="button" value="중복검사" id="idCodeCheck">
                      
+                     <br>
                       <label for="message-text" class="col-form-label">비밀번호</label>
-                     <input type="password" class="form-control" id="newCate" name="wPwd" required>
+                     <input type="password" class="form-control" id="wPwdInsert" name="wPwd" required>
                      
                      <label for="message-text" class="col-form-label">사원명</label>
-                     <input type="text" class="form-control" id="newCate" name="wName" required>
+                     <input type="text" class="form-control" id="wNameInsert" name="wName" required>
                      
                      
                      
                      
                      <label for="message-text" class="col-form-label">부서명</label>
                      <br>
-                     <select name="dCode" required>
+                     <select id="dCodeInsert"name="dCode" required>
  					 <c:forEach var="depart" items="${Dlist}">
 			         <c:if test="${ enterprise.eCode eq depart.eCode }">
 				     <option value="${depart.dCode}">${depart.dTitle }</option>	
@@ -101,7 +103,7 @@
                      
                      <label for="message-text" class="col-form-label">직급</label>
                      <br>
-                    <select name="position" required>
+                    <select id="positionInsert" name="position" required>
 
 					<option value="사원">사원</option>
 					<option value="주임">주임</option>
@@ -116,34 +118,106 @@
                      
                      <label for="message-text" class="col-form-label">재직 여부</label>
                      <br>
-                     <select name="wStatus" required>
+                     <select id="wStatusInsert"name="wStatus" required>
 					 <option value="Y">Y</option>
 					 <option value="N">N</option>
 					 </select>
                      <br>
                      <label for="message-text" class="col-form-label">입사일</label>
-                     <input type="Date" class="form-control" id="newCate" name="enrollDate" required>
+                     <input type="Date" class="form-control" id="enrollInsert" name="enrollDate" required>
                   </div>
                </form>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary"
                   data-dismiss="modal">취소</button>
-               <button type="button" class="btn btn-primary" onclick="insertEmployee();">추가하기</button>
+               <button type="button" id="idcodego" class="btn btn-primary" onclick="insertEmployee();" disabled>추가하기</button>
             </div>
          </div>
       </div>
    </div>
 	
-	<script>
+<script>
+	
+	
+
 	function insertEmployee() {
+		
+		if($("#wPwdInsert").val() == "")
+		{ 
+			alert("비밀번호를 입력해주세요"); $("#wPwdInsert").focus(); return false; 
+		}
+		if($("#wNameInsert").val() == "")
+		{ 
+			alert("사원명을 입력해주세요"); $("#wNameInsert").focus(); return false; 
+		}
+		
+		if($("#dCodeInsert").val() == null)
+		{ 
+			alert("부서를 입력해주세요"); $("#dCodeInsert").focus(); return false; 
+		}
+
+		if($("#enrollInsert").val() == "")
+		{ 
+			alert("입사일을 입력해주세요"); $("#enrollInsert").focus(); return false; 
+		}
+		
+		
+		
+		
          alert("사원 추가");
          $('#empFrm').attr("action","${pageContext.request.contextPath}/employee/insertEmployee.do");
          $('#empFrm').attr("method", "post");
  		 $('#empFrm').submit();
- 		
-         
+		
+		   
       }
+	
+	
+	$('#idCodeInsert').click(function(){
+		
+		
+		$('#idCodeInsert').attr("readonly",false);
+		$('#idcodego').attr("disabled", true);
+		
+		
+	});
+	
+	
+	  $('#idCodeCheck').click(function() {
+	         $.ajax({
+	            url : "${pageContext.request.contextPath}/employee/checkIdDuplicate.do",
+	            type : "post",
+	            data : {
+	               idCode : $('#idCodeInsert').val()
+	            },	  
+	            success : function(data) {
+	                console.log(data);            
+	               if (data == 'ok' && $('#idCodeInsert').val() != "") {
+	                  
+	            	   $('#idcodego').attr("disabled", false);
+	            	   $('#idCodeInsert').attr("readonly",true);
+	            	   alert("사용 가능한 사번입니다.");
+
+	               } else {
+	                  alert("이미 사용 중인 사번 과 공백은 사용 할 수 없는 사번 입니다."); 
+	             	  $('#idcodego').attr("disabled", true);
+	                  $('#idCodeInsert').select().val("");
+	                  
+	               } 
+	            },
+	            error : function(request, status, error) {
+	               console.log("------ ERROR ------");
+	               console.log(request);
+	               console.log(status);
+	               console.log(error);
+	               console.log("-------------------");
+	            }
+	         });
+      });
+
+	
+	
 	</script>   
 	
 
@@ -276,11 +350,7 @@
                document.getElementById("wStatus").value = $(this).parent().children().eq(4).text();
                document.getElementById("enrollDate").value = $(this).parent().children().eq(5).text();
                document.getElementById("retireDate").value = $(this).parent().children().eq(6).text();
-               
-               
-               
-               
-               
+     
                $("#updateEmployee").modal();
             });
    </script>

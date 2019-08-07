@@ -85,6 +85,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empDao.employeeUpdate(employee);
 	}
 
+	@Override
+	public int checkDepart(int dCode) {
+	
+		return empDao.checkDepart(dCode);
+	}
+
 	
 	
 

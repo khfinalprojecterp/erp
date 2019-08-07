@@ -17,7 +17,7 @@ public interface EmployeeDao {
 	 */
 	Employee selectEmployee(String idCode);
 	
-	
+	int checkDepart(int dCode);
 	List<Employee> selectEmpList();
 	
 	int updateEmployee(Employee emp);

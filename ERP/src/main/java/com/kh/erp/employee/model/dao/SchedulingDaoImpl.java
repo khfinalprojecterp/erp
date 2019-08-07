@@ -24,9 +24,9 @@ public class SchedulingDaoImpl implements SchedulingDao {
 
 
 	@Override
-	public List<Scheduling> selectSchedule() {
+	public List<Scheduling> selectSchedule(int eCode) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("scheduling.selectSchedule");
+		return sqlSession.selectList("scheduling.selectSchedule",eCode);
 	}
 
 

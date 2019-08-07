@@ -29,8 +29,8 @@
   <typeAlias type="com.kh.erp.websocket.model.vo.Chat" alias="chat" />
   <typeAlias type="com.kh.erp.websocket.model.vo.ChatRoom" alias="chatroom" />
   <typeAlias type="com.kh.erp.websocket.model.vo.RoomMember" alias="roommember" />
-
 </typeAliases>
+
 
 
 <!-- 	<typeHandlers>
