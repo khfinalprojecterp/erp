@@ -134,40 +134,41 @@
          <version>1.2</version>
       </dependency>
 
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- OJDBC6 LIB -->
-		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.3</version>
-		</dependency>
-		<!-- Database Connection Pool용 라이브러리 -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>2.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
+      <!-- Test -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.7</version>
+         <scope>test</scope>
+      </dependency>
+      <!-- OJDBC6 LIB -->
+      <dependency>
+         <groupId>oracle</groupId>
+         <artifactId>ojdbc6</artifactId>
+         <version>11.2.0.3</version>
+      </dependency>
+
+      <!-- Database Connection Pool용 라이브러리 -->
+      <dependency>
+         <groupId>commons-dbcp</groupId>
+         <artifactId>commons-dbcp</artifactId>
+         <version>1.4</version>
+      </dependency>
+      <dependency>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis</artifactId>
+         <version>3.5.1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis-spring</artifactId>
+         <version>2.0.0</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-jdbc</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
 
       <!-- Spring Security modules -->
       <dependency>
@@ -233,16 +234,16 @@
 		</dependency>
     
     <!-- kiseok 웹소켓 추가 -->
-     <dependency>
-      <groupId>javax.websocket</groupId>
-      <artifactId>javax.websocket-api</artifactId>
-       <version>1.1</version>
-     </dependency>
-     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-websocket</artifactId>
-      <version>4.2.4.RELEASE</version>
-     </dependency> 
+    <dependency>
+     <groupId>javax.websocket</groupId>
+     <artifactId>javax.websocket-api</artifactId>
+     <version>1.1</version>
+   </dependency>
+   <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-websocket</artifactId>
+    <version>4.2.4.RELEASE</version>
+   </dependency>   
 
 		<!-- Output files from Java to Excel (POI) -->
 		<dependency>
@@ -290,5 +291,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
