@@ -82,5 +82,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return sqlSession.update("employee.empUpdate",employee);
 	}
 
+	@Override
+	public int checkDepart(int dCode) {
+		
+		return sqlSession.selectOne("employee.selectDepart",dCode);
+	}
+
 	
 }

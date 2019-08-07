@@ -11,79 +11,7 @@
 	<div id="page-wrapper">
 		<c:import url="../common/bodyNav.jsp" />
 		<div id="page-inner">
-		  <c:forEach items="${clist}" var="item"> 
-            <c:if test="${ enterprise.eCode eq item.eCode}">
-          ${item.count},
-           </c:if>
-           </c:forEach>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-		
-<canvas id="myChart1" width="400" height="400"></canvas>
-
-
-
-<script>
-var ctx = document.getElementById('myChart1').getContext('2d');
-var myChar1 = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['부서1', '부서2', '부서3', '부서4', '부서5'],
-        datasets: [{
-            label: '# of Votes',
-            
-          
-            data: [<c:forEach items="${clist}" var="item"> 
-            <c:if test="${ enterprise.eCode eq item.eCode}">
-            
-            ${item.count},</c:if>
-            </c:forEach> 0],
-           
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-			<div class="row">
+		<div class="row">
             <div class="col-md-12">
                <!-- Advanced Tables -->
                <div class="panel panel-default">
@@ -119,7 +47,7 @@ var myChar1 = new Chart(ctx, {
                      </div>
                   </div>
                </div>
-               <!--End Advanced Tables -->
+          
             </div>
          </div>
 		

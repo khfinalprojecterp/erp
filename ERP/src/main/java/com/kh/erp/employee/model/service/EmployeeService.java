@@ -27,7 +27,7 @@ public interface EmployeeService {
 	
 	int checkIdDuplicate(int idCode);
 	
-	
+	int checkDepart(int dCode);
 
 	void insertSub(Employee emp);
 

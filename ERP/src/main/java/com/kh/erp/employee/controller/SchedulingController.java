@@ -35,6 +35,7 @@ public class SchedulingController {
 	@RequestMapping(value="/employee/insertschedule.do",method=RequestMethod.GET)
 	@ResponseBody
 	public void insertSchedule(
+			@RequestParam int eCode,
 			@RequestParam String title,
 			@RequestParam String start,
 			@RequestParam String end,
@@ -46,12 +47,14 @@ public class SchedulingController {
 			@RequestParam String allDay,
 			HttpServletResponse resp,Scheduling schedule ) {
 
-		System.out.println(allDay);
+		
 		if(allDay.equals("false")){allDay="N";}
 		else {allDay="Y";}
 
 		
+		
 		// ajax 로 받아온값 객체에 넣고 DB전송
+		schedule.seteCode(eCode);
 		schedule.setTitle(title);
 		schedule.setStart(start);
 		schedule.setEnd(end);
@@ -64,6 +67,8 @@ public class SchedulingController {
 		
 		schedule.toString();
 		
+		System.out.println("^_^"+schedule);
+		
 		scheduleService.insertSchedule(schedule);
 
 	}
@@ -71,7 +76,9 @@ public class SchedulingController {
 	
 	@RequestMapping(value="/employee/selectschedule.do")
 	@ResponseBody
-	public JSONArray selectSchedule(HttpServletResponse resp,Scheduling schedule ) {
+	public JSONArray selectSchedule(
+			@RequestParam int eCode,
+			HttpServletResponse resp,Scheduling schedule ) {
 		
 		
 //		System.out.println(scheduleService.selectSchedule());
@@ -79,7 +86,7 @@ public class SchedulingController {
 		
 		schedule = null;
 		
-		List<Scheduling> slist =scheduleService.selectSchedule();		
+		List<Scheduling> slist =scheduleService.selectSchedule(eCode);		
 		JSONArray jArray =new JSONArray();
 		
 		
@@ -88,6 +95,7 @@ public class SchedulingController {
 			
 			JSONObject jobj = new JSONObject();
 			jobj.put("_id", schedule.get_id());
+			jobj.put("eCode", schedule.geteCode());
 			jobj.put("title", schedule.getTitle());
 			jobj.put("description",schedule.getDescription());
 			jobj.put("start",schedule.getStart());

@@ -23,9 +23,9 @@ public class SchedulingServiceImpl implements SchedulingService {
 
 
 	@Override
-	public List<Scheduling> selectSchedule() {
+	public List<Scheduling> selectSchedule(int eCode) {
 		// TODO Auto-generated method stub
-		return schedulingDao.selectSchedule();
+		return schedulingDao.selectSchedule(eCode);
 	}
 
 

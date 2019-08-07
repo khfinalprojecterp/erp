@@ -9,6 +9,7 @@
 <resultMap id="scheduleMap" type="Scheduling">
 		<id property="_id" column="sc_id" />
 		<result property="title" column="sc_title" />
+		<result property="eCode" column="eCode"/>
 		<result property="description" column="sc_detail" />
 		<result property="start" column="sc_start" />
 		<result property="end" column="sc_end" />
@@ -24,6 +25,7 @@
 <select id="selectSchedule" resultMap="scheduleMap">
 	SELECT *
 	FROM SCHEDULING
+	WHERE ECODE = #{eCode}
 
 
 </select>
@@ -35,7 +37,7 @@
 <insert id="insertSchedule">
 
 	INSERT INTO SCHEDULING VALUES(
-	SC_SEQ.NEXTVAL,#{title},#{description},
+	SC_SEQ.NEXTVAL,#{eCode},#{title},#{description},
 	#{start},#{end},#{type},#{username},#{backgroundColor},
 	#{textColor},#{allDay}
 	

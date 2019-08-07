@@ -8,7 +8,9 @@ var editEnd = $('#edit-end');
 var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+var editeCode = $('#SCeCode');
 
+console.log(editeCode.val());
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
@@ -43,6 +45,7 @@ var newEvent = function (start, end, eventType) {
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
+           
             description: editDesc.val(),
             type: editType.val(),
             username: '사나',
@@ -77,7 +80,7 @@ var newEvent = function (start, end, eventType) {
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
-
+      
         //새로운 일정 저장
         $.ajax({
             type: "get",
@@ -86,10 +89,9 @@ var newEvent = function (start, end, eventType) {
             	
             	  title: eventData.title,
                   start: eventData.start,
-                  
-                  
                   end: eventData.end,
                   
+                  eCode: editeCode.val(),
                   
                   description: eventData.description,
                   type: eventData.type,

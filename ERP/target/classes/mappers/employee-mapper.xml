@@ -33,10 +33,6 @@
 		<result property="count" column="COUNT(*)"></result>
 	</resultMap>
 	
-	
-	
-	
-	
 	<resultMap id="resultChart" type="Employee">
 		<result property="eCode" column="ecode" />
 		<result property="dCode" column="dcode" />
@@ -64,18 +60,15 @@
 	SELECT COUNT(*) FROM EMPLOYEE WHERE IDCODE = #{idCode}
 	</select>
 	
+	<select id="selectDepart" resultMap="resultEmployee2">
+	select  count(*)
+	from employee
+	where dcode = #{dCode}
+	
+	</select>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<select id="selectPmanageList" resultType="Employee">
 	
 	SELECT D.ECODE,E.IDCODE, E.WNAME,D.DTITLE,P.PAYMENT,P.MINCOME
@@ -108,18 +101,6 @@ order by d.ecode,d.dcode
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	<insert id="insertEmp" parameterType="Employee">
 		INSERT INTO EMPLOYEE
 		VALUES (#{idCode}, #{dCode},
@@ -146,8 +127,6 @@ order by d.ecode,d.dcode
   WPWD = #{wPwd}
   WHERE IDCODE = #{idCode}
   
-
-
 </update>
 
 

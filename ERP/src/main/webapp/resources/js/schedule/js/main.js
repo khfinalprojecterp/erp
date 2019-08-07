@@ -1,5 +1,6 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
+var editeCode = $('#SCeCode');
 
 function getDisplayEventDate(event) {
 
@@ -100,7 +101,7 @@ var calendar = $('#calendar').fullCalendar({
       }),
       content: $('<div />', {
           class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
+        })
         .append('<p><strong>구분:</strong> ' + event.type + '</p>')
         .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
         .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
@@ -153,7 +154,7 @@ var calendar = $('#calendar').fullCalendar({
       columnFormat: ''
     }
   },
-
+  
   /* ****************
    *  일정 받아옴 
    * ************** */
@@ -164,7 +165,7 @@ var calendar = $('#calendar').fullCalendar({
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
     	  
-    	  
+    	  eCode: editeCode.val()
     	  
     	  
       },

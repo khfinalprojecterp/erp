@@ -11,7 +11,9 @@
 		<div id="page-inner">
 
 					<div class="container">
-			
+					
+					<input type="hidden" id="SCeCode" name="SCeCode" value="${employee.eCode}"/>
+					
 			        <!-- 일자 클릭시 메뉴오픈 -->
 			        <div id="contextMenu" class="dropdown clearfix">
 			            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
@@ -48,6 +50,9 @@
 			                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
 			                            </div>
 			                        </div>
+								
+			                        
+			                        <input type="hidden" id="SCeCode" name="SCeCode" value="${employee.eCode}"/>
 			
 			                        <div class="row">
 			                            <div class="col-xs-12">
@@ -137,8 +142,8 @@
 			                </div>
 			
 			                <div class="col-lg-6">
-			                    <label for="calendar_view">등록자별</label>
-			                    <div class="input-group">
+			                    
+			                    <div class="input-group" style="display: none;">
 			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
 			                                checked>정연</label>
 			                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
