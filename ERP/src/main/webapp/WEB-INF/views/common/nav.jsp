@@ -13,7 +13,7 @@
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="${pageContext.request.contextPath}"><strong><i
-				class="icon fa fa-tasks"></i>&nbsp;&nbsp;FINAL PROJECT</strong></a>
+				class="icon fa fa-tasks"></i>&nbsp;&nbsp;ERP</strong></a>
 
 		<div id="sideNav" href="#">
 			<i class="fa fa-bars icon"></i>

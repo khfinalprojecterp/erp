@@ -11,12 +11,14 @@
 	<div id="page-wrapper">
 		<c:import url="../common/bodyNavitemList.jsp" />
 		<div id="page-inner">
+		
+		
 			<div class="row">
 				<div class="col-md-12">
 				
 					<!-- Advanced Tables -->
 					<div class="panel panel-default">
-						<div class="panel-heading"> <br /> &nbsp;판매</div>
+						<div class="panel-heading"> &nbsp;판매</div>
 						<div class="panel-body">
 							<div class="table-responsive">
 								<table class="table table-striped table-bordered table-hover"
@@ -70,7 +72,7 @@
 								<option value="${P.partnerC}">${P.parName}</option>
 								</c:if>
 							</c:forEach>
-							</select> 
+							</select>
 							&nbsp;&nbsp;&nbsp;
 							판매사원
 							<select id="saleEmpl">
@@ -90,6 +92,8 @@
 					<!--End Advanced Tables -->
 				</div>
 			</div>
+			
+			
 		</div>
 	</div>
 	

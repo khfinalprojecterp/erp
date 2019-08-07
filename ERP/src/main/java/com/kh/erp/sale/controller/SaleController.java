@@ -417,7 +417,15 @@ public class SaleController {
 		
 	}
 	
-	/*@RequestMapping("/sale/saleExcelInput.do")*/
+	@RequestMapping("/sale/saleExcelInput.do")
+	public String saleExcelIntput(
+			@RequestParam(value="ecode") int eCode,
+			@RequestParam(value="filePath") String filePath
+			) {
+		
+		
+		return "";
+	}
 	
 	
 }
