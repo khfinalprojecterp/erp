@@ -31,7 +31,8 @@ public class Job_orderDaoImpl implements Job_orderDao {
 
 	@Override
 	public int insertJobOrder(Job_order job_order) {
-		return sqlSession.insert("", job_order);
+		System.out.println(job_order);
+		return sqlSession.insert("jobOrder.insertJobOrder", job_order);
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class Job_orderDaoImpl implements Job_orderDao {
 	@Override
 	public int deleteJobOrder(int workcode) {
 
-		return sqlSession.delete("", workcode);
+		return sqlSession.delete("jobOrder.deleteJobOrder", workcode);
 	}
 
 

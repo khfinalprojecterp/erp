@@ -13,8 +13,8 @@ public class Job_order implements Serializable{
    private static final long serialVersionUID = 132103L;
       
       private int workcode;
-      private int idcode; // FK_사원번호
-      private int pcode; // FK_물품코드
+      private String idCode; // FK_사원번호
+      private String pCode; // FK_물품코드
       private Date orderdate;
       private char jostatus;
       
@@ -23,120 +23,105 @@ public class Job_order implements Serializable{
       private String pname; 
 
    
-   public Job_order() {}
+    public Job_order() {}
 
 
-	public Job_order(int workcode, int idcode, int pcode) {
+	public Job_order(String idCode, String pCode) {
 	super();
-	this.workcode = workcode;
-	this.idcode = idcode;
-	this.pcode = pcode;
+	this.idCode = idCode;
+	this.pCode = pCode;
 	}
 
 
-	public Job_order(int workcode, int idcode, int pcode, Date orderdate, char jostatus, String wname, String pname) {
-	super();
-	this.workcode = workcode;
-	this.idcode = idcode;
-	this.pcode = pcode;
-	this.orderdate = orderdate;
-	this.jostatus = jostatus;
-	this.wname = wname;
-	this.pname = pname;
+	public Job_order(int workcode, String idCode, String pCode, Date orderdate, char jostatus, String wname,
+			String pname) {
+		super();
+		this.workcode = workcode;
+		this.idCode = idCode;
+		this.pCode = pCode;
+		this.orderdate = orderdate;
+		this.jostatus = jostatus;
+		this.wname = wname;
+		this.pname = pname;
 	}
-
 
 
 	public int getWorkcode() {
 		return workcode;
 	}
-	
-	
-	
+
+
 	public void setWorkcode(int workcode) {
 		this.workcode = workcode;
 	}
-	
-	
-	
-	public int getIdcode() {
-		return idcode;
+
+
+	public String getIdcode() {
+		return idCode;
 	}
-	
-	
-	
-	public void setIdcode(int idcode) {
-		this.idcode = idcode;
+
+
+	public void setIdcode(String idcode) {
+		this.idCode = idcode;
 	}
-	
-	
-	
-	public int getPcode() {
-		return pcode;
+
+
+	public String getPcode() {
+		return pCode;
 	}
-	
-	
-	
-	public void setPcode(int pcode) {
-		this.pcode = pcode;
+
+
+	public void setPcode(String pcode) {
+		this.pCode = pcode;
 	}
-	
-	
-	
+
+
 	public Date getOrderdate() {
 		return orderdate;
 	}
-	
-	
-	
+
+
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
-	
-	
-	
-	public char getWstatus() {
+
+
+	public char getJostatus() {
 		return jostatus;
 	}
-	
-	
-	
-	public void setWstatus(char jostatus) {
+
+
+	public void setJostatus(char jostatus) {
 		this.jostatus = jostatus;
 	}
-	
-	
-	
-	public String getEname() {
+
+
+	public String getWname() {
 		return wname;
 	}
-	
-	
-	
-	public void setEname(String ename) {
-		this.wname = ename;
+
+
+	public void setWname(String wname) {
+		this.wname = wname;
 	}
-	
-	
-	
+
+
 	public String getPname() {
 		return pname;
 	}
-	
-	
-	
+
+
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Job_order [workcode=" + workcode + ", idcode=" + idcode + ", pcode=" + pcode + ", orderdate="
+		return "Job_order [workcode=" + workcode + ", idCode=" + idCode + ", pCode=" + pCode + ", orderdate="
 				+ orderdate + ", jostatus=" + jostatus + ", wname=" + wname + ", pname=" + pname + "]";
 	}
-	
 
 	
+		
 }

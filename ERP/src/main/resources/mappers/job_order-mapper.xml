@@ -5,17 +5,17 @@
 <mapper namespace="jobOrder">
 	<resultMap id="jobOrderMap" type="map">
 		<result property="workcode" column="WORKCODE" />
-		<result property="idcode" column="IDCODE" />
-		<result property="pcode" column="PCODE" />
+		<result property="idCode" column="IDCODE" />
+		<result property="pCode" column="PCODE" />
 		<result property="orderdate" column="ORDERDATE" />
 		<result property="jostatus" column="JOSTATUS" />
-		<result property="ename" column="WNAME" />
-		<result property="pname" column="PNAME" />
+		<result property="wName" column="WNAME" />
+		<result property="pName" column="PNAME" />
 	</resultMap>
 
 	<resultMap id="resultListP" type="map">
-		<result property="PCODE" column="PCODE" />
-		<result property="PNAME" column="PNAME" />
+		<result property="pCode" column="PCODE" />
+		<result property="pName" column="PNAME" />
 	</resultMap>
 	
 	<resultMap id="resultListE" type="map">
@@ -25,11 +25,12 @@
 	<!-- Storage -->
 	
 	<select id="selectJobOrderList" resultMap="jobOrderMap">
-      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.JOSTATUS JOSTATUS 
+      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.JOSTATUS JOSTATUS, E.WNAME WNAME, P.PNAME PNAME 
       FROM JOB_ORDER JO, PRODUCT P, EMPLOYEE E
       WHERE JO.IDCODE = E.IDCODE AND
       JO.PCODE = P.PCODE AND
       JO.IDCODE = E.IDCODE
+      
 	</select>
 	
 	<select id="selectP" resultMap="resultListP">
@@ -50,7 +51,7 @@
 		WHERE MCODE = #{mCode}
 	</select>
 	
-	<insert id="insertStorage">
+	<insert id="insertJobOrder">
 		INSERT INTO JOB_ORDER
 		VALUES (WORKCODE_SEQ.NEXTVAL, #{idCode}, #{pCode}, DEFAULT, DEFAULT)
 	</insert>
@@ -65,9 +66,9 @@
 		    WHERE SCODE = #{sCode}
 	</update>
 	
-	<delete id="deleteStorage">
+	<delete id="deleteJobOrder">
 		DELETE FROM JOB_ORDER
-	    WHERE SCODE = #{workcode}
+	    WHERE WORKCODE = #{workcode}
 	</delete>
 	
 	<!-- StorageDetail -->
