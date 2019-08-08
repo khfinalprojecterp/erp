@@ -51,4 +51,10 @@ public class StorageDetailServiceImpl implements StorageDetailService {
 		return storageDetailDao.loadProductList();
 	}
 
+	@Override
+	public List<Map<String, String>> memberList(int eCode) {
+		
+		return storageDetailDao.memberList(eCode);
+	}
+
 }

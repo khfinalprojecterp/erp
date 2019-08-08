@@ -123,5 +123,13 @@
 		FROM PRODUCT
 		ORDER BY PCODE
 	</select>
+	
+	<select id="selectEmployeeMemberList" resultMap="storageDetailMap">
+		SELECT E.IDCODE IDCODE, E.WNAME WNAME
+			FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE E
+			WHERE E.DCODE = D.DCODE
+			  AND D.ECODE = E.ECODE
+		 	  AND E.ECODE = #{eCode}
+	</select>
 	 
 </mapper>

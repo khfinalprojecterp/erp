@@ -47,16 +47,22 @@ public class WSHandler extends TextWebSocketHandler {
 		
 		// 1. 사용자 정보 저장하기
 		// 2. session에 담긴 사용자 정보 가져오기
+		System.out.println("들어옴");
 		Employee loginMember = (Employee)session.getAttributes().get("employee");
 		users.put(loginMember.getwName(), session);
+		String chCode = (String) session.getAttributes().get("room");
+		int idCode = loginMember.getIdCode();
+		Chat bfchat = new Chat(chCode, idCode);
+
 		
 		// 3. 채팅방에 입장한 자기 자신에게 지난 메세지를 전달하기
 		for (WebSocketSession ws : users.values()) {
 			if(ws.getAttributes().get("room").equals(session.getAttributes().get("room"))) {
 				if(ws == session) {
-					String roomNo = (String) session.getAttributes().get("room");
+					System.out.println(bfchat);
 					ArrayList<Map<String, String>> chatlist 
-						= new ArrayList<>(websocketService.chatList(roomNo));
+						= new ArrayList<>(websocketService.chatList(bfchat));
+
 					for(Map<String, String> map : chatlist) {
 						System.out.println(map.get("chatDetail"));
 						String msg = map.get("chatDetail");

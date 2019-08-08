@@ -44,4 +44,6 @@ public interface StorageDetailService {
 	int deleteStorageDetail(int sdCode);
 
 	List<Map<String, String>> loadProductList();
+
+	List<Map<String, String>> memberList(int eCode);
 }

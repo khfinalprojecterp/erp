@@ -25,7 +25,7 @@ public interface WebSocketService {
 	
 	int deleteChMember(RoomMember roomMember);
 	
-	List<Map<String, String>> chatList(String chCode);
+	List<Map<String, String>> chatList(Chat chat);
 	
 	int insertChMessage(Chat chat);
 	

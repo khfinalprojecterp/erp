@@ -12,6 +12,7 @@
 		<result property="chCode" column="CHCODE" />
 		<result property="idCode" column="IDCODE" />
 		<result property="wName" column="WNAME" />
+		<result property="upTime" column="UPTIME" />
 	</resultMap>
 		<resultMap id="chat" type="map">
 		<result property="chCode" column="CHCODE" />
@@ -53,7 +54,7 @@
   			WHERE R.IDCODE = E.IDCODE
 	</select>
 	
-		<select id="RoomMemberList" resultMap="roommember">
+	<select id="RoomMemberList" resultMap="roommember">
 		SELECT R.CHCODE CHCODE, R.IDCODE IDCODE, E.WNAME WNAME
   			FROM ROOMMEMBER R, EMPLOYEE E
   			WHERE R.IDCODE = E.IDCODE
@@ -70,13 +71,13 @@
 	
 	<insert id="insertChatRoomMember" parameterType="chatroom">
 		INSERT INTO ROOMMEMBER
-			VALUES(CHATROOM_SEQ.CURRVAL, #{idCode})
+			VALUES(CHATROOM_SEQ.CURRVAL, #{idCode}, SYSDATE)
 	</insert>
 	
 	
 	<insert id="insertRoomMember">
 		INSERT INTO ROOMMEMBER
-			VALUES (#{chCode}, #{idCode})
+			VALUES (#{chCode}, #{idCode}, SYSDATE)
 	</insert>
 	
 	<update id="updateRoomMember" parameterType="roommember">
@@ -97,12 +98,16 @@
 		INSERT INTO CHAT
 			VALUES(#{chCode}, #{idCode}, #{chatDetail}, SYSDATE)
 	</insert>
-
+	
 	<select id="chatList" resultMap="chat">
-		SELECT *
-		  FROM CHAT
-		  WHERE CHCODE = #{chCode}
-		  ORDER BY CHATTIME
+			SELECT *
+  			FROM CHAT
+  			WHERE CHCODE = #{chCode}
+    		AND CHATTIME > (SELECT UPTIME
+                   FROM ROOMMEMBER
+                   WHERE IDCODE = #{idCode})
+  			ORDER BY CHATTIME
 	</select>
+
 	
 </mapper>

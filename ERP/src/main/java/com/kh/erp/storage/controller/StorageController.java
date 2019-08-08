@@ -3,13 +3,17 @@ package com.kh.erp.storage.controller;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.erp.enterprise.model.vo.Enterprise;
 import com.kh.erp.materials.model.vo.MaterialsCategory;
+import com.kh.erp.storage.model.service.StorageDetailService;
 import com.kh.erp.storage.model.service.StorageService;
 import com.kh.erp.storage.model.vo.Storage;
 
@@ -18,16 +22,27 @@ public class StorageController {
 
 	@Autowired
 	StorageService storageService;
+	
+	@Autowired
+	StorageDetailService storageDetailService;
 
 	// 창고 리스트 전체를 조회하는 메소드
 	@RequestMapping("/storage/storageList.do")
-	public String selectStorageList(Model model) {
+	public String selectStorageList(Model model, HttpSession session) {
 		
 		
 		ArrayList<Map<String, String>> list = new ArrayList<>(storageService.storageList());
 		
 		model.addAttribute("list", list);
-
+		
+		//회사로 로그인 하였을 경우 member 리스트를 불러와서 저장 한다.
+		
+		if (session.getAttribute("enterprise") != null) {
+		Enterprise enterprise = (Enterprise) session.getAttribute("enterprise");
+			ArrayList<Map<String, String>> memberlist = new ArrayList<>(storageDetailService.memberList(enterprise.geteCode()));
+			model.addAttribute("memberlist", memberlist);
+			System.out.println(memberlist);
+		}
 		
 		return "storage/storageList";
 		
