@@ -95,6 +95,7 @@ public class WSHandler extends TextWebSocketHandler {
 			if(ws.getAttributes().get("room").equals(session.getAttributes().get("room"))) {				
 				// WEBSOCKET 전송
 				ws.sendMessage(new TextMessage(msg));
+				System.out.println(msg);
 			}
 		}
 	}
@@ -105,11 +106,9 @@ public class WSHandler extends TextWebSocketHandler {
 		
 		System.out.println("퇴장");
 		// 1. 기존 사용자 목록에서 제거 
-		users.remove(session);
+		Employee loginMember = (Employee)session.getAttributes().get("employee");
+		users.remove(loginMember.getwName(), session);
 		
-		// 2. 퇴장할 사용자 정보 추출
-		Employee logoutMember = (Employee)session.getAttributes().get("employee");
-		//super.afterConnectionClosed(session, status);
 	}
 	
 

@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:import url="../common/header.jsp" />
 
+<c:import url="../common/header.jsp" />
 <body>
 	<c:import url="../common/nav.jsp" />
 	<div id="page-wrapper">
-		<c:import url="../common/bodyNavPartner.jsp" />
+		<c:import url="../common/bodyNav.jsp" />
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
@@ -20,8 +20,8 @@
 						</div>
 						<div class="panel-body">
 							<div class="table-responsive">
-								<table class="table table-striped table-bordered table-hover"
-									id="dataTables-example">
+								<table class="table table-striped table-bordered table-hover col-md-12"
+									id="dataTables-example" style="width: 100%;">
 									<thead>
 										<tr>
 											<th>거래처명</th>
@@ -50,6 +50,12 @@
 							</div>
 						</div>
 					</div>
+
+
+				
+
+
+
 					<!--End Advanced Tables -->
 				</div>
 			</div>
@@ -113,7 +119,22 @@
 			</div>
 		</div>
 	</div>
-	<script>		
+	<script>	
+	
+		$("#sideNav").click(function(){
+			var el = document.getElementById("dataTables-example");
+				el.style.width="100%";
+			if($(this).hasClass('closed')){
+				$('.navbar-side').animate({left: '0px'});
+				$(this).removeClass('closed');
+				$('#page-wrapper').animate({'margin-left' : '260px'});
+			}
+			else{
+			    $(this).addClass('closed');
+				$('.navbar-side').animate({left: '-260px'});
+				$('#page-wrapper').animate({'margin-left' : '0px'});
+			}
+		});
 		
 		function newMateCate() {
 			var mcName = $("#newCate").val();

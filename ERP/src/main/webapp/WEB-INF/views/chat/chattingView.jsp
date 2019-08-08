@@ -43,10 +43,12 @@
             /* 전송 후 작성창 초기화 */
             $("#message").val('');
         });
+        
         $("#exitBtn").click(function(){
             console.log("exit message.....");
             
             //채팅방 종료
+            alert("onClose");
             onClose();
         });
         

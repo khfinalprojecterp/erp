@@ -22,7 +22,7 @@
             });
 
             /* MORRIS BAR CHART
-			-----------------------------------------*/
+			-----------------------------------------
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [{
@@ -67,8 +67,8 @@
 	 
 
 
-            /* MORRIS DONUT CHART
-			----------------------------------------*/
+             MORRIS DONUT CHART
+			----------------------------------------
             Morris.Donut({
                 element: 'morris-donut-chart',
                 data: [{
@@ -88,8 +88,8 @@
                 resize: true
             });
 
-            /* MORRIS AREA CHART
-			----------------------------------------*/
+             MORRIS AREA CHART
+			----------------------------------------
 
             Morris.Area({
                 element: 'morris-area-chart',
@@ -155,8 +155,8 @@
                 resize: true
             });
 
-            /* MORRIS LINE CHART
-			----------------------------------------*/
+             MORRIS LINE CHART
+			----------------------------------------
             Morris.Line({
                 element: 'morris-line-chart',
                 data: [
@@ -185,7 +185,7 @@
       pointStrokeColors: ['black'],
       lineColors:['gray','#1abc9c']
 	  
-            });
+            });*/
            
         
             $('.bar-chart').cssCharts({type:"bar"});
