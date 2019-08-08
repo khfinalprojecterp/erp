@@ -13,13 +13,14 @@
 		<div id="page-inner">
 		
 		<c:if test="${ empty employee && !empty enterprise }">
-   		 <span>${enterprise.eName}</a> 님 의 정보</span>
-   		 
-   		 	<div id="enroll-container">
+   		
+<%--    		  <span>${enterprise.eName}</a> 님 의 정보</span> --%>
+   		 	<div id="enroll-container" align="center">
 				<form method="post" action="enterpriseUpdate.do"
 				      name="enterpriseEnrollFrm" onsubmit="return fn_enroll_validate();">
 					<table>
 						<tr>
+					
 							<th>기업 아이디</th>
 							<td>
 								<div id="userId-container">
@@ -80,6 +81,7 @@
 			
 						</tr>
 					</table>
+					<br>
 					<input id="idgo" type="submit" class="btn btn-primary" value="수정하기" >
 			
 				</form>
@@ -103,8 +105,8 @@
    	
  
   		 <c:if test="${ empty enterprise && !empty employee }">
-  		 <span>${employee.wName}</a> 님 의  정보</span>
-   		 <div id="enroll-container">
+<%--   		 <span>${employee.wName}</a> 님 의  정보</span> --%>
+   		 <div id="enroll-container" align="center">
 				<form method="post" action="employeeUpdate.do"
 				      name="employeeEnrollFrm" onsubmit="return fn_enroll_validate();">
 					<table>
