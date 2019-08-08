@@ -11,82 +11,12 @@
 <c:import url="views/common/nav.jsp" />
 <div id="page-wrapper">
 <c:import url="views/common/bodyNav.jsp" />
-	
+   
             <div id="page-inner">
 
                 <!-- /. ROW  -->
-	
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>44,023</h3>
-								<small>User</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-eye fa-5x red"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>32,850</h3>
-								<small>Sales</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-shopping-cart fa-5x blue"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>56,150</h3>
-								<small>ex</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-comments fa-5x green"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-					
-					       <div class="col-md-3 col-sm-12 col-xs-12">
-					<div class="board">
-                        <div class="panel panel-primary">
-						<div class="number">
-							<h3>
-								<h3>$89,645</h3>
-								<small>Profit</small>
-							</h3> 
-						</div>
-						<div class="icon">
-						   <i class="fa fa-user fa-5x yellow"></i>
-						</div>
-		 
-                        </div>
-						</div>
-                    </div>
-				   
-                </div>
-				     <div class="row">
+   
+                 <div class="row">
                         <div class="col-sm-6 col-xs-12">  
                             <div class="panel panel-default chartJs">
                                 <div class="panel-heading">
@@ -112,84 +42,84 @@
                             </div>
                         </div>
                     </div>
-				
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Profit</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Sales</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Customers</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>No. of Visits</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-			
-		
-				<div class="row">
-				<div class="col-md-5">
-						<div class="panel panel-default">
-						<div class="panel-heading">
-							Line Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-line-chart"></div>
-						</div>						
-					</div>   
-					</div>		
-					
-						<div class="col-md-7">
-					<div class="panel panel-default">
-					<div class="panel-heading">
+            
+      <div class="row">
+         <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+               <div class="panel-body easypiechart-panel">
+                  <h4>Profit</h4>
+                  <div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+               <div class="panel-body easypiechart-panel">
+                  <h4>Sales</h4>
+                  <div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+               <div class="panel-body easypiechart-panel">
+                  <h4>Customers</h4>
+                  <div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+               <div class="panel-body easypiechart-panel">
+                  <h4>No. of Visits</h4>
+                  <div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div><!--/.row-->
+         
+      
+            <div class="row">
+            <div class="col-md-5">
+                  <div class="panel panel-default">
+                  <div class="panel-heading">
+                     Line Chart
+                  </div>
+                  <div class="panel-body">
+                     <div id="morris-line-chart"></div>
+                  </div>                  
+               </div>   
+               </div>      
+               
+                  <div class="col-md-7">
+               <div class="panel panel-default">
+               <div class="panel-heading">
                                 Bar Chart Example
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart"></div>
                             </div>
-						
-					</div>  
-					</div>
-					
-				</div> 
-			 
-				
-				
+                  
+               </div>  
+               </div>
+               
+            </div> 
+          
+            
+            
                 <div class="row">
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="panel panel-default">                            
-							<div class="panel-heading">
-							Area Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-area-chart"></div>
-						</div>
+                     <div class="panel-heading">
+                     Area Chart
+                  </div>
+                  <div class="panel-body">
+                     <div id="morris-area-chart"></div>
+                  </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12">
@@ -204,17 +134,17 @@
                     </div>
 
                 </div>
-				<div class="row">
-				<div class="col-md-12">
-				
-					</div>		
-				</div> 	
+            <div class="row">
+            <div class="col-md-12">
+            
+               </div>      
+            </div>    
                 <!-- /. ROW  -->
 
-	   
-				
-				
-				
+      
+            
+            
+            
                 <div class="row">
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
@@ -326,14 +256,172 @@
 </div>
                     </div>
                 </div>
-                <!-- /. ROW  -->	
+                <!-- /. ROW  -->   
 
 
 
+<script>
+Morris.Bar({
+    element: 'morris-bar-chart',
+    data: [{
+        y: '2006',
+        a: 100,
+        b: 90
+    }, {
+        y: '2007',
+        a: 75,
+        b: 65
+    }, {
+        y: '2008',
+        a: 50,
+        b: 40
+    }, {
+        y: '2009',
+        a: 75,
+        b: 65
+    }, {
+        y: '2010',
+        a: 50,
+        b: 40
+    }, {
+        y: '2011',
+        a: 75,
+        b: 65
+    }, {
+        y: '2012',
+        a: 100,
+        b: 90
+    }],
+    xkey: 'y',
+    ykeys: ['a', 'b'],
+    labels: ['Series A', 'Series B'],
+	 barColors: [
+'#22a7f0','#1abc9c',
+'#A8E9DC' 
+],
+    hideHover: 'auto',
+    resize: true
+});
 
 
-	
-	
+
+Morris.Donut({
+    element: 'morris-donut-chart',
+    data: [{
+        label: "Download Sales",
+        value: 12
+    }, {
+        label: "In-Store Sales",
+        value: 30
+    }, {
+        label: "Mail-Order Sales",
+        value: 20
+    }],
+	   colors: [
+'#22a7f0','#1abc9c',
+'#A8E9DC' 
+],
+    resize: true
+});
+
+
+Morris.Area({
+    element: 'morris-area-chart',
+    data: [{
+        period: '2010 Q1',
+        iphone: 2666,
+        ipad: null,
+        itouch: 2647
+    }, {
+        period: '2010 Q2',
+        iphone: 2778,
+        ipad: 2294,
+        itouch: 2441
+    }, {
+        period: '2010 Q3',
+        iphone: 4912,
+        ipad: 1969,
+        itouch: 2501
+    }, {
+        period: '2010 Q4',
+        iphone: 3767,
+        ipad: 3597,
+        itouch: 5689
+    }, {
+        period: '2011 Q1',
+        iphone: 6810,
+        ipad: 1914,
+        itouch: 2293
+    }, {
+        period: '2011 Q2',
+        iphone: 5670,
+        ipad: 4293,
+        itouch: 1881
+    }, {
+        period: '2011 Q3',
+        iphone: 4820,
+        ipad: 3795,
+        itouch: 1588
+    }, {
+        period: '2011 Q4',
+        iphone: 15073,
+        ipad: 5967,
+        itouch: 5175
+    }, {
+        period: '2012 Q1',
+        iphone: 10687,
+        ipad: 4460,
+        itouch: 2028
+    }, {
+        period: '2012 Q2',
+        iphone: 8432,
+        ipad: 5713,
+        itouch: 1791
+    }],
+    xkey: 'period',
+    ykeys: ['iphone', 'ipad', 'itouch'],
+    labels: ['iPhone', 'iPad', 'iPod Touch'],
+    pointSize: 2,
+    hideHover: 'auto',
+	  pointFillColors:['#ffffff'],
+	  pointStrokeColors: ['black'],
+	  lineColors:['#22a7f0','#1abc9c'],
+    resize: true
+});
+
+Morris.Line({
+    element: 'morris-line-chart',
+    data: [
+		  { y: '2014', a: 50, b: 90},
+		  { y: '2015', a: 165,  b: 185},
+		  { y: '2016', a: 150,  b: 130},
+		  { y: '2017', a: 175,  b: 160},
+		  { y: '2018', a: 80,  b: 65},
+		  { y: '2019', a: 90,  b: 70},
+		  { y: '2020', a: 100, b: 125},
+		  { y: '2021', a: 155, b: 175},
+		  { y: '2022', a: 80, b: 85},
+		  { y: '2023', a: 145, b: 155},
+		  { y: '2024', a: 160, b: 195}
+	],
+
+	 
+xkey: 'y',
+ykeys: ['a', 'b'],
+labels: ['Total Income', 'Total Outcome'],
+fillOpacity: 0.6,
+hideHover: 'auto',
+behaveLikeLine: true,
+resize: true,
+pointFillColors:['#ffffff'],
+pointStrokeColors: ['black'],
+lineColors:['gray','#1abc9c']
+
+});
+</script>
+
+   
+   
 </div>
 
 </body>

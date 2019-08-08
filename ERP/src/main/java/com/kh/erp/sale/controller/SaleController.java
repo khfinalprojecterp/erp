@@ -263,11 +263,14 @@ public class SaleController {
 		(saleService.saleHistory(eCode));
 		ArrayList<SaleItem> saleItemList = new ArrayList<>
 		(saleService.itemHistory(eCode));
+		ArrayList<Storage> storageList = new ArrayList<>
+		(saleService.selectStorage(eCode));
 		
 		model.addAttribute("saleList",saleList)
 		.addAttribute("saleItemList",saleItemList)
 		.addAttribute("ecode",eCode)
 		.addAttribute("partnerList",partnerList)
+		.addAttribute("storageList",storageList)
 		.addAttribute("employeeList",employeeList);
 		
 		return "sale/saleRegist";
@@ -416,18 +419,6 @@ public class SaleController {
 		
 		
 	}
-	
-	@RequestMapping("/sale/saleExcelInput.do")
-	public String saleExcelIntput(
-			@RequestParam(value="ecode") int eCode,
-			@RequestParam(value="filePath") String filePath
-			) {
-		
-		
-		return "";
-	}
-	
-	
 }
 
 

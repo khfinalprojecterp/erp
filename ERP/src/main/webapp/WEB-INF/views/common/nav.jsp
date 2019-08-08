@@ -276,9 +276,17 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a></li>
-                    <li><a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${enterprise.eCode}">물품 판매</a></li>
-                    <li><a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${enterprise.eCode}">판매 기록</a></li>
+                <c:if test="${ !empty employee || !empty enterprise }">
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a>
+                    </li>
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${enterprise.eCode}">물품 판매</a>
+                    </li>
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${enterprise.eCode}">판매 기록</a>
+                    </li>
+                </c:if>
                 </ul>
             </li>
 			<!-- 한솔 -->

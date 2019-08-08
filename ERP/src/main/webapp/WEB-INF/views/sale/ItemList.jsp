@@ -9,7 +9,7 @@
 <body>
 	<c:import url="../common/nav.jsp" />
 	<div id="page-wrapper">
-		<c:import url="../common/bodyNavitemList.jsp" />
+		<c:import url="../common/bodyNav.jsp" />
 		<div id="page-inner">
 		
 		
@@ -98,6 +98,21 @@
 	</div>
 	
 	<script>
+	$("#sideNav").click(function(){
+		var el = document.getElementById("dataTables-example");
+			el.style.width="100%";
+		if($(this).hasClass('closed')){
+			$('.navbar-side').animate({left: '0px'});
+			$(this).removeClass('closed');
+			$('#page-wrapper').animate({'margin-left' : '260px'});
+		}
+		else{
+		    $(this).addClass('closed');
+			$('.navbar-side').animate({left: '-260px'});
+			$('#page-wrapper').animate({'margin-left' : '0px'});
+		}
+	});
+	
 	var statusIdx = [];
 	var PartnerSelect = "";
 	var EmployeeSelect = "";
