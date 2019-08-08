@@ -60,6 +60,12 @@ public class Chat implements Serializable{
 		this.idCode = idCode;
 		this.chatDetail = chatDetail;
 	}
+	public Chat(String chCode, int idCode) {
+		super();
+		this.chCode = chCode;
+		this.idCode = idCode;
+	}
+	
 	
 	
 }

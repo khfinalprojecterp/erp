@@ -42,4 +42,7 @@ public interface StorageDetailDao {
 	int deleteStorageDetail(int sCode);
 
 	List<Map<String, String>> loadProductList();
+	
+
+	List<Map<String, String>> memberList(int eCode);
 }

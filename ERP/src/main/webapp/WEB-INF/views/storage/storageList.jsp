@@ -35,15 +35,33 @@
 									</thead>
 									<tbody>
 										<c:forEach items="${list}" var="s" >
-											<tr id="${s.sCode}" class="${s.eCode} ${s.idCode}">
-												<td>${s.sCode}</td>
-												<td>${s.sEname}</td>
-												<td>${s.sWname}</td>
-												<td>${s.sCate}</td>
-												<td>${s.sPhone}</td>
-												<td>${s.sAddr}</td>
-												<td>${s.sStatus}</td>
-											</tr>
+											<c:if test="${empty enterprise}">
+												<c:if test="${s.eCode eq employee.eCode }">
+													<tr id="${s.sCode}" class="${s.eCode} ${s.idCode}">
+														<td>${s.sCode}</td>
+														<td>${s.sEname}</td>
+														<td>${s.sWname}</td>
+														<td>${s.sCate}</td>
+														<td>${s.sPhone}</td>
+														<td>${s.sAddr}</td>
+														<td>${s.sStatus}</td>
+													</tr>
+												</c:if>
+											</c:if>
+											<c:if test="${empty employee }">
+												<c:if test="${s.eCode eq enterprise.eCode }">
+													<tr id="${s.sCode}" class="${s.eCode} ${s.idCode}">
+														<td>${s.sCode}</td>
+														<td>${s.sEname}</td>
+														<td>${s.sWname}</td>
+														<td>${s.sCate}</td>
+														<td>${s.sPhone}</td>
+														<td>${s.sAddr}</td>
+														<td>${s.sStatus}</td>
+													</tr>												
+												</c:if>
+											</c:if>
+
 										</c:forEach>
 									</tbody>
 								</table>
@@ -65,17 +83,33 @@
 				</div>
 				<div class="modal-body">
 					<form>
-						<!-- 기업으로 로그인 일시 담당사원 리스트에서 고르게? -->
+						<c:if test="${empty enterprise}">
 							<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
 							<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">기업 이름:</label>
-							<input type="text" class="form-control" id="neweCoderealName" value="${employee.eName}" readonly>
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="newidCoderealName" value="${employee.wName}" readonly>
-						</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">기업 이름:</label>
+								<input type="text" class="form-control" id="neweCoderealName" value="${employee.eName}" readonly>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<input type="text" class="form-control" id="newidCoderealName" value="${employee.wName}" readonly>
+							</div>
+						</c:if>
+						<c:if test="${empty employee }">
+							<input type="hidden" class="form-control" id="neweCodeET" value="${enterprise.eCode }">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">기업 이름:</label>
+								<input type="text" class="form-control" id="neweCoderealNameET" value="${enterprise.eName}" readonly>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<select class="custom-select" id="newidCodeET">
+									<c:forEach items="${memberlist}" var="member" >
+										<option value="${member.idCode}">${member.sWname}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</c:if>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">구분:</label>
 							<input type="text" class="form-control" id="newsCate">
@@ -155,8 +189,14 @@
 	<script>
 		
 		function newStorage() {
-			var eCode = $("#neweCode").val();
-			var idCode = $("#newidCode").val();
+			if ($("#neweCode").val() ==null) {
+				var eCode = $("#neweCodeET").val();
+				var idCode = $("#newidCodeET").val();
+			} else {
+				var eCode = $("#neweCode").val();
+				var idCode = $("#newidCode").val();
+			}
+
 			var sCate = $("#newsCate").val();
 			var sPhone = $("#newsPhone").val();
 			var sAddr = $("#newsAddr").val();

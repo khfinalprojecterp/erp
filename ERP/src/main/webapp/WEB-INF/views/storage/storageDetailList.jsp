@@ -9,6 +9,12 @@
 	<c:import url="../common/nav.jsp" />
 	<div id="page-wrapper">
 		<c:import url="../common/bodyNav.jsp" />
+		<c:if test="${empty enterprise}">
+			<c:set var = "enem" value = "employee"/>
+		</c:if>
+		<c:if test="${empty employee }">
+			<c:set var = "enem" value = "enterprise"/>
+		</c:if>
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
@@ -89,19 +95,35 @@
 								<option value="${s.sCode}">${s.sAddr}</option>
 							</c:forEach>
 						</select>
-
-						<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
-						<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">기업 이름:</label>
-							<input type="text" class="form-control" id="neweCode" value="${employee.eName}" readonly>
-
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="newidCode" value="${employee.wName}" readonly>
-
-						</div>
+						<c:if test="${empty enterprise}">
+							<input type="hidden" class="form-control" id="neweCode" value="${employee.eCode }">
+							<input type="hidden" class="form-control" id="newidCode" value="${employee.idCode }">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">기업 이름:</label>
+								<input type="text" class="form-control" id="neweCode" value="${employee.eName}" readonly>
+	
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<input type="text" class="form-control" id="newidCodeName" value="${employee.wName}" readonly>
+	
+							</div>
+						</c:if>
+						<c:if test="${empty employee }">
+							<input type="hidden" class="form-control" id="neweCodeET" value="${enterprise.eCode }">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">기업 이름:</label>
+								<input type="text" class="form-control" id="neweCodeET" value="${enterprise.eName}" readonly>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<select class="custom-select" id="newidCodeET">
+									<c:forEach items="${memberlist}" var="member" >
+										<option value="${member.idCode}">${member.sWname}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</c:if>
 
 						<div class="form-group">
 							<label for="check" class="col-form-label">품목종류:</label>&nbsp;
@@ -153,8 +175,6 @@
 						<div class="form-group">
 							<input type ="hidden" id="upsdCode" value="" />
 							<input type ="hidden" id="upeCode" value="" />
-							<input type ="hidden" id="upidCode" value="" />
-							
 						</div>
 						<label for="message-text" class="col-form-label">창고 선택:</label>&nbsp;
 						<select class="custom-select" id="selectstorageDe">
@@ -166,19 +186,24 @@
 							<label for="message-text" class="col-form-label">기업 이름:</label>
 							<input type="text" class="form-control" id="updeCode" value="" readonly>
 						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="upeidCode" value="" readonly>
-						</div>
-
-						<!-- <div class="form-group">
-							<label for="message-text" class="col-form-label">기업 이름:</label>
-							<input type="text" class="form-control" id="neweCode" value="${enterprise.eName}" readonly>
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">담당사원 이름:</label>
-							<input type="text" class="form-control" id="newidCode" value="${employee.wName}" readonly>
-						</div>  -->
+						
+						<c:if test="${empty enterprise}">
+	 						<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<input type ="hidden" id="upidCode" value="" />
+								<input type="text" class="form-control" id="upeidCode" value="" readonly>
+							</div>
+						</c:if>
+						<c:if test="${empty employee }">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">담당사원 이름:</label>
+								<select class="custom-select" id="upeidCodeET">
+									<c:forEach items="${memberlist}" var="member" >
+										<option value="${member.idCode}">${member.sWname}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</c:if>
 
 						<div class="form-group">
 							<label for="check" class="col-form-label">품목종류:</label>&nbsp;
@@ -245,20 +270,27 @@
 		function newStorageDe() {
 			var sCode = $("#selectstorage").val();
 			var eCode = $("#neweCode").val();
-			var idCode = $("#newidCode").val();
+			if ( $("#neweCodeET").val() == null) {
+				var eCode = $("#neweCode").val();
+				var idCode = $("#newidCode").val();
+			} else {
+				var eCode = $("#neweCodeET").val();
+				var idCode = $("#newidCodeET").val();
+			}
+			
 			var sdStock = $("#newsdstock").val();
 			var sdCost = $("#newsdcost").val();
 			var sdPrice = $("#newsdprice").val();
-			if($("input:radio[name=checkP]:checked").val()=='Ma'){
+ 			if($("input:radio[name=checkP]:checked").val()=='Ma'){
 				var mCode = $("#selectM").val();
 				var pCode = "null";
-				location.href = "${pageContext.request.contextPath}/storage/storageDetailInsert.do?sCode="+sCode
+ 				location.href = "${pageContext.request.contextPath}/storage/storageDetailInsert.do?sCode="+sCode
 				+"&eCode="+eCode+"&idCode="+idCode+"&mCode="+mCode+"&sdStock="+sdStock
 				+"&sdCost="+sdCost+"&sdPrice="+sdPrice;
 		    }else{
 		    	var mCode = "null";
 				var pCode = $("#selectP").val();
-				location.href = "${pageContext.request.contextPath}/storage/storageDetailInsert.do?sCode="+sCode
+ 				location.href = "${pageContext.request.contextPath}/storage/storageDetailInsert.do?sCode="+sCode
 				+"&eCode="+eCode+"&idCode="+idCode+"&pCode="+pCode+"&sdStock="+sdStock
 				+"&sdCost="+sdCost+"&sdPrice="+sdPrice;
 		    }
@@ -266,9 +298,16 @@
 		}
 		
 		function updateStorageDe() {
+			var chkenem = "${enem}";
 			var sdCode = $("#upsdCode").val();
-			var idCode = $("#upidCode").val();
 			var eCode = $("#upeCode").val();
+			if( chkenem == "employee" ){
+				var idCode = $("#upidCode").val();
+			} 
+			if ( chkenem == "enterprise") {
+				var idCode = $("#upeidCodeET").val();
+			}
+			
 			var sCode = $("#selectstorageDe").val();
 			var sdStock = $("#upsdstock").val();
 			var sdCost = $("#upsdcost").val();
@@ -300,17 +339,28 @@
 		
 		$("#dataTables-example td").each(function(){
 			$(this).click(function(){
+				var chkenem = "${enem}";
 				
 	 			var sdCode = $(this).parent().attr('class').split(' ')[0];
 	 			var eCode = $(this).parent().attr('class').split(' ')[1];
 	 			var upidCode = $(this).parent().attr('class').split(' ')[2];
 	 			document.getElementById("upsdCode").value = sdCode;
 	 			document.getElementById("upeCode").value = eCode;
-	 			document.getElementById("upidCode").value = upidCode;
+	 			if ( chkenem == "enterprise") {
+	 				document.getElementById("upeidCodeET").value = upidCode;
+	 				
+	 			}
+	 			if ( chkenem == "employee") {
+	 				document.getElementById("upidCode").value = upidCode;
+		 			document.getElementById("upeidCode").value = $(this).parent().children().eq(2).text();
+		 			
+	 			}
+	 				
+
 	 			document.getElementById("selectstorageDe").value = $(this).parent().children().eq(0).text();
 	 			document.getElementById("updeCode").value = $(this).parent().children().eq(1).text();
-				document.getElementById("upeidCode").value = $(this).parent().children().eq(2).text();
-				if($(this).parent().children().eq(3).text() == "물품") {
+	 			
+	 			if($(this).parent().children().eq(3).text() == "물품") {
 					$("#UradioP").prop("checked", true)
 					$( "#upselectP" ).show();
                 	$( "#upselectM" ).hide();

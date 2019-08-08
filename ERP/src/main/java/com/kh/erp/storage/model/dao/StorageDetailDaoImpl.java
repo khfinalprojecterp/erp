@@ -49,6 +49,11 @@ public class StorageDetailDaoImpl implements StorageDetailDao {
 	public List<Map<String, String>> loadProductList() {
 		return sqlSession.selectList("storage.loadProductList");
 	}
+
+	@Override
+	public List<Map<String, String>> memberList(int eCode) {
+		return sqlSession.selectList("storage.selectEmployeeMemberList", eCode);
+	}
 	
 	
 }

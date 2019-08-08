@@ -66,9 +66,9 @@ public class WebSocketServiceImpl implements WebSocketService {
 	}
 
 	@Override
-	public List<Map<String, String>> chatList(String chCode) {
+	public List<Map<String, String>> chatList(Chat chat) {
 		
-		return websocketDao.chatList(chCode);
+		return websocketDao.chatList(chat);
 	}
 
 	@Override
