@@ -4,13 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:import url="views/common/header.jsp" />
+<c:import url="./common/header.jsp" />
 
 <body>
 
-<c:import url="views/common/nav.jsp" />
+<c:import url="./common/nav.jsp" />
 <div id="page-wrapper">
-<c:import url="views/common/bodyNav.jsp" />
+<c:import url="./common/bodyNav.jsp" />
 	
             <div id="page-inner">
 
@@ -337,4 +337,4 @@
 </div>
 
 </body>
-<c:import url="views/common/footer.jsp" />
+<c:import url="./common/footer.jsp" />

@@ -93,7 +93,7 @@
                      </div>
      				 <div class="form-group">
                      <label for="message-text" class="col-form-label">월급</label>
-                     <input type="text" class="form-control" id="mincome" name="mincome">
+                     <input type="text" class="form-control" id="mincome" name="mincome" maxlength="9">
                      </div>
      
      

@@ -13,6 +13,11 @@
 		<li><a href="#">메신저</a></li>
 		<li><a href="${pageContext.request.contextPath}/board/boardList.do">게시판</a>
 
+
+
+
+
+
 	</ol>
 </div>
 

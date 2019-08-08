@@ -194,6 +194,7 @@ public String employeeLogin (
 		
 		if(employee == null) {
 			msg = "존재하지 않는 회원입니다.";
+			loc="/";
 		} else {
 			// 3. 로그인에 사용한 비밀번호와
 			//    원래 저장되어 있던 비밀번호 확인
@@ -204,13 +205,14 @@ public String employeeLogin (
 				
 				session.setAttribute("employee", employee);
 			
-				System.out.println(employee);
+				return "index1";
 				
 				
 				
 				
 			} else {
 				msg = "비밀번호가 일치하지 않습니다!";
+				loc="/";
 			}
 			
 		}
