@@ -27,9 +27,10 @@ public class Purchase implements Serializable{
 	private String pName;
 	private String mName;
 	private String eCode;
+	private int ptCode;
 	
 	 
-	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName) {
+	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName, String eCode) {
 		super();
 		this.sCode = sCode;
 		this.mCode = mCode;
@@ -45,7 +46,7 @@ public class Purchase implements Serializable{
 
 
 	public Purchase(int buy_code, int sCode, String mCode, String pCode, int idCode, int buy_amount, int buy_origin,
-			int buy_price, String buy_status, int buy_discount, String sddivi, String buy_date) {
+			int buy_price, String buy_status, int buy_discount, String sddivi, String buy_date, int ptCode) {
 		super();
 		this.buy_code = buy_code;
 		this.sCode = sCode;
@@ -59,6 +60,7 @@ public class Purchase implements Serializable{
 		this.buy_discount = buy_discount;
 		this.sddivi = sddivi;
 		this.buy_date = buy_date;
+		this.ptCode = ptCode;
 	}
 
 
@@ -209,6 +211,16 @@ public class Purchase implements Serializable{
 
 	public void seteCode(String eCode) {
 		this.eCode = eCode;
+	}
+
+
+	public int getPtCode() {
+		return ptCode;
+	}
+
+
+	public void setPtCode(int ptCode) {
+		this.ptCode = ptCode;
 	}
 
 

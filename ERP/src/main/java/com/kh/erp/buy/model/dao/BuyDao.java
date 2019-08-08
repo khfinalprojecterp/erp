@@ -25,6 +25,7 @@ public interface BuyDao {
 	
 	List<Map<String, String>> eList();
 	
+	List<Map<String, String>> ptList();
 	
 	/**
 	 * 구매 목록 하나 상세보기
