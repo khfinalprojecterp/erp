@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class Sale implements Serializable {
 	
 	private int sal_Code;
-	private int eCode;
+	private int eCode; 
 	private int idCode;
 	private int partnerC;
 	private Date salDay;
