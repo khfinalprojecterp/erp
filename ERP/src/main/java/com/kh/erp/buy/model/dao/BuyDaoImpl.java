@@ -34,6 +34,12 @@ public class BuyDaoImpl implements BuyDao {
 	}
 	
 	@Override
+	public List<Map<String, String>> ptList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("buy.selectPt");
+	}
+	
+	@Override
 	public List<Map<String, String>> sList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("buy.selectS");

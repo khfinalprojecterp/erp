@@ -32,6 +32,7 @@
 											<th>수량</th>
 											<th>원가</th>
 											<th>매입가</th>
+											<th>거래처</th>
 											<th>처리상태</th>
 											<th>구매날자</th>
 										</tr>
@@ -61,6 +62,7 @@
 												<td>${b.buy_amount}</td>
 												<td>${b.buy_origin}</td>
 												<td>${b.buy_price}</td>
+												<td>${b.parName}</td>
 												<c:if test="${b.buy_status eq 'E'}" >
 												<td>승인완료</td>
 												</c:if>
@@ -132,6 +134,15 @@
 									</c:if>
 								</c:forEach>				
 							</select><br><br>
+							
+							<select class="custom-select" name="ptCode" id="ptCode">
+								<c:forEach items="${ptlist}" var="pt" >
+								<c:if test="${ employee.eCode eq pt.eCode }">
+									<option value="${pt.parC}">${pt.parName}</option>
+									</c:if>
+								</c:forEach>
+							</select><br><br>
+							
 							
 							<label for="message-text" class="col-form-label">수량 :</label>
 							<input type="text" class="form-control" name="buy_amount">
@@ -210,6 +221,15 @@
 									<option value="${e.idCode}">${e.wName}</option>
 									</c:if>
 								</c:forEach>				
+							</select><br><br>
+							
+							<label for="message-text" class="col-form-label">거래처명 :</label>
+							<select class="custom-select" name="ptCode2" id="ptCode2">
+								<c:forEach items="${ptlist}" var="pt" >
+								<c:if test="${ employee.eCode eq pt.eCode }">
+									<option value="${pt.parC}">${pt.parName}</option>
+									</c:if>
+								</c:forEach>
 							</select><br><br>
 							
 							<label for="message-text" class="col-form-label">수량 :</label>
@@ -343,6 +363,7 @@
 					document.getElementById("buy_amount2").value = $(this).parent().children().eq(5).text();
 					document.getElementById("buy_origin2").value = $(this).parent().children().eq(6).text();
 					document.getElementById("buy_price2").value = $(this).parent().children().eq(7).text();
+					document.getElementById("ptCode2").value =  $("#ptCode2 option:selected").val();
 					
 					document.getElementById("eCode2").value = ${employee.eCode};
 /* 					 if($("input:radio[name=buy_status]:checked").val()=='D'){
@@ -357,6 +378,23 @@
 					
 					$("#updateBuyItem").modal();
 				});
+		
+		
+		
+		$("#sideNav").click(function(){
+	         if($(this).hasClass('closed')){
+	            $('.navbar-side').animate({left: '0px'});
+	            $(this).removeClass('closed');
+	            $('#page-wrapper').animate({'margin-left' : '260px'});
+	            
+	         }
+	         else{
+	             $(this).addClass('closed');
+	            $('.navbar-side').animate({left: '-260px'});
+	            $('#page-wrapper').animate({'margin-left' : '0px'}); 
+	         }
+	      });
+		
 	</script>
 </body>
 <c:import url="../common/footer.jsp" />

@@ -34,6 +34,12 @@ public class BuyServiceImpl implements BuyService {
 	}
 	
 	@Override
+	public List<Map<String, String>> ptList() {
+		// TODO Auto-generated method stub
+		return buydao.ptList();
+	}
+	
+	@Override
 	public List<Map<String, String>> sList() {
 		// TODO Auto-generated method stub
 		return buydao.sList();
