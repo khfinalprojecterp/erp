@@ -17,7 +17,6 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +30,8 @@ import com.kh.erp.sale.model.vo.Sale;
 import com.kh.erp.sale.model.vo.SaleItem;
 import com.kh.erp.storage.model.vo.Storage;
 import com.kh.erp.storage.model.vo.StorageDetail;
-
 import com.sun.org.apache.xalan.internal.xsltc.cmdline.Transform;
 import com.sun.org.apache.xpath.internal.operations.Mod;
-
 
 @Controller
 public class SaleController {
@@ -267,11 +264,14 @@ public class SaleController {
 		(saleService.saleHistory(eCode));
 		ArrayList<SaleItem> saleItemList = new ArrayList<>
 		(saleService.itemHistory(eCode));
+		ArrayList<Storage> storageList = new ArrayList<>
+		(saleService.selectStorage(eCode));
 		
 		model.addAttribute("saleList",saleList)
 		.addAttribute("saleItemList",saleItemList)
 		.addAttribute("ecode",eCode)
 		.addAttribute("partnerList",partnerList)
+		.addAttribute("storageList",storageList)
 		.addAttribute("employeeList",employeeList);
 		
 		return "sale/saleRegist";
@@ -420,11 +420,11 @@ public class SaleController {
 		
 		
 	}
-	
-	/*@RequestMapping("/sale/saleExcelInput.do")*/
-	
-	
 }
+
+
+
+
 
 
 
