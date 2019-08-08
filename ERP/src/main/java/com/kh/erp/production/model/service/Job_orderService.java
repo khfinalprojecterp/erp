@@ -15,14 +15,14 @@ public interface Job_orderService {
 	 * @return
 	 */
 	List<Map<String, String>> jobOrderList();
-//	List<Map<String, String>> elist();
+	List<Map<String, String>> elist();
 	List<Map<String, String>> plist();
 	/**
 	 * 생산 업무지시서 추가 메소드 
 	 * @param mcName
 	 * @return
 	 */
-	int insertJobOrder(int workcode);
+	int insertJobOrder(Job_order job_order);
 	
 	/**
 	 * 생산 업무지시서 분류 선택 메소드

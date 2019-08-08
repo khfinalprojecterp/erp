@@ -8,28 +8,40 @@
 		<result property="idcode" column="IDCODE" />
 		<result property="pcode" column="PCODE" />
 		<result property="orderdate" column="ORDERDATE" />
-		<result property="wstatus" column="WSTATUS" />
-		<result property="ename" column="ename" />
-		<result property="pname" column="pname" />
+		<result property="jostatus" column="JOSTATUS" />
+		<result property="ename" column="WNAME" />
+		<result property="pname" column="PNAME" />
 	</resultMap>
 
-	<resultMap id="resultList" type="map">
+	<resultMap id="resultListP" type="map">
 		<result property="PCODE" column="PCODE" />
 		<result property="PNAME" column="PNAME" />
+	</resultMap>
+	
+	<resultMap id="resultListE" type="map">
+		<result property="idcode" column="IDCODE"/>
+		<result property="wname" column="WNAME" />
 	</resultMap>
 	<!-- Storage -->
 	
 	<select id="selectJobOrderList" resultMap="jobOrderMap">
-      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.WSTATUS WSTATUS 
+      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.JOSTATUS JOSTATUS 
       FROM JOB_ORDER JO, PRODUCT P, EMPLOYEE E
       WHERE JO.IDCODE = E.IDCODE AND
       JO.PCODE = P.PCODE AND
       JO.IDCODE = E.IDCODE
 	</select>
 	
-	<select id="selectP" resultMap="resultList">
-		SELECT PCODE,PNAME
+	<select id="selectP" resultMap="resultListP">
+		SELECT PCODE , PNAME
 		FROM PRODUCT
+		ORDER BY PCODE
+	</select>
+	
+	<select id="selectE" resultMap="resultListE">
+		SELECT IDCODE, WNAME
+		FROM EMPLOYEE
+		ORDER BY IDCODE
 	</select>
 	
 	<select id="selectStorageOne" resultType="storage">
@@ -39,8 +51,8 @@
 	</select>
 	
 	<insert id="insertStorage">
-		INSERT INTO STORAGE
-			VALUES (STORAGE_SEQ.NEXTVAL, #{eCode}, #{idCode}, #{sCate}, #{sPhone}, #{sAddr}, DEFAULT)
+		INSERT INTO JOB_ORDER
+		VALUES (WORKCODE_SEQ.NEXTVAL, #{idCode}, #{pCode}, DEFAULT, DEFAULT)
 	</insert>
 	
 	<update id="updateStorage" parameterType="storage">
@@ -54,8 +66,8 @@
 	</update>
 	
 	<delete id="deleteStorage">
-		DELETE FROM STORAGE
-	    	WHERE SCODE = #{sCode}
+		DELETE FROM JOB_ORDER
+	    WHERE SCODE = #{workcode}
 	</delete>
 	
 	<!-- StorageDetail -->

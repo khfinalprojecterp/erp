@@ -26,10 +26,11 @@ public class Job_orderController {
 		ArrayList<Map<String, String>> list = new ArrayList<>(job_orderService.jobOrderList());
 		model.addAttribute("list", list);
 		
-//		ArrayList<Map<String, String>> elist = new ArrayList<>(job_orderService.elist());
-//		model.addAttribute("elist", elist);
+		ArrayList<Map<String, String>> elist = new ArrayList<>(job_orderService.elist());
+		model.addAttribute("elist", elist);
 		
 		ArrayList<Map<String, String>> plist = new ArrayList<>(job_orderService.plist());
+		model.addAttribute("plist", plist);
 		
 		return "production/job_orderList";
 		
@@ -37,19 +38,17 @@ public class Job_orderController {
 	
 	@RequestMapping("/production/job_orderInsert.do")
 	public String insertJob_order(@RequestParam int workcode,
-								  @RequestParam String pname,
+								  @RequestParam(value = "idcode", required=false) int idcode,
+								  @RequestParam(value = "pcode", required=false) int pcode,
 								  Model model) {
 		
+		Job_order job_order = new Job_order(workcode, idcode, pcode);
 		
-		
-		int result = job_orderService.insertJobOrder(workcode);
-		
-		
+		int result = job_orderService.insertJobOrder(job_order);
 		
 		String msg="";
 		if( result > 0) {
 			msg="등록 성공!";
-			
 		} else {
 			msg="등록 실패!";
 		}

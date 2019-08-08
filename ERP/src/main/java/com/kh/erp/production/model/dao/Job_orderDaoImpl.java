@@ -19,19 +19,19 @@ public class Job_orderDaoImpl implements Job_orderDao {
 	public List<Map<String, String>> jobOrderList() {
 		return sqlSession.selectList("jobOrder.selectJobOrderList");
 	}
-//	@Override
-//	public List<Map<String, String>> elist() {
-//		return sqlSession.selectList("jobOrder.selectE");
-//	}
-//	
+	@Override
+	public List<Map<String, String>> elist() {
+		return sqlSession.selectList("jobOrder.selectE");
+	}
+	
 	@Override
 	public List<Map<String, String>> plist() {
 		return sqlSession.selectList("jobOrder.selectP");
 	}
 
 	@Override
-	public int insertJobOrder(int workcode) {
-		return sqlSession.insert("", workcode);
+	public int insertJobOrder(Job_order job_order) {
+		return sqlSession.insert("", job_order);
 	}
 
 	@Override

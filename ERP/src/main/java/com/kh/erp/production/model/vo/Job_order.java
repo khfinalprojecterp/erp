@@ -16,24 +16,35 @@ public class Job_order implements Serializable{
       private int idcode; // FK_사원번호
       private int pcode; // FK_물품코드
       private Date orderdate;
-      private char wstatus;
+      private char jostatus;
       
       // 임시변수 
+      private String wname;
       private String pname; 
 
    
    public Job_order() {}
 
 
-   public Job_order(int workcode, int idcode, int pcode, Date orderdate, char wstatus, String pname) {
-		super();
-		this.workcode = workcode;
-		this.idcode = idcode;
-		this.pcode = pcode;
-		this.orderdate = orderdate;
-		this.wstatus = wstatus;
-		this.pname = pname;
-   }
+	public Job_order(int workcode, int idcode, int pcode) {
+	super();
+	this.workcode = workcode;
+	this.idcode = idcode;
+	this.pcode = pcode;
+	}
+
+
+	public Job_order(int workcode, int idcode, int pcode, Date orderdate, char jostatus, String wname, String pname) {
+	super();
+	this.workcode = workcode;
+	this.idcode = idcode;
+	this.pcode = pcode;
+	this.orderdate = orderdate;
+	this.jostatus = jostatus;
+	this.wname = wname;
+	this.pname = pname;
+	}
+
 
 
 	public int getWorkcode() {
@@ -41,9 +52,11 @@ public class Job_order implements Serializable{
 	}
 	
 	
+	
 	public void setWorkcode(int workcode) {
 		this.workcode = workcode;
 	}
+	
 	
 	
 	public int getIdcode() {
@@ -51,9 +64,11 @@ public class Job_order implements Serializable{
 	}
 	
 	
+	
 	public void setIdcode(int idcode) {
 		this.idcode = idcode;
 	}
+	
 	
 	
 	public int getPcode() {
@@ -61,9 +76,11 @@ public class Job_order implements Serializable{
 	}
 	
 	
+	
 	public void setPcode(int pcode) {
 		this.pcode = pcode;
 	}
+	
 	
 	
 	public Date getOrderdate() {
@@ -71,24 +88,41 @@ public class Job_order implements Serializable{
 	}
 	
 	
+	
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
 	
 	
+	
 	public char getWstatus() {
-		return wstatus;
+		return jostatus;
 	}
 	
 	
-	public void setWstatus(char wstatus) {
-		this.wstatus = wstatus;
+	
+	public void setWstatus(char jostatus) {
+		this.jostatus = jostatus;
 	}
-		
+	
+	
+	
+	public String getEname() {
+		return wname;
+	}
+	
+	
+	
+	public void setEname(String ename) {
+		this.wname = ename;
+	}
+	
+	
 	
 	public String getPname() {
 		return pname;
 	}
+	
 	
 	
 	public void setPname(String pname) {
@@ -96,10 +130,13 @@ public class Job_order implements Serializable{
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "Job_order [workcode=" + workcode + ", idcode=" + idcode + ", pcode=" + pcode + ", orderdate="
-				+ orderdate + ", wstatus=" + wstatus + ", pname=" + pname + "]";
+				+ orderdate + ", jostatus=" + jostatus + ", wname=" + wname + ", pname=" + pname + "]";
 	}
+	
+
 	
 }

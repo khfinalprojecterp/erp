@@ -33,29 +33,13 @@
 									</thead>
 									<tbody>
 										<!-- 기자재 / 물품 분류 -->
-											<c:forEach items="${list}" var="sd" >
-												<c:if test="${ empty sd.mCode }">
-												<tr id="${sd.sdCode}" class="${sd.sdCode} ${sd.eCode} ${sd.idCode} ${sd.pCode}">
-												</c:if>
-												<c:if test="${ empty sd.pCode }">
-												<tr id="${sd.sdCode}" class="${sd.sdCode} ${sd.eCode} ${sd.idCode} ${sd.mCode}">
-												</c:if>
-													<td>${sd.sCode}</td>
-													<td>${sd.sEname}</td>
-													<td>${sd.sWname}</td>
-													<c:if test="${ empty sd.mCode }">
-													<td>물품</td>
-													<td>${sd.pName}</td>
-													</c:if>
-													<c:if test="${ empty sd.pCode }">
-													<td>기자재</td>
-													<td>${sd.mName}</td>
-													</c:if>
-													<td>${sd.in_Code}</td>
-													<td>${sd.sdStock}</td>
-													<td>${sd.sdCost}</td>
-													<td>${sd.sdPrice}</td>
-													<td>${sd.sdDate}</td>
+											<c:forEach items="${list}" var="jo" >
+												<tr id="${jo.workcode}" class="${jo.workcode}">
+													<td>${jo.workcode}</td>
+													<td>${jo.wname}</td>
+													<td>${jo.pname}</td>
+													<td>${jo.orderdate}</td>
+													<td>${jo.wstatus}</td>
 											</c:forEach>
 									</tbody>
 								</table>
@@ -86,17 +70,12 @@
 						<div class="form-group">
 						
 							<label for="message-text" class="col-form-label">물품 선택:</label>&nbsp;
-							<select class="custom-select" id="selectstorage">
-								<c:forEach items="${slist}" var="s" >
-									<option value="${s.sCode}">${s.sAddr}</option>
+							<select class="custom-select" id="selectP">
+								<c:forEach items="${plist}" var="p" >
+									<option value="${p.PCODE}">${p.PNAME}</option>
 								</c:forEach>
 							</select>
 							
-							<select class="custom-select" id="selectP" style="display:none">
-								<c:forEach items="${plist}" var="sp" >
-									<option value="${sp.PCODE}">${sp.PNAME}</option>
-								</c:forEach>
-							</select>
 						</div>
 					</form>
 				</div>
@@ -160,18 +139,6 @@
 							</select>
 						</div>
 						
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">재고:</label>
-							<input type="text" class="form-control" id="upsdstock">
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">입고가: </label>
-							<input type="text" class="form-control" id="upsdcost">
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">판매가:</label>
-							<input type="text" class="form-control" id="upsdprice">
-						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -184,14 +151,23 @@
 		</div>
 	</div>
 	<script>
-		
+    private int workcode;
+    private int idcode; // FK_사원번호
+    private int pcode; // FK_물품코드
+    private Date orderdate;
+    private char jostatus;
+    
+    // 임시변수 
+    private String wname;
+    private String pname; 
+    
 		function insertJoborder() {
-			var sCode = $("#selectstorage").val();
-			var eCode = $("#neweCode").val();
-			var idCode = $("#newidCode").val();
-			var sdStock = $("#newsdstock").val();
-			var sdCost = $("#newsdcost").val();
+			var workcode = $("#workcode").val();
+			var idCode = $("#idcode").val();
+			var pcode = $("#pcode").val();
+			var orderdate = $("#orderdate").val();
 			var sdPrice = $("#newsdprice").val();
+			
 			if($("input:radio[name=checkP]:checked").val()=='Ma'){
 				var mCode = $("#selectM").val();
 				var pCode = "null";

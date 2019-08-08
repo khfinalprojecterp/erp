@@ -20,22 +20,18 @@ public class Job_orderServiceImpl implements Job_orderService {
 		return job_orderDao.jobOrderList();
 	}
 
-//	@Override
-//	public List<Map<String, String>> elist() {
-//		return job_orderDao.elist();
-//	}
-//	
+	@Override
+	public List<Map<String, String>> elist() {
+		return job_orderDao.elist();
+	}
+	
 	@Override
 	public List<Map<String, String>> plist() {
 		return job_orderDao.plist();
 	}
 
 	
-	
-	@Override
-	public int insertJobOrder(int workcode) {
-		return job_orderDao.insertJobOrder(workcode);
-	}
+
 
 	@Override
 	public Job_order selectOneJobOrder(int workcode) {
@@ -52,6 +48,11 @@ public class Job_orderServiceImpl implements Job_orderService {
 	public int deleteJobOrder(int workcode) {
 		// TODO Auto-generated method stub
 		return job_orderDao.deleteJobOrder(workcode);
+	}
+
+	@Override
+	public int insertJobOrder(Job_order job_order) {
+		return job_orderDao.insertJobOrder(job_order);
 	}
 
 
