@@ -99,10 +99,7 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<input type ="hidden" id="workcode" value="" />
 							<input type ="hidden" id="idCode" value="" />
-							<input type ="hidden" id="pCode" value="" />
-							
 						</div>
 						
 						<div class="form-group">
@@ -118,7 +115,7 @@
 
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">물품 선택:</label>&nbsp;
-							<select class="custom-select" id="pcode">
+							<select class="custom-select" id="pCode">
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>
@@ -139,8 +136,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" onclick="updateJoborder();">수정하기</button>
-					<button type="button" class="btn btn-danger" onclick="deleteJoborder();">삭제하기</button>
+					<button type="button" class="btn btn-primary" onclick="updateJobOrder();">수정하기</button>
+					<button type="button" class="btn btn-danger" onclick="deleteJobOrder();">삭제하기</button>
 				</div>
 			</div>
 		</div>
@@ -162,25 +159,24 @@
 		<td>${jo.orderdate}</td>
 		<td>${jo.jostatus}</td> */
 		
-		function updateJoborder() {
-	 		var workcode = $("#workcode").val();
-	 		var idcode = $("#idcode").val();
-	 		var pcode = $("pcode").val();
-			var wName = $("#wName").val();
-			var pName = $("#pName").val();
-			var orderdate = $("#orderdate").val();
-			var jostatus = $("#jostatus").val();
-
+		function updateJobOrder() {
+	 		var workcode = $("#workcode").val().trim();
+	 		var idcode = $("#idcode").val().trim();
+	 		var pcode = $("#pCode").val().trim();
+			var jostatus = $("#jostatus").val().trim();
+			alert(workcode);
+			alert(idcode);
+			alert(pcode);
+			alert(jostatus);
 			
 			
-			location.href = "${pageContext.request.contextPath}/production/job_orderupdate.do?idcode="+
-			idCode+"&pcode="+pCode;
+			location.href = "${pageContext.request.contextPath}/production/job_orderupdate.do?workcode="
+					+workcode+"&idcode="+idcode+"&pCode="+pcode+"&jostatus="+jostatus;
 		 	
-			
 		}
 		
 		
-		function deleteJoborder() {
+		function deleteJobOrder() {
 			var workcode = $("#workcode").val();
 			location.href = "${pageContext.request.contextPath}/production/job_orderdelete.do?workcode="+ workcode;
 		}
@@ -199,10 +195,10 @@
 	 			document.getElementById("workcode").value = workcode;
 	 			document.getElementById("idCode").value = idCode;
 	 			document.getElementById("pCode").value = pCode;
-	 			
+	 			// alert($(this).parent().children().eq(2).text());
 	 			document.getElementById("workcode").value = $(this).parent().children().eq(0).text();
 	 			document.getElementById("idCode").value = $(this).parent().children().eq(1).text();
-	 			document.getElementById("pCode").value = $(this).parent().children().eq(2).text();
+	 			document.getElementById("pCode").value = pCode;
 	 			document.getElementById("jostatus").value = $(this).parent().children().eq(4).text();
 				
 	 			$("#updateJobOrder").modal();

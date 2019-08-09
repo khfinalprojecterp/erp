@@ -56,14 +56,11 @@
 		VALUES (WORKCODE_SEQ.NEXTVAL, #{idCode}, #{pCode}, DEFAULT, DEFAULT)
 	</insert>
 	
-	<update id="updateStorage" parameterType="storage">
-		UPDATE STORAGE
-		    SET ECODE = #{eCode},
-		        SCATE = #{sCate},
-		        SPHONE = #{sPhone},
-		        SADDR = #{sAddr},
-		        SSTATUS = #{sStatus}
-		    WHERE SCODE = #{sCode}
+	<update id="updateJobOrder" parameterType="storage">
+		UPDATE JOB_ORDER
+		    SET pCode = #{pCode},
+		        jostatus = #{jostatus}
+		    WHERE workcode = #{workcode}
 	</update>
 	
 	<delete id="deleteJobOrder">
