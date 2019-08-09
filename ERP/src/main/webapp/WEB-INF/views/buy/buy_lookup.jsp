@@ -109,14 +109,14 @@
 								<input type="radio" class="form-check-input" name="sddivi" id="p_code" value="U">물품
 							</div><br>
 							
-							<label for="message-text" class="col-form-label" id="mcode-id" style="display:none">기자재 :</label>
+							<label for="message-text" class="col-form-label" id="mcode-id" style="display:none">기자재명 :</label>
 							<!-- <input type="text" class="form-control" name="mCode" id="mCode" style="display:none"> -->
 							<select class="custom-select" name="mCode" id="mCode" style="display:none">
 								<option value=""></option> <!-- null값용 -->
 								<c:forEach items="${mlist}" var="m" >
 									<option value="${m.mCode}">${m.mName}</option>
 								</c:forEach>				
-							</select><br><br>
+							</select>
 							<label for="message-text" class="col-form-label" id="pcode-id" style="display:none">물품명 :</label>
 							<!-- <input type="text" class="form-control" name="pCode" id="pCode" style="display:none"> -->
 							<select class="custom-select" name="pCode" id="pCode" style="display:none">
@@ -124,7 +124,7 @@
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>				
-							</select><br><br><br>
+							</select><br>
 							
 							<label for="message-text" class="col-form-label">사원 :</label>
 							<input type="text" class="form-control" name="idName" id="idName" value="${employee.wName}" readonly> <br><br>
@@ -195,13 +195,14 @@
 								<input type="radio" class="form-check-input" name="sddivi" id="m_code2" value="M">기자재
 								<input type="radio" class="form-check-input" name="sddivi" id="p_code2" value="U">물품
 							</div> <br>
+							<div class="form-group">
 							<label for="message-text" class="col-form-label" id="mcode-id2" style="display:none">기자재명 :</label>
 							<select class="custom-select" name="mCode" id="mCode2" style="display:none">
 								<option value=""></option>
 								<c:forEach items="${mlist}" var="m" >
 									<option value="${m.mCode}">${m.mName}</option>
 								</c:forEach>				
-							</select><br><br>
+							</select>
 							<label for="message-text" class="col-form-label" id="pcode-id2" style="display:none">물품명 :</label>
 							<!-- <input type="text" class="form-control" name="pCode" id="pCode" style="display:none"> -->
 							<select class="custom-select" name="pCode" id="pCode2" style="display:none">
@@ -209,8 +210,8 @@
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>				
-							</select><br><br><br>
-							
+							</select><br>
+							</div>
 							<label for="message-text" class="col-form-label">사원명 :</label>
 							<input type="text" class="form-control" name="idName" id="idName" value="${employee.wName}" readonly> <br><br>
 							
@@ -232,8 +233,8 @@
 							<label for="message-text" class="col-form-label">매입가 :</label>
 							<input type="text" class="form-control" name="buy_price" id="buy_price2">							
 							
-							<input type="hidden" class="form-control" name="eCode" id="eCode2" value="${employee.eCode}">
-							<input type="hidden" class="form-control" name="eCode" id="idCode2" value="${employee.idCode}">
+							<input type="text" class="form-control" name="eCode" id="eCode2" value="${employee.eCode}" style="display:none">
+							<input type="text" class="form-control" name="eCode" id="idCode2" value="${employee.idCode}" style="display:none">
 							
 							<input type="hidden" class="form-control" name="buy_status" id="buy_status" value="E">
 							
@@ -292,7 +293,7 @@
 	
 
 		function insertBuy() {
-			var amount = $("#buy_amount").val();
+			 var amount = $("#buy_amount").val();
 			var origin = $("#buy_origin").val();
 			var price = $("#buy_price").val();
 			
@@ -331,7 +332,7 @@
 			if(isNaN(price) == true)
 			{ 
 				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price").focus(); return false; 
-			}
+			} 
 			
 			 $('#insertBuy').attr("action","${pageContext.request.contextPath}/buy/buy_insert.do");
 				$('#insertBuy').attr("method", "post");
@@ -340,7 +341,7 @@
 		}
 		
 		function insertBuyS() {
-			var amount = $("#buy_amount2").val();
+			 var amount = $("#buy_amount2").val();
 			var origin = $("#buy_origin2").val();
 			var price = $("#buy_price2").val();
 			
@@ -379,7 +380,7 @@
 			if(isNaN(price) == true)
 			{ 
 				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price2").focus(); return false; 
-			}
+			} 
 			
 			 $('#updateBuy').attr("action","${pageContext.request.contextPath}/buy/buy_insertS.do");
 				$('#updateBuy').attr("method", "post");
@@ -395,7 +396,7 @@
 		}
 		
 		function updateBuy() {
-			var amount = $("#buy_amount2").val();
+			 var amount = $("#buy_amount2").val();
 			var origin = $("#buy_origin2").val();
 			var price = $("#buy_price2").val();
 			
@@ -434,7 +435,7 @@
 			if(isNaN(price) == true)
 			{ 
 				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price2").focus(); return false; 
-			}
+			} 
 			
 			 $('#updateBuy').attr("action","${pageContext.request.contextPath}/buy/buy_update.do");
 				$('#updateBuy').attr("method", "post");
