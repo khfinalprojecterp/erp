@@ -105,7 +105,8 @@
   			WHERE CHCODE = #{chCode}
     		AND CHATTIME > (SELECT UPTIME
                    FROM ROOMMEMBER
-                   WHERE IDCODE = #{idCode})
+                   WHERE IDCODE = #{idCode}
+                     AND CHCODE = #{chCode})
   			ORDER BY CHATTIME
 	</select>
 
