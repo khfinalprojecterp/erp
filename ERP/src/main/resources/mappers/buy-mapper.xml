@@ -127,7 +127,7 @@
 	<update id="updateBuyItem" parameterType="Purchase">
 		UPDATE PURCHASE_ITEM
 	    	SET SCODE = #{sCode},MCODE = #{mCode}, PCODE = #{pCode}, 
-			IDCODE = #{idCode}, BUY_AMOUNT = #{buy_amount}, BUY_ORIGIN = #{buy_origin}, 
+			BUY_AMOUNT = #{buy_amount}, BUY_ORIGIN = #{buy_origin}, 
 			BUY_PRICE = #{buy_price}
 			WHERE BUY_CODE = #{buy_code}
 	</update>

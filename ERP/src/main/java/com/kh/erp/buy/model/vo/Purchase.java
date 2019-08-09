@@ -26,11 +26,11 @@ public class Purchase implements Serializable{
 	
 	private String pName;
 	private String mName;
-	private String eCode;
+	private int eCode;
 	private int ptCode;
 	
 	 
-	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName, String eCode) {
+	public Purchase(int sCode, String mCode, String pCode, int idCode, String pName, String mName, int eCode) {
 		super();
 		this.sCode = sCode;
 		this.mCode = mCode;
@@ -204,12 +204,12 @@ public class Purchase implements Serializable{
 	}
 
 
-	public String geteCode() {
+	public int geteCode() {
 		return eCode;
 	}
 
 
-	public void seteCode(String eCode) {
+	public void seteCode(int eCode) {
 		this.eCode = eCode;
 	}
 
