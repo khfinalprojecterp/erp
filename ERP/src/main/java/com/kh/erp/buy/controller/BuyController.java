@@ -113,6 +113,8 @@ public class BuyController {
 		return "common/msg";		
 	}
 	
+	
+	
 	@RequestMapping("/buy/buy_update.do")
 	public String buy_update(Purchase purchase,Model model) {
 		
@@ -158,6 +160,8 @@ public class BuyController {
 		
 		return "common/msg";		
 	}
+	
+	
 	
 	@RequestMapping("/buy/buy_delete.do")
 	public String buy_delete(@RequestParam int buy_code, Model model) {
