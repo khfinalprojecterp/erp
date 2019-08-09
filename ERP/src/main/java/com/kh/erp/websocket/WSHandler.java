@@ -37,8 +37,6 @@ public class WSHandler extends TextWebSocketHandler {
 	
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<>();
 	
-	
-	
 	// 에러났을 때, 혹은 디버깅을 대비한 logger 객체 생성
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -51,25 +49,22 @@ public class WSHandler extends TextWebSocketHandler {
 		// 2. session에 담긴 사용자 정보 가져오기
 		System.out.println("들어옴");
 		Employee loginMember = (Employee)session.getAttributes().get("employee");
-		//users.put(loginMember.getwName(), session);
-		String chCode = (String) session.getAttributes().get("room");
 		users.put(loginMember.getwName(), session);
-		
+		String chCode = (String) session.getAttributes().get("room");
 		int idCode = loginMember.getIdCode();
 		Chat bfchat = new Chat(chCode, idCode);
+
 		
 		// 3. 채팅방에 입장한 자기 자신에게 지난 메세지를 전달하기
 		for (WebSocketSession ws : users.values()) {
 			if(ws.getAttributes().get("room").equals(session.getAttributes().get("room"))) {
-
 				if(ws == session) {
 					System.out.println(bfchat);
-
 					ArrayList<Map<String, String>> chatlist 
 						= new ArrayList<>(websocketService.chatList(bfchat));
 
 					for(Map<String, String> map : chatlist) {
-
+						System.out.println(map.get("chatDetail"));
 						String msg = map.get("chatDetail");
 						ws.sendMessage(new TextMessage(msg));
 					}
@@ -112,7 +107,6 @@ public class WSHandler extends TextWebSocketHandler {
 		System.out.println("퇴장");
 		// 1. 기존 사용자 목록에서 제거 
 		Employee loginMember = (Employee)session.getAttributes().get("employee");
-		String chCode = (String) session.getAttributes().get("room");
 		users.remove(loginMember.getwName(), session);
 		
 	}

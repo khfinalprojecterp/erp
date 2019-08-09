@@ -42,7 +42,7 @@ public class Job_orderDaoImpl implements Job_orderDao {
 
 	@Override
 	public int updateJobOrder(Job_order job_order) {
-		return sqlSession.update("", job_order);
+		return sqlSession.update("jobOrder.updateJobOrder", job_order);
 	}
 
 	@Override

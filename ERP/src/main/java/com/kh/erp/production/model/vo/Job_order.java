@@ -16,7 +16,7 @@ public class Job_order implements Serializable{
       private String idCode; // FK_사원번호
       private String pCode; // FK_물품코드
       private Date orderdate;
-      private char jostatus;
+      private String jostatus;
       
       // 임시변수 
       private String wname;
@@ -32,8 +32,19 @@ public class Job_order implements Serializable{
 	this.pCode = pCode;
 	}
 
+	
+	
 
-	public Job_order(int workcode, String idCode, String pCode, Date orderdate, char jostatus, String wname,
+	public Job_order(int workcode, String idCode, String pCode, String jostatus) {
+		super();
+		this.workcode = workcode;
+		this.idCode = idCode;
+		this.pCode = pCode;
+		this.jostatus = jostatus;
+	}
+
+
+	public Job_order(int workcode, String idCode, String pCode, Date orderdate, String jostatus, String wname,
 			String pname) {
 		super();
 		this.workcode = workcode;
@@ -44,6 +55,7 @@ public class Job_order implements Serializable{
 		this.wname = wname;
 		this.pname = pname;
 	}
+
 
 
 	public int getWorkcode() {
@@ -86,12 +98,12 @@ public class Job_order implements Serializable{
 	}
 
 
-	public char getJostatus() {
+	public String getJostatus() {
 		return jostatus;
 	}
 
 
-	public void setJostatus(char jostatus) {
+	public void setJostatus(String jostatus) {
 		this.jostatus = jostatus;
 	}
 

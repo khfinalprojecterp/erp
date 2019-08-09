@@ -184,15 +184,11 @@
     };
     
     /* 채팅 입력 시 스크롤 내리기 */
-     function scrollDown(){
-		$('#chatdata').scrollTop($("#chatdata")[0].scrollHeight);
-    }
-    
-/*      function scrollDown(){
+    function scrollDown(){
     	$('#chatdata').animate({
             scrollTop: $('#chatdata').get(0).scrollHeight
-        });
-    } */
+        }, 100);
+    }
     
     function onClose(){
         location.href='${pageContext.request.contextPath}';
@@ -230,7 +226,7 @@
 					<button class='btn btn-primary' type="button" id='exitBtn'>종료</button>
 				</div><br><br>
 				<button type="button" class="btn btn-primary" onclick="loadjoin();">사용자 초대</button>
-				<!-- <button class='btn btn-primary' type="button" id='newCodBtn'>사번으로 초대</button> -->
+				<button class='btn btn-primary' type="button" id='newCodBtn'>사번으로 초대</button>
 				<button style="float:right" class='btn btn-primary' type="button" id='deleteBtn'>대화방 삭제</button>
 			</div>
 		</div>

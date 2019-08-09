@@ -24,13 +24,11 @@ public class Job_orderController {
 
 		ArrayList<Map<String, String>> list = new ArrayList<>(job_orderService.jobOrderList());
 		model.addAttribute("list", list);
-		System.out.println(list);
 
 		ArrayList<Map<String, String>> elist = new ArrayList<>(job_orderService.elist());
 		model.addAttribute("elist", elist);
 
 		ArrayList<Map<String, String>> plist = new ArrayList<>(job_orderService.plist());
-		
 		model.addAttribute("plist", plist);
 
 		return "production/job_orderList";
@@ -61,21 +59,30 @@ public class Job_orderController {
 	}
 
 	@RequestMapping("/production/job_orderupdate.do")
-	public String updateJob_order(Job_order job_order, Model model) {
-		int result = job_orderService.updateJobOrder(job_order);
-
-		String msg = "";
-		if (result > 0) {
-			msg = "등록 성공!";
-
-		} else {
-			msg = "등록 실패!";
-		}
-
-		String loc = "/production/job_orderList.do";
-		model.addAttribute("loc", loc);
-		model.addAttribute("msg", msg);
-
+	public String updateJob_order(Model model,
+								  @RequestParam(value = "workcode", required = false) int workcode,
+								  @RequestParam(value = "idcode", required = false) String idcode,
+								  @RequestParam(value = "pCode", required = false) String pCode,
+								  @RequestParam(value = "jostatus", required = false) String jostatus) {
+		
+		System.out.println(workcode);
+		System.out.println(idcode);
+		System.out.println(pCode);
+		System.out.println(jostatus);
+		
+		 Job_order job_order = new Job_order(workcode, idcode, pCode, jostatus);
+		
+		  int result = job_orderService.updateJobOrder(job_order);
+		  
+		  String msg = ""; if (result > 0) { 
+			  msg = "등록 성공!";
+		  } else { 
+			  msg = "등록 실패!";
+		  }
+		  
+		  String loc = "/production/job_orderList.do"; model.addAttribute("loc", loc);
+		  model.addAttribute("msg", msg);
+		
 		return "common/msg";
 	}
 

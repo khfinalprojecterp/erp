@@ -36,6 +36,9 @@
 	</div>
 	
 	<script>
+    setTimeout(function(){
+	      location.reload();
+	      },3000);
 	
 	$("#li-room div").each(function(){
 		$(this).click(function(){
