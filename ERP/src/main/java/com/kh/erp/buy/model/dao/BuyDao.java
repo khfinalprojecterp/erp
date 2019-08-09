@@ -49,6 +49,8 @@ public interface BuyDao {
 	 */
 	int insertPurchaseS(Purchase purchase);
 	
+
+	
 	/**
 	 * 구매 수정
 	 * @param purchase
@@ -63,6 +65,8 @@ public interface BuyDao {
 	 * @return
 	 */
 	int updatePurchaseS(Purchase purchase);
+	
+
 	
 	/**
 	 * 구매 삭제

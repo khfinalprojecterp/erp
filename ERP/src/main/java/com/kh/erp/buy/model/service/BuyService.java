@@ -53,6 +53,8 @@ public interface BuyService {
 	 */
 	int insertPurchaseS(Purchase purchase);
 	
+
+	
 	/**
 	 * 구매 수정
 	 * @param purchase
@@ -66,6 +68,8 @@ public interface BuyService {
 	 * @return
 	 */
 	int updatePurchaseS(Purchase purchase);
+	
+
 	
 	/**
 	 * 구매 삭제

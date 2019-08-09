@@ -43,10 +43,10 @@
 												<td>${b.buy_code}</td>
 												<td>${b.sCode}</td> --%>
 											<c:if test="${ empty b.mCode }">
-												<tr id="${b.buy_code}" class="${b.buy_code} ${b.sCode} ${b.idCode} ${b.pCode}">  
+												<tr id="${b.buy_code}" class="${b.buy_code} ${b.sCode} ${b.idCode} ${b.pCode} ${ptCode}">  
 												</c:if>
 												<c:if test="${ empty b.pCode }">
-												<tr id="${b.buy_code}" class="${b.buy_code} ${b.sCode} ${b.idCode} ${b.mCode}">
+												<tr id="${b.buy_code}" class="${b.buy_code} ${b.sCode} ${b.idCode} ${b.mCode} ${ptCode}">
 												</c:if>
 												<td>${b.buy_code}</td>
 												<td>${b.sCode}</td>
@@ -62,7 +62,7 @@
 												<td>${b.buy_amount}</td>
 												<td>${b.buy_origin}</td>
 												<td>${b.buy_price}</td>
-												<td>${b.parName}</td>
+												<td>${b.parName}</td> 
 												<c:if test="${b.buy_status eq 'E'}" >
 												<td>승인완료</td>
 												</c:if>
@@ -112,30 +112,26 @@
 							<label for="message-text" class="col-form-label" id="mcode-id" style="display:none">기자재 :</label>
 							<!-- <input type="text" class="form-control" name="mCode" id="mCode" style="display:none"> -->
 							<select class="custom-select" name="mCode" id="mCode" style="display:none">
-								<option value=""></option>
+								<option value=""></option> <!-- null값용 -->
 								<c:forEach items="${mlist}" var="m" >
 									<option value="${m.mCode}">${m.mName}</option>
 								</c:forEach>				
 							</select><br><br>
-							<label for="message-text" class="col-form-label" id="pcode-id" style="display:none">물품 :</label>
+							<label for="message-text" class="col-form-label" id="pcode-id" style="display:none">물품명 :</label>
 							<!-- <input type="text" class="form-control" name="pCode" id="pCode" style="display:none"> -->
 							<select class="custom-select" name="pCode" id="pCode" style="display:none">
-							<option value=""></option>
+							<option value=""></option> <!-- null값용 -->
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>				
-							</select><br><br>
+							</select><br><br><br>
 							
 							<label for="message-text" class="col-form-label">사원 :</label>
-							<select class="custom-select" name="idCode" id="idCode">
-								<c:forEach items="${elist}" var="e" >
-								<c:if test="${ employee.eCode eq e.eCode }">
-									<option value="${e.idCode}">${e.wName}</option>
-									</c:if>
-								</c:forEach>				
-							</select><br><br>
+							<input type="text" class="form-control" name="idName" id="idName" value="${employee.wName}" readonly> <br><br>
 							
+							<label for="message-text" class="col-form-label">거래처 :</label>
 							<select class="custom-select" name="ptCode" id="ptCode">
+							<option value=""></option> <!-- null값용 -->
 								<c:forEach items="${ptlist}" var="pt" >
 								<c:if test="${ employee.eCode eq pt.eCode }">
 									<option value="${pt.parC}">${pt.parName}</option>
@@ -145,18 +141,19 @@
 							
 							
 							<label for="message-text" class="col-form-label">수량 :</label>
-							<input type="text" class="form-control" name="buy_amount">
+							<input type="text" class="form-control" name="buy_amount" id="buy_amount">
 							
 							<label for="message-text" class="col-form-label">원가 :</label>
-							<input type="text" class="form-control" name="buy_origin">
+							<input type="text" class="form-control" name="buy_origin" id="buy_origin">
 							
 							<label for="message-text" class="col-form-label">매입가 :</label>
-							<input type="text" class="form-control" name="buy_price">
+							<input type="text" class="form-control" name="buy_price" id="buy_price">
 
-							<label for="message-text" class="col-form-label">구매일자 :</label>
-							<input type="Date" class="form-control" name="buy_date" id="buy_date">
+							<!-- <label for="message-text" class="col-form-label">구매일자 :</label>
+							<input type="Date" class="form-control" name="buy_date" id="buy_date"> -->
 							
 							<input type="hidden" class="form-control" name="eCode" id="eCode" value="${employee.eCode}">
+							<input type="hidden" class="form-control" name="idCode" id="idCode" value="${employee.idCode}">
 							
 						</div>
 					</form>
@@ -204,7 +201,7 @@
 								<c:forEach items="${mlist}" var="m" >
 									<option value="${m.mCode}">${m.mName}</option>
 								</c:forEach>				
-							</select><br>
+							</select><br><br>
 							<label for="message-text" class="col-form-label" id="pcode-id2" style="display:none">물품명 :</label>
 							<!-- <input type="text" class="form-control" name="pCode" id="pCode" style="display:none"> -->
 							<select class="custom-select" name="pCode" id="pCode2" style="display:none">
@@ -212,16 +209,10 @@
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>				
-							</select><br>
+							</select><br><br><br>
 							
 							<label for="message-text" class="col-form-label">사원명 :</label>
-							<select class="custom-select" name="idCode" id="idCode2">
-								<c:forEach items="${elist}" var="e" >
-								<c:if test="${ employee.eCode eq e.eCode }">
-									<option value="${e.idCode}">${e.wName}</option>
-									</c:if>
-								</c:forEach>				
-							</select><br><br>
+							<input type="text" class="form-control" name="idName" id="idName" value="${employee.wName}" readonly> <br><br>
 							
 							<label for="message-text" class="col-form-label">거래처명 :</label>
 							<select class="custom-select" name="ptCode2" id="ptCode2">
@@ -242,18 +233,23 @@
 							<input type="text" class="form-control" name="buy_price" id="buy_price2">							
 							
 							<input type="hidden" class="form-control" name="eCode" id="eCode2" value="${employee.eCode}">
+							<input type="hidden" class="form-control" name="eCode" id="idCode2" value="${employee.idCode}">
 							
 							<input type="hidden" class="form-control" name="buy_status" id="buy_status" value="E">
+							
+							<!-- <label for="message-text" class="col-form-label">구매일자 :</label>
+							<input type="Date" class="form-control" name="buy_date" id="buy_date2"> -->
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" onclick="updateBuy();">수정하기</button>
-					<button type="button" class="btn btn-danger" onclick="deleteBuy();">삭제하기</button>
+					<button type="button" class="btn btn-primary" id="updateBuyB" onclick="updateBuy();">수정하기</button>
+					<button type="button" class="btn btn-danger" id="deleteBuyB" onclick="deleteBuy();">삭제하기</button>
 					<br><br>
-					<button type="button" class="btn btn-primary" onclick="insertBuyS();">구매확인</button>
+					<button type="button" class="btn btn-primary" id="insertS" onclick="insertBuyS();">구매확인</button>
+
 				</div>
 			</div>
 		</div>
@@ -264,35 +260,79 @@
 	$("input:radio[name=sddivi]").click(function(){
         
 	    if($("input:radio[name=sddivi]:checked").val()=='M'){
-            $( "#pCode" ).hide();
-            $( "#pcode-id" ).hide();
-            $( "#mcode-id" ).show();
-            $( "#mCode" ).show();
+            $( "#pCode" ).css("display", "none");
+            $( "#pcode-id" ).css("display", "none");
+            $( "#mcode-id" ).css("display", "block");
+            $( "#mCode" ).css("display", "block");
 	    }else{
-            $( "#mCode" ).hide();
-            $( "#mcode-id" ).hide();
-            $( "#pcode-id" ).show();
-            $( "#pCode" ).show();
+            $( "#mCode" ).css("display", "none");
+            $( "#mcode-id" ).css("display", "none");
+            $( "#pcode-id" ).css("display", "block");
+            $( "#pCode" ).css("display", "block");
 	    }
 	});
 	
 	$("input:radio[name=sddivi]").click(function(){
         
 	    if($("input:radio[name=sddivi]:checked").val()=='M'){
-            $( "#pCode2" ).hide();
-            $( "#pcode-id2" ).hide();
-            $( "#mcode-id2" ).show();
-            $( "#mCode2" ).show();
+            $( "#pCode2" ).css("display", "none");
+            $( "#pcode-id2" ).css("display", "none");
+            $( "#mcode-id2" ).css("display", "block");
+            $( "#mCode2" ).css("display", "block");
 	    }else{
-            $( "#mCode2" ).hide();
-            $( "#mcode-id2" ).hide();
-            $( "#pcode-id2" ).show();
-            $( "#pCode2" ).show();
+            $( "#mCode2" ).css("display", "none");
+            $( "#mcode-id2" ).css("display", "none");
+            $( "#pcode-id2" ).css("display", "block");
+            $( "#pCode2" ).css("display", "block");
 	    }
 	});
 	
+	
+	
+	
 
 		function insertBuy() {
+			var amount = $("#buy_amount").val();
+			var origin = $("#buy_origin").val();
+			var price = $("#buy_price").val();
+			
+			if($("#sCode").val() == "")
+			{ 
+				alert("창고를 선택해 주십시오."); $("#sCode").focus(); return false; 
+			}
+			if($("#mCode").val() == "" && $("#pCode").val() == "")
+			{ 
+				alert("품목을 선택해 주십시오."); $("#mCode").focus(); return false; 
+			}
+			if($("#ptCode").val() == "")
+			{ 
+				alert("거래처를 선택해 주십시오."); $("#ptCode").focus(); return false; 
+			}
+			if($("#buy_amount").val() == "")
+			{ 
+				alert("수량을 입력해 주십시오."); $("#buy_amount").focus(); return false; 
+			}
+			if(isNaN(amount) == true)
+			{ 
+				alert("수량은 숫자만 입력이  가능합니다."); $("#buy_amount").focus(); return false; 
+			}
+			if($("#buy_origin").val() == "")
+			{ 
+				alert("원가를 입력해 주십시오."); $("#buy_origin").focus(); return false; 
+			}
+			if(isNaN(origin) == true)
+			{ 
+				alert("원가는 숫자만 입력이  가능합니다."); $("#buy_origin").focus(); return false; 
+			}
+			if($("#buy_price").val() == "")
+			{ 
+				alert("구매가를 입력해 주십시오."); $("#buy_price").focus(); return false; 
+			}
+			if(isNaN(price) == true)
+			{ 
+				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price").focus(); return false; 
+			}
+			
 			 $('#insertBuy').attr("action","${pageContext.request.contextPath}/buy/buy_insert.do");
 				$('#insertBuy').attr("method", "post");
 				$('#insertBuy').submit();
@@ -300,6 +340,47 @@
 		}
 		
 		function insertBuyS() {
+			var amount = $("#buy_amount2").val();
+			var origin = $("#buy_origin2").val();
+			var price = $("#buy_price2").val();
+			
+			if($("#sCode2").val() == "")
+			{ 
+				alert("창고를 선택해 주십시오."); $("#sCode2").focus(); return false; 
+			}
+			if($("#mCode2").val() == "" && $("#pCode2").val() == "")
+			{ 
+				alert("품목을 선택해 주십시오."); $("#mCode2").focus(); return false; 
+			}
+			if($("#ptCode2").val() == "")
+			{ 
+				alert("거래처를 선택해 주십시오."); $("#ptCode2").focus(); return false; 
+			}
+			if($("#buy_amount2").val() == "")
+			{ 
+				alert("수량을 입력해 주십시오."); $("#buy_amount2").focus(); return false; 
+			}
+			if(isNaN(amount) == true)
+			{ 
+				alert("수량은 숫자만 입력이  가능합니다."); $("#buy_amount2").focus(); return false; 
+			}
+			if($("#buy_origin2").val() == "")
+			{ 
+				alert("원가를 입력해 주십시오."); $("#buy_origin2").focus(); return false; 
+			}
+			if(isNaN(origin) == true)
+			{ 
+				alert("원가는 숫자만 입력이  가능합니다."); $("#buy_origin2").focus(); return false; 
+			}
+			if($("#buy_price2").val() == "")
+			{ 
+				alert("구매가를 입력해 주십시오."); $("#buy_price2").focus(); return false; 
+			}
+			if(isNaN(price) == true)
+			{ 
+				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price2").focus(); return false; 
+			}
+			
 			 $('#updateBuy').attr("action","${pageContext.request.contextPath}/buy/buy_insertS.do");
 				$('#updateBuy').attr("method", "post");
 				$('#updateBuy').submit();
@@ -314,6 +395,47 @@
 		}
 		
 		function updateBuy() {
+			var amount = $("#buy_amount2").val();
+			var origin = $("#buy_origin2").val();
+			var price = $("#buy_price2").val();
+			
+			if($("#sCode2").val() == "")
+			{ 
+				alert("창고를 선택해 주십시오."); $("#sCode2").focus(); return false; 
+			}
+			if($("#mCode2").val() == "" && $("#pCode2").val() == "")
+			{ 
+				alert("품목을 선택해 주십시오."); $("#mCode2").focus(); return false; 
+			}
+			if($("#ptCode2").val() == "")
+			{ 
+				alert("거래처를 선택해 주십시오."); $("#ptCode2").focus(); return false; 
+			}
+			if($("#buy_amount2").val() == "")
+			{ 
+				alert("수량을 입력해 주십시오."); $("#buy_amount2").focus(); return false; 
+			}
+			if(isNaN(amount) == true)
+			{ 
+				alert("수량은 숫자만 입력이  가능합니다."); $("#buy_amount2").focus(); return false; 
+			}
+			if($("#buy_origin2").val() == "")
+			{ 
+				alert("원가를 입력해 주십시오."); $("#buy_origin2").focus(); return false; 
+			}
+			if(isNaN(origin) == true)
+			{ 
+				alert("원가는 숫자만 입력이  가능합니다."); $("#buy_origin2").focus(); return false; 
+			}
+			if($("#buy_price2").val() == "")
+			{ 
+				alert("구매가를 입력해 주십시오."); $("#buy_price2").focus(); return false; 
+			}
+			if(isNaN(price) == true)
+			{ 
+				alert("구매가는 숫자만 입력이  가능합니다."); $("#buy_price2").focus(); return false; 
+			}
+			
 			 $('#updateBuy').attr("action","${pageContext.request.contextPath}/buy/buy_update.do");
 				$('#updateBuy').attr("method", "post");
 				$('#updateBuy').submit();
@@ -335,6 +457,8 @@
 					var buy_code2 = $(this).parent().attr('class').split(' ')[0];
 		 			var sCode2 = $(this).parent().attr('class').split(' ')[1];
 		 			var idCode = $(this).parent().attr('class').split(' ')[2];
+		 			/* var selectedPar = $(this).parent().children().eq(8).text();
+		 			alert(selectedPar); */
 		 			
 		 			/* var idCode2 = $("#idCode2 option:selected").text(); */
 					
@@ -343,19 +467,19 @@
 					document.getElementById("sCode2").value = sCode2;
 					if($(this).parent().children().eq(2).text() == "물품") {
 						$("#p_code2").prop("checked", true)
-   						$( "#pCode2" ).hide();
-			            $( "#pcode-id2" ).hide();
-			            $( "#mcode-id2" ).show();
-			            $( "#mCode2" ).show();
+   						$( "#pCode2" ).css("display", "block");
+			            $( "#pcode-id2" ).css("display", "block");
+			            $( "#mcode-id2" ).css("display", "none");
+			            $( "#mCode2" ).css("display", "none");
 						document.getElementById("pCode2").value = $(this).parent().attr('class').split(' ')[3];
 						
 					}
 					if($(this).parent().children().eq(2).text() == "기자재") {
 						$("#m_code2").prop("checked", true)
-			            $( "#mCode2" ).hide();
-			            $( "#mcode-id2" ).hide();
-			            $( "#pcode-id2" ).show();
-			            $( "#pCode2" ).show();
+			            $( "#mCode2" ).css("display", "block");
+			            $( "#mcode-id2" ).css("display", "block");
+			            $( "#pcode-id2" ).css("display", "none");
+			            $( "#pCode2" ).css("display", "none");
 						document.getElementById("mCode2").value = $(this).parent().attr('class').split(' ')[3];
 					} 
 					/* document.getElementById("pCode2").value = $(this).parent().children().eq(3).text(); */
@@ -363,7 +487,19 @@
 					document.getElementById("buy_amount2").value = $(this).parent().children().eq(5).text();
 					document.getElementById("buy_origin2").value = $(this).parent().children().eq(6).text();
 					document.getElementById("buy_price2").value = $(this).parent().children().eq(7).text();
-					document.getElementById("ptCode2").value =  $("#ptCode2 option:selected").val();
+					document.getElementById("ptCode2").text = $(this).parent().attr('class').split(' ')[4];
+						
+					
+					
+					
+					if($(this).parent().children().eq(9).text() == "승인완료") {
+						$("#insertS").attr("disabled", true);
+						$("#updateBuyB").attr("disabled", true);
+					}
+					
+					
+
+				
 					
 					document.getElementById("eCode2").value = ${employee.eCode};
 /* 					 if($("input:radio[name=buy_status]:checked").val()=='D'){
@@ -378,6 +514,8 @@
 					
 					$("#updateBuyItem").modal();
 				});
+		
+		
 		
 		
 		

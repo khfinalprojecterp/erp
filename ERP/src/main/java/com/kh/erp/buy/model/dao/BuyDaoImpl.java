@@ -69,6 +69,7 @@ public class BuyDaoImpl implements BuyDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("buy.insertBuyStorage", purchase);
 	}
+	
 
 	@Override
 	public int updatePurchase(Purchase purchase) {
@@ -81,6 +82,7 @@ public class BuyDaoImpl implements BuyDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("buy.updateBuyStorage", purchase);
 	}
+	
 
 	@Override
 	public int deletePurchase(int buy_code) {

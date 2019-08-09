@@ -68,6 +68,7 @@ public class BuyServiceImpl implements BuyService {
 		// TODO Auto-generated method stub
 		return buydao.insertPurchaseS(purchase);
 	}
+	
 
 	@Override
 	public int updatePurchase(Purchase purchase) {
@@ -80,6 +81,7 @@ public class BuyServiceImpl implements BuyService {
 		// TODO Auto-generated method stub
 		return buydao.updatePurchaseS(purchase);
 	}
+	
 
 	@Override
 	public int deletePurchase(int buy_code) {
