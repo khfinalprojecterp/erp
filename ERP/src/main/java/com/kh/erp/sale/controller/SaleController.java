@@ -46,15 +46,7 @@ public class SaleController {
 		ArrayList<Partner> partnerList;
 		partnerList = new ArrayList<>(saleService.selectPartner(eCode));
 		
-		if(partnerList.isEmpty()) {
-			System.out.println("partner is empty(controller)");
-			model.addAttribute("loc","sale/partnerList").addAttribute("msg","거래처를 등록해주세요.");
 			model.addAttribute("partnerList",partnerList).addAttribute("ecode",eCode);
-//			#####jsp 경로 확인필
-			return "common/msg";
-		} else {
-			model.addAttribute("partnerList",partnerList).addAttribute("ecode",eCode);
-		 }
 		
 		return "sale/partnerList";
 	}//끝

@@ -282,7 +282,18 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i>매출 관리<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                <c:if test="${ !empty employee || !empty enterprise }">
+                <c:if test="${ !empty employee}">
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${employee.eCode}">거래처 관리</a>
+                    </li>
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/ItemList.do?ecode=${employee.eCode}">물품 판매</a>
+                    </li>
+                    <li>
+                    <a href="${pageContext.request.contextPath}/sale/saleRegist.do?ecode=${employee.eCode}">판매 기록</a>
+                    </li>
+                </c:if>
+                <c:if test="${!empty enterprise }">
                     <li>
                     <a href="${pageContext.request.contextPath}/sale/partnerList.do?ecode=${enterprise.eCode}">거래처 관리</a>
                     </li>

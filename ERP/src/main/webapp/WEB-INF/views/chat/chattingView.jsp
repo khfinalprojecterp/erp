@@ -48,7 +48,7 @@
             console.log("exit message.....");
             
             //채팅방 종료
-            alert("onClose");
+            
             onClose();
         });
         
