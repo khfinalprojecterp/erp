@@ -43,6 +43,16 @@ public class EnterpriseController {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	
+	@RequestMapping("/goMain.do")
+	public String goMain() {
+		
+		
+		
+		return "index1";
+	}
+	
+	
+	
 	@RequestMapping("/enterprise/enterpriseEnroll.do")
 	public String memberEnroll() {
 		
@@ -178,7 +188,7 @@ public String memberLogin (
 				session.setAttribute("enterprise", enterprise);
 				
 				
-				return "index1";
+				loc= "/goMain.do";
 			} else {
 				msg = "비밀번호가 일치하지 않습니다!";
 			

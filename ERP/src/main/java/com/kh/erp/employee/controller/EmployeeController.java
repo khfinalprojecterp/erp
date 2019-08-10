@@ -205,7 +205,7 @@ public String employeeLogin (
 				
 				session.setAttribute("employee", employee);
 			
-				return "index1";
+				loc= "/goMain.do";
 				
 				
 				

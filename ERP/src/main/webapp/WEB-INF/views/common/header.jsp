@@ -22,17 +22,27 @@
 <link href="${pageContext.request.contextPath}/resources/css/custom-styles.css" rel="stylesheet" />
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/Lightweight-Chart/cssCharts.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesmain.css/js/Lightweight-Chart/cssCharts.css">
 <!-- TABLE STYLES-->
 <link href="${pageContext.request.contextPath}/resources/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+<%-- 효근 수정(스케쥴러용) --%>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/schedule/vendor/css/fullcalendar.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/schedule/vendor/css/select2.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/schedule/vendor/css/bootstrap-datetimepicker.min.css" />
+
+
+
 
 <!-- JS -->
 <!-- JS Scripts-->
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <!-- jQuery Js -->
+
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.js"></script>
+
 <!-- Bootstrap Js -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
@@ -77,6 +87,5 @@
 		
 	</style> 
 	
-
 
 </head>

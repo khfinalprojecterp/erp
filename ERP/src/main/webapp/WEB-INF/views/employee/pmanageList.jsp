@@ -31,6 +31,10 @@
                               </tr>
                            </thead>
                            <tbody>
+                        
+                        
+                        
+                        <c:if test="${ empty employee && !empty enterprise }">   
                         <c:forEach var="pmanage" items="${list}">
 								<c:if test="${ enterprise.eCode eq pmanage.eCode }">
 									<tr id="${pmanage.idCode}">
@@ -42,6 +46,22 @@
 									</tr>
 								</c:if>
 						</c:forEach>
+						</c:if>
+						
+						<c:if test="${ empty enterprise && !empty employee }">   
+                        <c:forEach var="pmanage" items="${list}">
+								<c:if test="${ employee.eCode eq pmanage.eCode }">
+									<tr id="${pmanage.idCode}">
+									<td>${pmanage.idCode}</td>
+									<td>${pmanage.wName}</td>
+									<td>${pmanage.dTitle}</td>
+									<td>${pmanage.payment}</td>
+									<td>${pmanage.mincome}</td>
+									</tr>
+								</c:if>
+						</c:forEach>
+						</c:if>
+
                            </tbody>
                         </table>
                      </div>
