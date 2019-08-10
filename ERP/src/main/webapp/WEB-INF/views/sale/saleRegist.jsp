@@ -101,6 +101,15 @@
 					
 					
 					<script>
+					var ecode;
+					<c:if test="${empty employee}">
+					ecode = "${enterprise.eCode}";
+					</c:if>
+					<c:if test="${empty enterprise}">
+					ecode = "${employee.eCode}";
+					</c:if>
+					
+					
 					var yearSaleEa = [0,0,0,0,0]<%-- 최근부터 5년만 받음 --%>
 					var yearSalePrice = [0,0,0,0,0]
 					
@@ -279,6 +288,14 @@
 		</div>
 	</div>
 	<script>	
+	var ecode;
+	<c:if test="${empty employee}">
+	ecode = "${enterprise.eCode}";
+	</c:if>
+	<c:if test="${empty enterprise}">
+	ecode = "${employee.eCode}";
+	</c:if>
+	
 	setTimeout(function() {
 		$("#dataTables-example th").parent().children().eq(0).trigger("click");
 		}, 1);
@@ -335,12 +352,12 @@
 			if(checkDelivery == 'E'){
 			alert("이미 인계한 물품입니다.");
 			} else {
-			location.href ="${pageContext.request.contextPath}/sale/itemDelivery.do?ecode="+${ecode}+"&statusIdx="+statusIdx;//ecode 수정필
+			location.href ="${pageContext.request.contextPath}/sale/itemDelivery.do?ecode="+ecode+"&statusIdx="+statusIdx;//ecode 수정필
 			}
 		}
 		
 		function saleExcelOutput(){
-			location.href ="${pageContext.request.contextPath}/sale/saleExcelOutput.do?ecode="+${ecode}+"&statusIdx="+statusIdx;
+			location.href ="${pageContext.request.contextPath}/sale/saleExcelOutput.do?ecode="+ecode+"&statusIdx="+statusIdx;
 		}
 		 
 				</script>

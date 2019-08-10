@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.erp.employee.model.vo.Employee;
@@ -46,7 +47,7 @@ public class SaleController {
 		ArrayList<Partner> partnerList;
 		partnerList = new ArrayList<>(saleService.selectPartner(eCode));
 		
-			model.addAttribute("partnerList",partnerList).addAttribute("ecode",eCode);
+			model.addAttribute("partnerList",partnerList);
 		
 		return "sale/partnerList";
 	}//끝
@@ -67,7 +68,7 @@ public class SaleController {
 				msg = "거래처 등록에 성공했습니다.";
 		}
 		model.addAttribute("loc","/sale/partnerList.do")
-		.addAttribute("msg",msg).addAttribute("ecode",ecode);
+		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
 	
@@ -87,7 +88,7 @@ public class SaleController {
 		}
 		
 		model.addAttribute("loc","/sale/partnerList.do")
-		.addAttribute("msg",msg).addAttribute("ecode",ecode);
+		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
 	
@@ -106,7 +107,7 @@ public class SaleController {
 		
 		
 		model.addAttribute("loc","/sale/partnerList.do")
-		.addAttribute("msg",msg).addAttribute("ecode",ecode);
+		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
 	
@@ -151,8 +152,7 @@ public class SaleController {
 		model.addAttribute("partnerList",partnerList)
 		.addAttribute("storageList",storageList)
 		.addAttribute("storageDetailList",storageDetailList)
-		.addAttribute("employeeList",employeeList)
-		.addAttribute("ecode",eCode);
+		.addAttribute("employeeList",employeeList);
 		return "sale/ItemList";
 	}//끝
 	
@@ -237,8 +237,9 @@ public class SaleController {
 			msg = "판매 완료";
 		}
 		
-		model.addAttribute("loc","/sale/ItemList.do")
-		.addAttribute("msg",msg).addAttribute("ecode",eCode);
+		
+		model.addAttribute("loc","/sale/ItemList.do?ecode="+eCode)
+		.addAttribute("msg",msg);
 		return "common/msg";
 	}
 	
@@ -261,7 +262,6 @@ public class SaleController {
 		
 		model.addAttribute("saleList",saleList)
 		.addAttribute("saleItemList",saleItemList)
-		.addAttribute("ecode",eCode)
 		.addAttribute("partnerList",partnerList)
 		.addAttribute("storageList",storageList)
 		.addAttribute("employeeList",employeeList);
@@ -288,7 +288,7 @@ public class SaleController {
 		}
 		
 		model.addAttribute("loc","/sale/saleRegist.do")
-		.addAttribute("msg",msg).addAttribute("ecode",eCode);
+		.addAttribute("msg",msg);
 		
 		return "common/msg";
 	}

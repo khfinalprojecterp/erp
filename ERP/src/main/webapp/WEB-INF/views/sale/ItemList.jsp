@@ -98,6 +98,14 @@
 	</div>
 	
 	<script>
+	var ecode;
+	<c:if test="${empty employee}">
+	ecode = "${enterprise.eCode}";
+	</c:if>
+	<c:if test="${empty enterprise}">
+	ecode = "${employee.eCode}";
+	</c:if>
+	
 	$("#sideNav").click(function(){
 		var el = document.getElementById("dataTables-example");
 			el.style.width="100%";
@@ -200,7 +208,7 @@ function newMateCate() {
 	var EAS = EA.split(',');
 	
 	
-	location.href ="${pageContext.request.contextPath}/sale/saleItem.do?ecode="+${ecode}+"&statusIdx="+statusIdx+"&PartnerSelect="+PartnerSelect+"&EmployeeSelect="+EmployeeSelect+"&salePriceS="+salePriceS+"&EAS="+EAS;//ecode 수정필
+	location.href ="${pageContext.request.contextPath}/sale/saleItem.do?ecode="+ecode+"&statusIdx="+statusIdx+"&PartnerSelect="+PartnerSelect+"&EmployeeSelect="+EmployeeSelect+"&salePriceS="+salePriceS+"&EAS="+EAS;//ecode 수정필
 	<%--연결--%>
 		
 

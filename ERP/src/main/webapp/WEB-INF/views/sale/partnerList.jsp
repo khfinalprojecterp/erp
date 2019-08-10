@@ -120,7 +120,13 @@
 		</div>
 	</div>
 	<script>	
-	
+	var ecode;
+	<c:if test="${empty employee}">
+	ecode = "${enterprise.eCode}";
+	</c:if>
+	<c:if test="${empty enterprise}">
+	ecode = "${employee.eCode}";
+	</c:if>
 		$("#sideNav").click(function(){
 			var el = document.getElementById("dataTables-example");
 				el.style.width="100%";
@@ -138,7 +144,7 @@
 		
 		function newMateCate() {
 			var mcName = $("#newCate").val();
-			location.href = "${pageContext.request.contextPath}/sale/insertPartner.do?partner="+mcName+"&ecode="+${ecode};//ecode 수정필
+			location.href = "${pageContext.request.contextPath}/sale/insertPartner.do?partner="+mcName+"&ecode="+ecode;//ecode 수정필
 			//연결
 		}
 		
@@ -146,7 +152,7 @@
 			var mCate = $("#CateNum").val();//거래처이름
 			var mcName = $("#CateName").val();//거래상태
 			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/callOffPartner.do?partner="+mCate+"&ecode="+${ecode};
+			location.href = "${pageContext.request.contextPath}/sale/callOffPartner.do?partner="+mCate+"&ecode="+ecode;
 			
 			//연결
 		}
@@ -155,7 +161,7 @@
 			var mCate = $("#CateNum").val();//거래처이름
 			var mcName = $("#CateName").val();//거래상태
 			var mCateC = $("#CateC").val();//거래처 코드
-			location.href = "${pageContext.request.contextPath}/sale/changeNamePartner.do?partner="+mCate+"&ecode="+${ecode}+"&partnerC="+ mCateC;
+			location.href = "${pageContext.request.contextPath}/sale/changeNamePartner.do?partner="+mCate+"&ecode="+ecode+"&partnerC="+ mCateC;
 			//연결
 		}
 		
