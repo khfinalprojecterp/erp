@@ -34,7 +34,7 @@
                            
          <c:if test="${ empty employee}">
 
-  					<c:forEach var="depart" items="${dlist}">
+  					<c:forEach var="depart" items="${list}">
 								<c:if test="${ enterprise.eCode eq depart.eCode }">
 									<tr id="${depart.dCode}">
 									<td style="display: none;">${depart.dCode}</td>
@@ -46,7 +46,7 @@
     	
   		 <c:if test="${ empty enterprise}">
   	
-  							 <c:forEach var="depart" items="${dlist}">
+  							 <c:forEach var="depart" items="${list}">
 								<c:if test="${ employee.eCode eq depart.eCode }">
 									<tr id="${depart.dCode}">
 									<td style="display: none;">${depart.dCode}</td>
