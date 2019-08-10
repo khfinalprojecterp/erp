@@ -27,6 +27,8 @@
 											<th>지시번호</th>
 											<th>담당자</th>
 											<th>물품명</th>
+											<th>수량</th>
+											<th>창고명/위치</th>
 											<th>신청일</th>
 											<th>완료여부</th>
 										</tr>
@@ -34,10 +36,12 @@
 									<tbody>
 										<!-- 데이터 -->
 											<c:forEach items="${list}" var="jo" >
-												<tr id="${jo.workcode}" class="${jo.workcode} ${jo.idCode} ${jo.pCode}">
+												<tr id="${jo.workcode}" class="${jo.workcode} ${jo.idCode} ${jo.pCode} ${jo.sCode}">
 													<td>${jo.workcode}</td>
 													<td>${jo.wName}</td>
 													<td>${jo.pName}</td>
+													<td>${jo.productea}</td>
+													<td>${jo.SADDR}</td>
 													<td>${jo.orderdate}</td>
 													<td>${jo.jostatus}</td>
 											</c:forEach>
@@ -51,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 창고 추가용 모달 -->
+	<!-- 작업지시서 입력용 모달 -->
 	<div class="modal fade" id="insertStorageDe" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -69,15 +73,28 @@
 						</div>
 
 						<div class="form-group">
-						
 							<label for="message-text" class="col-form-label">물품 선택:</label>&nbsp;
 							<select class="custom-select" id="pcode">
 								<c:forEach items="${plist}" var="p" >
 									<option value="${p.pCode}">${p.pName}</option>
 								</c:forEach>
 							</select>
-							
 						</div>
+						
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">수량:</label>
+							<input type="text" class="form-control" id="insertproductea" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="9";>
+						</div>
+						
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">창고위치:</label>&nbsp;
+							<select class="custom-select" id="insertsCode">
+								<c:forEach items="${slist}" var="s" >
+									<option value="${s.sCode}">${s.sname}</option>
+								</c:forEach>
+							</select>
+						</div>
+						
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -123,6 +140,20 @@
 						</div>
 						
 						<div class="form-group">
+							<label for="message-text" class="col-form-label">수량:</label>
+							<input type="text" class="form-control" id="updateproductea" value="${productea}" readyonly>
+						</div>
+						
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">창고명/지역:</label>&nbsp;
+							<select class="custom-select" id="upscode">
+								<c:forEach items="${slist}" var="s" >
+									<option value="${s.sCode}">${s.sname}</option>
+								</c:forEach>
+							</select>
+						</div>
+						
+						<div class="form-group">
 							<label for="message-text" class="col-form-label">완료여부</label>&nbsp;
 							<select class="custom-select" id="jostatus">
 									<option value="N">N</option>
@@ -144,11 +175,14 @@
 	</div>
 	<script>
 		function insertJoborder() {
+			
 			var idCode = $("#idcode").val();
 			var pCode = $("#pcode").val();
-
+			var productea = $("#insertproductea").val();
+			var sCode = $("#insertsCode").val();
+		
 				location.href = "${pageContext.request.contextPath}/production/job_orderInsert.do?idcode="+
-				idCode+"&pcode="+pCode;
+				idCode+"&pcode="+pCode+"&productea="+productea+"&sCode="+sCode;
 			
 		}
 		
@@ -160,19 +194,26 @@
 		<td>${jo.jostatus}</td> */
 		
 		function updateJobOrder() {
+			var beforeprice = 0;
+			var afterprice = 0;
 	 		var workcode = $("#workcode").val().trim();
 	 		var idcode = $("#idcode").val().trim();
 	 		var pcode = $("#pCode").val().trim();
+	 		var productea = $("#updateproductea").val().trim();
+	 		var sCode = $("#upscode").val().trim();
 			var jostatus = $("#jostatus").val().trim();
-			alert(workcode);
-			alert(idcode);
-			alert(pcode);
-			alert(jostatus);
-			
-			
-			location.href = "${pageContext.request.contextPath}/production/job_orderupdate.do?workcode="
-					+workcode+"&idcode="+idcode+"&pCode="+pcode+"&jostatus="+jostatus;
-		 	
+
+			alert(sCode);
+			if(jostatus == "Y"){
+				beforeprice= prompt("생산 단가를 입력하세요", "");
+				afterprice = prompt("판매 단가를 입력하세요", "");
+			}
+
+			if(productea=="") {productea=0;}
+				location.href = "${pageContext.request.contextPath}/production/job_orderupdate.do?workcode="
+					+workcode+"&idcode="+idcode+"&pCode="+pcode+"&productea="+productea+"&sCode="+sCode+"&jostatus="+jostatus
+					+"&beforeprice="+beforeprice+"&afterprice="+afterprice;
+		 	 
 		}
 		
 		
@@ -185,6 +226,13 @@
 		
 		
 
+/* 		<td>${jo.workcode}</td>
+		<td>${jo.wName}</td>
+		<td>${jo.pName}</td>
+		<td>${jo.productea}</td>
+		<td>${jo.sCode}</td>
+		<td>${jo.orderdate}</td>
+		<td>${jo.jostatus}</td> */
 		
 		$("#dataTables-example td").each(function(){
 			$(this).click(function(){
@@ -192,6 +240,7 @@
 	 			var workcode = $(this).parent().attr('class').split(' ')[0];
 	 			var idCode = $(this).parent().attr('class').split(' ')[1];
 	 			var pCode = $(this).parent().attr('class').split(' ')[2];
+	 			var sCode = $(this).parent().attr('class').split(' ')[3];
 	 			document.getElementById("workcode").value = workcode;
 	 			document.getElementById("idCode").value = idCode;
 	 			document.getElementById("pCode").value = pCode;
@@ -199,7 +248,9 @@
 	 			document.getElementById("workcode").value = $(this).parent().children().eq(0).text();
 	 			document.getElementById("idCode").value = $(this).parent().children().eq(1).text();
 	 			document.getElementById("pCode").value = pCode;
-	 			document.getElementById("jostatus").value = $(this).parent().children().eq(4).text();
+	 			document.getElementById("updateproductea").value = $(this).parent().children().eq(3).text();
+	 			document.getElementById("upscode").value= sCode;
+	 			document.getElementById("jostatus").value = $(this).parent().children().eq(6).text();
 				
 	 			$("#updateJobOrder").modal();
 			});

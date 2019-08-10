@@ -15,47 +15,53 @@ public class Job_order implements Serializable{
       private int workcode;
       private String idCode; // FK_사원번호
       private String pCode; // FK_물품코드
+      private String productea;
+      private String sCode; // FK_창고위치
       private Date orderdate;
       private String jostatus;
       
       // 임시변수 
       private String wname;
       private String pname; 
+      private String sname;
 
    
     public Job_order() {}
 
 
-	public Job_order(String idCode, String pCode) {
+	public Job_order(String idCode, String pCode, String productea, String sCode) {
 	super();
 	this.idCode = idCode;
 	this.pCode = pCode;
+	this.productea = productea;
+	this.sCode = sCode;
 	}
 
-	
-	
-
-	public Job_order(int workcode, String idCode, String pCode, String jostatus) {
+	public Job_order(int workcode, String idCode, String pCode, String productea, String sCode, String jostatus) {
 		super();
 		this.workcode = workcode;
 		this.idCode = idCode;
 		this.pCode = pCode;
+		this.productea = productea;
+		this.sCode = sCode;
 		this.jostatus = jostatus;
 	}
 
 
-	public Job_order(int workcode, String idCode, String pCode, Date orderdate, String jostatus, String wname,
-			String pname) {
+	public Job_order(int workcode, String idCode, String pCode, String productea, String sCode, Date orderdate,
+			String jostatus, String wname, String pname, String sname) {
 		super();
 		this.workcode = workcode;
 		this.idCode = idCode;
 		this.pCode = pCode;
+		this.productea = productea;
+		this.sCode = sCode;
 		this.orderdate = orderdate;
 		this.jostatus = jostatus;
 		this.wname = wname;
 		this.pname = pname;
+		this.sname = sname;
 	}
-
 
 
 	public int getWorkcode() {
@@ -68,23 +74,43 @@ public class Job_order implements Serializable{
 	}
 
 
-	public String getIdcode() {
+	public String getIdCode() {
 		return idCode;
 	}
 
 
-	public void setIdcode(String idcode) {
-		this.idCode = idcode;
+	public void setIdCode(String idCode) {
+		this.idCode = idCode;
 	}
 
 
-	public String getPcode() {
+	public String getpCode() {
 		return pCode;
 	}
 
 
-	public void setPcode(String pcode) {
-		this.pCode = pcode;
+	public void setpCode(String pCode) {
+		this.pCode = pCode;
+	}
+
+
+	public String getProductea() {
+		return productea;
+	}
+
+
+	public void setProductea(String productea) {
+		this.productea = productea;
+	}
+
+
+	public String getsCode() {
+		return sCode;
+	}
+
+
+	public void setsCode(String sCode) {
+		this.sCode = sCode;
 	}
 
 
@@ -128,12 +154,22 @@ public class Job_order implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Job_order [workcode=" + workcode + ", idCode=" + idCode + ", pCode=" + pCode + ", orderdate="
-				+ orderdate + ", jostatus=" + jostatus + ", wname=" + wname + ", pname=" + pname + "]";
+	public String getsname() {
+		return sname;
 	}
 
-	
-		
+
+	public void setsname(String sname) {
+		this.sname = sname;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Job_order [workcode=" + workcode + ", idCode=" + idCode + ", pCode=" + pCode + ", productea="
+				+ productea + ", sCode=" + sCode + ", orderdate=" + orderdate + ", jostatus=" + jostatus + ", wname="
+				+ wname + ", pname=" + pname + ", sname=" + sname + "]";
+	}
+
+
 }

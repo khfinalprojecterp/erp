@@ -29,7 +29,7 @@
 									</thead>
 									<tbody>
 										<c:forEach items="${saleList}" var="L">
-											<tr>
+											<tr style="cursor: pointer;">
 												<td>${L.sal_Code}</td>
 												<td>${L.salDay}</td>
 												<c:forEach items="${partnerList}" var="I">
@@ -52,7 +52,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="panel panel-default">
 							<div class="panel-heading">
 								${fn:substring(saleList[0].salDay,0,4)}년 월별 판매량
@@ -60,7 +60,7 @@
 								<div id="morris-bar-chart amount"></div>
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="panel panel-default">
 							<div class="panel-heading">
 								${fn:substring(saleList[0].salDay,0,4)}년 월별 순이익
@@ -72,7 +72,7 @@
 					
 					<div class="row">
 					
-					<div class="col-md-6">  
+					<div class="col-md-12">  
                             <div class="panel panel-default chartJs">
                                 <div class="panel-heading">
                                     <div class="card-title">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-					<div class="col-md-6">  
+					<div class="col-md-12">  
                             <div class="panel panel-default chartJs">
                                 <div class="panel-heading">
                                     <div class="card-title">
@@ -126,7 +126,7 @@
 									yearSaleEa[${status.count*1-1}] = yearSaleEa[${status.count*1-1}] + ${A.sal_Amount*1};
 									yearSalePrice[${status.count*1-1}] = 
 										yearSalePrice[${status.count*1-1}] + ${A.sal_Amount*1}*${A.sal_Profit*1};
-									</c:if>
+									</c:if> 
 								</c:forEach>
 							</c:if>
 						</c:forEach>
@@ -134,6 +134,7 @@
 					
 					var ctx = $('#line-chart-am').get(0).getContext('2d');
 					var ctx2 = $('#line-chart-pr').get(0).getContext('2d');
+					
 						 var data = {
 						    labels: [lastYear-4+"년", lastYear-3+"년", lastYear-2+"년", lastYear-1+"년", lastYear+"년"],
 						    datasets: [
@@ -165,6 +166,7 @@
 							    }
 						    ]
 						  };
+						 
 						  myLineChart = new Chart(ctx).Line(data, options);
 						  myLineChart = new Chart(ctx2).Line(data2, options);
 						  

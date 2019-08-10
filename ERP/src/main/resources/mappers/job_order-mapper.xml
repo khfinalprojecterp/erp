@@ -4,13 +4,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobOrder">
 	<resultMap id="jobOrderMap" type="map">
+		<result property="eCode" column="ECODE" />
 		<result property="workcode" column="WORKCODE" />
 		<result property="idCode" column="IDCODE" />
 		<result property="pCode" column="PCODE" />
+		<result property="productea" column="PRODUCTEA" />
+		<result property="sCode" column="SCODE" />
 		<result property="orderdate" column="ORDERDATE" />
 		<result property="jostatus" column="JOSTATUS" />
 		<result property="wName" column="WNAME" />
 		<result property="pName" column="PNAME" />
+		<result property="fName" column="FNAME" />
 	</resultMap>
 
 	<resultMap id="resultListP" type="map">
@@ -22,15 +26,22 @@
 		<result property="idcode" column="IDCODE"/>
 		<result property="wname" column="WNAME" />
 	</resultMap>
+	
+	<resultMap id="resultListS" type="map">
+		<result property="sCode" column="SCODE"/>
+		<result property="sname" column="SNAME" />
+	</resultMap>
 	<!-- Storage -->
 	
 	<select id="selectJobOrderList" resultMap="jobOrderMap">
-      SELECT JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.ORDERDATE ORDERDATE, JO.JOSTATUS JOSTATUS, E.WNAME WNAME, P.PNAME PNAME 
-      FROM JOB_ORDER JO, PRODUCT P, EMPLOYEE E
+      SELECT EN.ECODE ECODE, JO.WORKCODE WORKCODE, E.IDCODE IDCODE, P.PCODE PCODE, JO.PRODUCTEA PRODUCTEA, S.SCODE SCODE, JO.ORDERDATE ORDERDATE, JO.JOSTATUS JOSTATUS, E.WNAME WNAME, P.PNAME PNAME, S.SADDR SADDR 
+      FROM ENTERPRISE EN, JOB_ORDER JO, PRODUCT P, EMPLOYEE E, STORAGE S, DEPARTMENT D
       WHERE JO.IDCODE = E.IDCODE AND
       JO.PCODE = P.PCODE AND
-      JO.IDCODE = E.IDCODE
-      
+      JO.IDCODE = E.IDCODE AND
+      JO.SCODE = S.SCODE AND 
+      E.DCODE = D.DCODE AND
+      D.ECODE = EN.ECODE
 	</select>
 	
 	<select id="selectP" resultMap="resultListP">
@@ -44,21 +55,22 @@
 		FROM EMPLOYEE
 		ORDER BY IDCODE
 	</select>
-	
-	<select id="selectStorageOne" resultType="storage">
-		SELECT *
-		FROM MATERIAL
-		WHERE MCODE = #{mCode}
+	<select id="selectS" resultMap="resultListS">
+		SELECT SCODE, SADDR SNAME
+		FROM STORAGE
+		ORDER BY SCODE
 	</select>
 	
 	<insert id="insertJobOrder">
 		INSERT INTO JOB_ORDER
-		VALUES (WORKCODE_SEQ.NEXTVAL, #{idCode}, #{pCode}, DEFAULT, DEFAULT)
+		VALUES (WORKCODE_SEQ.NEXTVAL, #{idCode}, #{pCode}, #{productea}, #{sCode}, DEFAULT, DEFAULT)
 	</insert>
 	
-	<update id="updateJobOrder" parameterType="storage">
+	<update id="updateJobOrder" parameterType="Job_order">
 		UPDATE JOB_ORDER
 		    SET pCode = #{pCode},
+		    	productea = #{productea},
+		    	sCode = #{sCode},
 		        jostatus = #{jostatus}
 		    WHERE workcode = #{workcode}
 	</update>
@@ -68,56 +80,11 @@
 	    WHERE WORKCODE = #{workcode}
 	</delete>
 	
-	<!-- StorageDetail -->
 	
-<!-- 	<select id="selectStorageDetailList" resultMap="storageDetailMap">
-		SELECT D.SDCODE SDCODE, D.SCODE SCODE, D.ECODE ECODE, D.IDCODE IDCODE, D.MCODE MCODE, D.PCODE PCODE,
-    		D.IN_CODE IN_CODE, D.SDSTOCK SDSTOCK, D.SDCOST SDCOST, D.SDPRICE SDPRICE, D.SDDATE SDDATE,
-    		E.ENAME ENAME, M.WNAME WNAME,A.MNAME MNAME, P.PNAME PNAME
-		  FROM STORAGE_DETAIL D, STORAGE S, ENTERPRISE E, EMPLOYEE M, MATERIAL A, PRODUCT P
-		  WHERE D.SCODE = S.SCODE
-		    AND D.ECODE = E.ECODE
-		    AND D.IDCODE = M.IDCODE
-		    AND D.MCODE = A.MCODE (+)
-		    AND D.PCODE = P.PCODE (+)
-		    ORDER BY SDCODE
-	</select> -->
-	
-<!-- 	<select id="selectStorageDetailOne" resultType="storagedetail">
-		SELECT *
-			FROM STORAGE_DETAIL
-			WHERE SDCODE = #{sdCode}
-	</select> -->
-	
-	<!-- <insert id="insertStorageDetail">
+	<insert id="insertStorage">
 		INSERT INTO STORAGE_DETAIL
-			VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode}, #{mCode}, #{pCode}, NULL,
+			VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode}, null, #{pCode}, #{in_Code},
 	 		#{sdStock}, #{sdCost}, #{sdPrice}, SYSDATE)
 	</insert>
 	
-	<update id="updateStorageDetail" parameterType="storagedetail">
-		UPDATE STORAGE_DETAIL
-	    	SET SCODE = #{sCode},
-		    	MCODE = #{mCode},
-		    	PCODE = #{pCode},
-		    	IN_CODE = NULL,
-		    	IDCODE = #{idCode},
-		        SDSTOCK = #{sdStock},
-		        SDCOST = #{sdCost},
-		        SDPRICE = #{sdPrice},
-		        SDDATE = DEFAULT
-		    WHERE SDCODE = #{sdCode}
-	</update>
-	
-	<delete id="deleteStorageDetail">
-		DELETE FROM STORAGE_DETAIL
-	    	WHERE SDCODE = #{sdCode}
-	</delete>
-	 
-	 <select id="loadProductList" resultMap="productMap">
-		SELECT PCODE , PNAME
-		FROM PRODUCT
-		ORDER BY PCODE
-	</select> -->
-	 
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.erp.production.model.vo.Job_order;
+import com.kh.erp.storage.model.vo.StorageDetail;
 
 @Repository
 public class Job_orderDaoImpl implements Job_orderDao {
@@ -27,6 +28,10 @@ public class Job_orderDaoImpl implements Job_orderDao {
 	@Override
 	public List<Map<String, String>> plist() {
 		return sqlSession.selectList("jobOrder.selectP");
+	}
+	@Override
+	public List<Map<String, String>> slist() {
+		return sqlSession.selectList("jobOrder.selectS");
 	}
 
 	@Override
@@ -49,6 +54,11 @@ public class Job_orderDaoImpl implements Job_orderDao {
 	public int deleteJobOrder(int workcode) {
 
 		return sqlSession.delete("jobOrder.deleteJobOrder", workcode);
+	}
+	@Override
+	public int insertStorageDetail(StorageDetail storageDetail) {
+		
+		return sqlSession.insert("jobOrder.insertStorage", storageDetail);
 	}
 
 

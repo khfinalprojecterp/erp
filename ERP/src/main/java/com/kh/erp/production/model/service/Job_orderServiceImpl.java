@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.erp.production.model.dao.Job_orderDao;
 import com.kh.erp.production.model.vo.Job_order;
+import com.kh.erp.storage.model.vo.StorageDetail;
 
 @Service
 public class Job_orderServiceImpl implements Job_orderService {
@@ -30,7 +31,11 @@ public class Job_orderServiceImpl implements Job_orderService {
 		return job_orderDao.plist();
 	}
 
-	
+	@Override
+	public List<Map<String, String>> slist() {
+		// TODO Auto-generated method stub
+		return job_orderDao.slist();
+	}
 
 
 	@Override
@@ -54,6 +59,13 @@ public class Job_orderServiceImpl implements Job_orderService {
 	public int insertJobOrder(Job_order job_order) {
 		return job_orderDao.insertJobOrder(job_order);
 	}
+
+	@Override
+	public int insertStorageDetail(StorageDetail storageDetail) {
+		
+		return job_orderDao.insertStorageDetail(storageDetail);
+	}
+
 
 
 

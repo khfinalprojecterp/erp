@@ -32,7 +32,7 @@
 									<tbody>
 										<c:forEach items="${partnerList}" var="L" > 
 										<c:if test="${L.parSts.charAt(0).toString() eq 'T'}">
-											<tr id="${L.partnerC}">
+											<tr id="${L.partnerC}"  style="cursor: pointer;">
 												<td>${L.parName}</td>
 												<td>
 												<p style="display: none;">${L.parSts.charAt(0).toString()}</p>
