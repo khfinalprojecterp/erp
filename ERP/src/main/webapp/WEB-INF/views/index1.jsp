@@ -30,7 +30,7 @@
 			        <!-- 일자 클릭시 메뉴오픈 -->
 			        <div id="contextMenu" class="dropdown clearfix">
 			            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
-			                style="display:block;position:static;margin-bottom:5px;">
+			                style="display:block; position:absolute; left:-240px; top:-55px; margin-bottom:5px;;">
 			                <li><a tabindex="-1" href="#">카테고리1</a></li>
 			                <li><a tabindex="-1" href="#">카테고리2</a></li>
 			                <li><a tabindex="-1" href="#">카테고리3</a></li>
@@ -723,7 +723,7 @@ var calendar = $('#calendar').fullCalendar({
       $("#contextMenu")
         .addClass("contextOpened")
         .css({
-          display: "block",
+          display: "absolute",
           left: e.pageX,
           top: e.pageY
         });
