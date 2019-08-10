@@ -29,7 +29,7 @@
 											<th>담당사원명</th> <!-- 이름으로 변경 -->
 											<th>구분</th>
 											<th>창고연락처</th>
-											<th>창고주소</th>
+											<th>창고주소/이름</th>
 											<th>사용여부</th>
 										</tr>
 									</thead>
@@ -116,7 +116,7 @@
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">창고연락처: </label>
-							<input type="text" class="form-control" id="newsPhone">
+							<input type="text" class="form-control" id="newsPhone" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">창고주소:</label>
@@ -164,7 +164,7 @@
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">창고연락처: </label>
-							<input type="text" class="form-control" id="upsPhone">
+							<input type="text" class="form-control" id="upsPhone" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">창고주소:</label>

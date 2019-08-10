@@ -101,6 +101,11 @@ public class WebSocketServiceImpl implements WebSocketService {
 		return websocketDao.roomMemberList(chCode);
 	}
 
+	@Override
+	public List<Map<String, String>> allMemberList() {
+		return websocketDao.allMemberList();
+	}
+
 
 
 

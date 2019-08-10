@@ -36,4 +36,6 @@ public interface WebSocketDao {
 	List<Map<String, String>> emList(int idCode);
 	
 	List<Map<String, String>> roomMemberList(String chCode);
+	
+	List<Map<String, String>> allMemberList();
 }

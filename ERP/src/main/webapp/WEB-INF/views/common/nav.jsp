@@ -41,10 +41,10 @@
     	</c:if>
    
   		 <c:if test="${ empty enterprise && !empty employee }">
+  		 <span class="glyphicon glyphicon-comment btn-lg" aria-hidden="true" onclick="fn_chatting();"></span>
   		  <span>
-  		  <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button>
-  		  
-   		 ${employee.wName}</a> 님, 안녕하세요</span>
+  		 <!--  <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left : 10px;" onclick="fn_chatting();">채팅하기</button> -->
+   		<a>${employee.wName}</a> 님, 안녕하세요</span>
     	</c:if>
   
   
@@ -245,13 +245,6 @@
                 <ul class="nav nav-second-level">
                     <li><a href="${pageContext.request.contextPath}/storage/storageList.do">창고 목록</a></li>
                     <li><a href="${pageContext.request.contextPath}/storage/storageDetailList.do">창고 상세 목록</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
 
@@ -260,13 +253,6 @@
                 <ul class="nav nav-second-level">
                     <li><a href="${pageContext.request.contextPath}/materialscate/mateCateList.do">기자재 분류</a></li>
                     <li><a href="${pageContext.request.contextPath}/materialscate/mateList.do">기자재 목록</a></li>
-                    <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                            <li><a href="#">Third Level Link</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
 			<!-- 원석 -->
