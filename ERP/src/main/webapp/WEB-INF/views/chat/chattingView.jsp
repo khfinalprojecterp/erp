@@ -76,15 +76,34 @@
         });
         
         $("#newCodBtn").click(function(){
+        	var inflag = 0;
+        	var chMember = "${chMember}";
+        	var allMember = "${allMember}";
+        	var chMembersp = chMember.split(' ');
+			var allMembersp = allMember.split(' ');
         	var chCode = ${room};
          	var newchat = prompt("초대할 사원의 사번을 입력하세요.");
-         	if(newchat.trim() != null && newchat.length > 0) {
-            	location.href = '${pageContext.request.contextPath}/updateMember.do?chCode='+chCode+"&idCode="+newchat;
-            	alert("사용자가 초대 되었습니다.");
-         	} else {
-         		alert("공란을 입력할 수는 없습니다.");
-         	}
+        	for (var k in allMembersp) {
+        		if(allMembersp[k] == newchat) {
+        			inflag = 2; // 존재하는 사번
+        		}
+        	}
+        	for (var i in chMembersp) {
+        		if(chMembersp[i] == newchat) {
+        			inflag = 1; // 이미 초대되어 있는 사번
+        		}
+        	}
 
+			if(inflag == 0) {
+				alert("존재하지 않는 사번 입니다.");
+			}
+			if(inflag == 1) {
+				alert("이미 초대되어 있는 사용자 입니다.");
+			}
+			if(inflag == 2) {
+				location.href = '${pageContext.request.contextPath}/updateMember.do?chCode='+chCode+"&idCode="+newchat;
+				alert("초대가 성공하였습니다.");
+			}
         });
         
         //사용자 초대
@@ -185,9 +204,7 @@
     
     /* 채팅 입력 시 스크롤 내리기 */
     function scrollDown(){
-    	$('#chatdata').animate({
-            scrollTop: $('#chatdata').get(0).scrollHeight
-        }, 100);
+    	$('#chatdata').scrollTop($("#chatdata")[0].scrollHeight);
     }
     
     function onClose(){
@@ -229,6 +246,9 @@
 				<button class='btn btn-primary' type="button" id='newCodBtn'>사번으로 초대</button>
 				<button style="float:right" class='btn btn-primary' type="button" id='deleteBtn'>대화방 삭제</button>
 			</div>
+			<h3>현재 참여자 목록</h3>
+			<p>${chMemberName}</p>
+			
 		</div>
 	</div>
 	

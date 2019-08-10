@@ -100,4 +100,10 @@ public class WebSocketDaoImpl implements WebSocketDao {
 		return sqlSession.selectList("chat.RoomMemberList", chCode);
 	}
 
+	@Override
+	public List<Map<String, String>> allMemberList() {
+
+		return sqlSession.selectList("chat.AllMemberList");
+	}
+
 }

@@ -62,7 +62,12 @@
 													<td>기자재</td>
 													<td>${sd.mName}</td>
 													</c:if>
-													<td>${sd.in_Code}</td>
+													<c:if test="${ empty sd.in_Code}">
+														<td>생산외 입고 물품</td>
+													</c:if>
+													<c:if test="${ !empty sd.in_Code}">
+														<td>${sd.in_Code}</td>
+													</c:if>
 													<td>${sd.sdStock}</td>
 													<td>${sd.sdCost}</td>
 													<td>${sd.sdPrice}</td>
@@ -142,15 +147,15 @@
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">입고량:</label>
-							<input type="text" class="form-control" id="newsdstock">
+							<input type="text" maxlength="9" class="form-control" id="newsdstock" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">입고가: </label>
-							<input type="text" class="form-control" id="newsdcost">
+							<input type="text" maxlength="9" class="form-control" id="newsdcost" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">판매가:</label>
-							<input type="text" class="form-control" id="newsdprice">
+							<input type="text" maxlength="9" class="form-control" id="newsdprice" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						</div>
 					</form>
 				</div>
@@ -222,15 +227,15 @@
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">재고:</label>
-							<input type="text" class="form-control" id="upsdstock">
+							<input type="text" maxlength="9" class="form-control" id="upsdstock" onKeyup="this.value=this.value.replace(/[^0-9]/g,''); ">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">입고가: </label>
-							<input type="text" class="form-control" id="upsdcost">
+							<input type="text" maxlength="9" class="form-control" id="upsdcost" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">판매가:</label>
-							<input type="text" class="form-control" id="upsdprice">
+							<input type="text" maxlength="9" class="form-control" id="upsdprice" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						</div>
 					</form>
 				</div>
@@ -310,6 +315,9 @@
 			
 			var sCode = $("#selectstorageDe").val();
 			var sdStock = $("#upsdstock").val();
+			if(sdStock == null) {
+				sdStock = 0;
+			}
 			var sdCost = $("#upsdcost").val();
 			var sdPrice = $("#upsdprice").val();
 			if($("input:radio[name=upcheckP]:checked").val()=='Ma'){

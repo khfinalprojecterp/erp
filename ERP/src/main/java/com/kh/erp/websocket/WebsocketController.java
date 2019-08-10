@@ -128,12 +128,26 @@ public class WebsocketController {
 		
 		ArrayList<Map<String, String>> rmlist = new ArrayList<>(websocketService.roomMemberList(chCode));
 		String chMember = "";
+		String chMemberName = "";
 		
 		for(Map<String, String> map : rmlist) {
 			chMember += String.valueOf(map.get("idCode"));
 			chMember += " ";
+			chMemberName += String.valueOf(map.get("wName"));
+			chMemberName += " ";
 		}
 		model.addAttribute("chMember", chMember);
+		model.addAttribute("chMemberName", chMemberName);
+		ArrayList<Map<String, String>> memlist = new ArrayList<>(websocketService.allMemberList());
+		String allMember = "";
+		for(Map<String, String> maps : memlist) {
+			allMember += String.valueOf(maps.get("idCode"));
+			allMember += " ";
+		}
+		model.addAttribute("allMember", allMember);
+
+		
+		
 
 		return "chat/chattingView";
 	}

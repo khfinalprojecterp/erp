@@ -14,12 +14,16 @@
 		<result property="wName" column="WNAME" />
 		<result property="upTime" column="UPTIME" />
 	</resultMap>
-		<resultMap id="chat" type="map">
+	<resultMap id="chat" type="map">
 		<result property="chCode" column="CHCODE" />
 		<result property="idCode" column="IDCODE" />
 		<result property="chatDetail" column="CHATDETAIL" />
 		<result property="chatTime" column="CHATTIME" />
 	</resultMap>
+		<resultMap id="allmember" type="map">
+		<result property="idCode" column="IDCODE" />
+	</resultMap>
+	
 	
 	<!-- CHATROOM -->
 	
@@ -68,6 +72,11 @@
 			  AND D.ECODE = E.ECODE
 		 	  AND E.ECODE = #{eCode}
 	</select>
+	<select id="AllMemberList" resultMap="allmember">
+		SELECT IDCODE
+		  FROM EMPLOYEE
+	</select>
+	
 	
 	<insert id="insertChatRoomMember" parameterType="chatroom">
 		INSERT INTO ROOMMEMBER
