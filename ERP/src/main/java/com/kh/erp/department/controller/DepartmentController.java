@@ -38,7 +38,7 @@ public class DepartmentController {
 		
 		List<Field> flist = fieldService.selectFieldList();
 
-		model.addAttribute("dlist", list);
+		model.addAttribute("list", list);
 		model.addAttribute("flist",flist);
 		
 	

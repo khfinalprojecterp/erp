@@ -287,7 +287,7 @@ public class SaleController {
 			msg = "물품 인계 완료";
 		}
 		
-		model.addAttribute("loc","/sale/saleRegist.do")
+		model.addAttribute("loc","/sale/saleRegist.do?ecode="+eCode)
 		.addAttribute("msg",msg);
 		
 		return "common/msg";
