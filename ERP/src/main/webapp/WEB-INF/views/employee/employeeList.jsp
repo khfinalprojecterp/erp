@@ -35,7 +35,9 @@
                               </tr>
                            </thead>
                            <tbody>
-                            <c:forEach var="emp" items="${list}">
+                     
+          <c:if test="${ empty employee && !empty enterprise }">               
+          <c:forEach var="emp" items="${list}">
 			<c:if test="${ enterprise.eCode eq emp.eCode }">
 			<tr id="${emp.idCode}">
 				<td>${emp.idCode}</td>
@@ -48,6 +50,23 @@
 		     </tr>
 		   </c:if>
 		</c:forEach>
+		</c:if>  
+		
+		<c:if test="${ empty enterprise && !empty employee }">
+		<c:forEach var="emp" items="${list}">
+		<c:if test="${ employee.eCode eq emp.eCode }">
+		<tr id="${emp.idCode}">
+				<td>${emp.idCode}</td>
+				<td>${emp.wName}</td>
+				<td>${emp.dTitle}</td>
+				<td>${emp.position}</td>
+				<td>${emp.wStatus}</td>
+				<td>${emp.enrollDate}</td>
+				<td>${emp.retireDate}</td>
+		     </tr>
+		   </c:if>
+		</c:forEach>
+		</c:if>
                            </tbody>
                         </table>
                      </div>
@@ -84,12 +103,11 @@
                      
                      <label for="message-text" class="col-form-label">사원명</label>
                      <input type="text" class="form-control" id="wNameInsert" name="wName" required>
-                     
-                     
-                     
-                     
+
                      <label for="message-text" class="col-form-label">부서명</label>
                      <br>
+                       
+                     <c:if test="${ empty employee && !empty enterprise }">
                      <select id="dCodeInsert"name="dCode" required>
  					 <c:forEach var="depart" items="${Dlist}">
 			         <c:if test="${ enterprise.eCode eq depart.eCode }">
@@ -97,6 +115,18 @@
 		           	 </c:if>
 			         </c:forEach>   
   	                 </select>
+  	                 </c:if>
+  	                 
+                     <c:if test="${ empty enterprise && !empty employee }">
+                     <select id="dCodeInsert"name="dCode" required>
+ 					 <c:forEach var="depart" items="${Dlist}">
+			         <c:if test="${ employee.eCode eq depart.eCode }">
+				     <option value="${depart.dCode}">${depart.dTitle }</option>	
+		           	 </c:if>
+			         </c:forEach>   
+  	                 </select>
+  	                 </c:if>  	                 
+  	                 
   	                 <br>
                      
           
@@ -254,9 +284,11 @@
                   </div>
                   
            
-                  <div class="form-group">
+                 	 <div class="form-group">
                  	 <label for="message-text" class="col-form-label">부서명</label>
                      <br>
+                     
+                     <c:if test="${ empty employee && !empty enterprise }">
                      <select id="dCode" name="dCode" required>
  					 <c:forEach var="depart" items="${Dlist}">
 			         <c:if test="${ enterprise.eCode eq depart.eCode }">
@@ -264,12 +296,21 @@
 		           	 </c:if>
 			         </c:forEach>   
   	                 </select>
+  	                 </c:if>
+  	                 
+                     <c:if test="${ empty enterprise && !empty employee }">
+                     <select id="dCode" name="dCode" required>
+ 					 <c:forEach var="depart" items="${Dlist}">
+			         <c:if test="${ employee.eCode eq depart.eCode }">
+				     <option value="${depart.dCode}">${depart.dTitle }</option>	
+		           	 </c:if>
+			         </c:forEach>   
+  	                 </select>
+  	                 </c:if>  	                 
   	                 </div>
   	                 <br>
-     		
-     
-     
-       		<div class="form-group">
+  
+       				<div class="form-group">
                      <label for="message-text" class="col-form-label">직급</label>
                      <br>
                     <select name="position" id="position" required>

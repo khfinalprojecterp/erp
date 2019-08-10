@@ -10,9 +10,12 @@ var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
 var editeCode = $('#SCeCode');
 
-console.log(editeCode.val());
+
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
+
+
+
 
 
 /* ****************
@@ -67,13 +70,18 @@ var newEvent = function (start, end, eventType) {
         var realEndDay;
 
         if (editAllDay.is(':checked')) {
-            eventData.start = moment(eventData.start).format('YYYY-MM-DD');
+/*            eventData.start = moment(eventData.start).format('YYYY-MM-DD');
             //render시 날짜표기수정
-            eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
+            eventData.end = moment(eventData.end).format('YYYY-MM-DD'); //.add(1, 'days')
             //DB에 넣을때(선택)
             realEndDay = moment(eventData.end).format('YYYY-MM-DD');
 
-            eventData.allDay = true;
+            alert(eventData.end + eventData.start);
+            
+            eventData.allDay = true;*/
+
+        	eventData.end = eventData.start;
+        	
         }
 
         $("#calendar").fullCalendar('renderEvent', eventData, true);
@@ -84,7 +92,7 @@ var newEvent = function (start, end, eventType) {
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "employee/insertschedule.do",
+            url: "insertschedule.do",
             data: {
             	
             	  title: eventData.title,

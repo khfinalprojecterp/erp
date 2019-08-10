@@ -73,6 +73,17 @@ input[type="password"] {
 
 <div class = "container">
 	<div class="wrapper">
+	
+	<script>
+	<c:if test="${!empty enterprise || !empty employee}">
+    
+	location.href="${pageContext.request.contextPath}/goMain.do";
+	
+	
+	</c:if>
+	</script>
+	
+	
 		<form id="loginFrm" method="post" name="Login_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
 			  <hr class="colorgraph"><br>

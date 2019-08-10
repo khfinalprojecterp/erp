@@ -31,6 +31,18 @@ public class SchedulingController {
 	@Autowired
 	SchedulingService scheduleService;
 	
+	@RequestMapping(value="/employee/enterschedule.do")
+	public String enterSchedule() {
+		
+		
+		
+		
+		return "employee/scheduling";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value="/employee/insertschedule.do",method=RequestMethod.GET)
 	@ResponseBody
@@ -74,7 +86,7 @@ public class SchedulingController {
 	}
 	
 	
-	@RequestMapping(value="/employee/selectschedule.do")
+	@RequestMapping(value="employee/selectschedule.do")
 	@ResponseBody
 	public JSONArray selectSchedule(
 			@RequestParam int eCode,
@@ -129,7 +141,7 @@ public class SchedulingController {
 	
 	}
 
-	@RequestMapping(value="/employee/resizeschedule.do")
+	@RequestMapping(value="employee/resizeschedule.do")
 	public void resizeSchedule(	
 								@RequestParam int _id,
 								@RequestParam String start,
@@ -151,7 +163,7 @@ public class SchedulingController {
 	
 	}
 	
-	@RequestMapping(value="/employee/dragschedule.do")
+	@RequestMapping(value="employee/dragschedule.do")
 	@ResponseBody
 	public void dragSchedule(	
 								@RequestParam int _id,
@@ -168,7 +180,7 @@ public class SchedulingController {
 		
 	}
 	
-	@RequestMapping(value="/employee/updateschedule.do")
+	@RequestMapping(value="/updateschedule.do")
 	@ResponseBody
 	public void updateSchedule(	
 								@RequestParam int _id,
@@ -202,7 +214,7 @@ public class SchedulingController {
 
 	}
 	
-	@RequestMapping(value="/employee/deleteschedule.do")
+	@RequestMapping(value="/deleteschedule.do")
 	@ResponseBody
 	public void deleteSchedule(	
 								@RequestParam int _id

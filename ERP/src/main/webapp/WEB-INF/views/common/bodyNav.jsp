@@ -4,17 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="header">
-	<h1 class="page-header">
-		Dashboard<small>ERP</small>
-	</h1>
+	<br><br>
+<!-- 	<h1 class="page-header"> -->
+<!-- 		Dashboard<small>ERP</small> -->
+<!-- 	</h1> -->
 	<ol class="breadcrumb">
 		<li><a href="#">ERP</a></li>
 		<li><a href="#">재고관리</a></li>
 		<li><a href="#">메신저</a></li>
 		<li><a href="${pageContext.request.contextPath}/board/boardList.do">게시판</a>
-
-
-
+		<li><a href="${pageContext.request.contextPath}/employee/enterschedule.do">스케줄</a>
 
 
 

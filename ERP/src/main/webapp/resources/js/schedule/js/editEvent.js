@@ -81,7 +81,7 @@ var editEvent = function (event, element, view) {
         //일정 업데이트
         $.ajax({
             type: "get",
-            url: "employee/updateschedule.do",
+            url: "updateschedule.do",
             data: {
                 
             	
@@ -118,7 +118,7 @@ var editEvent = function (event, element, view) {
         //삭제시
         $.ajax({
             type: "get",
-            url: "employee/deleteschedule.do",
+            url: "deleteschedule.do",
             data: {
             	
             	 _id: event._id

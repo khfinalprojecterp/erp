@@ -34,6 +34,8 @@
                               </tr>
                            </thead>
                            <tbody>
+                           
+                        <c:if test="${ empty employee && !empty enterprise }">   
                         <c:forEach var="attendance" items="${list}">
 								<c:if test="${ enterprise.eCode eq attendance.eCode }">
 									<tr id="${ attendance.idCode}">
@@ -45,6 +47,21 @@
 									</tr>
 								</c:if>
 						</c:forEach>
+						</c:if>
+						<c:if test="${ empty enterprise && !empty employee }">
+						<c:forEach var="attendance" items="${list}">
+								<c:if test="${ employee.eCode eq attendance.eCode }">
+									<tr id="${ attendance.idCode}">
+									<td>${attendance.idCode}</td>
+									<td>${attendance.wName}</td>
+									<td>${attendance.dTitle}</td>
+									<td>${attendance.vStatus}</td>
+									<td>${attendance.absence}</td>
+									</tr>
+								</c:if>
+						</c:forEach>
+						</c:if>
+
                            </tbody>
                         </table>
                      </div>
@@ -99,12 +116,7 @@
 					</select>
                      
                      <br>
-                     
-                     
-                     
-                     
-                     
-                     
+
                      
                      </div>
      				 <div class="form-group">
@@ -151,16 +163,7 @@
    </script>
 	
 	<!-- --------------------------------------------------------------------------------------- -->
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		<!-- ----------------------- -->
 	
 		
