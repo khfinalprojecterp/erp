@@ -1,6 +1,7 @@
 package com.kh.erp.quality_ch.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.quality_ch.model.vo.Quality_ch;
@@ -16,6 +17,7 @@ int insert(Quality_ch quality_ch);
 	int updateQuality_ch(Quality_ch quality_ch);
 	
 	int deleteQuality_ch(int QRCODE);
-
 	
-	}
+	List<Map<String, String>> enterpriseDetailList();
+	List<Map<String, String>> quality_chDetailList();
+}

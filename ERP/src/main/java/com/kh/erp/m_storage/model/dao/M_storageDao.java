@@ -1,6 +1,7 @@
 package com.kh.erp.m_storage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,8 @@ int insert(M_storage m_storage);
 	int updateM_storage(M_storage m_storage);
 	
 	int deleteM_storage(int MSNO);
+	
+	List<Map<String, String>> storageDetailList(int ecode);
+
+	List<Map<String, String>> materialsDetailList(int ecode);
 	}

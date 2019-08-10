@@ -19,6 +19,7 @@
 	
 	<insert id="insertProduct_Category" parameterType="Product_Category">
 		INSERT INTO PRODUCT_CATEGORY
+		
 		VALUES (
 		        #{PCATE},#{PCNAME})
 	</insert>

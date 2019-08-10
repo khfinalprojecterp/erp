@@ -1,6 +1,7 @@
 package com.kh.erp.m_storage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,18 @@ public class M_storageDaoImpl implements M_storageDao {
 	public int deleteM_storage(int MSNO) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("m_storage.deleteM_storage",MSNO);
+	}
+
+	@Override
+	public List<Map<String, String>> storageDetailList(int eCode) {
+		
+		return sqlSession.selectList("m_storage.storageList");
+	}
+
+	@Override
+	public List<Map<String, String>> materialsDetailList(int ecode) {
+		// TODO Auto-generated method stubs
+		return sqlSession.selectList("m_storage.materialsList");
 	}
 
 	

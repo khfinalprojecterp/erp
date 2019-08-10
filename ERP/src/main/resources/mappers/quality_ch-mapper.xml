@@ -18,8 +18,18 @@
 		<result property="QCHSTATUS" column="QCHSTATUS" />
 		
 	</resultMap>
-	
-	
+	<resultMap id="Enterprise" type="map">
+		<result property="eCode" column="ECODE" />
+		<result property="ename" column="ENAME" />
+		
+
+	</resultMap>
+	<resultMap id="Quality_ch" type="map">
+		<result property="QRCODE" column="QRCODE" />
+		
+		
+
+	</resultMap>
 	
 	
 	
@@ -60,6 +70,14 @@ FROM  QUALITY_CH QC , QUALITY_R QR , ENTERPRISE EN ,EMPLOYEE E
 	<delete id="deleteQuality_ch" parameterType="_int">
 		DELETE FROM QUALITY_CH WHERE QRCODE = #{QRCODE}
 	</delete> 
+	
+	<select id="enterpriseDetailList" resultMap="Enterprise">
+		SELECT ECODE, ENAME FROM ENTERPRISE
+	</select>
+	
+	<select id="quality_chDetailList" resultMap="Quality_ch">
+		SELECT QRCODE FROM QUALITY_R
+	</select>
 </mapper>
 
 

@@ -1,6 +1,7 @@
 package com.kh.erp.quality_r.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,24 @@ public class Quality_rDaoImpl implements Quality_rDao {
 	public int deleteQuality_r(int QRCODE) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("quality_r.deleteQuality_r",QRCODE);
+	}
+
+	@Override
+	public List<Map<String, String>> quality_rDetailList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("quality_r.quality_rDetailList");
+	}
+
+	@Override
+	public List<Map<String, String>> productDetailList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("quality_r.productDetailList");
+	}
+
+	@Override
+	public List<Map<String, String>> enterpriseDetailList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("quality_r.enterpriseDetailList");
 	}
 
 }

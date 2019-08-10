@@ -15,6 +15,21 @@
 		<result property="SCODE" column="SCODE" />
 	</resultMap>
 	
+		<resultMap id="Storage" type="map">
+		<result property="sCode" column="SCODE" />
+		<result property="sAddr" column="SADDR" />
+		<result property="eCode" column="ECODE" />
+
+	</resultMap>
+	
+		<resultMap id="Materials" type="map">
+		<result property="mCode" column="MCODE" />
+		<result property="mCate" column="MCATE" />
+		<result property="mName" column="MNAME" />
+
+	</resultMap>
+	
+	
 	<!-- <resultMap type="M_storage" id="M_storage">
 		<result column="IDCODE" property="IDCODE"
 		        typeHandler="strArrTypeHandler"/>
@@ -39,7 +54,7 @@
 	<insert id="insertM_storage" parameterType="M_storage">
 		INSERT INTO M_STORAGE
 		VALUES (SEQ_MSNO.NEXTVAL,#{IDCODE},#{MCODE}, 
-		        #{SCODE}, #{MSMSTOCK}, #{MSDATE},
+		        #{SCODE}, #{MSMSTOCK}, SYSDATE,
 		        #{MSPRICE},#{MSSTATUS})
 	</insert>
  
@@ -52,7 +67,17 @@
 	
 	<delete id="deleteM_storage" parameterType="_int">
 		DELETE FROM M_STORAGE WHERE MSNO = #{MSNO}
-	</delete> 
+	</delete>
+	
+	<select id="storageList" resultMap="Storage">
+		SELECT SCODE, SADDR, ECODE FROM STORAGE
+	</select>
+	
+	<select id="materialsList" resultMap="Materials">
+		SELECT MCODE,  MNAME FROM  MATERIAL
+	</select>
+	
+	
 
 <!-- <select  id="select_Wname" parameterType="M_storage">
 SELECT * FROM M_STORAGE

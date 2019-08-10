@@ -1,7 +1,11 @@
 package com.kh.erp.quality_r.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.quality_r.model.service.Quality_rService;
 import com.kh.erp.quality_r.model.vo.Quality_r;
@@ -21,19 +26,19 @@ public class Quality_rController {
 Quality_rService quality_rservice;
 
 
-@RequestMapping(value="/quality_r/insertQuality_r.do",
-method=RequestMethod.GET)
-public String insertQuality_rView(Quality_r quality_r) {
-
-System.out.println("insertquality_r 화면 메소드 확인");
-
-
-return "quality_r/quality_r";
-}
-
+	/*
+	 * @RequestMapping(value="/quality_r/insertQuality_r.do",
+	 * method=RequestMethod.GET) public String insertQuality_rView(Quality_r
+	 * quality_r) {
+	 * 
+	 * System.out.println("insertquality_r 화면 메소드 확인");
+	 * 
+	 * 
+	 * return "quality_r/quality_r"; }
+	 */
 //발주요청 기능수행메소드
 @RequestMapping(value="/quality_r/insertQuality_r.do",
-method=RequestMethod.POST)
+method=RequestMethod.GET)
 public String insertQuality_r(
 		/*M_storage m_storage*/
 			/*
@@ -43,7 +48,7 @@ public String insertQuality_r(
 			 * private String QRSTATUS;// 진행 사항
 			 */
 		
-		@RequestParam int QRCODE,
+	
 		@RequestParam int IDCODE,
 		@RequestParam int SCODE,
 		@RequestParam int PCODE,
@@ -56,7 +61,7 @@ public String insertQuality_r(
 		
 		) {
 
-	Quality_r quality_r = new Quality_r(QRCODE, IDCODE, SCODE, PCODE, ECODE,QRNOTE,QRCHECK, QRSTOCK,QRSTATUS);
+	Quality_r quality_r = new Quality_r(IDCODE, SCODE, PCODE, ECODE,QRNOTE,QRCHECK, QRSTOCK,QRSTATUS);
 	System.out.println(quality_r);
 System.out.println("insertm_storage 화면 메소드 확인");
 
@@ -74,12 +79,25 @@ return "redirect:/quality_r/Quality_rList.do";
 
 
 @RequestMapping("/quality_r/Quality_rList.do")
-public String selectQuality_rList(Model model) {
+public String selectQuality_rList(String selectScode, Model model ,HttpSession session) {
 	List<Quality_r> list=quality_rservice.selectQuality_rList();
 	
 	System.out.println("list 확인"+list);
 	model.addAttribute("list",list);
 	
+	Employee employee = (Employee) session.getAttribute("employee"); 
+	
+	ArrayList<Map<String, String>> slist = new ArrayList<>(quality_rservice.quality_rDetailList());
+	System.out.println(slist);
+	model.addAttribute("slist", slist);
+	
+	ArrayList<Map<String, String>> plist = new ArrayList<>(quality_rservice.productDetailList());
+	System.out.println(plist);
+	model.addAttribute("plist", plist);
+	
+	ArrayList<Map<String, String>> elist = new ArrayList<>(quality_rservice.enterpriseDetailList());
+	System.out.println(elist);
+	model.addAttribute("elist", elist);
 	return"quality_r/Quality_rList";
 	
 	

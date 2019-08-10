@@ -20,5 +20,7 @@ int insert(M_storage m_storage);
 	
 	int deleteM_storage(int MSNO);
 
-	
+	List<Map<String, String>> storageDetailList(int ecode);
+
+	List<Map<String, String>> materialsDetailList(int ecode);
 	}

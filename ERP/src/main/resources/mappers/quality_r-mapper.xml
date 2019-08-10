@@ -20,7 +20,34 @@
 		<result property="QRNOTE" column="QRNOTE" />
 		<result property="QRSTATUS" column="QRSTATUS" />
 	</resultMap>
+	
+	
+		<resultMap id="Storage" type="map">
+		<result property="sCode" column="SCODE" />
+		<result property="sAddr" column="SADDR" />
+		<result property="eCode" column="ECODE" />
+
+	</resultMap>
+	
+	<resultMap id="Product" type="map">
+		<result property="PCODE" column="PCODE" />
+		<result property="PNAME" column="PAME" />
+		<result property="PCATE" column="PCATE" />
+
+	</resultMap>
+	
+	<resultMap id="Enterprise" type="map">
+		<result property="eCode" column="ECODE" />
+		<result property="ename" column="ENAME" />
+		
+
+	</resultMap>
+	
+	
+	
+	
 	<select id="selectQuality_rList" resultMap="quality_rDetailMap">
+		
 		
 SELECT QR.QRCODE QRCODE , E.WNAME WNAME , S.SADDR SADDR ,P.PNAME PNAME ,EN.ENAME ENAME,QR.QRCHECK QRCHECK , 
 QR.QRNOTE QRNOTE, QR.QRSTOCK QRSTOCK, QR.QRSTATUS QRSTATUS
@@ -38,11 +65,11 @@ FROM  QUALITY_R QR , EMPLOYEE E , STORAGE S , ENTERPRISE EN , PRODUCT P
 	
 	<insert id="insertQuality_r" parameterType="Quality_r">
 		INSERT INTO QUALITY_R
-		VALUES (#{QRCODE},#{IDCODE}, 
+		VALUES (SEQUENCE_RQRCODE.NEXTVAL,#{IDCODE}, 
 		        #{SCODE},  #{PCODE},
 		        #{ECODE},#{QRCHECK},#{QRNOTE},#{QRSTOCK},#{QRSTATUS})
-	</insert>
- 
+</insert>
+
 	<update id="updateQuality_r" parameterType="Quality_r">
 		UPDATE QUALITY_R
 		SET QRCODE = #{QRCODE},
@@ -63,6 +90,19 @@ FROM  QUALITY_R QR , EMPLOYEE E , STORAGE S , ENTERPRISE EN , PRODUCT P
 	<delete id="deleteQuality_r" parameterType="_int">
 		DELETE FROM QUALITY_R WHERE QRCODE = #{QRCODE}
 	</delete> 
+	
+	<select id="quality_rDetailList" resultMap="Storage">
+		SELECT SCODE, SADDR, ECODE FROM STORAGE
+	</select>
+	
+	<select id="productDetailList" resultMap="Product">
+		SELECT PCODE, PNAME  FROM PRODUCT
+	</select>
+	
+	<select id="enterpriseDetailList" resultMap="Enterprise">
+		SELECT ECODE, ENAME FROM ENTERPRISE
+	</select>
+	
 </mapper>
 
 

@@ -17,10 +17,11 @@ Quality_r selectQuality_r(int QRCODE);
 	int updateQuality_r(Quality_r quality_r);
 	
 	int deleteQuality_r(int QRCODE);
-
-		
-		
-	}
+	
+	List<Map<String, String>> quality_rDetailList();
+	List<Map<String, String>> productDetailList();
+	List<Map<String, String>> enterpriseDetailList();
+}
 	
 	
 	
