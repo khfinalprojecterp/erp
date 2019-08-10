@@ -1,6 +1,7 @@
 package com.kh.erp.m_storage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,19 @@ public class M_storageServiceImpl implements M_storageService {
 		// TODO Auto-generated method stub
 		return m_storageDao.deleteM_storage(MSNO);
 	}
+
+	@Override
+	public List<Map<String, String>> storageDetailList(int ecode) {
+		// TODO Auto-generated method stub
+		return m_storageDao.storageDetailList(ecode);
+	}
+
+	@Override
+	public List<Map<String, String>> materialsDetailList(int ecode) {
+		// TODO Auto-generated method stub
+		return m_storageDao.materialsDetailList(ecode);
+	}
+
 
 
 	}

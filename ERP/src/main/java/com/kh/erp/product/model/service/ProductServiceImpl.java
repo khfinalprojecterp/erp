@@ -1,6 +1,7 @@
 package com.kh.erp.product.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,14 @@ public int insertProduct(Product product) {
 	public int deleteProduct(int PCODE) {
 		// TODO Auto-generated method stub
 		return productdao.deleteProduct(PCODE);
+	}
+
+
+
+	@Override
+	public List<Map<String, String>> product_categoryDetailList() {
+		// TODO Auto-generated method stub
+		return productdao.product_categoryDetailList();
 	}
 
 }

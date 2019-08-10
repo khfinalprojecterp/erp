@@ -28,6 +28,15 @@ public class Quality_ch implements Serializable{
 	
 	
 	
+	public Quality_ch(int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS) {
+		super();
+		IDCODE = iDCODE;
+		ECODE = eCODE;
+		QCHT = qCHT;
+		QCHF = qCHF;
+		QCHCHECK = qCHCHECK;
+		QCHSTATUS = qCHSTATUS;
+	}
 	public Quality_ch(int qRCODE, int iDCODE, int eCODE, int qCHT, int qCHF, String qCHCHECK, String qCHSTATUS,
 			String eNAME, String wNAME) {
 		super();

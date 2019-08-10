@@ -1,6 +1,7 @@
 package com.kh.erp.quality_ch.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,18 @@ public class Quality_chServiceImpl implements Quality_chService {
 	public int deleteQuality_ch(int QRCODE) {
 		// TODO Auto-generated method stub
 		return quality_chDao.deleteQuality_ch(QRCODE);
+	}
+
+	@Override
+	public List<Map<String, String>> enterpriseDetailList() {
+		// TODO Auto-generated method stub
+		return quality_chDao.enterpriseDetailList();
+	}
+
+	@Override
+	public List<Map<String, String>> quality_chDetailList() {
+		// TODO Auto-generated method stub
+		return quality_chDao.quality_chDetailList();
 	}
 
 }

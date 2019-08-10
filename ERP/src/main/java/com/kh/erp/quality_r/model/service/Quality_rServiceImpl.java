@@ -1,6 +1,7 @@
 package com.kh.erp.quality_r.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,6 +43,24 @@ public class Quality_rServiceImpl implements Quality_rService {
 	public int deleteQuality_r(int QRCODE) {
 		// TODO Auto-generated method stub
 		return quality_rDao.deleteQuality_r(QRCODE);
+	}
+
+	@Override
+	public List<Map<String, String>> quality_rDetailList() {
+		// TODO Auto-generated method stub
+		return quality_rDao.quality_rDetailList();
+	}
+
+	@Override
+	public List<Map<String, String>> productDetailList() {
+		// TODO Auto-generated method stub
+		return quality_rDao.productDetailList();
+	}
+
+	@Override
+	public List<Map<String, String>> enterpriseDetailList() {
+		// TODO Auto-generated method stub
+		return quality_rDao.enterpriseDetailList();
 	}
 
 }

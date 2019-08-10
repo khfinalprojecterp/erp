@@ -82,20 +82,29 @@
                   <div class="form-group">
                  
                      
-                     <label for="message-text" class="col-form-label">물품코드</label>
-                     <input type="text" class="form-control" id="PCODE" name="PCODE">
+<!--                      <label for="message-text" class="col-form-label">물품코드</label> -->
+<!--                      <input type="text" class="form-control" id="PCODE" name="PCODE"> -->
                      
+                      <!-- <label for="message-text" class="col-form-label">분류코드</label>
+                     <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력해주세요" name="PCATE" required> -->
                       <label for="message-text" class="col-form-label">분류코드</label>
-                     <input type="text" class="form-control" id="PCATE" placeholder="코드를 입력해주세요" name="PCATE" required>
-                     
+                    <select class="custom-select" id="PCATE">
+						<c:forEach items="${pclist}" var="pc" >
+							<option value="${pc.PCATE}">${pc.PCNAME}</option>
+						</c:forEach>
+						
+					</select>
+					<br>
+						<br >
+						
                      <label for="message-text" class="col-form-label">물품명</label>
-                     <input type="text" class="form-control" id="PNAME"placeholder="코드를 입력해주세요"  name="PNAME" required>
+                     <input type="text" class="form-control" id="PNAME"placeholder="물품명 입력해주세요"  maxlength="14"  name="PNAME"required>
                      
-                     <label for="message-text" class="col-form-label">규격명</label>
-                     <input type="text" class="form-control" id="PSIZE"placeholder="코드를 입력해주세요"  name="PSIZE" required>
+                     <label for="message-text" class="col-form-label">규격</label>
+                     <input type="text" class="form-control" id="PSIZE"placeholder="규격을 입력해주세요"  maxlength="14" name="PSIZE" required>
                      
                      <label for="message-text" class="col-form-label">바코드번호</label>
-                     <input type="number" class="form-control" id="PBARCODE"  placeholder="숫자코드를 입력해주세요"name="PBARCODE" required>
+                     <input type="text" class="form-control" id="PBARCODE"  placeholder="바코드번호를 -없이 입력해주세요" maxlength="9" name="PBARCODE" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"required>
         
 					<br>
                     
@@ -213,9 +222,18 @@
 		// validation() true : 빈칸이 없다! 즉, 송신 가능 / false : 빈칸이 있다!, 송신 불가
 		if (validation()) {
 			alert("작성완료");
-	         $('#productFrm').attr("action","${pageContext.request.contextPath}/product/insertProduct.do");
+	         /* $('#productFrm').attr("action","${pageContext.request.contextPath}/product/insertProduct.do");
 	         $('#productFrm').attr("method", "post");
-	 		 $('#productFrm').submit();
+	 		 $('#productFrm').submit(); */
+	 		 
+	 		var PCATE = $("#PCATE").val();
+	 		
+	 		var PNAME = $("#PNAME").val();
+	 		var PSIZE = $("#PSIZE").val();
+	 		var PBARCODE = $("#PBARCODE").val();
+	 		location.href = "${pageContext.request.contextPath}/product/insertProduct.do?PCATE="
+	 				+PCATE+"&PNAME="+PNAME+"&PSIZE="+PSIZE+"&PBARCODE="+PBARCODE;
+
 			
 		 } else{
 		alert("작성실패");         

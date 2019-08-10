@@ -1,6 +1,7 @@
 package com.kh.erp.product.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.product.model.vo.Product;
@@ -46,5 +47,8 @@ public interface ProductDao {
 	 * @param attNo
 	 * @return
 	 */
+	List<Map<String, String>> product_categoryDetailList();
+
+	
 	
 }

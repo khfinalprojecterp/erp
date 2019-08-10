@@ -16,6 +16,25 @@ public class Product implements Serializable{
 	private int PBARCODE;//바코드
 	private String PCNAME;
 	
+	public Product(String pCATE, String pNAME, String pSIZE, int pBARCODE) {
+		super();
+		PCATE = pCATE;
+		PNAME = pNAME;
+		PSIZE = pSIZE;
+		PBARCODE = pBARCODE;
+	}
+
+
+	public Product(String pCATE, String pNAME, String pSIZE, int pBARCODE, String pCNAME) {
+		super();
+		PCATE = pCATE;
+		PNAME = pNAME;
+		PSIZE = pSIZE;
+		PBARCODE = pBARCODE;
+		PCNAME = pCNAME;
+	}
+
+
 	public String getPCNAME() {
 		return PCNAME;
 	}

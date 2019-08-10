@@ -6,6 +6,7 @@
 
 	<resultMap id="productDetailMap" type="map">
 		<result property="PCODE" column="PCODE" />
+		<result property="PCATE" column="PCATE" />
 		<result property="PCNAME" column="PCNAME" />
 		<result property="PNAME" column="PNAME" />
 		<result property="PSIZE" column="PBARCODE" />
@@ -13,7 +14,12 @@
 		
 		
 	</resultMap>
-	 
+	 	<resultMap id="product_DetailMap" type="map">
+		<result property="PCATE" column="PCATE" />
+		<result property="PCNAME" column="PCNAME" />
+		
+
+	</resultMap>
 	
 	<select id="selectProductList" resultMap="productDetailMap">
 	SELECT P.PCODE PCODE ,PC.PCNAME PCNAME ,P.PNAME PNAME,P.PSIZE PSIZE,P.PBARCODE PBARCODE 
@@ -43,8 +49,12 @@
 	<delete id="deleteProduct" parameterType="_int">
 		DELETE FROM PRODUCT WHERE PCODE = #{PCODE}
 	</delete>  
-</mapper>
+	
+	<select id="product_categoryDetailList" resultMap="product_DetailMap">
+		SELECT PCATE,  PCNAME FROM PRODUCT_CATEGORY          
+	</select>
 
+</mapper>
 
 
 

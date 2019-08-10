@@ -3,6 +3,7 @@ package com.kh.erp.product.controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,33 +32,33 @@ ProductService productService;
 
 
 // 물품을 조회하는 메소드
-@RequestMapping(value="/product/insertProduct.do",
-method=RequestMethod.GET)
-public String insertProductView(Product product) {
-
-System.out.println("insertproduct 화면 메소드 확인");
-
-
-
-return "product/Product";
-}
+	/*
+	 * @RequestMapping(value="/product/insertProduct.do", method=RequestMethod.GET)
+	 * public String insertProductView(Product product) {
+	 * 
+	 * System.out.println("insertproduct 화면 메소드 확인");
+	 * 
+	 * 
+	 * 
+	 * return "product/Product"; }
+	 */
 
 //발주요청 기능수행메소드
-@RequestMapping(value="/product/insertProduct.do",
-method=RequestMethod.POST)
+@RequestMapping("/product/insertProduct.do")
 public String insertProduct(
-		/*M_storage m_storage*/
-		
-		@RequestParam int PCODE,
 		@RequestParam String PCATE,
 		@RequestParam String PNAME,
 		@RequestParam String PSIZE,
 		@RequestParam int PBARCODE)
 		 {
-
-	Product product= new Product(PCODE, PCATE, PNAME, PSIZE,PBARCODE );
+	
+	
+	System.out.println("123");
+	System.out.println(PCATE +" " + PNAME + " " + PSIZE+ " " + PBARCODE);
+	System.out.println("342");
+	Product product= new Product( PCATE, PNAME, PSIZE,PBARCODE );
 	System.out.println(product);
-System.out.println("product 화면 메소드 확인");
+	System.out.println("product 화면 메소드 확인");
 
 
 
@@ -78,6 +79,15 @@ public String selectProductList(Model model) {
 	
 	System.out.println("list 확인"+list);
 	model.addAttribute("list",list);
+	//mlist 기자재 리스트
+		ArrayList<Map<String, String>> pclist = new ArrayList<>(productService.product_categoryDetailList());
+		System.out.println(pclist);
+		model.addAttribute("pclist", pclist);
+	
+	
+	
+	
+	
 	
 	return"product/ProductList";
 	

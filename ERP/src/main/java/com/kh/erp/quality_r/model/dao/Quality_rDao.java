@@ -1,6 +1,7 @@
 package com.kh.erp.quality_r.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.erp.m_storage.model.vo.M_storage;
 import com.kh.erp.product_category.model.vo.Product_Category;
@@ -16,8 +17,9 @@ public interface Quality_rDao {
 		int updateQuality_r(Quality_r quality_r);
 		
 		int deleteQuality_r(int QRCODE);
-
-			
+		List<Map<String, String>>quality_rDetailList();
+		List<Map<String, String>> productDetailList();
+		List<Map<String, String>> enterpriseDetailList();
 			
 	}
 

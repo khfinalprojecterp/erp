@@ -1,6 +1,7 @@
 package com.kh.erp.product.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,12 @@ public class ProductDaoImpl implements ProductDao {
 	public int deleteProduct(int PCODE) {
 		// TODO Auto-generated method stub
 		return SqlSession.delete("product.delectProduct",PCODE);
+	}
+
+	@Override
+	public List<Map<String, String>> product_categoryDetailList() {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("product.product_categoryDetailList");
 	}
 
 }
