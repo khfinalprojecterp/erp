@@ -260,6 +260,18 @@ public class StorageDetail implements Serializable{
 		this.sdCost = sdCost;
 		this.sdPrice = sdPrice;
 	}
+	public StorageDetail(int sCode, int eCode, int idCode,String mCode, String pCode, int sdStock, int sdCost, int sdPrice, int in_Code) {
+		super();
+		this.sCode = sCode;
+		this.eCode = eCode;
+		this.idCode = idCode;
+		this.mCode = mCode;
+		this.pCode = pCode;
+		this.sdStock = sdStock;
+		this.sdCost = sdCost;
+		this.sdPrice = sdPrice;
+		this.in_Code = in_Code;
+	}
 	
 	public StorageDetail(int sdCode, int sCode, int eCode, int idCode, String mCode, String pCode, int sdStock, int sdCost, int sdPrice) {
 		super();

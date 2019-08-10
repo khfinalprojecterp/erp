@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.erp.production.model.vo.Job_order;
+import com.kh.erp.storage.model.vo.StorageDetail;
 
 public interface Job_orderService {
 
@@ -17,6 +18,7 @@ public interface Job_orderService {
 	List<Map<String, String>> jobOrderList();
 	List<Map<String, String>> elist();
 	List<Map<String, String>> plist();
+	List<Map<String, String>> slist();
 	/**
 	 * 생산 업무지시서 추가 메소드 
 	 * @param mcName
@@ -44,5 +46,7 @@ public interface Job_orderService {
 	 * @return
 	 */
 	int deleteJobOrder(int workcode);
+	
+	int insertStorageDetail(StorageDetail storageDetail);
 
 }
