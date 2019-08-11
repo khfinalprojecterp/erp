@@ -40,13 +40,14 @@ function filtering(event) {
 }
 
 function calDateWhenResize(event) {
-
+	
   var newDates = {
     startDate: '',
     endDate: ''
   };
 
   if (event.allDay) {
+	  
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
     newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   } else {
@@ -77,11 +78,17 @@ function calDateWhenDragnDrop(event) {
   }
 
   //all day가 아님
-  else if (!event.allDay) {
+  else if (!event.allDay && event.end === null) {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
     newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
-
+ 
+  
+  
+  
+  
+  
+  
   return newDates;
 }
 
@@ -170,10 +177,18 @@ var calendar = $('#calendar').fullCalendar({
     	  
       },
       success: function (response) {
+    	
     	  console.log(response);
         var fixedDate = response.map(function (array) {
+        	if(!array.allDay && array.start !== array.end){
+        		
+        		array.end = moment(array.end).add(1,'days');
+        	}
+        	
+
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
+        	
             array.end = moment(array.end).add(1, 'days');
           }
           return array;
@@ -231,6 +246,12 @@ var calendar = $('#calendar').fullCalendar({
       }
     }
 
+   
+    if (event.allDay === false) {
+       
+        event.end._d = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
+    } 
+ 
     // 드랍시 수정된 날짜반영
     var newDates = calDateWhenDragnDrop(event);
 
@@ -246,6 +267,7 @@ var calendar = $('#calendar').fullCalendar({
     	  
       },
       success: function (response) {
+    	  console.log(newDates);
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
     });
