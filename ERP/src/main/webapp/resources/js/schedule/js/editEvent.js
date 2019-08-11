@@ -18,11 +18,16 @@ var editEvent = function (event, element, view) {
 
     if (event.allDay === true && event.end !== event.start) {
 
-        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
+        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'));
 
     } else {
-        editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
+        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'));
     }
+    if(event.allDay ===true && event.end ===event.start){
+    	
+    	editEnd.val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+    }
+    
 
     modalTitle.html('일정 수정');
     editTitle.val(event.title);
@@ -38,7 +43,7 @@ var editEvent = function (event, element, view) {
     //업데이트 버튼 클릭시
     $('#updateEvent').unbind();
     $('#updateEvent').on('click', function () {
-
+    	
         if (editStart.val() > editEnd.val()) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
@@ -57,13 +62,13 @@ var editEvent = function (event, element, view) {
         if (editAllDay.is(':checked')) {
             statusAllDay = true;
             startDate = moment(editStart.val()).format('YYYY-MM-DD');
-            endDate = moment(editEnd.val()).format('YYYY-MM-DD');
-            displayDate = moment(editEnd.val()).add(1, 'days').format('YYYY-MM-DD');
+            endDate = moment(editEnd.val()).add(1, 'days').format('YYYY-MM-DD');
+            displayDate = moment(editEnd.val()).format('YYYY-MM-DD');
         } else {
             statusAllDay = false;
             startDate = editStart.val();
-            endDate = editEnd.val();
-            displayDate = endDate;
+            endDate = moment(editEnd.val()).add(1, 'days').format('YYYY-MM-DD HH:mm');
+            displayDate = moment(editEnd.val()).format('YYYY-MM-DD HH:mm');
         }
 
         eventModal.modal('hide');
@@ -71,13 +76,29 @@ var editEvent = function (event, element, view) {
         event.allDay = statusAllDay;
         event.title = editTitle.val();
         event.start = startDate;
-        event.end = displayDate;
+        event.end = endDate;//displayDate;
         event.type = editType.val();
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
+        
+        
+
 
         $("#calendar").fullCalendar('updateEvent', event);
 
+        
+      if (event.allDay === false) {
+    	  event.end = moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
+     
+  } else{
+   event.end = moment(event.end).subtract(1, 'days').format('YYYY-MM-DD');
+        	
+  	
+  }  
+        
+        
+        
+        
         //일정 업데이트
         $.ajax({
             type: "get",
