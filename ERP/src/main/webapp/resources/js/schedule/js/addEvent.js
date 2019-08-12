@@ -85,6 +85,7 @@ var newEvent = function (start, end, eventType) {
         }
 
         $("#calendar").fullCalendar('renderEvent', eventData, true);
+        
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');

@@ -288,7 +288,12 @@ var newEvent = function (start, end, eventType) {
             
             eventData.allDay = true;
         	
+        }else{
+        	
+        	eventData.end = moment(eventData.end).format('YYYY-MM-DD');
+        	
         }
+        
 
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
