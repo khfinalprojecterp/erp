@@ -21,7 +21,6 @@ public class Purchase implements Serializable{
 	private int buy_price;
 	private String buy_status;
 	private int buy_discount;
-	private String sddivi;
 	private String buy_date;
 	
 	private String pName;
@@ -46,7 +45,7 @@ public class Purchase implements Serializable{
 
 
 	public Purchase(int buy_code, int sCode, String mCode, String pCode, int idCode, int buy_amount, int buy_origin,
-			int buy_price, String buy_status, int buy_discount, String sddivi, String buy_date, int ptCode) {
+			int buy_price, String buy_status, int buy_discount, String buy_date, int ptCode) {
 		super();
 		this.buy_code = buy_code;
 		this.sCode = sCode;
@@ -58,7 +57,6 @@ public class Purchase implements Serializable{
 		this.buy_price = buy_price;
 		this.buy_status = buy_status;
 		this.buy_discount = buy_discount;
-		this.sddivi = sddivi;
 		this.buy_date = buy_date;
 		this.ptCode = ptCode;
 	}
@@ -184,14 +182,8 @@ public class Purchase implements Serializable{
 	}
 
 
-	public String getSddivi() {
-		return sddivi;
-	}
 
 
-	public void setSddivi(String sddivi) {
-		this.sddivi = sddivi;
-	}
 
 
 	public String getBuy_date() {
@@ -228,8 +220,7 @@ public class Purchase implements Serializable{
 	public String toString() {
 		return "Purchase [buy_code=" + buy_code + ", sCode=" + sCode + ", mCode=" + mCode + ", pCode=" + pCode
 				+ ", idCode=" + idCode + ", buy_amount=" + buy_amount + ", buy_origin=" + buy_origin + ", buy_price="
-				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + ", sddivi=" + sddivi
-				+ "]";
+				+ buy_price + ", buy_status=" + buy_status + ", buy_discount=" + buy_discount + "]";
 	}
 
 

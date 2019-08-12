@@ -2,6 +2,7 @@ package com.kh.erp.employee.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,8 @@ import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.employee.model.vo.Pmanagement;
 import com.kh.erp.enterprise.model.exception.EnterpriseException;
 import com.kh.erp.enterprise.model.vo.Enterprise;
+import com.kh.erp.mail_check.model.service.MailCheckService;
+import com.kh.erp.mail_check.model.vo.MailCheck;
 
 
 
@@ -39,6 +42,9 @@ public class EmployeeController {
 	
 	@Autowired
 	DepartmentService departService;
+	
+	@Autowired
+	MailCheckService mailService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -188,6 +194,8 @@ public String employeeLogin (
 		// 1. 업무 로직 구현
 		Employee employee = empService.selectEmployee(userId);
 		
+		List<Map<String, String>> mailList = mailService.mailList();
+		
 		// 2. 반환할 화면 url 처리
 		String loc = "/";
 		String msg = "";
@@ -203,9 +211,11 @@ public String employeeLogin (
 				
 				
 				session.setAttribute("employee", employee);
+				session.setAttribute("mailList", mailList);
+				
 			
 				System.out.println(employee);
-				
+				System.out.println(mailList);
 				
 				
 				

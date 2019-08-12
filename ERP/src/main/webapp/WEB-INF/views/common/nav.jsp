@@ -276,6 +276,12 @@
                     <li><a href="${pageContext.request.contextPath}/buy/buy_lookup.do">구매조회</a></li>
                     <li><a href="${pageContext.request.contextPath}/buy/buy_insert.do">구매입력</a></li>
                     <li><a href="${pageContext.request.contextPath}/buy/buy_status.do">구매현황</a></li>
+                    <li><a href="#">메일<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li><a href="${pageContext.request.contextPath}/mailMit/mailMit.do">메일쓰기</a></li>
+                            <li><a href="${pageContext.request.contextPath}/mail/mailList.do">받은메일함</a></li>
+                            <li><a href="#">Third Level Link</a></li>
+                        </ul>
                 </ul>
             </li>
         	<!-- 효근 -->

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mailCheck">
+	
+	
+	
+	<resultMap id="resultMailList" type="map">
+		<result property="ms_code" column="MS_CODE" />
+		<result property="userMail" column="USERMAIL" />
+		<result property="userPass" column="USERPASS" />
+		<result property="idCode" column="IDCODE" />
+	</resultMap>
+
+
+
+	
+	<!-- 세션용 -->
+	<!-- <select id="selectBuyList" resultMap="resultBuyList">
+		SELECT E.*, D.ECODE, T.ENAME  ,D.DTITLE
+		FROM EMPLOYEE E, DEPARTMENT D, ENTERPRISE T, MAIL_SEND M
+		WHERE E.DCODE = D.DCODE
+		AND D.ECODE = T.ECODE
+		AND M.IDCODE = E.IDCODE
+	</select> -->
+	
+	<!-- 메일 추가 -->
+	<insert id="insertMailCheck" parameterType="MailCheck">
+		INSERT INTO MAIL_SEND
+			VALUES (MAIL_SEND_SEQ.NEXTVAL, #{idCode}, #{userMail}, #{userPass})
+	</insert>
+	
+	<select id="selectMail" resultMap="resultMailList">
+		SELECT M.MS_CODE MS_CODE, M.USERMAIL USERMAIL, M.USERPASS USERPASS, M.IDCODE IDCODE
+		FROM MAIL_SEND M, EMPLOYEE E
+		WHERE M.IDCODE = E.IDCODE
+	</select>
+	
+	
+</mapper>

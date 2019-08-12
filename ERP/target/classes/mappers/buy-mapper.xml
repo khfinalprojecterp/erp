@@ -20,6 +20,8 @@
 		<result property="buy_discount" column="BUY_DISCOUNT" />
 		<result property="buy_status" column="BUY_STATUS" />
 		<result property="buy_date" column="BUY_DATE" />
+		<result property="parName" column="PARNAME" />
+		<result property="ptCode" column="PARTNERC" />
 	</resultMap>
 	
 		<resultMap id="resultList" type="map">
@@ -33,6 +35,8 @@
 		<result property="wName" column="WNAME" />
 		<result property="mName" column="MNAME" />
 		<result property="pName" column="PNAME" />
+		<result property="parName" column="PARNAME" />
+		<result property="parC" column="PARTNERC" />
 	</resultMap>
 	
 	<resultMap id="resultInsert" type="map">
@@ -51,36 +55,42 @@
 	
 	<!-- 구매 리스트 -->
 	<select id="selectBuyList" resultMap="resultBuyList">
-		SELECT PI.BUY_CODE BUY_CODE,T.SCODE SCODE, M.MNAME MNAME, P.PNAME PNAME, E.WNAME WNAME, M.MCODE MCODE, P.PCODE PCODE,PI.BUY_DATE BUY_DATE,
-		PI.BUY_AMOUNT BUY_AMOUNT, PI.BUY_ORIGIN BUY_ORIGIN, PI.BUY_PRICE BUY_PRICE, PI.BUY_STATUS BUY_STATUS
-		FROM PURCHASE_ITEM PI, MATERIAL M, PRODUCT P, EMPLOYEE E, STORAGE T
+		SELECT PI.BUY_CODE BUY_CODE,T.SCODE SCODE, M.MNAME MNAME, P.PNAME PNAME, E.WNAME WNAME, M.MCODE MCODE, P.PCODE PCODE,PI.BUY_DATE BUY_DATE, E.IDCODE IDCODE,
+		PI.BUY_AMOUNT BUY_AMOUNT, PI.BUY_ORIGIN BUY_ORIGIN, PI.BUY_PRICE BUY_PRICE, PI.BUY_STATUS BUY_STATUS, PT.PARTNERC PARTNERC, PT.PARNAME PARNAME
+		FROM PURCHASE_ITEM PI, MATERIAL M, PRODUCT P, EMPLOYEE E, STORAGE T, PARTNER PT
 		WHERE PI.SCODE = T.SCODE AND
 		PI.MCODE = M.MCODE (+) AND 
-		PI.PCODE = P.PCODE (+) AND 
+		PI.PCODE = P.PCODE (+) AND
+		PI.PARTNERC = PT.PARTNERC AND
 		PI.IDCODE = E.IDCODE
 	</select>
 	
 	<!-- 보유 목록 리스트 -->
-	<select id="selectM" resultMap="resultList">
+		<select id="selectM" resultMap="resultList">
 		SELECT MCODE,MNAME
 		  FROM MATERIAL
-	</select>
+		</select>
 	
 		<select id="selectP" resultMap="resultList">
 		SELECT PCODE,PNAME
 		  FROM PRODUCT
-	</select>
+		</select>
+	
+		<select id="selectPt" resultMap="resultList">
+		SELECT PARTNERC,PARNAME,ECODE
+		  FROM PARTNER
+		</select>
 	
 		<select id="selectS" resultMap="resultList">
 		SELECT SCODE,ECODE
 		  FROM STORAGE
-	</select>
+		</select>
 	
 		<select id="selectE" resultMap="resultList">
 		 SELECT E.IDCODE, E.WNAME, D.ECODE
 		  FROM EMPLOYEE E, DEPARTMENT D
           WHERE E.DCODE = D.DCODE
-	</select>
+		</select>
 	
 	
 	<!-- 구매 상세보기 -->
@@ -92,14 +102,14 @@
 	<insert id="insertBuyItem" parameterType="Purchase">
 		INSERT INTO PURCHASE_ITEM
 			VALUES (PURCHASE_ITEM_SEQ.NEXTVAL, #{sCode}, #{mCode}, #{pCode},
-			#{buy_amount},#{buy_origin},#{buy_price}, DEFAULT,#{idCode},#{buy_date},#{eCode})
+			#{buy_amount},#{buy_origin},#{buy_price}, DEFAULT,#{idCode},DEFAULT,#{eCode},#{ptCode})
 	</insert>
 	
 	
 	<insert id="insertBuyStorage" parameterType="Purchase">
 	INSERT INTO STORAGE_DETAIL
 		VALUES (STORAGE_DETAIL_SEQ.NEXTVAL, #{sCode}, #{eCode}, #{idCode},
-		#{mCode},#{pCode},NULL, #{buy_amount},#{buy_price},NULL, #{buy_date})
+		#{mCode},#{pCode},NULL, #{buy_amount},#{buy_price},NULL, DEFAULT)
 	</insert>
 	
 	
@@ -117,7 +127,7 @@
 	<update id="updateBuyItem" parameterType="Purchase">
 		UPDATE PURCHASE_ITEM
 	    	SET SCODE = #{sCode},MCODE = #{mCode}, PCODE = #{pCode}, 
-			IDCODE = #{idCode}, BUY_AMOUNT = #{buy_amount}, BUY_ORIGIN = #{buy_origin}, 
+			BUY_AMOUNT = #{buy_amount}, BUY_ORIGIN = #{buy_origin}, 
 			BUY_PRICE = #{buy_price}
 			WHERE BUY_CODE = #{buy_code}
 	</update>

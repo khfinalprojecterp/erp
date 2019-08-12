@@ -70,7 +70,7 @@
 												<td>미승인</td>
 												</c:if>
 												<td><fmt:formatDate value="${b.buy_date}" pattern="yyyy/MM/dd"/></td>
-											</tr>
+											
 										</c:forEach>
 									</tbody>
 								</table>
@@ -233,8 +233,8 @@
 							<label for="message-text" class="col-form-label">매입가 :</label>
 							<input type="text" class="form-control" name="buy_price" id="buy_price2">							
 							
-							<input type="text" class="form-control" name="eCode" id="eCode2" value="${employee.eCode}" style="display:none">
-							<input type="text" class="form-control" name="eCode" id="idCode2" value="${employee.idCode}" style="display:none">
+							<input type="hidden" class="form-control" name="eCode" id="eCode2" value="${employee.eCode}">
+							<input type="hidden" class="form-control" name="idCode" id="idCode2" value="${employee.idCode}">
 							
 							<input type="hidden" class="form-control" name="buy_status" id="buy_status" value="E">
 							
@@ -457,7 +457,7 @@
 				function() {
 					var buy_code2 = $(this).parent().attr('class').split(' ')[0];
 		 			var sCode2 = $(this).parent().attr('class').split(' ')[1];
-		 			var idCode = $(this).parent().attr('class').split(' ')[2];
+		 			var idCode2 = $(this).parent().attr('class').split(' ')[2];
 		 			/* var selectedPar = $(this).parent().children().eq(8).text();
 		 			alert(selectedPar); */
 		 			
@@ -484,7 +484,7 @@
 						document.getElementById("mCode2").value = $(this).parent().attr('class').split(' ')[3];
 					} 
 					/* document.getElementById("pCode2").value = $(this).parent().children().eq(3).text(); */
-					document.getElementById("idCode2").value =  $("#idCode2 option:selected").val();
+					document.getElementById("idCode2").value =  ${employee.idCode};
 					document.getElementById("buy_amount2").value = $(this).parent().children().eq(5).text();
 					document.getElementById("buy_origin2").value = $(this).parent().children().eq(6).text();
 					document.getElementById("buy_price2").value = $(this).parent().children().eq(7).text();
