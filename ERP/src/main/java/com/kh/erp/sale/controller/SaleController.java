@@ -67,7 +67,7 @@ public class SaleController {
 			else
 				msg = "거래처 등록에 성공했습니다.";
 		}
-		model.addAttribute("loc","/sale/partnerList.do")
+		model.addAttribute("loc","/sale/partnerList.do?ecode="+ecode)
 		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
@@ -87,7 +87,7 @@ public class SaleController {
 				msg = "거래처 삭제에 성공했습니다.";
 		}
 		
-		model.addAttribute("loc","/sale/partnerList.do")
+		model.addAttribute("loc","/sale/partnerList.do?ecode="+ecode)
 		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
@@ -106,7 +106,7 @@ public class SaleController {
 				msg = "거래처 수정에 성공했습니다.";
 		
 		
-		model.addAttribute("loc","/sale/partnerList.do")
+		model.addAttribute("loc","/sale/partnerList.do?ecode="+ecode)
 		.addAttribute("msg",msg);
 		return "common/msg";
 	}//끝
