@@ -1,17 +1,24 @@
 package com.kh.erp.mail.controller;
 
-
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Folder;
@@ -22,280 +29,295 @@ import javax.mail.Store;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.net.URLCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import com.kh.erp.buy.controller.AES256Util;
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.mail.model.vo.MailMitVo;
 import com.kh.erp.mail.model.vo.MailVo;
+import com.kh.erp.mail_check.model.vo.MailCheck;
 
 public class PostCan {
-   @Autowired
-   JavaMailSenderImpl mailSender;
-   
-   
+	@Autowired
+	JavaMailSenderImpl mailSender;
 
-   public static List<MailVo> open() throws AddressException, MessagingException {
+	public static List<MailVo> open(MailCheck mailCk) throws AddressException, MessagingException, InvalidKeyException,
+			UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
+			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException {
 
-      ArrayList<MailVo> list = new ArrayList<>();
- 
+		System.out.println("확인 해보죠 : " + mailCk);
+		ArrayList<MailVo> list = new ArrayList<>();
+		/* MailCheck ma = (MailCheck)session2.getAttribute("mailCk"); */
 
-      
-   
-      System.out.println("여기까지 왔어요");
-      Pattern SCRIPTS = Pattern.compile("<(no)?script[^>]*>.*?</(no)?script>", Pattern.DOTALL);
-      Pattern STYLE = Pattern.compile("<style[^>]*>.*</style>", Pattern.DOTALL);
-      Pattern TAGS = Pattern.compile("<(\"[^\"]*\"|\'[^\']*\'|[^\'\">])*>");
-      Pattern nTAGS = Pattern.compile("<\\w+\\s+[^<]*\\s*>");
-      Pattern ENTITY_REFS = Pattern.compile("&[^;]+;");
-      Pattern WHITESPACE = Pattern.compile("\\s\\s+");
+		System.out.println("확인 : " + mailCk);
+		String key = mailCk.getUserMail().split("@")[0];
 
-      String host = "pop.naver.com";
+		AES256Util aes256 = new AES256Util(key);
+		URLCodec codec = new URLCodec();
 
-      String username ="ari5704"; // @naver.com 은 제외하고 아이디만.
-      String password = "ari5755704";
-      int port = 995;
+		String passDecode = aes256.aesDecode(codec.decode(mailCk.getUserPass()));
+		System.out.println("리확인 : " + passDecode);
+		System.out.println("메일 리 : " + mailCk);
 
-      Properties props = System.getProperties();
+		System.out.println("qrqr" + mailCk);
 
-      props.put("mail.pop3.host", host);
-      props.put("mail.pop3.port", port);
-      props.put("mail.pop3.auth", "true");
-      props.put("mail.pop3.ssl.enable", "true");
-      props.put("mail.pop3.ssl.trust", host);
+		System.out.println("여기까지 왔어요");
+		Pattern SCRIPTS = Pattern.compile("<(no)?script[^>]*>.*?</(no)?script>", Pattern.DOTALL);
+		Pattern STYLE = Pattern.compile("<style[^>]*>.*</style>", Pattern.DOTALL);
+		Pattern TAGS = Pattern.compile("<(\"[^\"]*\"|\'[^\']*\'|[^\'\">])*>");
+		Pattern nTAGS = Pattern.compile("<\\w+\\s+[^<]*\\s*>");
+		Pattern ENTITY_REFS = Pattern.compile("&[^;]+;");
+		Pattern WHITESPACE = Pattern.compile("\\s\\s+");
 
-      Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-         String un = username;
-         String pw = password;
+		String host = "pop.naver.com";
 
-         protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-            return new javax.mail.PasswordAuthentication(un, pw);
-         }
-      });
+		String username = mailCk.getUserMail();// @naver.com 은 제외하고 아이디만.
+		String password = passDecode;
+		int port = 995;
 
-      session.setDebug(false);
-      Store store = session.getStore("pop3");
-      store.connect();
+		Properties props = System.getProperties();
 
-      Folder folder = store.getFolder("INBOX");
-      folder.open(Folder.READ_ONLY);
+		props.put("mail.pop3.host", host);
+		props.put("mail.pop3.port", port);
+		props.put("mail.pop3.auth", "true");
+		props.put("mail.pop3.ssl.enable", "true");
+		props.put("mail.pop3.ssl.trust", host);
 
-      Message[] messages = folder.getMessages();
-      Matcher m;
-      
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			String un = username;
+			String pw = password;
+
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+				return new javax.mail.PasswordAuthentication(un, pw);
+			}
+		});
+
+		session.setDebug(false);
+		Store store = session.getStore("pop3");
+		store.connect();
+
+		Folder folder = store.getFolder("INBOX");
+		folder.open(Folder.READ_ONLY);
+
+		Message[] messages = folder.getMessages();
+		Matcher m;
+
 		/* for (int i = messages.length, n = 0; i < n; i--) */
-		for (int i = 0, n = messages.length; i < n; i++){
-         Message message = messages[i];
-         
+		for (int i = 0, n = messages.length; i < n; i++) {
+			Message message = messages[i];
+
 //           System.out.println(":::::::::::::::::::::::::::::::::::");
 //           System.out.println("Subject: " + message.getSubject());
 //           System.out.println("From: " + message.getFrom()[0]);
 //           System.out.println("Date: " + message.getHeader("Date")[0]);
-          // System.out.println("Body: " + message.getContent()); 
-         
-          
-          
-         MailVo mail = new MailVo();
-         
-         String content="";
-         String body = "";
-         try {
-            
-            if(message.getContent() instanceof MimeMultipart) {
-               body = new PostCan().getTextFromMimeMultipart((MimeMultipart)message.getContent());
-            } else {
-               body = (String)message.getContent();
-            }
-         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-         
-         Address[] froms = message.getFrom();
-         String emailAdd = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
-         
-         m = SCRIPTS.matcher(body);
-         content=m.replaceAll("");
-         m = STYLE.matcher(body);
-         content=m.replaceAll("");
-         m = TAGS.matcher(body);
-         content=m.replaceAll("");
-         m = ENTITY_REFS.matcher(body);
-         content=m.replaceAll("");
-         m = WHITESPACE.matcher(body);
-         content=m.replaceAll("");
-         
-         //System.out.println("확인!!");
-         // System.out.println(message.getHeader("Date")[0]);
-         SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
-         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm ");
-         System.out.println(sdf.format(new Date()));
-         String renamedName = null;
-         try {
-            renamedName = sdf2.format(sdf.parse(message.getHeader("Date")[0]));
-         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-         // String renamedName = sdf2.format();
+			// System.out.println("Body: " + message.getContent());
 
-         System.out.println("바꾼 날짜"+renamedName);
-         
-         mail.setKeyNum(i);
-         mail.setMailContent(content);
-         mail.setMailTitle(message.getSubject());
-         mail.setMailDate(renamedName);
-         mail.setMailSender(emailAdd);
+			MailVo mail = new MailVo();
 
-         list.add(mail);
+			String content = "";
+			String body = "";
+			try {
 
-      }
-	
-      System.out.println("확인 : "+list);
-      store.close();
+				if (message.getContent() instanceof MimeMultipart) {
+					body = new PostCan().getTextFromMimeMultipart((MimeMultipart) message.getContent());
+				} else {
+					body = (String) message.getContent();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-      return list;
-   }
+			Address[] froms = message.getFrom();
+			String emailAdd = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
 
-   private String getTextFromMimeMultipart(MimeMultipart mimeMultipart) throws MessagingException, IOException {
-      String result = "";
-      int count = mimeMultipart.getCount();
-      for (int i = 0; i < count; i++) {
-         BodyPart bodyPart = mimeMultipart.getBodyPart(i);
-         if (bodyPart.isMimeType("text/plain")) {
-            result = result + "\n" + bodyPart.getContent();
-            break; // without break same text appears twice in my tests
-         } else if (bodyPart.isMimeType("text/html")) {
-            String html = (String) bodyPart.getContent();
-            result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
-         } else if (bodyPart.getContent() instanceof MimeMultipart) {
-            result = result + getTextFromMimeMultipart((MimeMultipart) bodyPart.getContent());
-         }
-      }
-      return result;
-   }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   public static List<MailVo> open2(MailVo mail) throws AddressException, MessagingException {
+			m = SCRIPTS.matcher(body);
+			content = m.replaceAll("");
+			m = STYLE.matcher(body);
+			content = m.replaceAll("");
+			m = TAGS.matcher(body);
+			content = m.replaceAll("");
+			m = ENTITY_REFS.matcher(body);
+			content = m.replaceAll("");
+			m = WHITESPACE.matcher(body);
+			content = m.replaceAll("");
 
-      ArrayList<MailVo> list = new ArrayList<>();
+			// System.out.println("확인!!");
+			// System.out.println(message.getHeader("Date")[0]);
+			SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm ");
+			System.out.println(sdf.format(new Date()));
+			String renamedName = null;
+			try {
+				renamedName = sdf2.format(sdf.parse(message.getHeader("Date")[0]));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// String renamedName = sdf2.format();
 
-      Pattern SCRIPTS = Pattern.compile("<(no)?script[^>]*>.*?</(no)?script>", Pattern.DOTALL);
-      Pattern STYLE = Pattern.compile("<style[^>]*>.*</style>", Pattern.DOTALL);
-      Pattern TAGS = Pattern.compile("<(\"[^\"]*\"|\'[^\']*\'|[^\'\">])*>");
-      Pattern nTAGS = Pattern.compile("<\\w+\\s+[^<]*\\s*>");
-      Pattern ENTITY_REFS = Pattern.compile("&[^;]+;");
-      Pattern WHITESPACE = Pattern.compile("\\s\\s+");
+			System.out.println("바꾼 날짜" + renamedName);
 
-      String host = "pop.naver.com";
+			mail.setKeyNum(i);
+			mail.setMailContent(content);
+			mail.setMailTitle(message.getSubject());
+			mail.setMailDate(renamedName);
+			mail.setMailSender(emailAdd);
 
-      final String username = "ari5704"; // @naver.com 은 제외하고 아이디만.
-      final String password = "ari5755704";
-      int port = 995;
+			list.add(mail);
 
-      Properties props = System.getProperties();
+		}
 
-      props.put("mail.pop3.host", host);
-      props.put("mail.pop3.port", port);
-      props.put("mail.pop3.auth", "true");
-      props.put("mail.pop3.ssl.enable", "true");
-      props.put("mail.pop3.ssl.trust", host);
+		System.out.println("확인 : " + list);
+		store.close();
 
-      Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-         String un = username;
-         String pw = password;
+		return list;
+	}
 
-         protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-            return new javax.mail.PasswordAuthentication(un, pw);
-         }
-      });
+	private String getTextFromMimeMultipart(MimeMultipart mimeMultipart) throws MessagingException, IOException {
+		String result = "";
+		int count = mimeMultipart.getCount();
+		for (int i = 0; i < count; i++) {
+			BodyPart bodyPart = mimeMultipart.getBodyPart(i);
+			if (bodyPart.isMimeType("text/plain")) {
+				result = result + "\n" + bodyPart.getContent();
+				break; // without break same text appears twice in my tests
+			} else if (bodyPart.isMimeType("text/html")) {
+				String html = (String) bodyPart.getContent();
+				result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
+			} else if (bodyPart.getContent() instanceof MimeMultipart) {
+				result = result + getTextFromMimeMultipart((MimeMultipart) bodyPart.getContent());
+			}
+		}
+		return result;
+	}
 
-      session.setDebug(false);
-      Store store = session.getStore("pop3");
-      store.connect();
+	public static List<MailVo> open2(MailVo mail, MailCheck mailCk) throws AddressException, MessagingException,
+			InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
+			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException {
 
-      Folder folder = store.getFolder("INBOX");
-      folder.open(Folder.READ_ONLY);
+		ArrayList<MailVo> list = new ArrayList<>();
 
-      Message[] messages = folder.getMessages();
-      Matcher m;
-      
-      
-         Message message = messages[mail.getKeyNum()];
+		System.out.println("확인 : " + mailCk);
+		String key = mailCk.getUserMail().split("@")[0];
 
-         
+		AES256Util aes256 = new AES256Util(key);
+		URLCodec codec = new URLCodec();
+
+		String passDecode = aes256.aesDecode(codec.decode(mailCk.getUserPass()));
+		System.out.println("리확인 : " + passDecode);
+		System.out.println("메일 리 : " + mailCk);
+
+		System.out.println("확인2 : " + mailCk);
+
+		Pattern SCRIPTS = Pattern.compile("<(no)?script[^>]*>.*?</(no)?script>", Pattern.DOTALL);
+		Pattern STYLE = Pattern.compile("<style[^>]*>.*</style>", Pattern.DOTALL);
+		Pattern TAGS = Pattern.compile("<(\"[^\"]*\"|\'[^\']*\'|[^\'\">])*>");
+		Pattern nTAGS = Pattern.compile("<\\w+\\s+[^<]*\\s*>");
+		Pattern ENTITY_REFS = Pattern.compile("&[^;]+;");
+		Pattern WHITESPACE = Pattern.compile("\\s\\s+");
+
+		String host = "pop.naver.com";
+
+		final String username = mailCk.getUserMail(); // @naver.com 은 제외하고 아이디만.
+		final String password = passDecode;
+		int port = 995;
+
+		Properties props = System.getProperties();
+
+		props.put("mail.pop3.host", host);
+		props.put("mail.pop3.port", port);
+		props.put("mail.pop3.auth", "true");
+		props.put("mail.pop3.ssl.enable", "true");
+		props.put("mail.pop3.ssl.trust", host);
+
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			String un = username;
+			String pw = password;
+
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+				return new javax.mail.PasswordAuthentication(un, pw);
+			}
+		});
+
+		session.setDebug(false);
+		Store store = session.getStore("pop3");
+		store.connect();
+
+		Folder folder = store.getFolder("INBOX");
+		folder.open(Folder.READ_ONLY);
+
+		Message[] messages = folder.getMessages();
+		Matcher m;
+
+		Message message = messages[mail.getKeyNum()];
+
 //           System.out.println(":::::::::::::::::::::::::::::::::::");
 //           System.out.println("Subject: " + message.getSubject());
 //           System.out.println("From: " + message.getFrom()[0]);
 //           System.out.println("Date: " + message.getHeader("Date")[0]);
-          // System.out.println("Body: " + message.getContent()); 
-         
-         System.out.println(message.getSentDate());
-          
-          
-         
-         String content="";
-         String body = "";
-         try {
-            
-            if(message.getContent() instanceof MimeMultipart) {
-               body = new PostCan().getTextFromMimeMultipart((MimeMultipart)message.getContent());
-            } else {
-               body = (String)message.getContent();
-            }
-         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-         
-         Address[] froms = message.getFrom();
-         String emailAdd = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
-         
-         m = SCRIPTS.matcher(body);
-         content=m.replaceAll("");
-         m = STYLE.matcher(body);
-         content=m.replaceAll("");
-         m = TAGS.matcher(body);
-         content=m.replaceAll("");
-         m = ENTITY_REFS.matcher(body);
-         content=m.replaceAll("");
-         m = WHITESPACE.matcher(body);
-         content=m.replaceAll("");
-         
-         SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
-         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm ");
-         System.out.println(sdf.format(new Date()));
-         String renamedName = null;
-         try {
-            renamedName = sdf2.format(sdf.parse(message.getHeader("Date")[0]));
-         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-         // String renamedName = sdf2.format();
+		// System.out.println("Body: " + message.getContent());
 
-         System.out.println("바꾼 날짜"+renamedName);
-         
-         
-         mail.setMailContent(content);
-         mail.setMailTitle(message.getSubject());
-         mail.setMailDate(renamedName);
-         mail.setMailSender(emailAdd);
+		System.out.println(message.getSentDate());
 
-         list.add(mail);
+		String content = "";
+		String body = "";
+		try {
 
-      
-      store.close();
+			if (message.getContent() instanceof MimeMultipart) {
+				body = new PostCan().getTextFromMimeMultipart((MimeMultipart) message.getContent());
+			} else {
+				body = (String) message.getContent();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-      return list;
-   }
-   
+		Address[] froms = message.getFrom();
+		String emailAdd = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
+
+		m = SCRIPTS.matcher(body);
+		content = m.replaceAll("");
+		m = STYLE.matcher(body);
+		content = m.replaceAll("");
+		m = TAGS.matcher(body);
+		content = m.replaceAll("");
+		m = ENTITY_REFS.matcher(body);
+		content = m.replaceAll("");
+		m = WHITESPACE.matcher(body);
+		content = m.replaceAll("");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm ");
+		System.out.println(sdf.format(new Date()));
+		String renamedName = null;
+		try {
+			renamedName = sdf2.format(sdf.parse(message.getHeader("Date")[0]));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// String renamedName = sdf2.format();
+
+		System.out.println("바꾼 날짜" + renamedName);
+
+		mail.setMailContent(content);
+		mail.setMailTitle(message.getSubject());
+		mail.setMailDate(renamedName);
+		mail.setMailSender(emailAdd);
+
+		list.add(mail);
+
+		store.close();
+
+		return list;
+	}
+
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <c:import url="../common/header.jsp" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
@@ -43,20 +44,15 @@
                      <br />
                       <label for="message-text" class="col-form-label" style="font-size:xx-large;">메일 보내기</label>
                 	  <br><br>
-                	  <c:forEach items="${mailList}" var="m" >
-                	  <c:if test="${ employee.idCode eq m.idCode }">
+                		
                 	   <input type="text" name="userMail" style="width: 50%; background-color: #EFF8FB; border: solid 1px #E0ECF8;"
-                            placeholder="발송이메일" class="form-control" readonly value="${m.userMail}" >
-                            </c:if>
-                            </c:forEach>
+                            placeholder="발송이메일" class="form-control" readonly value="${mailCk.userMail}@naver.com">
                             <br><br>
                             
-                            <c:forEach items="${mailList}" var="m" >
-                	  <c:if test="${ employee.idCode eq m.idCode }">
-                	   <input type="hidden" name="userPass" style="width: 50%; background-color: #EFF8FB; border: solid 1px #E0ECF8;"
-                            placeholder="발송비밀번호" class="form-control" readonly value="${m.userPass}" >
-                            </c:if>
-                            </c:forEach>
+                          <textarea name="userPass"cols="30" rows="10" hidden>${mailCk.userPass}</textarea>
+              <%--   	   <input type="hidden" name="userPass" style="width: 50%; background-color: #EFF8FB; border: solid 1px #E0ECF8;"
+                            placeholder="발송비밀번호" class="form-control" readonly value="${mailVo.userPass}" > --%>
+
                 	  
                         <input type="text" name="tomail" style="width: 50%"
                             placeholder="이메일을 입력해주세요" class="form-control"> ex : test@example.com

@@ -54,6 +54,7 @@ public class MailCkController {
       props.put("mail.smtp.auth", "true");
       props.put("mail.smtp.ssl.enable", "true");
       props.put("mail.smtp.ssl.trust", host);
+      
       Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
          String un = username;
          String pw = password;
@@ -70,6 +71,7 @@ public class MailCkController {
       mimeMessage.setText(body);
       System.out.println(new Date());
       mimeMessage.setSentDate(new Date());
+      
       Transport.send(mimeMessage);
    }
 

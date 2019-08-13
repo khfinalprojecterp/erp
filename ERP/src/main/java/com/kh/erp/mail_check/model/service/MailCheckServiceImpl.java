@@ -1,7 +1,5 @@
 package com.kh.erp.mail_check.model.service;
 
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +20,9 @@ public class MailCheckServiceImpl implements MailCheckService {
 	}
 
 	@Override
-	public List<Map<String, String>> mailList() {
+	public MailCheck selectMailCheck(String idCode) {
 		// TODO Auto-generated method stub
-		return mailcheckdao.mailList();
+		return mailcheckdao.selectMailCheck(idCode);
 	}
 	
 	

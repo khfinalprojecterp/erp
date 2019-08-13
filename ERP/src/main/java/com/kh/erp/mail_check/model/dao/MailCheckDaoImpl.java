@@ -23,9 +23,9 @@ public class MailCheckDaoImpl implements MailCheckDao {
 	}
 
 	@Override
-	public List<Map<String, String>> mailList() {
+	public MailCheck selectMailCheck (String idCode) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mailCheck.selectMail");
+		return sqlSession.selectOne("mailCheck.selectMail",idCode);
 	}
 
 }

@@ -9,13 +9,13 @@
 <body>
 
 	<c:import url="../common/nav.jsp" />
-	
+
 
 
 	<!-- ------------------------------------------------------------------------- -->
 
 	<div id="page-wrapper">
-	<c:import url="../common/bodyNav.jsp" />
+		<c:import url="../common/bodyNav.jsp" />
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
@@ -38,12 +38,12 @@
 											<th style="display: none;">메일번호</th>
 											<th style="display: none;">메일내용</th>
 											<th>받은일자</th>
-											
+
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${list}" var="v">
-											<tr id="${v.mailSender}" >
+											<tr id="${v.mailSender}">
 												<td>${v.mailSender}</td>
 												<td>${v.mailTitle}</td>
 												<td style="display: none;">${v.keyNum}</td>
@@ -68,7 +68,7 @@
 
 
 
-<script>
+	<script>
 		$(function() {
 
 			$("#dataTables-example td")
@@ -85,8 +85,6 @@
 					})
 					.click(
 							function() {
-								var mailSender = $(this).parent().children()
-										.eq(5).text();
 								var mailTitle = $(this).parent().children().eq(
 										1).text();
 								var keyNum = $(this).parent().children().eq(2)
@@ -95,6 +93,8 @@
 										.eq(3).text();
 								var mailDate = $(this).parent().children()
 										.eq(4).text();
+								var mailSender = $(this).parent().children()
+										.eq(5).text();
 
 								console.log(mailSender);
 								console.log(mailTitle);
@@ -107,20 +107,27 @@
 
 							});
 		});
-		
-		$("#sideNav").click(function(){
-	         if($(this).hasClass('closed')){
-	            $('.navbar-side').animate({left: '0px'});
-	            $(this).removeClass('closed');
-	            $('#page-wrapper').animate({'margin-left' : '260px'});
-	            
-	         }
-	         else{
-	             $(this).addClass('closed');
-	            $('.navbar-side').animate({left: '-260px'});
-	            $('#page-wrapper').animate({'margin-left' : '0px'}); 
-	         }
-	      });
+
+		$("#sideNav").click(function() {
+			if ($(this).hasClass('closed')) {
+				$('.navbar-side').animate({
+					left : '0px'
+				});
+				$(this).removeClass('closed');
+				$('#page-wrapper').animate({
+					'margin-left' : '260px'
+				});
+
+			} else {
+				$(this).addClass('closed');
+				$('.navbar-side').animate({
+					left : '-260px'
+				});
+				$('#page-wrapper').animate({
+					'margin-left' : '0px'
+				});
+			}
+		});
 	</script>
 </body>
 <c:import url="../common/footer.jsp" />

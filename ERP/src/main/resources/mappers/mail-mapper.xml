@@ -28,13 +28,14 @@
 	<!-- 메일 추가 -->
 	<insert id="insertMailCheck" parameterType="MailCheck">
 		INSERT INTO MAIL_SEND
-			VALUES (MAIL_SEND_SEQ.NEXTVAL, #{idCode}, #{userMail}, #{userPass})
+			VALUES (MAIL_SEND_SEQ.NEXTVAL, #{idCode}, #{userMail}, #{userPass},#{userMail})
 	</insert>
 	
-	<select id="selectMail" resultMap="resultMailList">
+	<select id="selectMail" resultType = "MailCheck">
 		SELECT M.MS_CODE MS_CODE, M.USERMAIL USERMAIL, M.USERPASS USERPASS, M.IDCODE IDCODE
 		FROM MAIL_SEND M, EMPLOYEE E
 		WHERE M.IDCODE = E.IDCODE
+		AND M.IDCODE = #{idCode}
 	</select>
 	
 	

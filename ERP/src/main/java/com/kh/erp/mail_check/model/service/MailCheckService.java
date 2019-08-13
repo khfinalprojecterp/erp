@@ -3,6 +3,7 @@ package com.kh.erp.mail_check.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.erp.employee.model.vo.Employee;
 import com.kh.erp.mail_check.model.vo.MailCheck;
 
 public interface MailCheckService {
@@ -14,10 +15,13 @@ public interface MailCheckService {
 	 */
 	int insertMailCheck(MailCheck mailCheck);
 	
+
 	/**
-	 * 이메일 정보
+	 * 세션
+	 * @param idCode
 	 * @return
 	 */
-	List<Map<String, String>> mailList();
+	MailCheck selectMailCheck(String idCode);
+
 	
 }

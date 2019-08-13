@@ -12,9 +12,10 @@ public class MailCheck implements Serializable{
 	 */
 	private static final long serialVersionUID = 1088L;
 	private int ms_code;
-	private int idCode;
+	private String idCode;
 	private String userMail;
 	private String userPass;
+	private String key;
 	
 	
 	private int eCode;
@@ -23,12 +24,13 @@ public class MailCheck implements Serializable{
 	public MailCheck() {}
 
 
-	public MailCheck(int ms_code, int idCode, String userMail, String userPass, int eCode) {
+	public MailCheck(int ms_code, String idCode, String userMail, String userPass, int eCode, String key) {
 		super();
 		this.ms_code = ms_code;
 		this.idCode = idCode;
 		this.userMail = userMail;
 		this.userPass = userPass;
+		this.key = key;
 
 		this.eCode = eCode;
 	}
@@ -44,12 +46,12 @@ public class MailCheck implements Serializable{
 	}
 
 
-	public int getIdCode() {
+	public String getIdCode() {
 		return idCode;
 	}
 
 
-	public void setIdCode(int idCode) {
+	public void setIdCode(String idCode) {
 		this.idCode = idCode;
 	}
 
@@ -72,6 +74,15 @@ public class MailCheck implements Serializable{
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+	
+	public String getKey() {
+		return key;
+	}
+
+
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 
 	public int geteCode() {
@@ -87,8 +98,12 @@ public class MailCheck implements Serializable{
 	@Override
 	public String toString() {
 		return "MailCheck [ms_code=" + ms_code + ", idCode=" + idCode + ", userMail=" + userMail + ", userPass="
-				+ userPass + ", eCode=" + eCode + "]";
+				+ userPass + ", key=" + key + ", eCode=" + eCode + "]";
 	}
+	
+
+
+	
 
 
 	

@@ -37,7 +37,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-8"
 						style="background-color: #EFF8FB; border-radius: 50px; border: solid 3px #E0ECF8;">
-						<form
+						<form id="mailCheckForm"
 							action="${pageContext.request.contextPath}/mail/mailInsert.do"
 							method="post" enctype="multipart/form-data">
 							<div>
@@ -47,10 +47,11 @@
 										<input type="hidden" class="form-control" name="idCode" id="idCode" value="${employee.idCode}">
 
 									<br> <input type="text" name="userMail" id="userMail" style="width: 50%"
-										placeholder="useremail@naver.com" class="form-control">
+										placeholder="naverId" class="form-control"> ex : example O , example@naver.com X
 										<br>
 										<input type="password" name="userPass" id="userPass" style="width: 50%"
-										placeholder="password" class="form-control">
+										placeholder="naverPassword" class="form-control">
+										
 										<br>
 										
 										
@@ -133,9 +134,10 @@
 
 	         var checkCode = $('#num').val();
 
-	         var email = $('#userMail').val();
+	         var email = $('#userMail').val()+"@naver.com";
 	         
 	         var title = $('#title').val();
+	         
 
 	         console.log(email);
 
@@ -157,6 +159,16 @@
 	         });
 
 	      });
+		
+		/* $('#Check').click(function() {
+			var userMail = $('#userMail').val() + "@naver.com";
+			var userPass = $('#userPass').val();
+			var idCode = $('#idCode').val();
+			
+			$('#mailCheckForm').attr("action","${pageContext.request.contextPath}/mail/mailInsert.do");
+			$('#mailCheckForm').attr("method", "post");
+			$('#mailCheckForm').submit();
+		} */
 		
 	</script>
 

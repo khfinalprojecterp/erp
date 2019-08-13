@@ -16,8 +16,9 @@ public interface MailCheckDao {
 	int insertMailCheck(MailCheck mailCheck);
 	
 	/**
-	 * 이메일 정보
+	 * 세션
+	 * @param idCode
 	 * @return
 	 */
-	List<Map<String, String>> mailList();
+	MailCheck selectMailCheck(String idCode);
 }

@@ -11,12 +11,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.net.URLCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.erp.buy.controller.AES256Util;
 import com.kh.erp.mail.model.vo.MailMitVo;
 
 
@@ -37,15 +39,21 @@ public class MailMitController {
 	}
 
    @RequestMapping(value = "/mail/mailSending.do")
-   public void navermailtest(MailMitVo mail, ModelMap mo) throws Exception {
+   public String navermailtest(MailMitVo mail, ModelMap mo) throws Exception {
       
-	   System.out.println("확인 : "+mail);
-   
+	   String key = mail.getUserMail().split("@")[0];
+	   
+	   AES256Util aes256 = new AES256Util(key);
+	   URLCodec codec = new URLCodec();
+	   
+	   String passDecode = aes256.aesDecode(codec.decode(mail.getUserPass()));
+
       
+	   
       // 메일 관련 정보
       String host = "smtp.naver.com";
       String username = mail.getUserMail(); // 네이버 이메일 주소중 @ naver.com앞주소만 기재합니다.
-      String password = mail.getUserPass(); // 네이버 이메일 비밀번호를 기재합니다.
+      String password = passDecode; // 네이버 이메일 비밀번호를 기재합니다.
       int port = 465; // 메일 내용
       String recipient = mail.getTomail(); // 메일을 발송할 이메일 주소를 기재해 줍니다.
       String subject = mail.getTitle();
@@ -56,6 +64,7 @@ public class MailMitController {
       props.put("mail.smtp.auth", "true");
       props.put("mail.smtp.ssl.enable", "true");
       props.put("mail.smtp.ssl.trust", host);
+      
       Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
          String un = username;
          String pw = password;
@@ -72,7 +81,10 @@ public class MailMitController {
       mimeMessage.setText(body);
       System.out.println(new Date());
       mimeMessage.setSentDate(new Date());
+      mimeMessage.addHeader("Content-type", "text/HTML; charset=UTF-8");
       Transport.send(mimeMessage);
+      return "mail/mailSendig";
+      
    }
-
+ 
 }

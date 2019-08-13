@@ -193,9 +193,7 @@ public String employeeLogin (
 	try {
 		// 1. 업무 로직 구현
 		Employee employee = empService.selectEmployee(userId);
-		
-		List<Map<String, String>> mailList = mailService.mailList();
-		
+		MailCheck mailCk = mailService.selectMailCheck(userId);
 		// 2. 반환할 화면 url 처리
 		String loc = "/";
 		String msg = "";
@@ -211,11 +209,10 @@ public String employeeLogin (
 				
 				
 				session.setAttribute("employee", employee);
-				session.setAttribute("mailList", mailList);
-				
+				session.setAttribute("mailCk", mailCk);
 			
 				System.out.println(employee);
-				System.out.println(mailList);
+				System.out.println(mailCk);
 				
 				
 				
