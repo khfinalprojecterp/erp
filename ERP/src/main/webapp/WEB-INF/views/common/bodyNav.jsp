@@ -9,11 +9,9 @@
 <!-- 		Dashboard<small>ERP</small> -->
 <!-- 	</h1> -->
 	<ol class="breadcrumb">
-		<li><a href="#">ERP</a></li>
-		<li><a href="#">재고관리</a></li>
-		<li><a href="#">메신저</a></li>
+		<li><a href="${pageContext.request.contextPath}/chattingRoom.do">메신저</a></li>
 		<li><a href="${pageContext.request.contextPath}/board/boardList.do">게시판</a>
-		<li><a href="${pageContext.request.contextPath}/employee/enterschedule.do">스케줄</a>
+		<li><a href="${pageContext.request.contextPath}/goMain.do">스케줄</a>
 
 
 

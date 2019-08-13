@@ -177,7 +177,7 @@
                 printHTML+="</div>";
                 $('#chatdata').append(printHTML);
             } else {
-                var printHTML="style='margin-left: -5%;margin-right:30%;'>";
+                var printHTML = "<div style='margin-right: 30%;'>";
                 printHTML+="<sub>"+printDate+"</sub><br/>";
                 printHTML+="<strong>["+userName+"] : "+message+"</strong>";
                 printHTML+="</div>";

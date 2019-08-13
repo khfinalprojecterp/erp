@@ -9,7 +9,7 @@
 		<result property="PCATE" column="PCATE" />
 		<result property="PCNAME" column="PCNAME" />
 		<result property="PNAME" column="PNAME" />
-		<result property="PSIZE" column="PBARCODE" />
+		<result property="PSIZE" column="PSIZE" />
 		<result property="PBARCODE" column="PBARCODE" />
 		
 		
