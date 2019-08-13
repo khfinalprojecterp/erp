@@ -484,7 +484,7 @@
 						document.getElementById("mCode2").value = $(this).parent().attr('class').split(' ')[3];
 					} 
 					/* document.getElementById("pCode2").value = $(this).parent().children().eq(3).text(); */
-					document.getElementById("idCode2").value =  idCode2;
+					document.getElementById("idCode2").value =  ${employee.idCode};
 					document.getElementById("buy_amount2").value = $(this).parent().children().eq(5).text();
 					document.getElementById("buy_origin2").value = $(this).parent().children().eq(6).text();
 					document.getElementById("buy_price2").value = $(this).parent().children().eq(7).text();
