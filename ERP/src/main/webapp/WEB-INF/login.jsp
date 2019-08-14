@@ -10,11 +10,16 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <style>
-
+body { 
+  background: url(${pageContext.request.contextPath}/resources/img/background_login.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .wrapper {    
-	margin-top: 80px;
+	margin-top: 20%;
 	margin-bottom: 20px;
 }
 
@@ -60,13 +65,8 @@ input[type="password"] {
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
-
 </style>
-
-
-
-<title>Insert title here</title>
-</head>
+</head> 
 <body>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -75,7 +75,7 @@ input[type="password"] {
 	<div class="wrapper">
 	
 	<script>
-	<c:if test="${!empty enterprise || !empty employee}">
+	<c:if test="${!empty enterprise || !empty employee}"> 
     
 	location.href="${pageContext.request.contextPath}/goMain.do";
 	
@@ -83,14 +83,13 @@ input[type="password"] {
 	</c:if>
 	</script>
 	
-	
-		<form id="loginFrm" method="post" name="Login_Form" class="form-signin">       
-		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+		<form id="loginFrm" method="post" name="Login_Form" class="form-signin" style="border: solid gray 2px;">       
+		    <h3 class="form-signin-heading" style="font-weight: bolder; font-family: sans-serif;">재고관리/사원관리 ERP</h3>
 			  <hr class="colorgraph"><br>
 			  	<div class="form-check form-check-inline">
-						<input type="radio" class="form-check-input" name="logintype" id="logintype0" value="0">
+						<input type="radio" class="custom-control-input" name="logintype" id="logintype0" value="0">
 						<label for="logintype0">사원</label>
-						<input type="radio" class="form-check-input" name="logintype" id="logintype1" value="1" checked="checked">
+						<input type="radio" class="custom-control-input" name="logintype" id="logintype1" value="1" checked="checked">
 						<label for="logintype1">기업</label>
 					</div>
 			  
@@ -100,11 +99,13 @@ input[type="password"] {
 			 
 			 
 			 
-			 
-			  <button type="button" onclick="memberlogin();" class="btn btn-outline-success">로그인</button>
-			  
-			  <button type="button" onclick="memberEnroll();" class="btn btn-outline-success">회원가입</button>
-		</form>			
+			 <div class="col-md-12" style="padding: 0px; text-align: center;">
+			  <button type="button" onclick="memberlogin();" class="btn btn-success" style=" font-weight: bold; font-size: 15px;">로그인</button>
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  &nbsp;&nbsp;&nbsp;
+			  <button type="button" onclick="memberEnroll();" class="btn btn-info" style=" font-weight: bold; font-size: 15px;">회원가입</button>
+			 </div>
+		</form>	
 	</div>
 </div>
 
